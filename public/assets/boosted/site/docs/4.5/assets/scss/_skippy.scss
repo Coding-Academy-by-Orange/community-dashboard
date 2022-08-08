@@ -1,0 +1,20 @@
+// stylelint-disable declaration-no-important
+.skippy {
+  z-index: $zindex-fixed + 1; // Boosted mod
+
+  a {
+    color: $white;
+    background-color: $bd-purple;
+  }
+
+  &:focus-within a {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: $spacer / 2 !important;
+    margin: $spacer / 4 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+}

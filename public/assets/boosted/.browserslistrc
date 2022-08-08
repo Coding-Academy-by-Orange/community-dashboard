@@ -1,0 +1,7 @@
+# https://github.com/browserslist/browserslist#readme
+
+>= 1%
+last 1 major version
+not dead
+Firefox ESR
+

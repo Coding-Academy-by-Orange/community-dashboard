@@ -1,0 +1,7 @@
+**/*.min.css
+**/dist/
+**/vendor/
+/_gh_pages/
+site/docs/4.5/examples/demo/**
+site/docs/4.5/examples/rtl-*/**
+site/docs/4.5/assets/css/tarteaucitronboosted.css

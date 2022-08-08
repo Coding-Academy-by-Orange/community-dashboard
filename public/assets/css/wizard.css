@@ -1,0 +1,124 @@
+
+/* from codePen*/
+.form-wizard .form-wizard-header {
+    text-align: center;
+}
+.form-wizard .form-wizard-next-btn, .form-wizard .form-wizard-previous-btn, .form-wizard .form-wizard-submit {
+    background-color: #ff7900;
+    color: #000000;
+    display: inline-block;
+    min-width: 100px;
+    min-width: 120px;
+    /*padding: 10px;*/
+    text-align: center;
+}
+.form-wizard .form-wizard-next-btn:hover, .form-wizard .form-wizard-next-btn:focus, .form-wizard .form-wizard-previous-btn:hover, .form-wizard .form-wizard-previous-btn:focus, .form-wizard .form-wizard-submit:hover, .form-wizard .form-wizard-submit:focus {
+    background-color: #000000;
+    color: #ffffff;
+    /*opacity: 0.6;*/
+    text-decoration: none;
+}
+.form-wizard .wizard-fieldset {
+    display: none;
+}
+.form-wizard .wizard-fieldset.show {
+    display: block;
+}
+.form-wizard .wizard-form-error {
+    display: none;
+    background-color: #d70b0b;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+}
+.form-wizard .form-wizard-previous-btn {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+/*step*/
+/*.form-wizard .form-wizard-steps {*/
+/*    margin: 30px 0;*/
+/*}*/
+.form-wizard .form-wizard-steps li {
+    width: 25%;
+    float: left;
+    position: relative;
+}
+.form-wizard .form-wizard-steps li::after {
+    background-color: #f3f3f3;
+    content: "";
+    height: 7px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+}
+
+.form-wizard .form-wizard-steps li span {
+    background-color: #dddddd;
+    border-radius: 50%;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    text-align: center;
+    width: 45px;
+    z-index: 1;
+}
+.form-wizard .form-wizard-steps li:last-child::after {
+    width: 50%;
+}
+.form-wizard .form-wizard-steps li.active span, .form-wizard .form-wizard-steps li.activated span {
+    background-color: #ff7900;
+    color: #ffffff;
+}
+
+.form-wizard .form-wizard-steps li.active::after, .form-wizard .form-wizard-steps li.activated::after {
+    background-color: #ff7900;
+    left: 50%;
+    width: 50%;
+    border-color: #ff7900;
+}
+.form-wizard .form-wizard-steps li.activated::after {
+    width: 100%;
+    border-color: #ff7900;
+}
+.form-wizard .form-wizard-steps li:last-child::after {
+    left: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .wizard-content-left {
+        height: auto;
+    }
+}
+
+
+/*the original */
+.skippy {
+    display: block;
+    padding: 1em;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+}
+
+.skippy:hover {
+    color: #fff;
+}
+
+.skippy-text {
+    padding: .5em;
+}
+.fa-check-circle{
+    color : #32c832 ;
+}
