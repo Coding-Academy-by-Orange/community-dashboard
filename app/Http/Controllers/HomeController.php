@@ -33,7 +33,7 @@ class HomeController extends Controller
             //     "email_verification" => $code,
             // ]);
             return redirect()->route('auth.email.verification2');
-        } elseif (auth()->user()->is_mobile_verified == 0) {
+        } /*elseif (auth()->user()->is_mobile_verified == 0) {
             $mcode = mt_rand(1000, 9999);
             $content = [
                 "receiverMobile" => substr(auth()->user()->mobile , 1) ,
@@ -43,7 +43,7 @@ class HomeController extends Controller
             ];
             // User::updateAndSendSMS($content);
             return redirect()->route('basic.info.step3.index');
-        } elseif (auth()->user()->nationality == null) {
+        }*/ elseif (auth()->user()->nationality == null) {
             return redirect()->route('basic.info');
         } else {
             return view('client.dashboard')->with('information', User::where('id', auth()->id())->first());
@@ -62,9 +62,9 @@ class HomeController extends Controller
                 ]);
 
                 // Send EMail when he submitted
-                $emailTo = auth()->user()->email;                
+                $emailTo = auth()->user()->email;
                 /*$data = [
-                    'name'=> 'Coding Academy',                    
+                    'name'=> 'Coding Academy',
                     'email'=> $emailTo
                 ];
 */
@@ -75,7 +75,7 @@ class HomeController extends Controller
                 $m->to($emailTo)->subject('Thank you for your registration  - Orange Coding Academy');
         });
             //Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
-            // End Send Email 
+            // End Send Email
 
                 return back()->with('status_store', 'Your application Has been submitted!');
             }
