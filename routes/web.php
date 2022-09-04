@@ -6,25 +6,29 @@ use Illuminate\Support\Facades\Route;
 | User Routes
 |--------------------------------------------------------------------------
 */
+Route::get('/',"HomeController@publicLanding");
+
 
 Auth::routes();
+
+
 Route::get('/home', "HomeController@showDashboard")->name('homeDashboard');
+
+// Manual Register
+Route::get('/register', "Auth\RegisterController@index" );
+Route::get('/terms', "Auth\RegisterController@terms" );
+Route::get('/help', "Auth\RegisterController@help" );
 
 // Google login & Register
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback')->name('login.google.callback');
 
-// Manual Register
-Route::get('/', "Auth\RegisterController@index" );
-Route::get('/terms', "Auth\RegisterController@terms" );
-Route::get('/help', "Auth\RegisterController@help" );
-
 
 Route::post('register/step1', "Auth\RegisterController@register_step1" )->name('register.step1');
 Route::view('/email/verification', "auth.email_verification2" )->name('auth.email.verification2');
-Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
+//Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
-// Hard Coded To Skip Email validation 
+// Hard Coded To Skip Email validation
 //Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
 Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification" )->name('resend.email.verification.submit');
@@ -95,7 +99,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('users/filter', 'UserController@filter')->name('users.filter');
     Route::get('users/status/{id}', 'UserController@status')->name('users.status');
 
-    
+
     Route::get('file-import-export','UserController@fileImportExport');
     Route::post('/file-import','UserController@fileImport')->name('file-import');
     Route::get('file-export', 'UserController@fileExport')->name('file-export');
