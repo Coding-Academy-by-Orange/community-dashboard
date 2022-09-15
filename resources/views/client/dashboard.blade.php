@@ -280,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         @else
             <div class="d-flex flex-column text-center my-4">

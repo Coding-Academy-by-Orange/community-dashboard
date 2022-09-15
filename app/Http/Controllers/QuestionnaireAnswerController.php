@@ -24,7 +24,12 @@ class QuestionnaireAnswerController extends Controller
      */
     public function index()
     {
-        return view('client.questionnaire')->with('questionnaires', Questionnaire::all());
+        if (auth()->user()->academy_location == 'data science') {
+            $questionnaires = Questionnaire::where('academy_location','data science')->get();
+        }else{
+            $questionnaires = Questionnaire::WhereNull('academy_location')->get();;
+        }
+        return view('client.questionnaire')->with('questionnaires', $questionnaires);
 
     }
 

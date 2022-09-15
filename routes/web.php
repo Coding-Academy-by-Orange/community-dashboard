@@ -24,8 +24,8 @@ Route::post('register/step1', "Auth\RegisterController@register_step1" )->name('
 Route::view('/email/verification', "auth.email_verification2" )->name('auth.email.verification2');
 Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
-// Hard Coded To Skip Email validation 
-//Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
+// Hard Coded To Skip Email validation
+Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
 Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification" )->name('resend.email.verification.submit');
 Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification" )->name('resend.mobile.verification.submit');
@@ -95,7 +95,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('users/filter', 'UserController@filter')->name('users.filter');
     Route::get('users/status/{id}', 'UserController@status')->name('users.status');
 
-    
+
     Route::get('file-import-export','UserController@fileImportExport');
     Route::post('/file-import','UserController@fileImport')->name('file-import');
     Route::get('file-export', 'UserController@fileExport')->name('file-export');

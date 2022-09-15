@@ -39,7 +39,7 @@
                                         <label for="country" class="is-required">Country</label>
                                         <select name="country"
                                                 class="custom-select @error('country') is-invalid @enderror"
-                                                id="country" >
+                                                id="country">
                                             <option value="">Select..</option>
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
@@ -455,7 +455,7 @@
                                                     <input name="en_first_name" type="text"
                                                            class="form-control mr-2 en_name1  @error('en_first_name') is-invalid @enderror "
                                                            placeholder="First name" id="en_first_name"
-                                                           required 
+                                                           required
                                                            value="{{old('en_first_name')}}">
                                                     <input name="en_second_name" type="text"
                                                            class="form-control mr-2 en_name2 @error('en_second_name') is-invalid @enderror "
@@ -523,7 +523,8 @@
                                     <div class="form-group col-lg-3 col-md-12 col-sm-12 mb-lg-0 pr-lg-1">
                                         <label for="gender" class="is-required">Gender</label>
                                         <select name="gender"
-                                                class="custom-select @error('gender') is-invalid @enderror" id="gender" required>
+                                                class="custom-select @error('gender') is-invalid @enderror" id="gender"
+                                                required>
                                             <option value="" @if (old('gender') == null) selected @endif >
                                                 Select..
                                             </option>
@@ -552,17 +553,18 @@
                                                 Married
                                             </option>
                                         </select>
-				    </div>
-<div class="form-group">
-<label class="is_required">Academy Location</label>
-<select name="academy_location" class="custom-select" required>
-    <option value="">Select..</option>
-    <option value="zarqa">Zarqa</option>
-    <option value="balqa">Balqa</option>
-</select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="is_required">Academy Location</label>
+                                        <select name="academy_location" class="custom-select" required>
+                                            <option value="">Select..</option>
+                                            <option value="zarqa">Zarqa</option>
+                                            <option value="balqa">Balqa</option>
+                                            <option value="data science ">Data Science</option>
+                                        </select>
 
 
-</div>
+                                    </div>
                                 </div>
                                 <div role="navigation" aria-label="Pagination example">
                                     <ul class="pagination float-right mb-0">

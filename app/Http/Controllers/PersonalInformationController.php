@@ -15,6 +15,7 @@ class PersonalInformationController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,15 +23,21 @@ class PersonalInformationController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->is_submitted ==0){
-            return view('client.personal_information')->with('user', User::where('id', auth()->id())->first());
-        }else{
+        if (auth()->user()->is_submitted == 0) {
+            if (auth()->user()->academy_location == 'data science') {
+                //dd('data science');
+                return view('client.ds.ds_personal_information')->with('user', User::where('id', auth()->id())->first());
+            } else {
+                return view('client.personal_information')->with('user', User::where('id', auth()->id())->first());
+            }
+        } else {
             return back();
         }
     }
 
     public function personal_information_step1(Request $request)
     {
+
 //            $request->validate([
 //            "educational_level"           => 'required | string',
 //            "educational_background"      => 'required | string',
@@ -40,7 +47,11 @@ class PersonalInformationController extends Controller
             "educational_level" => $request->educational_level,
             "educational_status" => $request->educational_status,
             "field" => $request->field,
-            "educational_background" => $request->educational_background
+            "educational_background" => $request->educational_background,
+            "field_of_study" => $request->field_of_study,
+            "field_of_specialization" => $request->field_of_specialization,
+
+
         ]);
     }
 
@@ -75,6 +86,8 @@ class PersonalInformationController extends Controller
             "city" => $request->city,
             "address" => $request->address,
             /*"mobile" => $request->mobile,*/
+            "know_us" => $request->know_us,
+            "disability" => $request->disability,
         ]);
     }
 
@@ -87,9 +100,9 @@ class PersonalInformationController extends Controller
 //            "relative_mobile_2"    => 'required | string',
 //        ]);
         if ($request->is_committed == null) {
-            $is_committed = 0 ;
+            $is_committed = 0;
         } else {
-            $is_committed = 1 ;
+            $is_committed = 1;
         }
 
         $user = User::where('id', Auth::user()->id)->first();

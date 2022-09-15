@@ -54,12 +54,14 @@ class RegisterController extends Controller
 
     public function register_step1(Request $request)
     {
+
         $request->validate([
             'email' => 'required | email | unique:users',
             'mobile' => 'required | size:10 | unique:users',
             'password' => 'required | min:6 | max:18',
             'chAgree' => 'accepted'
         ]);
+
         if ($request->is_newsletter == "on") {
             $is_newsletter = "on";
         } else {
@@ -71,14 +73,14 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
             'mobile' => $request->mobile,
             "email_verification" => $emailCode,
-            'is_newsletter' => $is_newsletter
+            'is_newsletter' => $is_newsletter,
             // hard coded skip email validation
-            //'is_email_verified'=>1
+            'is_email_verified'=>1
         ]);
         // user login
         Auth::guard('web')->loginUsingId($user->id);
         //sending email
-        // $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
         $to_name = 'applicant';
         $to_email = auth()->user()->email;
         // $data = array('name' => "Coding Academy", 'body' => "Your Verification Code is: 1243 ");
@@ -89,22 +91,22 @@ class RegisterController extends Controller
                 ];
 
 	$subject = 'Verification Code - Orange Coding Academy';
-        Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
+       // Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
         // Mail::send('emails.verification', $data, function ($message) use ($to_name, $to_email) {
         //     $message->to($to_email, $to_name)
         //         ->subject('');
         //     $message->from('marya.testing@gmail.com', 'Coding Academy by Orange');
         // });
-        return redirect()->route('auth.email.verification2');
+        //return redirect()->route('auth.email.verification2');
 
         // Hard coded escape email validation
         //dd(auth()->user()->email_verification);
-       // return redirect()->route('register.step2',auth()->user()->email_verification);
+        return redirect()->route('register.step2',auth()->user()->email_verification);
 
     }
 
     public function register_step2(Request $request)
-    {   
+    {
         //prepare variable for sending mails
         $mcode = mt_rand(1000, 9999);
         $content = [
@@ -182,8 +184,15 @@ class RegisterController extends Controller
         if ($user->en_first_name == '' || $user->en_first_name == null) {
             return view('client.basic_information');
         }
+        if (auth()->user()->academy_location == 'data science') {
+            return view('client.ds.ds_dashboard')->with('information', $user);
 
-        return view('client.dashboard')->with('information', $user);
+        } else {
+            return view('client.ds.ds_dashboard')->with('information', $user);
+
+        }
+
+        return view('client.dashboard');
     }
 
     public function basic_info_step2_index()
