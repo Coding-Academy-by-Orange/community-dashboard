@@ -170,7 +170,7 @@
                                 <option @if($result_1 == "7. Rejected – Test Result (Sololearn + English) - Simplon") selected
                                         @endif  value="7. Rejected – Test Result (Sololearn + English) - Simplon">
                                 7. Rejected – Test Result (Sololearn + English) - Simplon                                </option>
-                           
+
                                 <option @if($result_1 == "rejected_aqaba") selected
                                         @endif  value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon
                                 </option>
@@ -184,7 +184,7 @@
                                 </option>
                                 <option @if($result_1 == "11. Rejected – Final List After Interviews - Orange") selected
                                         @endif  value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange
-                                </option>                           
+                                </option>
                             </select>
                         </fieldset>
                     </div>
@@ -350,6 +350,8 @@
 				<option value="aqaba">Aqaba</option>-->
 				<option value="zarqa">Zarqa</option>
                                 <option value="balqa">Balqa</option>
+
+                    <option value="data science">Data Science</option>
 			    </select>
 			</fieldset>
 		    </div>
@@ -473,7 +475,7 @@
                                                     @else
                                                         <td>_</td>
 							@endif
-						   <td calss="sorting_1">{{$user->academy_location}}</td>	
+						   <td calss="sorting_1">{{$user->academy_location}}</td>
 
                                                     @if($user->status == 'in_progress')
                                                         <td><span

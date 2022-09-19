@@ -28,8 +28,6 @@ class HomeController extends Controller
     public function showDashboard()
     {
         if (auth()->user()->is_email_verified == 0) {
-            dd('test');
-
             $code = mt_rand(1000, 9999);
             User::where('id', auth()->id())->update([
                 "email_verification" => $code,

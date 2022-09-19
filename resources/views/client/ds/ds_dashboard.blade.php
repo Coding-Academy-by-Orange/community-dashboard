@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-lg-12 bg-secondary card pt-3 pb-2">
 
-                            <h2 class="intro">Your Sections DS </h2>
+                            <h2 class="intro">Your Sections</h2>
                             <p class="intro"> You have to complete all sections below to enable submit
                                 your application. </p>
                             <div class="row">

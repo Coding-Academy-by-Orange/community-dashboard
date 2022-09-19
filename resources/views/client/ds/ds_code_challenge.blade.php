@@ -156,11 +156,11 @@
                         <ul>
                             <li class="my-2"> Click on the view test</li>
                             <li class="my-2">Solve the Exam Questions.</li>
-                            <li class="my-2">PrintScreen the result to show us your score</li>
+                            <li class="my-2">PrintScreen and save it  the result to show us your score</li>
                         </ul>
 
                         <a class="btn btn-secondary mb-10"
-                           href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=MATH"
+                           href="https://www.123test.com/iq-test/#classical-intelligence-test"
                            target="_blank">View test »</a>
                     </div>
                 </div>
@@ -196,13 +196,13 @@
                         <h5 class="card-title text-center mt-2">3. Python</h5>
                         <p class="card-text">To complete the course please follow the steps: </p>
                         <ul>
-                            <li class="my-2">Register on <a href="https://coursat.orange.jo/" target="_blank">Orange Coursat</a> </li>
+                            <li class="my-2">Register on <a href="https://coursat.orange.jo/login/signup_youth.php" target="_blank">Orange Coursat</a> </li>
 
                             <li class="my-2">Click on the view course</li>
-                            <li class="my-2">PrintScreen your certificate as a picture.</li>
+                            <li class="my-2">PrintScreen and save your certificate as a picture.</li>
                         </ul>
                         <a class="btn btn-secondary"
-                           href="https://www.sololearn.com/learning/1172"
+                           href="https://coursat.orange.jo/course/view.php?id=2"
                            target="_blank">View course »</a>
                     </div>
                 </div>

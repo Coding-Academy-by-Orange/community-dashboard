@@ -24,11 +24,11 @@ class UserController extends Controller
     {
        return view('file-import');
     }
-   
+
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileImport(Request $request) 
+    public function fileImport(Request $request)
     {
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
         return back();
@@ -37,10 +37,10 @@ class UserController extends Controller
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileExport() 
+    public function fileExport()
     {
         return Excel::download(new UsersExport, 'users-collection.xlsx');
-    }  
+    }
 
 
     public function index()
@@ -209,6 +209,10 @@ class UserController extends Controller
             $code_score = DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score ;
             $code_account_link = DB::table('code_challenges')->where('user_id', $user->id)->first()->code_account_link ;
             $code_score_image = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image);
+            $code_score_image_python = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_python);
+            $code_score_image_math = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_math);
+            $code_score_image_iq = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_iq);
+            $code_score_image_iq = '/storage/images/Zzl3tlIgRtRxsE7LUSOSa1BJPC9KKyeQCqOztft6.png';
         }
         if(!DB::table('english_quizzes')->where('user_id', $user->id)->exists()){
             $english_score = '_';
@@ -220,7 +224,7 @@ class UserController extends Controller
             $english_score_image = Storage::disk('local')->url(DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score_image);
         }
         $questionnaires = Questionnaire::all() ;
-        return view('admin.user.update', compact(['code_score' , 'code_account_link' , 'code_score_image' , 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
+        return view('admin.user.update', compact(['code_score' , 'code_account_link' , 'code_score_image', 'code_score_image_python', 'code_score_image_math', 'code_score_image_iq' , 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
     }
 
     /**

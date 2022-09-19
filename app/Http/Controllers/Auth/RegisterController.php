@@ -91,13 +91,13 @@ class RegisterController extends Controller
                 ];
 
 	$subject = 'Verification Code - Orange Coding Academy';
-       // Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
+       Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
         // Mail::send('emails.verification', $data, function ($message) use ($to_name, $to_email) {
         //     $message->to($to_email, $to_name)
         //         ->subject('');
         //     $message->from('marya.testing@gmail.com', 'Coding Academy by Orange');
         // });
-        //return redirect()->route('auth.email.verification2');
+        return redirect()->route('auth.email.verification2');
 
         // Hard coded escape email validation
         //dd(auth()->user()->email_verification);

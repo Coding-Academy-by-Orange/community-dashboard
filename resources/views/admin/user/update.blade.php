@@ -26,7 +26,7 @@
                                             @elseif($user->result_1 == '2. Maybe – 1st Filtration – Orange')
                                                 | <span
                                                     class="badge badge-light-secondary mb-1 ">{{$user->result_1}}</span>
-                                                    
+
                                             @elseif($user->result_1 == '3. Rejected – Age – Orange')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
@@ -36,7 +36,7 @@
                                             @elseif($user->result_1 == '5. Accepted – Pre Final List – Simplon')
                                                 | <span
                                                     class="badge badge-light-success mb-1 ">{{$user->result_1}}</span>
-                                          
+
                                             @elseif($user->result_1 == '6. Accepted – Final List – Simplon')
                                                 | <span
                                                     class="badge badge-light-success mb-1 ">{{$user->result_1}}</span>
@@ -55,8 +55,8 @@
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
                                                     @elseif($user->result_1 == '11. Rejected – Final List After Interviews - Orange')
                                                 | <span
-                                                    class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>          
-                                          
+                                                    class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
+
                                             @endif
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                            
+
                                                                 @elseif($user->result_1 == "5. Accepted – Pre Final List – Simplon")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -145,7 +145,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+
                                                                 @elseif($user->result_1 == "6. Accepted – Final List – Simplon")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -170,7 +170,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+
                                                                 @elseif($user->result_1 == "8. Rejected – Motivational Qs – Simplon")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -183,7 +183,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                              
+
                                                                 @elseif($user->result_1 == "9. Accepted – 50 Students After Interviews – Orange")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -196,7 +196,7 @@
                                                                     <!-- <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option> -->
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+
                                                                 @elseif($user->result_1 == "10. Maybe – Final List After Interviews - Orange")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -209,7 +209,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <!-- <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option> -->
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+
                                                                 @elseif($user->result_1 == "11. Rejected – Final List After Interviews - Orange")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
@@ -341,7 +341,7 @@
                                                         <div class="col">
                                                             <h6 class="invoice-from">Gender:</h6>
                                                             <div class="mb-1">
-                                                                <span>Male</span>
+                                                                <span>{{$user->gender}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -369,7 +369,7 @@
                                                                     <span>_</span>
                                                                 @endif
                                                             </div>
-                                                        </div> 
+                                                        </div>
                                                         <div class="col-12">
                                                             <h6 class="invoice-from">First Relative Name:</h6>
                                                             <div class="mb-1">
@@ -392,7 +392,7 @@
                                                                     <span>_</span>
                                                                 @endif
                                                             </div>
-                                                        </div>                                                   
+                                                        </div>
                                                         <div class="col">
                                                             <h6 class="invoice-from">Mobile Number:</h6>
                                                             <div class="mb-1">
@@ -647,7 +647,11 @@
                                                     <h2>Not Submitted </h2>
                                                 @else
                                                     <div class="col-md-12 d-md-block d-none text-center align-self-center p-3">
-                                                        <img class="img-fluid" src="{{$code_score_image}}"
+                                                        <img class="img-fluid" src="{{$code_score_image_python}}"
+                                                             alt="code challenge image">
+                                                        <img class="img-fluid" src="{{$code_score_image_math}}"
+                                                             alt="code challenge image">
+                                                        <img class="img-fluid" src="{{$code_score_image_iq}}"
                                                              alt="code challenge image">
                                                     </div>
                                                 @endif
@@ -670,7 +674,7 @@
                             <span class="badge badge-light-warning ">in progress</span>
                         @elseif($user->status == 'submitted')
                             <span class="badge badge-light-info ">Submitted</span>
-                            
+
                         @elseif($user->status == 'accepted')
                             <span
                                 class="badge badge-light-success ">Accepted</span>
@@ -685,12 +689,12 @@
                         @elseif($user->status == '1. Accepted – 1st Filtration – Orange')
                             <span
                                 class="badge badge-light-success">1. Accepted – 1st Filtration – Orange</span>
-                        
+
 
 
                         @elseif($user->status == '2. Maybe – 1st Filtration – Orange')
                             <span
-                                class="badge badge-light-secondary ">2. Maybe – 1st Filtration – Orange</span>        
+                                class="badge badge-light-secondary ">2. Maybe – 1st Filtration – Orange</span>
 
 
                         @elseif($user->status == '3. Rejected – Age – Orange')
@@ -699,42 +703,42 @@
 
                          @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
                             <span
-                                class="badge badge-light-danger ">4. Rejected – 1st Filtration – Orange</span> 
+                                class="badge badge-light-danger ">4. Rejected – 1st Filtration – Orange</span>
                                 @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
                             <span
-                                class="badge badge-light-success ">5. Accepted – Pre Final List – Simplon</span> 
+                                class="badge badge-light-success ">5. Accepted – Pre Final List – Simplon</span>
 
 
 
                             @elseif($user->status == '6. Accepted – Final List – Simplon')
                             <span
-                                class="badge badge-light-success">6. Accepted – Final List – Simplon</span>  
+                                class="badge badge-light-success">6. Accepted – Final List – Simplon</span>
 
                              @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
                             <span
-                                class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>   
+                                class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>
 
 
 
                                @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
                             <span
-                                class="badge badge-light-danger ">8. Rejected – Motivational Qs – Simplon</span>   
+                                class="badge badge-light-danger ">8. Rejected – Motivational Qs – Simplon</span>
 
 
                                   @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
                             <span
-                                class="badge badge-light-success ">9. Accepted – 50 Students After Interviews – Orange</span> 
+                                class="badge badge-light-success ">9. Accepted – 50 Students After Interviews – Orange</span>
 
 
 
                                 @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
                             <span
-                                class="badge badge-light-secondary ">10. Maybe – Final List After Interviews - Orange</span> 
+                                class="badge badge-light-secondary ">10. Maybe – Final List After Interviews - Orange</span>
 
 
                                 @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
                             <span
-                                class="badge badge-light-danger ">11. Rejected – Final List After Interviews - Orange</span>   
+                                class="badge badge-light-danger ">11. Rejected – Final List After Interviews - Orange</span>
 
 
                         @endif
