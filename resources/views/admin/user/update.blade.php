@@ -53,7 +53,7 @@
                                             @elseif($user->result_1 == '10. Maybe – Final List After Interviews - Orange')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
-                                                    @elseif($user->result_1 == '11. Rejected – Final List After Interviews - Orange')
+                                            @elseif($user->result_1 == '11. Rejected – Final List After Interviews - Orange')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
 
@@ -84,8 +84,8 @@
                                                             <select
                                                                 class="form-control @error('result') is-invalid @enderror"
                                                                 id="result_1" name="result_1">
-                                                                @if($user->result_1 == "1. Accepted – 1st Filtration – Orange")
-                                                                    <!-- <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option> -->
+                                                            @if($user->result_1 == "1. Accepted – 1st Filtration – Orange")
+                                                                <!-- <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option> -->
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
                                                                     <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
                                                                     <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
@@ -120,7 +120,7 @@
                                                                     <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
                                                                     <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
                                                                     <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                                    @elseif($user->result_1 == "4. Rejected – 1st Filtration – Orange")
+                                                                @elseif($user->result_1 == "4. Rejected – 1st Filtration – Orange")
                                                                     <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
                                                                     <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
                                                                     <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
@@ -316,16 +316,16 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="col">
+                                                    <!-- <div class="col">
                                                             <h6 class="invoice-from">Identity Number:</h6>
                                                             <div class="mb-1">
                                                                 @if($user->identity_number)
-                                                                    <span>{{$user->identity_number}}</span>
+                                                        <span>{{$user->identity_number}}</span>
                                                                 @else
-                                                                    <span>_</span>
-                                                                @endif
-                                                            </div>
-                                                        </div> -->
+                                                        <span>_</span>
+@endif
+                                                        </div>
+                                                    </div> -->
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
@@ -443,6 +443,24 @@
                                                             <span>Master Degree</span>
                                                         @elseif($user->educational_level == 'ph.d.')
                                                             <span>Ph.D</span>
+                                                        @else
+                                                            <span>_</span>
+                                                        @endif
+                                                    </div>
+
+                                                    <h6 class="invoice-from">Field of Study:</h6>
+                                                    <div class="mb-1">
+                                                        @if($user->field_of_study != null)
+                                                            <span>{{$user->field_of_study}}</span>
+                                                        @else
+                                                            <span>_</span>
+                                                        @endif
+                                                    </div>
+
+                                                    <h6 class="invoice-from">Field of Specialization:</h6>
+                                                    <div class="mb-1">
+                                                        @if($user->field_of_specialization != null)
+                                                            <span>{{$user->field_of_specialization}}</span>
                                                         @else
                                                             <span>_</span>
                                                         @endif
@@ -680,7 +698,7 @@
                                 class="badge badge-light-success ">Accepted</span>
 
 
-                       @elseif($user->status == 'rejected')
+                        @elseif($user->status == 'rejected')
                             <span
                                 class="badge badge-light-danger ">Rejected</span>
 
@@ -701,42 +719,42 @@
                             <span
                                 class="badge badge-light-danger ">3. Rejected – Age – Orange</span>
 
-                         @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
+                        @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
                             <span
                                 class="badge badge-light-danger ">4. Rejected – 1st Filtration – Orange</span>
-                                @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
+                        @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
                             <span
                                 class="badge badge-light-success ">5. Accepted – Pre Final List – Simplon</span>
 
 
 
-                            @elseif($user->status == '6. Accepted – Final List – Simplon')
+                        @elseif($user->status == '6. Accepted – Final List – Simplon')
                             <span
                                 class="badge badge-light-success">6. Accepted – Final List – Simplon</span>
 
-                             @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
+                        @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
                             <span
                                 class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>
 
 
 
-                               @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
+                        @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
                             <span
                                 class="badge badge-light-danger ">8. Rejected – Motivational Qs – Simplon</span>
 
 
-                                  @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
+                        @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
                             <span
                                 class="badge badge-light-success ">9. Accepted – 50 Students After Interviews – Orange</span>
 
 
 
-                                @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
+                        @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
                             <span
                                 class="badge badge-light-secondary ">10. Maybe – Final List After Interviews - Orange</span>
 
 
-                                @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
+                        @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
                             <span
                                 class="badge badge-light-danger ">11. Rejected – Final List After Interviews - Orange</span>
 

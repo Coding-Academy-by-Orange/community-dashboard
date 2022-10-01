@@ -7,23 +7,23 @@
 
 @section('main')
 
-<style>
-@media screen and (max-width: 600px) {
-    .btnM{
-        margin-right:0.5rem;
-        margin-left:0.5rem;
-    }
+    <style>
+        @media screen and (max-width: 600px) {
+            .btnM{
+                margin-right:0.5rem;
+                margin-left:0.5rem;
+            }
 
-    .intro{
-        margin-left:0.5rem;
-    }
+            .intro{
+                margin-left:0.5rem;
+            }
 
-    #m {
-        margin-right: -5px;
-    }
+            #m {
+                margin-right: -5px;
+            }
 
-}
-</style>
+        }
+    </style>
     <main role="main" id="content" class="container ml-5">
         @if(session('status_success'))
             <div class="successModal modal" tabindex="-1">
@@ -47,13 +47,12 @@
                 </div>
             </div>
             @php(session()->forget('status_success'))
-            @endif
+        @endif
         @if(auth()->user()->is_submitted == 0)
             <div class="row d-flex justify-content-between mt-3" style="margin-left: -5px" id="m">
                 <div class="col-lg-7 md-col-12  ">
                     <div class="row">
                         <div class="col-lg-12 bg-secondary card pt-3 pb-2">
-
                             <h2 class="intro">Your Sections</h2>
                             <p class="intro"> You have to complete all sections below to enable submit
                                 your application. </p>
@@ -110,7 +109,7 @@
                                                         <div class="row ml-1">
                                                             <h5 class="col-12 card-title mb-0 ">Questionnaire </h5>
                                                             <small class="col-12">A
-                                                                bunch of questions of your interest in Coding.  </small>
+                                                                bunch of questions of your interest in DataScience and Programming.  </small>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -146,8 +145,8 @@
                                                         <i class="fas fa-code  fa-2x "></i>
                                                         <div class="row ml-1 ">
                                                             <h5 class="col-12 card-title mb-0 ">Challenge Yourself!</h5>
-                                                            <small class="col-12">Start to learning the
-                                                                code, it is one time submission!</small>
+                                                            <small class="col-12">Start your challenging journey here
+                                                            </small>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -241,10 +240,9 @@
                                                 <p>If you submit your application, you will Not be able to edit your application,
                                                     <span
                                                         class="font-weight-bold">Are you Sure?</span></p>
-</div>					    <div class="alert alert-warning">
-<span class="alert-icon"><span class="sr-only"></span> </span>
-<p> The first dose of vaccine is mandatory to be nominated for the final selection - we encourage you to take your vaccine as soon as possible. </p></div>
-
+                                            </div>					    <div class="alert alert-warning">
+                                                <span class="alert-icon"><span class="sr-only"></span> </span>
+                                                <p> The first dose of vaccine is mandatory to be nominated for the final selection - we encourage you to take your vaccine as soon as possible. </p></div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
@@ -282,8 +280,8 @@
                         </div>
                         <div class="col-lg-12 mb-3 ">
                             <p class="lead">Application Status:  <span class="badge bg-primary">In Progress</span>
-                            <span class="form-text  small  text-capitalize font-weight-bold" id="helpTextFile" style="color: #f16e00">Your Application not completed yet! And you still need time to complete the remaining requirements?</span>
-                            <span class="form-text small  text-capitalize font-weight-bold" id="helpTextFile" style="color: #f16e00">Don't worry, you still have time to login again many times, and to complete all the requirements until Sept.30th, 2022!</span>
+                                <span class="form-text  small  text-capitalize font-weight-bold" id="helpTextFile" style="color: #f16e00">Your Application not completed yet! And you still need time to complete the remaining requirements?</span>
+                                <span class="form-text small  text-capitalize font-weight-bold" id="helpTextFile" style="color: #f16e00">Don't worry, you still have time to login again many times, and to complete all the requirements until October.15th, 2022!</span>
 
                             </p>
                         </div>
@@ -296,7 +294,7 @@
                 <h2>Thank you for submitting your application! <br> we will process it then send your result to your
                     email: ({{auth()->user()->email}}) </h2>
                 <div class="col-md-12 d-md-block d-none text-center align-self-center p-3" >
-                  <a href="https://www.facebook.com/CodingAcademybyOrange" target="_blank">  <img class=" border"  src="{{asset('assets/img/coding_academy.png')}}" alt="coding academy" style="max-height: 50vh"></a>
+                    <a href="https://www.facebook.com/CodingAcademybyOrange" target="_blank">  <img class=" border"  src="{{asset('assets/img/coding_academy.png')}}" alt="coding academy" style="max-height: 50vh"></a>
                 </div>
             </div>
         @endif

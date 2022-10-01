@@ -698,7 +698,7 @@
                                         should be
                                         full-time dedicated to the
                                         academy for 2 months, 5 days a week, from 8:45 am to 6:00
-                                        pm.<span
+                                        <span
                                             class="mandatory-txt">*</span></label>
                                 </div>
                                 <div class="btncen2 d-flex justify-content-between mt-5 col-12 pl-0">

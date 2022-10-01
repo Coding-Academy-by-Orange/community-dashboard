@@ -19,7 +19,7 @@
             <p class="sr-only" id="breadcrumb-intro-2">You are here:</p>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('client.dashboard')}}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="location">Code Challenge</li>
+                <li class="breadcrumb-item active" aria-current="location">Challenge yourself</li>
             </ol>
         </nav>
         <div class="jumbotron p-4 p-md-5 text-secondary  rounded background-jumbotron-code"
@@ -27,8 +27,7 @@
                  background-size: cover;">
             <div class="col-md-7 p-3 bg-white">
                 <h1 class="display-4 font-italic ">Learning By Doing!</h1>
-                <p class="lead my-3">In this section , you will submit the results for the 'Python for Data Science'
-                    course on Sololearn and solve a math exam and IQ test.</p>
+                <p class="lead my-3">In this section , you will submit the results for IQ,Math and Python Tests.</p>
                 <p class="lead my-3"> Finally you will submit the screenshots of your results <strong>HERE.</strong></p>
                 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal"
                         data-whatever="@mdo"
@@ -57,7 +56,7 @@
                             @csrf
                             <div class="form-row form-group ">
                                 <div class="col-sm-12">
-                                    <label for="inputName" class="is-required small">Insert screenshot for your coursat(https://coursat.orange.jo/) python </label>
+                                    <label for="inputName" class="is-required small">Insert screenshot for your Sololearn(https://sololearn.com/) python </label>
                                     <div class="custom-file">
                                         <input type="file"
                                                class="custom-file-input @error('code_score_image_python') is-invalid @enderror"
@@ -71,7 +70,7 @@
                     </span>
                                         @enderror
                                         <label class="custom-file-label is-required" for="exampleInputFile">Screenshot
-                                            for coursat certificate (Python) </label>
+                                            for Sololearn  certificate (Python) </label>
                                         <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
                                     </div>
                                 </div>
@@ -133,11 +132,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h2>Code Challenge Section</h2>
+                <h2>Challenge Yourself Section</h2>
                 <p>This Section consists of a series of online exercises that you have to complete successfully.</p>
                 <h3 class="mt-3">Steps</h3>
                 <p>To proceed with your application, please complete <strong>the three Following Steps:</strong></p>
-                <p>If you have any questions or concerns regarding completing of Sololearn courses, please contact
+                <p>If you have any questions or concerns regarding completing of courses and tests, please contact
                     us on the following email:
 
                     <a href="mailto:codingacademy.ojo@orange.com">codingacademy.ojo@orange.com</a> .</p>
@@ -156,9 +155,8 @@
                         <ul>
                             <li class="my-2"> Click on the view test</li>
                             <li class="my-2">Solve the Exam Questions.</li>
-                            <li class="my-2">PrintScreen and save it  the result to show us your score</li>
+                            <li class="my-2">PrintScreen the result and save it to show us your score</li>
                         </ul>
-
                         <a class="btn btn-secondary mb-10"
                            href="https://www.123test.com/iq-test/#classical-intelligence-test"
                            target="_blank">View test »</a>
@@ -178,7 +176,7 @@
                             <ul>
                                 <li class="my-2"> Click on the view test</li>
                                 <li class="my-2">Solve the Exam Questions.</li>
-                                <li class="my-2">PrintScreen the result to show us your score</li>
+                                <li class="my-2">PrintScreen the result and save it to show us your score</li>
                             </ul>
                         </ul>
                         <a class="btn btn-secondary"
@@ -196,13 +194,12 @@
                         <h5 class="card-title text-center mt-2">3. Python</h5>
                         <p class="card-text">To complete the course please follow the steps: </p>
                         <ul>
-                            <li class="my-2">Register on <a href="https://coursat.orange.jo/login/signup_youth.php" target="_blank">Orange Coursat</a> </li>
 
                             <li class="my-2">Click on the view course</li>
-                            <li class="my-2">PrintScreen and save your certificate as a picture.</li>
+                            <li class="my-2">PrintScreen your certificate and save it as a picture.</li>
                         </ul>
                         <a class="btn btn-secondary"
-                           href="https://coursat.orange.jo/course/view.php?id=2"
+                           href="https://sololearn.com/learn/courses/python-introduction"
                            target="_blank">View course »</a>
                     </div>
                 </div>

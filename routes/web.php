@@ -25,7 +25,7 @@ Route::view('/email/verification', "auth.email_verification2" )->name('auth.emai
 Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
 // Hard Coded To Skip Email validation
-//Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
+Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
 Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification" )->name('resend.email.verification.submit');
 Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification" )->name('resend.mobile.verification.submit');

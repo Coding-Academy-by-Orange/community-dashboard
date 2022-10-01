@@ -558,12 +558,8 @@
                                         <label class="is_required">Academy Location</label>
                                         <select name="academy_location" class="custom-select" required>
                                             <option value="">Select..</option>
-                                            <option value="zarqa">Zarqa</option>
-                                            <option value="balqa">Balqa</option>
                                             <option value="data science ">Data Science</option>
                                         </select>
-
-
                                     </div>
                                 </div>
                                 <div role="navigation" aria-label="Pagination example">

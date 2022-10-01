@@ -22,12 +22,12 @@ class UserController extends Controller
 
     public function fileImportExport()
     {
-       return view('file-import');
+        return view('file-import');
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function fileImport(Request $request)
     {
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
@@ -35,8 +35,8 @@ class UserController extends Controller
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function fileExport()
     {
         return Excel::download(new UsersExport, 'users-collection.xlsx');
@@ -54,8 +54,8 @@ class UserController extends Controller
             'year' => 'All',
             'commitment' => 'All',
             'educational_background' => 'All',
-	    'educational_level' => 'All',
-	    'academy_location' => 'ALL'
+            'educational_level' => 'All',
+            'academy_location' => 'ALL'
         ])->with('users', User::where('nationality', "!=", null)->orderBy('en_first_name')->get());
     }
 
@@ -92,9 +92,9 @@ class UserController extends Controller
             $users->where('educational_level', $request->educational_level)->orderBy('en_first_name');
         }
 
-	if($request->filled('academy_location')){
-		$users->where('academy_location',$request->academy_location)->orderBy('en_first_name');
-	}
+        if($request->filled('academy_location')){
+            $users->where('academy_location',$request->academy_location)->orderBy('en_first_name');
+        }
         if( $request->status != ""){
             $status = $request->status;
         }else{
@@ -134,12 +134,12 @@ class UserController extends Controller
             $educational_level = $request->educational_level;
         }else{
             $educational_level = "All";
-	}
-	if($request->academy_location != ""){
-		$academy_location = $request->academy_location;
-	}else{
-		$academy_location = "ALL";
-	}
+        }
+        if($request->academy_location != ""){
+            $academy_location = $request->academy_location;
+        }else{
+            $academy_location = "ALL";
+        }
         return view('admin.user.read', [
             'users' => $users->where('nationality', "!=" ,null)->get(),
             'status' => $status,
@@ -149,8 +149,8 @@ class UserController extends Controller
             'year' => $year,
             'commitment' => $commitment,
             'educational_background' => $educational_background ,
-	    'educational_level' => $educational_level,
-	    'academy_location'  => $academy_location
+            'educational_level' => $educational_level,
+            'academy_location'  => $academy_location
         ]);
     }
 
@@ -162,7 +162,7 @@ class UserController extends Controller
             [
                 'result_1' => $request->result_1 ,
                 'status' =>$request->result_1 ,
-                ]
+            ]
 
         );
         return back()->with('status_store', 'The Status Has been Updated Successfully' );
@@ -212,7 +212,7 @@ class UserController extends Controller
             $code_score_image_python = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_python);
             $code_score_image_math = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_math);
             $code_score_image_iq = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image_iq);
-            $code_score_image_iq = '/storage/images/Zzl3tlIgRtRxsE7LUSOSa1BJPC9KKyeQCqOztft6.png';
+            //$code_core_image_iq = '/storage/images/Zzl3tlIgRtRxsE7LUSOSa1BJPC9KKyeQCqOztft6.png';
         }
         if(!DB::table('english_quizzes')->where('user_id', $user->id)->exists()){
             $english_score = '_';
@@ -223,7 +223,7 @@ class UserController extends Controller
             $english_account_link = DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_account_link ;
             $english_score_image = Storage::disk('local')->url(DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score_image);
         }
-        $questionnaires = Questionnaire::all() ;
+        $questionnaires = Questionnaire::where('academy_location','data science')->get();
         return view('admin.user.update', compact(['code_score' , 'code_account_link' , 'code_score_image', 'code_score_image_python', 'code_score_image_math', 'code_score_image_iq' , 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
     }
 
