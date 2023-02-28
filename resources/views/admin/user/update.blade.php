@@ -26,7 +26,7 @@
                                             @elseif($user->result_1 == '2. Maybe – 1st Filtration – Orange')
                                                 | <span
                                                     class="badge badge-light-secondary mb-1 ">{{$user->result_1}}</span>
-                                                    
+
                                             @elseif($user->result_1 == '3. Rejected – Age – Orange')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
@@ -36,7 +36,7 @@
                                             @elseif($user->result_1 == '5. Accepted – Pre Final List – Simplon')
                                                 | <span
                                                     class="badge badge-light-success mb-1 ">{{$user->result_1}}</span>
-                                          
+
                                             @elseif($user->result_1 == '6. Accepted – Final List – Simplon')
                                                 | <span
                                                     class="badge badge-light-success mb-1 ">{{$user->result_1}}</span>
@@ -53,10 +53,10 @@
                                             @elseif($user->result_1 == '10. Maybe – Final List After Interviews - Orange')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
-                                                    @elseif($user->result_1 == '11. Rejected – Final List After Interviews - Orange')
+                                            @elseif($user->result_1 == '11. Rejected – Final List After Interviews - Orange')
                                                 | <span
-                                                    class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>          
-                                          
+                                                    class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
+
                                             @endif
                                         </div>
                                     </div>
@@ -84,156 +84,520 @@
                                                             <select
                                                                 class="form-control @error('result') is-invalid @enderror"
                                                                 id="result_1" name="result_1">
-                                                                @if($user->result_1 == "1. Accepted – 1st Filtration – Orange")
-                                                                    <!-- <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option> -->
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
+                                                            @if($user->result_1 == "1. Accepted – 1st Filtration – Orange")
+                                                                <!-- <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option> -->
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
                                                                 @elseif($user->result_1 == "2. Maybe – 1st Filtration – Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
                                                                     <!-- <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option> -->
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
                                                                 @elseif($user->result_1 == "3. Rejected – Age – Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
                                                                     <!-- <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option> -->
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                                    @elseif($user->result_1 == "4. Rejected – 1st Filtration – Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+                                                                @elseif($user->result_1 == "4. Rejected – 1st Filtration – Orange")
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
                                                                     <!-- <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option> -->
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                            
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "5. Accepted – Pre Final List – Simplon")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
                                                                     <!-- <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option> -->
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "6. Accepted – Final List – Simplon")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
                                                                     <!-- <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option> -->
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange ">11. Rejected – Final List After Interviews - Orange </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange ">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
                                                                 @elseif($user->result_1 == "7. Rejected – Test Result (Sololearn + English) - Simplon")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
                                                                     <!-- <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option> -->
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "8. Rejected – Motivational Qs – Simplon")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
                                                                     <!-- <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option> -->
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                              
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "9. Accepted – 50 Students After Interviews – Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
                                                                     <!-- <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option> -->
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "10. Maybe – Final List After Interviews - Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
                                                                     <!-- <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option> -->
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
-                                                               
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
+
                                                                 @elseif($user->result_1 == "11. Rejected – Final List After Interviews - Orange")
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
                                                                     <!-- <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option> -->
                                                                 @else
-                                                                    <option value="1. Accepted – 1st Filtration – Orange">1. Accepted – 1st Filtration – Orange</option>
-                                                                    <option value="2. Maybe – 1st Filtration – Orange">2. Maybe – 1st Filtration – Orange</option>
-                                                                    <option value="3. Rejected – Age – Orange">3. Rejected – Age – Orange</option>
-                                                                    <option value="4. Rejected – 1st Filtration – Orange">4. Rejected – 1st Filtration – Orange</option>
-                                                                    <option value="5. Accepted – Pre Final List – Simplon">5. Accepted – Pre Final List – Simplon</option>
-                                                                    <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option>
-                                                                    <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option>
-                                                                    <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option>
-                                                                    <option value="9. Accepted – 50 Students After Interviews – Orange">9. Accepted – 50 Students After Interviews – Orange</option>
-                                                                    <option value="10. Maybe – Final List After Interviews - Orange">10. Maybe – Final List After Interviews - Orange</option>
-                                                                    <option value="11. Rejected – Final List After Interviews - Orange">11. Rejected – Final List After Interviews - Orange </option>
+                                                                    <option
+                                                                        value="1. Accepted – 1st Filtration – Orange">1.
+                                                                        Accepted – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="2. Maybe – 1st Filtration – Orange">
+                                                                        2. Maybe – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option value="3. Rejected – Age – Orange">3.
+                                                                        Rejected – Age – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="4. Rejected – 1st Filtration – Orange">4.
+                                                                        Rejected – 1st Filtration – Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="5. Accepted – Pre Final List – Simplon">
+                                                                        5. Accepted – Pre Final List – Simplon
+                                                                    </option>
+                                                                    <option value="6. Accepted – Final List – Simplon">
+                                                                        6. Accepted – Final List – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        7. Rejected – Test Result (Sololearn + English)
+                                                                        - Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="8. Rejected – Motivational Qs – Simplon">
+                                                                        8. Rejected – Motivational Qs – Simplon
+                                                                    </option>
+                                                                    <option
+                                                                        value="9. Accepted – 50 Students After Interviews – Orange">
+                                                                        9. Accepted – 50 Students After Interviews –
+                                                                        Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="10. Maybe – Final List After Interviews - Orange">
+                                                                        10. Maybe – Final List After Interviews - Orange
+                                                                    </option>
+                                                                    <option
+                                                                        value="11. Rejected – Final List After Interviews - Orange">
+                                                                        11. Rejected – Final List After Interviews -
+                                                                        Orange
+                                                                    </option>
                                                                 @endif
                                                             </select>
                                                             @error('result')
@@ -316,18 +680,25 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="col">
+                                                    <!-- <div class="col">
                                                             <h6 class="invoice-from">Identity Number:</h6>
                                                             <div class="mb-1">
                                                                 @if($user->identity_number)
-                                                                    <span>{{$user->identity_number}}</span>
+                                                        <span>{{$user->identity_number}}</span>
                                                                 @else
-                                                                    <span>_</span>
-                                                                @endif
-                                                            </div>
-                                                        </div> -->
+                                                        <span>_</span>
+@endif
+                                                        </div>
+                                                    </div> -->
                                                     </div>
                                                     <div class="row">
+                                                        <div class="col">
+                                                            <h6 class="invoice-from">Age:</h6>
+                                                            <div class="mb-1">
+                                                                {{$age}}
+
+                                                            </div>
+                                                        </div>
                                                         <div class="col">
                                                             <h6 class="invoice-from">Date of Birth:</h6>
                                                             <div class="mb-1">
@@ -369,7 +740,7 @@
                                                                     <span>_</span>
                                                                 @endif
                                                             </div>
-                                                        </div> 
+                                                        </div>
                                                         <div class="col-12">
                                                             <h6 class="invoice-from">First Relative Name:</h6>
                                                             <div class="mb-1">
@@ -392,7 +763,7 @@
                                                                     <span>_</span>
                                                                 @endif
                                                             </div>
-                                                        </div>                                                   
+                                                        </div>
                                                         <div class="col">
                                                             <h6 class="invoice-from">Mobile Number:</h6>
                                                             <div class="mb-1">
@@ -415,6 +786,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="mb-2 mt-2 p-1 border">
+                                                    <h5 class="mb-2 border-bottom"> id image</h5>
+                                                    <div class="row">
+                                                        <div class="col"><img class="img-fluid" src="/storage/{{$user->id_img}}" alt=""></div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div class="col-sm-6 col-12 mt-1">
                                                 <div class=" p-1  border">
@@ -514,6 +892,12 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class="mb-2 mt-2 p-1 border">
+                                                    <h5 class="mb-2 border-bottom"> vaccination certificate</h5>
+                                                    <div class="row">
+                                                        <div class="col"><img class="img-fluid" src="/storage/{{$user->vaccination_img}}" alt=""></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -602,8 +986,9 @@
                                                 @if( $english_score_image == '_')
                                                     <h2>Not Submitted </h2>
                                                 @else
-                                                    <div class="col-12 d-md-block d-none text-center align-self-center p-3">
-                                                        <img class="img-fluid"  src="{{$english_score_image}}"
+                                                    <div
+                                                        class="col-12 d-md-block d-none text-center align-self-center p-3">
+                                                        <img class="img-fluid" src="{{$english_score_image}}"
                                                              alt="english quiz image">
                                                     </div>
                                                 @endif
@@ -622,37 +1007,46 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="col-3">
-                                                    <div class="  mr-1 mb-1">Score:
+                                        <table>
+                                            <tr>
+                                                <td>HTML</td>
+                                                <td>  @if( $html_certificate == ' ')
+                                                        <h2>Not Submitted </h2>
+                                                    @else
+                                                        <div
+                                                            class="col-md-12 d-md-block d-none text-center align-self-center p-3">
+                                                            <img class="img-fluid" src="{{$html_certificate}}"
+                                                                 alt="code challenge image">
+                                                        </div>
+                                                    @endif</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CSS</td>
+                                                <td> @if( $css_certificate == ' ')
+                                                        <h2>Not Submitted </h2>
+                                                    @else
+                                                        <div
+                                                            class="col-md-12 d-md-block d-none text-center align-self-center p-3">
+                                                            <img class="img-fluid" src="{{$css_certificate}}"
+                                                                 alt="code challenge image">
+                                                        </div>
+                                                    @endif</td>
+                                            </tr>
+                                            <tr>
+                                                <td>JS</td>
+                                                <td> @if( $js_certificate == ' ')
+                                                        <h2>Not Submitted </h2>
+                                                    @else
+                                                        <div
+                                                            class="col-md-12 d-md-block d-none text-center align-self-center p-3">
+                                                            <img class="img-fluid" src="{{$js_certificate}}"
+                                                                 alt="code challenge image">
+                                                        </div>
+                                                    @endif</td>
+                                            </tr>
 
-                                                        <span
-                                                            class="badge badge-pill badge-light-primary mr-1 mb-1">{{$code_score}}
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <div class="mr-1 mb-1">Account link:
-                                                        @if( $code_account_link == '_')
-                                                            <a>{{$code_account_link}}</a>
-                                                        @else
-                                                            <a href="{{$code_account_link}}">{{$code_account_link}}</a>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 my-2 d-flex justify-content-center">
-                                                @if( $code_score_image == '_')
-                                                    <h2>Not Submitted </h2>
-                                                @else
-                                                    <div class="col-md-12 d-md-block d-none text-center align-self-center p-3">
-                                                        <img class="img-fluid" src="{{$code_score_image}}"
-                                                             alt="code challenge image">
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
+                                        </table>
+
                                     </div>
                                 </div>
                             </div>
@@ -660,148 +1054,149 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="card widget-todo">
-                    <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-                        <h4 class="card-title d-flex">
-                            Application Status
-                        </h4>
-                        @if($user->status == 'in_progress')
-                            <span class="badge badge-light-warning ">in progress</span>
-                        @elseif($user->status == 'submitted')
-                            <span class="badge badge-light-info ">Submitted</span>
-                            
-                        @elseif($user->status == 'accepted')
-                            <span
-                                class="badge badge-light-success ">Accepted</span>
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card widget-todo">
+                <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                    <h4 class="card-title d-flex">
+                        Application Status
+                    </h4>
+                    @if($user->status == 'in_progress')
+                        <span class="badge badge-light-warning ">in progress</span>
+                    @elseif($user->status == 'submitted')
+                        <span class="badge badge-light-info ">Submitted</span>
+
+                    @elseif($user->status == 'accepted')
+                        <span
+                            class="badge badge-light-success ">Accepted</span>
 
 
-                       @elseif($user->status == 'rejected')
-                            <span
-                                class="badge badge-light-danger ">Rejected</span>
-
-
-
-                        @elseif($user->status == '1. Accepted – 1st Filtration – Orange')
-                            <span
-                                class="badge badge-light-success">1. Accepted – 1st Filtration – Orange</span>
-                        
-
-
-                        @elseif($user->status == '2. Maybe – 1st Filtration – Orange')
-                            <span
-                                class="badge badge-light-secondary ">2. Maybe – 1st Filtration – Orange</span>        
-
-
-                        @elseif($user->status == '3. Rejected – Age – Orange')
-                            <span
-                                class="badge badge-light-danger ">3. Rejected – Age – Orange</span>
-
-                         @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
-                            <span
-                                class="badge badge-light-danger ">4. Rejected – 1st Filtration – Orange</span> 
-                                @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
-                            <span
-                                class="badge badge-light-success ">5. Accepted – Pre Final List – Simplon</span> 
+                    @elseif($user->status == 'rejected')
+                        <span
+                            class="badge badge-light-danger ">Rejected</span>
 
 
 
-                            @elseif($user->status == '6. Accepted – Final List – Simplon')
-                            <span
-                                class="badge badge-light-success">6. Accepted – Final List – Simplon</span>  
-
-                             @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
-                            <span
-                                class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>   
+                    @elseif($user->status == '1. Accepted – 1st Filtration – Orange')
+                        <span
+                            class="badge badge-light-success">1. Accepted – 1st Filtration – Orange</span>
 
 
 
-                               @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
-                            <span
-                                class="badge badge-light-danger ">8. Rejected – Motivational Qs – Simplon</span>   
+                    @elseif($user->status == '2. Maybe – 1st Filtration – Orange')
+                        <span
+                            class="badge badge-light-secondary ">2. Maybe – 1st Filtration – Orange</span>
 
 
-                                  @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
-                            <span
-                                class="badge badge-light-success ">9. Accepted – 50 Students After Interviews – Orange</span> 
+                    @elseif($user->status == '3. Rejected – Age – Orange')
+                        <span
+                            class="badge badge-light-danger ">3. Rejected – Age – Orange</span>
+
+                    @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
+                        <span
+                            class="badge badge-light-danger ">4. Rejected – 1st Filtration – Orange</span>
+                    @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
+                        <span
+                            class="badge badge-light-success ">5. Accepted – Pre Final List – Simplon</span>
 
 
 
-                                @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
-                            <span
-                                class="badge badge-light-secondary ">10. Maybe – Final List After Interviews - Orange</span> 
+                    @elseif($user->status == '6. Accepted – Final List – Simplon')
+                        <span
+                            class="badge badge-light-success">6. Accepted – Final List – Simplon</span>
+
+                    @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
+                        <span
+                            class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>
 
 
-                                @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
-                            <span
-                                class="badge badge-light-danger ">11. Rejected – Final List After Interviews - Orange</span>   
+
+                    @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
+                        <span
+                            class="badge badge-light-danger ">8. Rejected – Motivational Qs – Simplon</span>
 
 
-                        @endif
-                    </div>
+                    @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
+                        <span
+                            class="badge badge-light-success ">9. Accepted – 50 Students After Interviews – Orange</span>
+
+
+
+                    @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
+                        <span
+                            class="badge badge-light-secondary ">10. Maybe – Final List After Interviews - Orange</span>
+
+
+                    @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
+                        <span
+                            class="badge badge-light-danger ">11. Rejected – Final List After Interviews - Orange</span>
+
+
+                    @endif
                 </div>
-                <div id="table-statistics-two">
-                    <div class="card" style="">
-                        <div class="card-header border-bottom">
-                            <h5 class="card-title">Contact Information</h5>
-                            <div class="heading-elements">
-                                <i class="bx bx-dots-horizontal-rounded font-medium-3 align-middle"></i>
-                            </div>
+            </div>
+            <div id="table-statistics-two">
+                <div class="card" style="">
+                    <div class="card-header border-bottom">
+                        <h5 class="card-title">Contact Information</h5>
+                        <div class="heading-elements">
+                            <i class="bx bx-dots-horizontal-rounded font-medium-3 align-middle"></i>
                         </div>
-                        <!-- table start -->
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-hover mb-0">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center text-bold-500"><i
-                                                class="text-success bx bx-envelope align-middle font-medium-5 mr-50"></i>Email:
-                                            &nbsp {{$user->email}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center text-bold-500"><i
-                                                class="text-danger bx bx-phone align-middle font-medium-5 mr-50"></i>Mobile:
-                                            &nbsp {{$user->mobile}}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center text-bold-500 text-capitalize"><i
-                                                class="text-secondary bx bx-map align-middle font-medium-5 mr-50 "></i>City:
-                                            @if($user->city)
-                                                &nbsp {{$user->city}}
-                                            @else
-                                                _
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center text-bold-500 text-capitalize"><i
-                                                class="text-warning bx bxs-traffic align-middle font-medium-5 mr-50"></i>Address:
-                                            @if($user->address)
-                                                &nbsp {{$user->address}}
-                                            @else
-                                                _
-                                            @endif
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- table end -->
                     </div>
+                    <div class="col"><img class="img-fluid" src="/storage/{{$user->personal_img}}" alt=""></div>
+
+                    <!-- table start -->
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-hover mb-0">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center text-bold-500"><i
+                                            class="text-success bx bx-envelope align-middle font-medium-5 mr-50"></i>Email:
+                                        &nbsp {{$user->email}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center text-bold-500"><i
+                                            class="text-danger bx bx-phone align-middle font-medium-5 mr-50"></i>Mobile:
+                                        &nbsp {{$user->mobile}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center text-bold-500 text-capitalize"><i
+                                            class="text-secondary bx bx-map align-middle font-medium-5 mr-50 "></i>City:
+                                        @if($user->city)
+                                            &nbsp {{$user->city}}
+                                        @else
+                                            _
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center text-bold-500 text-capitalize"><i
+                                            class="text-warning bx bxs-traffic align-middle font-medium-5 mr-50"></i>Address:
+                                        @if($user->address)
+                                            &nbsp {{$user->address}}
+                                        @else
+                                            _
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table end -->
                 </div>
             </div>
         </div>
-
-
+        </div>
     </section>
 @endsection
 @section('script')

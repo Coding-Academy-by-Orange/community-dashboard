@@ -4,21 +4,31 @@
 @endsection
 @section('main')
     <section class="wizard-section">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="form-wizard">
-            <form class=" step1 " method="post" action="{{route('basic.info.step1.submit')}}">
-                @csrf
-                <div class="d-flex align-items-center flex-column ">
-                    <div class="col-md-10  mt-4">
-                        <h3> Welcome! {{auth()->user()->email}}
-                        </h3>
-                        <h4>Almost <span class="orange-color">Done!</span></h4>
-                        <div class="card orange-border-color">
-                            <div class="card-body">
-                                <h5 class=""><span class="border mr-2 p-1"> step <span
-                                            class="orange-color">3</span>/3 </span> Identification
-                                    Information </h5>
-                                <hr class="col-sm-11"/>
-                                <div class="row">
+            <div class="d-flex align-items-center flex-column ">
+                <div class="col-md-10  mt-4">
+                    <h3> Welcome! {{auth()->user()->email}} </h3>
+                    <h4>Almost <span class="orange-color">Done!</span></h4>
+                    <div class="card orange-border-color">
+                        <div class="card-body">
+                            <h5 class=""><span class="border mr-2 p-1"> step <span
+                                        class="orange-color">3</span>/3 </span> Identification
+                                Information </h5>
+                            <hr class="col-sm-11"/>
+                            <form class=" step1 " method="post" action="{{route('basic.info.step1.submit')}}"
+                                                          enctype="multipart/form-data">
+                            <div class="row">
+
+                                    @csrf
                                     <div class="form-group col-lg-3 col-md-12 col-sm-12  mb-lg-0 pr-lg-1">
                                         <label for="nationality" class="is-required">Nationality</label>
                                         <select name="nationality"
@@ -39,7 +49,7 @@
                                         <label for="country" class="is-required">Country</label>
                                         <select name="country"
                                                 class="custom-select @error('country') is-invalid @enderror"
-                                                id="country" >
+                                                id="country">
                                             <option value="">Select..</option>
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
@@ -455,7 +465,7 @@
                                                     <input name="en_first_name" type="text"
                                                            class="form-control mr-2 en_name1  @error('en_first_name') is-invalid @enderror "
                                                            placeholder="First name" id="en_first_name"
-                                                           required 
+                                                           required
                                                            value="{{old('en_first_name')}}">
                                                     <input name="en_second_name" type="text"
                                                            class="form-control mr-2 en_name2 @error('en_second_name') is-invalid @enderror "
@@ -514,79 +524,146 @@
 
                                                 </div>
                                             </div>
-                                            <small class="float-right my-2">
+                                            <small class="my-2 text-right">
                                                 الاسم المدخل يجب ان يكون كما هو مكتوب في بطاقة الأحوال المدنية/
                                                 الوثيقة وفي حالة القبول, سوف يتم توثيقه في شهادة التخرج
                                             </small>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12 col-sm-12 mb-lg-0 pr-lg-1">
-                                        <label for="gender" class="is-required">Gender</label>
-                                        <select name="gender"
-                                                class="custom-select @error('gender') is-invalid @enderror" id="gender" required>
-                                            <option value="" @if (old('gender') == null) selected @endif >
-                                                Select..
-                                            </option>
-                                            <option value="1" @if (old('gender') == '1') selected @endif >
-                                                Male
-                                            </option>
-                                            <option value="0" @if (old('gender') == '0') selected @endif >
-                                                Female
-                                            </option>
-                                        </select>
+                                    <div class="form-group col-12 mb-lg-3 ">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="gender" class="is-required">Gender</label>
+                                                <select name="gender"
+                                                        class="custom-select @error('gender') is-invalid @enderror"
+                                                        id="gender"
+                                                        required>
+                                                    <option value="" @if (old('gender') == null) selected @endif >
+                                                        Select..
+                                                    </option>
+                                                    <option value="1" @if (old('gender') == '1') selected @endif >
+                                                        Male
+                                                    </option>
+                                                    <option value="0" @if (old('gender') == '0') selected @endif >
+                                                        Female
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="gender" class="is-required">Martial Status</label>
+                                                <select name="martial_status"
+                                                        class="custom-select @error('martial_status') is-invalid @enderror"
+                                                        id="martial_status" required>
+                                                    <option value=""
+                                                            @if (old('martial_status') == null) selected @endif >
+                                                        Select..
+                                                    </option>
+                                                    <option value="single"
+                                                            @if (old('martial_status') == 'single') selected @endif >
+                                                        Single
+                                                    </option>
+                                                    <option value="married"
+                                                            @if (old('martial_status') == 'married') selected @endif >
+                                                        Married
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12 col-sm-12 mb-lg-0 pl-lg-1">
-                                        <label for="gender" class="is-required">Martial Status</label>
-                                        <select name="martial_status"
-                                                class="custom-select @error('martial_status') is-invalid @enderror"
-                                                id="martial_status" required>
-                                            <option value="" @if (old('martial_status') == null) selected @endif >
-                                                Select..
-                                            </option>
-                                            <option value="single"
-                                                    @if (old('martial_status') == 'single') selected @endif >
-                                                Single
-                                            </option>
-                                            <option value="married"
-                                                    @if (old('martial_status') == 'married') selected @endif >
-                                                Married
-                                            </option>
-                                        </select>
-				    </div>
-<div class="form-group">
-<label class="is_required">Academy Location</label>
-<select name="academy_location" class="custom-select" required>
-    <option value="">Select..</option>
-    <option value="zarqa">Zarqa</option>
-    <option value="balqa">Balqa</option>
-</select>
 
 
-</div>
-                                </div>
-                                <div role="navigation" aria-label="Pagination example">
-                                    <ul class="pagination float-right mb-0">
-                                        <li class="page-item "><a class="btn btn-secondary "
-                                                                  href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <!--                                    <div class="form-group">
+                                                                            <label class="is_required">Academy Location</label>
+                                                                            <select name="academy_location" class="custom-select" required>
+                                                                                <option value="">Select..</option>
+                                                                                <option value="zarqa">Zarqa</option>
+                                                                                <option value="balqa">Balqa</option>
+                                                                            </select>
+
+
+                                                                        </div>-->
+                                    <div class="row px-3">
+                                        <div class="col-12 ">
+                                            <div class="form-group">
+                                                <div class="custom-file" style="margin-bottom: 50px !important;">
+                                                    <input type="file"
+                                                           class="custom-file-input @error('personal_img') is-invalid @enderror"
+                                                           id="exampleInputFile" aria-describedby="helpTextFile"
+                                                           name="personal_img"
+                                                           value="{{old('personal_img')}}"
+                                                           onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                                    @error('id_img')
+                                                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                                    @enderror
+                                                    <label class="custom-file-label is-required" for="exampleInputFile">Upload
+                                                        your personal image</label>
+                                                    <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
+                                                </div>
+                                                <div class="custom-file" style="margin-bottom: 50px !important;">
+                                                    <input type="file"
+                                                           class="custom-file-input @error('id_img') is-invalid @enderror"
+                                                           id="exampleInputFile" aria-describedby="helpTextFile"
+                                                           name="id_img"
+                                                           value="{{old('id_img')}}"
+                                                           onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                                    @error('id_img')
+                                                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                                    @enderror
+                                                    <label class="custom-file-label is-required" for="exampleInputFile">Upload
+                                                        image for your identification card (front-side) </label>
+                                                    <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png ) *Make sure image size less than 2MB  </span>
+                                                </div>
+                                                <div class="custom-file pb-3" style="margin-bottom: 50px !important;">
+                                                    <input type="file"
+                                                           class="custom-file-input @error('vaccination_img') is-invalid @enderror"
+                                                           id="exampleInputFile" aria-describedby="helpTextFile"
+                                                           name="vaccination_img" value="{{old('vaccination_img')}}"
+                                                           onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                                    @error('vaccination_img')
+                                                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                                    @enderror
+                                                    <label class="custom-file-label is-required" for="exampleInputFile">Upload
+                                                        the vaccination certificate</label>
+                                                    <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png ) **Make sure image size less than 2MB  </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div role="navigation" aria-label="Pagination example">
+                                        <ul class="pagination float-right mb-0">
+                                            <li class="page-item "><a class="btn btn-secondary "
+                                                                      href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Cancel</a>
-                                        </li>
-                                        <li class="page-item ">
-                                            <button class="basic-info-save1 btn btn-primary ml-3 validate-regex"> Save &
-                                                Continue
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
+                                            </li>
+                                            <li class="page-item ">
+                                                <button class="basic-info-save1 btn btn-primary ml-3 validate-regex">
+                                                    Save &
+                                                    Continue
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                  class="d-none">
-                @csrf
-            </form>
-        </div>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                      class="d-none">
+                    @csrf
+                </form>
+            </div>
     </section>
 @endsection
 @section('script')

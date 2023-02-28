@@ -45,38 +45,34 @@
                     <div class="modal-body">
                         <form role="form" id="myForm" method="post" action="{{ route('challenges.store') }}"  enctype="multipart/form-data"   >
                             @csrf
-                            <div class="form-row form-group">
-                                <div class="col-sm-4">
-                                    <label for="inputName" class="is-required">Your Score (xp)</label>
-                                    <input type="number" class="form-control @error('code_score') is-invalid @enderror" name="code_score" value="{{old('code_score')}}">
-                                    @error('code_score')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <small>eg: 200</small>
-                                </div>
-                                <div class="col-sm-8">
-                                    <label for="inputName" class="is-required">Your Account link </label>
-                                    <input type="text" class="form-control @error('code_account_link') is-invalid @enderror" name="code_account_link" value="{{old('code_account_link')}}">
-                                    @error('code_account_link')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <small>eg: https://www.sololearn.com/profile/8245682</small>
-                                </div>
-                            </div>
-                            <label for="inputName" class="is-required small">Insert screen shot for your result and profile in (www.sololearn.com) </label>
-
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input @error('code_score_image') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="code_score_image" value="{{old('code_score_image')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
-                                @error('code_score_image')
+                            <div class="custom-file" style="margin-bottom: 50px !important;">
+                                <input type="file" class="custom-file-input @error('html_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="html_certificate" value="{{old('html_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                @error('html_certificate')
                                 <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                                 @enderror
-                                <label class="custom-file-label is-required" for="exampleInputFile">Screen shot for your account </label>
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your HTML certificate </label>
+                                <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
+                            </div>
+                            <div class="custom-file pb-3" style="margin-bottom: 50px !important;">
+                                <input type="file" class="custom-file-input @error('css_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="css_certificate" value="{{old('css_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                @error('css_certificate')
+                                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                @enderror
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your  CSS Certificate </label>
+                                <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
+                            </div>
+                            <div class="custom-file pb-3" style="margin-bottom: 50px !important;">
+                                <input type="file" class="custom-file-input @error('js_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="js_certificate" value="{{old('js_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                @error('js_certificate')
+                                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                @enderror
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your Javascript certificate </label>
                                 <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
                             </div>
                             <div class="modal-footer mt-5 ">

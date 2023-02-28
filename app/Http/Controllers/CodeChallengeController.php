@@ -45,18 +45,20 @@ class CodeChallengeController extends Controller
             return back()->with('status_destroy', 'This Form is Already Filled');
         }
         $request->validate([
-            'code_score' => 'required|integer|min:1',
-            'code_account_link' => ['required', 'url'],
-            'code_score_image' => 'required|image',
+            'html_certificate' => 'required|image',
+            'css_certificate' => 'required|image',
+            'js_certificate' => 'required|image',
         ]);
-        if ($request->code_score_image != null) {
-            $img = Storage::disk('public')->put('images', $request->file('code_score_image'));
+        if ($request->html_certificate != null && $request->css_certificate && $request->js_certificate  ) {
+            $html_certificate= Storage::disk('public')->put('images', $request->file('html_certificate'));
+            $css_certificate= Storage::disk('public')->put('images', $request->file('css_certificate'));
+            $js_certificate= Storage::disk('public')->put('images', $request->file('js_certificate'));
         }
         CodeChallenge::create([
             'user_id' => auth()->id(),
-            "code_score" => $request->code_score,
-            "code_account_link" => $request->code_account_link,
-            "code_score_image" => $img,
+            "html_certificate" => $html_certificate,
+            "css_certificate" => $css_certificate,
+            "js_certificate" => $js_certificate,
         ]);
         return redirect()->route('client.dashboard')->with('status_store', 'Your data has been submitted successfully ');
 

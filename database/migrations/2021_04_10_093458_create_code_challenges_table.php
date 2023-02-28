@@ -16,9 +16,9 @@ class CreateCodeChallengesTable extends Migration
         Schema::create('code_challenges', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->bigInteger('code_score');
-            $table->string('code_account_link');
-            $table->string('code_score_image');
+            $table->string('html_certificate');
+            $table->string('css_certificate');
+            $table->string('js_certificate');
             $table->timestamps();
         });
     }

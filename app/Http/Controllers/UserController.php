@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Questionnaire;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -24,11 +25,11 @@ class UserController extends Controller
     {
        return view('file-import');
     }
-   
+
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileImport(Request $request) 
+    public function fileImport(Request $request)
     {
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
         return back();
@@ -37,10 +38,10 @@ class UserController extends Controller
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function fileExport() 
+    public function fileExport()
     {
         return Excel::download(new UsersExport, 'users-collection.xlsx');
-    }  
+    }
 
 
     public function index()
@@ -150,7 +151,10 @@ class UserController extends Controller
             'commitment' => $commitment,
             'educational_background' => $educational_background ,
 	    'educational_level' => $educational_level,
-	    'academy_location'  => $academy_location
+	    'academy_location'  => $academy_location,
+            "personal_img" => $request->personal_img,
+            "id_img" => $request->personal_img,
+            "vaccination_img" => $request->personal_img,
         ]);
     }
 
@@ -201,14 +205,17 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
+        $dateOfBirth = $user->day."/".$user->month."/".$user->year;
+        $age =  Carbon::parse($dateOfBirth)->age;
         if(!DB::table('code_challenges')->where('user_id', $user->id)->exists()){
             $code_score = '_';
             $code_account_link = '_';
             $code_score_image = '_';
         }else{
-            $code_score = DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score ;
-            $code_account_link = DB::table('code_challenges')->where('user_id', $user->id)->first()->code_account_link ;
-            $code_score_image = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->code_score_image);
+            $html_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->html_certificate);
+            $css_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->css_certificate);
+            $js_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->js_certificate);
         }
         if(!DB::table('english_quizzes')->where('user_id', $user->id)->exists()){
             $english_score = '_';
@@ -220,7 +227,7 @@ class UserController extends Controller
             $english_score_image = Storage::disk('local')->url(DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score_image);
         }
         $questionnaires = Questionnaire::all() ;
-        return view('admin.user.update', compact(['code_score' , 'code_account_link' , 'code_score_image' , 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
+        return view('admin.user.update', compact(['age','html_certificate','css_certificate','js_certificate', 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
     }
 
     /**

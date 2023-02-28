@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Admin;
+use App\CodeChallenge;
 use App\Http\Controllers\Controller;
 use App\Newsletter;
 use App\Providers\RouteServiceProvider;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -104,7 +106,7 @@ class RegisterController extends Controller
     }
 
     public function register_step2(Request $request)
-    {   
+    {
         //prepare variable for sending mails
         $mcode = mt_rand(1000, 9999);
         $content = [
@@ -209,81 +211,47 @@ class RegisterController extends Controller
     public function basic_info_step1(Request $request)
     {
         $user = User::where('id', auth()->id())->first();
-        switch ($request->nationality) {
-            case 1:
-                $validated = $request->validate([
-                    "nationality" => 'required',
-                    "gender" => 'required',
-                    "martial_status" => 'required',
-                    "year" => 'required|string|size:4',
-                    "month" => 'required|string',
-		    "day" => 'required|string|size:2',
-		    "academy_location"=>'required|string',
-                    "en_first_name" => array(
-                        'required'
-                    ),
-                    "en_second_name" => array(
-                        'required'
-                    ),
-                    "en_third_name" => array(
-                        'required'
-                    ),
-                    "en_last_name" => array(
-                        'required'
-                    ),
-                    "ar_first_name" => array(
-                        'required'
-                    ),
-                    "ar_second_name" => array(
-                        'required'
-                    ),
-                    "ar_third_name" => array(
-                        'required'
-                    ),
-                    "ar_last_name" => array(
-                        'required'
-                    )
-                ]);
-                User::where('id', $user->id)->update($validated);
-                break;
-            // this step does not redirect to home page
-            case 0:
-                $validated = $request->validate([
-                    "nationality" => 'required',
-                    "country" => 'required',
-                    "gender" => 'required',
-                    "martial_status" => 'required',
-                    "year" => 'required|string|size:4',
-                    "month" => 'required|string',
-		    "day" => 'required|string|size:2',
-		    "academy_location"=> 'required|string',
-                    "en_first_name" => array(
-                        'required'
-                        /*'regex:/(^([a-zA-Z]+)(\d+)?$)/u'*/
-                    ),
-                    "en_second_name" => array(
-                        'required'
-                        /*'regex:/(^([a-zA-Z]+)(\d+)?$)/u'*/
-                    ),
-                    "en_last_name" => array(
-                        'required'
-//                        'regex:/^[ء-ي]+$/'
-                    ),
-                    "ar_first_name" => array(
-                        'required'
-                    ),
-                    "ar_second_name" => array(
-                        'required'
-                    ),
-                    "ar_last_name" => array(
-                        'required'
-                    )
-                ]);
-                User::where('id', $user->id)->update($validated);
-                break;
-            default:
-                return back();
+        if ($request->id_img != null && $request->personal_img && $request->vaccination_img  ) {
+            $id_img= Storage::disk('public')->put('images', $request->file('id_img'));
+            $personal_img= Storage::disk('public')->put('images', $request->file('personal_img'));
+            $vaccination_img= Storage::disk('public')->put('images', $request->file('vaccination_img'));
         }
+        //dd($vaccination_img);
+        $validated = $request->validate([
+            "nationality" => 'required',
+            "gender" => 'required',
+            "martial_status" => 'required',
+            "year" => 'required|string|size:4',
+            "month" => 'required|string',
+            "day" => 'required|string|size:2',
+            "en_first_name" => array(
+                'required'
+            ),
+            "en_second_name" => array(
+                'required'
+            ),
+            "en_third_name" => array(
+                'required'
+            ),
+            "en_last_name" => array(
+                'required'
+            ),
+            "ar_first_name" => array(
+                'required'
+            ),
+            "ar_second_name" => array(
+                'required'
+            ),
+            "ar_third_name" => array(
+                'required'
+            ),
+            "ar_last_name" => array(
+                'required'
+            )
+        ]);
+        User::where('id', $user->id)->update($validated);
+        User::where('id', $user->id)->update(['id_img'=>$id_img,'personal_img'=>$personal_img,'vaccination_img' =>$vaccination_img]);
+
 
         return redirect(route('client.dashboard'))->with('status_store', 'Your account has been Created Successfully ');
     }

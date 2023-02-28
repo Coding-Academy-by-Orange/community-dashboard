@@ -2,7 +2,7 @@
 @section('title') Personal Information @endsection
 @section('links')
     <link href="{{asset('assets/css/wizard.css')}}" rel="stylesheet">
-    
+
 @endsection
 @section('main')
 <style>
@@ -15,12 +15,12 @@
   .Go1{
     visibility: hidden;
     display: none;
-    
+
   }
 
   .btn1{
       margin-left:83px;
-      
+
   }
 
   .btncen{
@@ -132,7 +132,7 @@
                                                 <label class="custom-control-label " for="under-graduate">Under Graduate</label>
                                             </div>
                                         </div>
-                                        </div> 
+                                        </div>
                                     </fieldset>
                                     <fieldset class="form-group col-lg-12  px-0 my-4">
                                         <label class="mb-3 is-required">Educational background</label>
@@ -156,7 +156,7 @@
                                         </div>
                                         </div>
                                     </fieldset>
-                                  
+
                                 </div>
 
                                 <div class=" col-md-12  d-flex justify-content-end mt-5 px-0">
@@ -189,7 +189,7 @@
                                             <div class="custom-control custom-radio custom-control-inline wizard-form-radio">
                                                 <input type="radio" name="ar_writing" value="poor"
                                                        id="ar_writing_poor"
-                                                       
+
                                                        class="custom-control-input ar_writing1"
                                                        autocomplete="off" {{ ($user->ar_writing == 'poor') ? 'checked' : ''}}>
                                                 <label class="custom-control-label "
@@ -414,12 +414,31 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-sm-6 ">
+u                                    <div class="form-group col-sm-6 ">
                                         <label for="address" class="is-required">Full Address</label>
                                         <input type="text" name="address" id="address" class="form-control wizard-required" placeholder="eg: Amman, Jubaiha, Jubran St., Building 13 "
                                                value="@if($user->address){{$user->address}}@endif" required="required">
                                         <small>eg: Amman, Jubaiha, Jubran St., Building 13</small>
                                     </div>
+                                    <div class="form-group col-sm-12">
+                                        <label for="address" class="is-required">How did you hear about us </label>
+                                        <select name="know_us" required="" class="custom-select wizard-required" id="PostCategoryId">
+                                            <option value="Select..">
+                                                Select..
+                                            </option>
+                                            <option value="social media">
+                                                Social Media
+                                            </option>
+                                            <option value="media" selected="">
+                                                Media(Radio,TV,Press)
+                                            </option>
+                                            <option value="sms">SMS</option>
+                                            <option value="awareness-sessions">Awareness Sessions</option>
+                                            <option value="friend">Recommendation from a friend</option>
+                                        </select>
+                                    </div>
+
+
                                 </div>
                                 <div class="btncen2 d-flex justify-content-between mt-5 col-12 pl-0">
                                     <button
@@ -453,11 +472,11 @@
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label for="PostCategoryId" class="is-required">Select Relation</label>
-                                        <select name="relative_relation_1" required class="custom-select wizard-required" 
+                                        <select name="relative_relation_1" required class="custom-select wizard-required"
                                                 id="PostCategoryId"
                                                  >
                                            <option value="Select..">
-                                                  
+
                                                  Select..
                                             </option>
                                             <option value="father"
@@ -499,7 +518,7 @@
                                         <select name="relative_relation_2"  class="custom-select wizard-required"
                                                 id="PostCategoryId" required >
                                                 <option value="Select..">
-                                                  
+
                                                   Select..
                                              </option>
                                             <option value="father"
@@ -535,7 +554,7 @@
                                 <div class="form-group custom-control custom-checkbox mt-3">
                                     <input name="is_committed" type="checkbox" class="custom-control-input wizard-required"
                                            id="is_committed"
-                                           required 
+                                           required
                                            autocomplete="off"
                                            @if($user->is_committed == 1 ) checked @endif>
                                     <label class="custom-control-label"  for="is_committed">I agree that I

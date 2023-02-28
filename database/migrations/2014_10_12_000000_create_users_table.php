@@ -68,6 +68,11 @@ class CreateUsersTable extends Migration
             $table->string('status')->default('in_progress');
             $table->string('result_1')->nullable();
 
+            $table->string('id_img')->nullable();
+            $table->string('personal_img')->nullable();
+            $table->string('vaccination_img')->nullable();
+
+
             $table->timestamps();
         });
     }
