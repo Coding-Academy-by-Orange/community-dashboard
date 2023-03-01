@@ -6,12 +6,12 @@
 <style>
 
 
-@media screen and (max-width: 600px) {
-  /* .o-footer{
-    visibility: hidden;
-    display: none;
-  } */
-}
+    @media screen and (max-width: 600px) {
+        /* .o-footer{
+          visibility: hidden;
+          display: none;
+        } */
+    }
 </style>
 @section('main')
     <main role="main" id="content" class="container">
@@ -22,14 +22,20 @@
                 <li class="breadcrumb-item active" aria-current="location">Code Challenge</li>
             </ol>
         </nav>
-        <div class="jumbotron p-4 p-md-5 text-secondary  rounded background-jumbotron-code">
+        <div class="jumbotron text-secondary" style="padding:7rem;background-image: url('https://mastermedia.dam-broadcast.com/medias/domain12751/media100418/125413-nuppdqdrw8-whr.jpg'); background-repeat: no-repeat; background-position: center">
             <div class="col-md-7 p-3 bg-white">
                 <h1 class="display-4 font-italic ">Learning By Doing!</h1>
-                <p class="lead my-3">SoloLearn is a series of free apps that allows users to learn a variety of programming languages and concepts through short lessons, code challenges, and quizzes. </p>
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" @if(App\CodeChallenge::where('user_id', auth()->id())->first() != null) disabled @endif >Submit Your Score</button>
+                <p class="lead my-3">Orange Coursat is a series of free apps that allows users to learn a variety of
+                    programming languages and concepts through short lessons, code challenges, and quizzes. </p>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal"
+                        data-whatever="@mdo"
+                        @if(App\CodeChallenge::where('user_id', auth()->id())->first() != null) disabled @endif >Submit
+                    Your Score
+                </button>
             </div>
         </div>
-        <div class="modal fade exampleModal" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade exampleModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="alert alert-danger alert-dismissible fade show p-1" role="alert">
@@ -43,36 +49,52 @@
                         <h3 class="modal-title" id="exampleModalLabel">Code Challenge Submission</h3>
                     </div>
                     <div class="modal-body">
-                        <form role="form" id="myForm" method="post" action="{{ route('challenges.store') }}"  enctype="multipart/form-data"   >
+                        <form role="form" id="myForm" method="post" action="{{ route('challenges.store') }}"
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="custom-file" style="margin-bottom: 50px !important;">
-                                <input type="file" class="custom-file-input @error('html_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="html_certificate" value="{{old('html_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                <input type="file"
+                                       class="custom-file-input @error('html_certificate') is-invalid @enderror"
+                                       id="exampleInputFile" aria-describedby="helpTextFile" name="html_certificate"
+                                       value="{{old('html_certificate')}}"
+                                       onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
                                 @error('html_certificate')
                                 <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                                 @enderror
-                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your HTML certificate </label>
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your
+                                    HTML certificate </label>
                                 <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
                             </div>
                             <div class="custom-file pb-3" style="margin-bottom: 50px !important;">
-                                <input type="file" class="custom-file-input @error('css_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="css_certificate" value="{{old('css_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                <input type="file"
+                                       class="custom-file-input @error('css_certificate') is-invalid @enderror"
+                                       id="exampleInputFile" aria-describedby="helpTextFile" name="css_certificate"
+                                       value="{{old('css_certificate')}}"
+                                       onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
                                 @error('css_certificate')
                                 <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                                 @enderror
-                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your  CSS Certificate </label>
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your
+                                    CSS Certificate </label>
                                 <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
                             </div>
                             <div class="custom-file pb-3" style="margin-bottom: 50px !important;">
-                                <input type="file" class="custom-file-input @error('js_certificate') is-invalid @enderror" id="exampleInputFile" aria-describedby="helpTextFile" name="js_certificate" value="{{old('js_certificate')}}" onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                                <input type="file"
+                                       class="custom-file-input @error('js_certificate') is-invalid @enderror"
+                                       id="exampleInputFile" aria-describedby="helpTextFile" name="js_certificate"
+                                       value="{{old('js_certificate')}}"
+                                       onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
                                 @error('js_certificate')
                                 <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                                 @enderror
-                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your Javascript certificate </label>
+                                <label class="custom-file-label is-required" for="exampleInputFile">Screenshot for your
+                                    Javascript certificate </label>
                                 <span class="form-text small text-muted" id="helpTextFile">(.jpg , .jpeg , .png )**Make sure image size less than 2MB  </span>
                             </div>
                             <div class="modal-footer mt-5 ">
@@ -87,11 +109,11 @@
         <div class="row">
             <div class="col-md-12 blog-main">
                 <div class="blog-post">
-{{--                    <h2 class="blog-post-title">Code Challenge Section</h2>--}}
+                    {{--                    <h2 class="blog-post-title">Code Challenge Section</h2>--}}
 
-{{--                    <p>Thank you for your application to the second batch of the Web and Mobile Development training--}}
-{{--                        program at Orange Coding Academy.</p>--}}
-{{--                    <hr>--}}
+                    {{--                    <p>Thank you for your application to the second batch of the Web and Mobile Development training--}}
+                    {{--                        program at Orange Coding Academy.</p>--}}
+                    {{--                    <hr>--}}
                     <h2>Code Challenge Section</h2>
                     <p>This Section consist of a series of online exercises that you have to complete successfully
                         through Sololearn platform.
@@ -99,48 +121,77 @@
                     <h3 class="mt-3">Steps</h3>
                     <p>To proceed with your application, please follow the following steps:</p>
                     <ol>
-                        <li class="my-2">Go to www.sololearn.com</li>
+                        <li class="my-2">Go to https:coursat.orange.jo</li>
                         <li class="my-2">Sign up / Create an account</li>
-                        <li class="my-2">Once you create your profile, go to “Manage Courses”</li>
+                        <li class="my-2">Once you create your profile, go to “the below courses”</li>
                         <li class="my-2">Add the following 3 courses (and more if you like!):</li>
                         <div class="container marketing my-5">
 
                             <!-- Three columns of text below the carousel -->
-                            <div class="row text-center mr-5">
-                                <div class="col-lg-4">
-                                    <img width="140" height="140"
-                                         src="{{asset('assets/img/html.png')}}"
-                                         class="rounded-circle border" alt="html">
-                                    <h2>HTML Fundamentals</h2>
-                                    <p>25 lessons minimum</p>
-                                    <p><a class="btn btn-secondary" href="https://www.sololearn.com/learning/1014" target="_blank">View course »</a></p>
-                                </div><!-- /.col-lg-4 -->
-                                <div class="col-lg-4">
-                                    <img width="140" height="140"
-                                         src="{{asset('assets/img/css.png')}}"
-                                         class="rounded-circle border" alt="css">
-                                    <h2>CSS Fundamentals</h2>
-                                    <p>35 lessons minimum</p>
-                                    <p><a class="btn btn-secondary" href="https://www.sololearn.com/learning/1023" target="_blank">View course »</a></p>
-                                </div><!-- /.col-lg-4 -->
-                                <div class="col-lg-4">
-                                    <img width="140" height="140"
-                                         src="{{asset('assets/img/js.png')}}"
-                                         class="rounded-circle border" alt="javascript">
+                            <div class="card-deck mt-2">
+                                <div class="card">
+                                    <a href="https://coursat.orange.jo/course/view.php?id=7">
+                                        <img src="https://coursat.orange.jo/pluginfile.php/47/course/overviewfiles/Artboard%2011.png" alt="HTML Development" class="card-img-top w-100"></a>
+                                       <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a class="" href="https://coursat.orange.jo/course/view.php?id=7">HTML Development</a>
+                                        </h4>
+                                           <p class="card-text">
 
-                                    <h2>Javascript Tutorial</h2>
-                                    <p>41 lessons minimum</p>
-                                    <p><a class="btn btn-secondary" href="https://www.sololearn.com/learning/1024" target="_blank">View course »</a></p>
-                                </div><!-- /.col-lg-4 -->
-                            </div><!-- /.row -->
+                                            HTML, in full hypertext markup language,
+
+                                            a formatting system for displaying material retrieved over the Internet. ... HTML markup tags specify document elements such as headings, paragraphs, and tables. They mark up a document for display by a computer program known as a Web browser.
+
+                                       </p>
+                                       </div>
+                                </div>
+                                <div class="card" data-courseid="8" data-type="1"><a
+                                        href="https://coursat.orange.jo/course/view.php?id=8"><img
+                                            src="https://coursat.orange.jo/pluginfile.php/48/course/overviewfiles/Artboard%2012.png"
+                                            alt="CSS Development" class="card-img-top w-100"></a>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a class=""
+                                                                  href="https://coursat.orange.jo/course/view.php?id=8">CSS
+                                                Development</a></h4>
+                                        <p class="card-text"></p>
+                                        <div class="no-overflow">
+                                            Cascading Style Sheets (CSS),
+
+                                            Is a style sheet language used for describing the presentation of a document
+                                            written in a markup language such as HTML.
+
+                                        </div>
+                                        <p></p></div>
+                                </div>
+                                <div class="card" data-courseid="5" data-type="1"><a
+                                        href="https://coursat.orange.jo/course/view.php?id=5"><img
+                                            src="https://coursat.orange.jo/pluginfile.php/45/course/overviewfiles/Artboard%2013.png"
+                                            alt="JavaScript" class="card-img-top w-100"></a>
+                                    <div class="card-body">
+                                        <h4 class="card-title"><a class=""
+                                                                  href="https://coursat.orange.jo/course/view.php?id=5">JavaScript</a>
+                                        </h4>
+                                        <p class="card-text"></p>
+                                        <div class="no-overflow">
+
+                                            JavaScript is a dynamic computer programming language.
+
+                                            It is lightweight and most commonly used as a part of web pages, whose
+                                            implementations allow client-side script to interact with the user and make
+                                            dynamic pages. It is an interpreted programming language with
+                                            object-oriented capabilities.
+
+                                        </div>
+                                        <p></p></div>
+                                </div>
+                            </div>
                         </div>
-                        <li class="my-2"> Once you have completed the courses, please send your Sololearn profile link
-                            with a screenshot to this form <a> <small> <a href="https://www.sololearn.com/profile/18382942" target="_blank">  (profile example) </a></small></a></li>
+                        <li class="my-2"> Once you have completed the courses, please upload the three certicates </li>
                     </ol>
-                    <p>If you have any questions or concerns regarding completing of Sololearn courses, please contact
+                    <p>If you have any questions or concerns regarding completing of  courses, please contact
                         us on the following email:
 
-                        <a href="mailto:codingacademy.ojo@orange.com" >codingacademy.ojo@orange.com</a> .</p>
+                        <a href="mailto:codingacademy.ojo@orange.com">codingacademy.ojo@orange.com</a> .</p>
                 </div><!-- /.blog-post -->
             </div>
             <a href="#" class="o-scroll-up" title="back to top">
@@ -155,4 +206,4 @@
         $('.exampleModal').modal('show');
     </script>
 @endsection
-    @endif
+@endif

@@ -101,6 +101,7 @@ class PersonalInformationController extends Controller
             "is_committed" => $is_committed,
             "fullName_1" => $request->fullName_1,
             "fullName_2" => $request->fullName_2,
+            'know_us' => $request->know_us
         ]);
 
         return redirect(route('client.dashboard'))->with('status_store', 'Your data has been submitted successfully ');

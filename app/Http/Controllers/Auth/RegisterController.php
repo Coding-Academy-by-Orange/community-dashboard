@@ -113,7 +113,8 @@ class RegisterController extends Controller
             "receiverMobile" => substr(auth()->user()->mobile , 1) ,
             "mobile_verification" => $mcode,
             'senderMobile' => 777777777,
-            'code' => $mcode
+            'code' => $mcode,
+            'academy_location' => ''
         ];
         if (auth()->user()->is_email_verified == '1' && auth()->user()->is_mobile_verified == '1') {
             return redirect()->route('client.dashboard');
@@ -211,11 +212,7 @@ class RegisterController extends Controller
     public function basic_info_step1(Request $request)
     {
         $user = User::where('id', auth()->id())->first();
-        if ($request->id_img != null && $request->personal_img && $request->vaccination_img  ) {
-            $id_img= Storage::disk('public')->put('images', $request->file('id_img'));
-            $personal_img= Storage::disk('public')->put('images', $request->file('personal_img'));
-            $vaccination_img= Storage::disk('public')->put('images', $request->file('vaccination_img'));
-        }
+
         //dd($vaccination_img);
         $validated = $request->validate([
             "nationality" => 'required',
@@ -224,6 +221,9 @@ class RegisterController extends Controller
             "year" => 'required|string|size:4',
             "month" => 'required|string',
             "day" => 'required|string|size:2',
+            'id_img' => 'required|image',
+            'personal_img' => 'required|image',
+            'vaccination_img' => 'required|image',
             "en_first_name" => array(
                 'required'
             ),
@@ -249,6 +249,11 @@ class RegisterController extends Controller
                 'required'
             )
         ]);
+        if ($request->id_img != null && $request->personal_img && $request->vaccination_img  ) {
+            $id_img= Storage::disk('public')->put('images', $request->file('id_img'));
+            $personal_img= Storage::disk('public')->put('images', $request->file('personal_img'));
+            $vaccination_img= Storage::disk('public')->put('images', $request->file('vaccination_img'));
+        }
         User::where('id', $user->id)->update($validated);
         User::where('id', $user->id)->update(['id_img'=>$id_img,'personal_img'=>$personal_img,'vaccination_img' =>$vaccination_img]);
 
