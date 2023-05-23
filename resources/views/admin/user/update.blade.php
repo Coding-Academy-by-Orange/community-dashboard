@@ -40,7 +40,7 @@
                                             @elseif($user->result_1 == '6. Accepted – Final List – Simplon')
                                                 | <span
                                                     class="badge badge-light-success mb-1 ">{{$user->result_1}}</span>
-                                            @elseif($user->result_1 == '7. Rejected – Test Result (Sololearn + English) - Simplon')
+                                            @elseif($user->result_1 == '7. Rejected – Test Result (Sololearn + English) ')
                                                 | <span
                                                     class="badge badge-light-danger mb-1 ">{{$user->result_1}}</span>
 
@@ -104,9 +104,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -148,9 +148,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -191,9 +191,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -233,9 +233,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -276,9 +276,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -320,9 +320,9 @@
                                                                     </option>
                                                                     <!-- <option value="6. Accepted – Final List – Simplon">6. Accepted – Final List – Simplon</option> -->
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -342,7 +342,7 @@
                                                                         11. Rejected – Final List After Interviews -
                                                                         Orange
                                                                     </option>
-                                                                @elseif($user->result_1 == "7. Rejected – Test Result (Sololearn + English) - Simplon")
+                                                                @elseif($user->result_1 == "7. Rejected – Test Result (Sololearn + English) ")
                                                                     <option
                                                                         value="1. Accepted – 1st Filtration – Orange">1.
                                                                         Accepted – 1st Filtration – Orange
@@ -364,7 +364,7 @@
                                                                     <option value="6. Accepted – Final List – Simplon">
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
-                                                                    <!-- <option value="7. Rejected – Test Result (Sololearn + English) - Simplon">7. Rejected – Test Result (Sololearn + English) - Simplon</option> -->
+                                                                    <!-- <option value="7. Rejected – Test Result (Sololearn + English) ">7. Rejected – Test Result (Sololearn + English) </option> -->
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
                                                                         8. Rejected – Motivational Qs – Simplon
@@ -407,9 +407,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <!-- <option value="8. Rejected – Motivational Qs – Simplon">8. Rejected – Motivational Qs – Simplon</option> -->
                                                                     <option
@@ -450,9 +450,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -492,9 +492,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -535,9 +535,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -576,9 +576,9 @@
                                                                         6. Accepted – Final List – Simplon
                                                                     </option>
                                                                     <option
-                                                                        value="7. Rejected – Test Result (Sololearn + English) - Simplon">
+                                                                        value="7. Rejected – Test Result (Sololearn + English) ">
                                                                         7. Rejected – Test Result (Sololearn + English)
-                                                                        - Simplon
+
                                                                     </option>
                                                                     <option
                                                                         value="8. Rejected – Motivational Qs – Simplon">
@@ -1105,9 +1105,9 @@
                         <span
                             class="badge badge-light-success">6. Accepted – Final List – Simplon</span>
 
-                    @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) - Simplon')
+                    @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) ')
                         <span
-                            class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) - Simplon</span>
+                            class="badge badge-light-danger ">7. Rejected – Test Result (Sololearn + English) </span>
 
 
 

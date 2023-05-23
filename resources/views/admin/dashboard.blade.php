@@ -206,10 +206,10 @@
                                         <span class="ml-3">{{App\User::where('result_1', '2. Maybe – 1st Filtration – Orange')->count()}} applicants</span>
                                     </li>
 
-                                    
 
-                                  
-                                    
+
+
+
                                     <li class="list-group-item border-0 d-flex justify-content-between">
                                         <div class="list-left d-flex">
                                             <div class="list-icon mr-1">
@@ -285,10 +285,10 @@
                                                 </div>
                                             </div>
                                             <div class="list-content">
-                                                <span class="list-title">7. Rejected – Test Result (Sololearn + English) - Simplon</span>
+                                                <span class="list-title">7. Rejected – Test Result (Sololearn + English) </span>
                                             </div>
                                         </div>
-                                        <span class="ml-3">{{App\User::where('result_1', '7. Rejected – Test Result (Sololearn + English) - Simplon')->count()}} applicants</span>
+                                        <span class="ml-3">{{App\User::where('result_1', '7. Rejected – Test Result (Sololearn + English) ')->count()}} applicants</span>
                                     </li>
 
                                     <li class="list-group-item border-0 d-flex justify-content-between">
@@ -355,7 +355,7 @@
                                             </div>
                                         </div>
                                         <span class="ml-3">{{App\User::where('result_1', '11. Rejected – Final List After Interviews - Orange')->count()}} applicants</span>
-                                    </li>                                   
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-lg-8">
@@ -548,16 +548,16 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['1. Accepted – 1st Filtration – Orange','2. Maybe – 1st Filtration – Orange','3. Rejected – Age – Orange','4. Rejected – 1st Filtration – Orange','5. Accepted – Pre Final List – Simplon','6. Accepted – Final List – Simplon','7. Rejected – Test Result (Sololearn + English) - Simplon','8. Rejected – Motivational Qs – Simplon','9. Accepted – 50 Students After Interviews – Orange','10. Maybe – Final List After Interviews - Orange','11. Rejected – Final List After Interviews - Orange'],
+                labels: ['1. Accepted – 1st Filtration – Orange','2. Maybe – 1st Filtration – Orange','3. Rejected – Age – Orange','4. Rejected – 1st Filtration – Orange','5. Accepted – Pre Final List – Simplon','6. Accepted – Final List – Simplon','7. Rejected – Test Result (Sololearn + English) ','8. Rejected – Motivational Qs – Simplon','9. Accepted – 50 Students After Interviews – Orange','10. Maybe – Final List After Interviews - Orange','11. Rejected – Final List After Interviews - Orange'],
                 datasets: [{
                     label: '# of applicants',
                     data: [{{App\User::where('status', '1. Accepted – 1st Filtration – Orange')->count()}},
                      {{App\User::where('status', '2. Maybe – 1st Filtration – Orange')->count()}},
                      {{App\User::where('status', '3. Rejected – Age – Orange')->count()}},
-                     {{App\User::where('status', '4. Rejected – 1st Filtration – Orange')->count()}}, 
+                     {{App\User::where('status', '4. Rejected – 1st Filtration – Orange')->count()}},
                      {{App\User::where('status', '5. Accepted – Pre Final List – Simplon')->count()}},
                      {{App\User::where('status', '6. Accepted – Final List – Simplon')->count()}},
-                     {{App\User::where('status', '7. Rejected – Test Result (Sololearn + English) - Simplon')->count()}}, 
+                     {{App\User::where('status', '7. Rejected – Test Result (Sololearn + English) ')->count()}},
                      {{App\User::where('status', '8. Rejected – Motivational Qs – Simplon')->count()}},
                      {{App\User::where('status', '9. Accepted – 50 Students After Interviews – Orange')->count()}},
                      {{App\User::where('status', '10. Maybe – Final List After Interviews - Orange')->count()}},
