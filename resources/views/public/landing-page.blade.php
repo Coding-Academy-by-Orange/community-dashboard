@@ -55,6 +55,9 @@
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/fablab-registration">Fablab</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>

@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FablabUsersController;
 /*
 |--------------------------------------------------------------------------
 | User Routes
@@ -116,4 +118,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 });
 
 
+// Fablab Registration Form
 
+Route::get('/fablab-registration', [FablabUsersController::class , 'index']);
+Route::post('/fablab-registration', [FablabUsersController::class , 'store'])->name('fablab-registration.store');
