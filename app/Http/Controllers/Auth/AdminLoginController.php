@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class AdminLoginController extends Controller
 
     public function showLoginForm()
     {
+
         return view('auth.adminLogin');
     }
 
@@ -26,10 +28,18 @@ class AdminLoginController extends Controller
             'email' => 'required|email|exists:admins,email',
             'password' => 'required|string',
         ]);
+
+
+
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->intended(route('admin.dashboard'));
+            $email = $request->email;
+            $admin = Admin::where('email' , $email)->get();
+            return redirect('/admin/dashboard');
+
         }
+
+
         return back()->withInput($request->only('email', 'remember'));
     }
 

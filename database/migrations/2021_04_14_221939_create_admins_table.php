@@ -19,6 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('fname');
             $table->string('lname');
+            $table->string('component');
             $table->boolean('is_super')->default(false);
             $table->timestamps();
         });

@@ -77,7 +77,19 @@
                     <div class="navbar-header">
                         <ul class="nav navbar-nav flex-row">
                             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ route('admin.dashboard') }}">
-                                    <h4 class="text-warning ml-1">Orange Dashboard</h4></a></li>
+                                    <h4 class="text-warning ml-1">
+                                        @if (Auth::user()->is_super)
+                                            Orange Dashboard
+                                        @elseif (Auth::user()->component == 'digitalcenter')
+                                            Digital Center
+                                        @elseif (Auth::user()->component == 'fablab')
+                                            FabLab
+                                        @elseif (Auth::user()->component == 'codingacademy')
+                                            Coding Academy
+                                        @elseif (Auth::user()->component == 'bigbyorange')
+                                            Big By Orange
+                                        @endif
+                                    </h4></a></li>
                         </ul>
                     </div>
                     <ul class="nav navbar-nav">
@@ -443,10 +455,11 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>First name</th>
-                                                <th>Year of Birth</th>
-						<th>Educational Level</th>
-						<th>Academy Location</th>
-                                                <th>Application status</th>
+                                                <th>Last name</th>
+                                                <th>Educational Level</th>
+                                                <th>National ID/Passport Number</th>
+                                                <th>Component</th>
+                                                <th>Residence</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -456,95 +469,37 @@
                                                 <tr role="row">
                                                     @php($count++)
                                                     <td class="sorting_1">{{$user->id}}</td>
-                                                    <td class="text-capitalize">{{$user->en_first_name}}</td>
-                                                    <td>{{$user->year}}</td>
-                                                    @if($user->educational_level == 'high_school')
-                                                        <td>High School</td>
-                                                    @elseif($user->educational_level == 'diploma')
-                                                        <td>Diploma</td>
-                                                    @elseif($user->educational_level == 'high_diploma')
-                                                        <td>High Diploma</td>
-                                                    @elseif($user->educational_level == 'bachelor')
-                                                        <td>Bachelor</td>
-                                                    @elseif($user->educational_level == 'master_degree')
-                                                        <td>Master Degree</td>
-                                                    @elseif($user->educational_level == 'ph.d.')
-                                                        <td>Ph.D</td>
-                                                    @else
-                                                        <td>_</td>
-							@endif
-						   <td calss="sorting_1">{{$user->academy_location}}</td>
-
-                                                    @if($user->status == 'in_progress')
-                                                        <td><span
-                                                                class="badge badge-light-warning">in progress</span>
-                                                        </td>
-                                                    @elseif($user->status == 'submitted')
-                                                        <td><span class="badge badge-light-primary">submitted</span>
-                                                        </td>
-                                                    @elseif($user->status == 'accepted')
-                                                        <td><span class="badge badge-light-success">Success</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '1. Accepted – 1st Filtration – Orange')
-                                                        <td><span class="badge badge-light-success">1. Accepted – 1st Filtration – Orange</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '2. Maybe – 1st Filtration – Orange')
-                                                        <td><span class="badge badge-light-warning">2. Maybe – 1st Filtration – Orange</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '3. Rejected – Age – Orange')
-                                                        <td><span class="badge badge-light-danger">3. Rejected – Age – Orange</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '4. Rejected – 1st Filtration – Orange')
-                                                        <td><span class="badge badge-light-danger">4. Rejected – 1st Filtration – Orange</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '5. Accepted – Pre Final List – Simplon')
-                                                        <td><span class="badge badge-light-success">5. Accepted – Pre Final List – Simplon</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '6. Accepted – Final List – Simplon')
-                                                        <td><span class="badge badge-light-success">6. Accepted – Final List – Simplon</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '7. Rejected – Test Result (Sololearn + English) ')
-                                                        <td><span class="badge badge-light-danger">7. Rejected – Test Result (Sololearn + English) </span>
-                                                        </td>
-
-                                                        @elseif($user->status == '8. Rejected – Motivational Qs – Simplon')
-                                                        <td><span class="badge badge-light-danger">8. Rejected – Motivational Qs – Simplon</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '9. Accepted – 50 Students After Interviews – Orange')
-                                                        <td><span class="badge badge-light-success">9. Accepted – 50 Students After Interviews – Orange</span>
-                                                        </td>
-
-
-                                                        @elseif($user->status == '10. Maybe – Final List After Interviews - Orange')
-                                                        <td><span class="badge badge-light-warning">10. Maybe – Final List After Interviews - Orange</span>
-                                                        </td>
-
-                                                        <!-- 5-	rejected- 1st filtration@elseif($user->status == 'accepted for next filtration') -->
-                                                        <!-- <td><span class="badge badge-light-success">accepted for next filtration</span>
-                                                        </td>   -->
-                                                    @elseif($user->status == '11. Rejected – Final List After Interviews - Orange')
-                                                        <td><span class="badge badge-light-danger">11. Rejected – Final List After Interviews - Orange</span>
-                                                        </td>
-
-                                                    @endif
-                                                    <td><a href="{{route('users.edit',$user->id)}}"><i
-                                                                class="fas fa-eye fa-lg"></i></a></td>
+                                                    <td class="text-capitalize">{{$user->first_name}}</td>
+                                                    <td>{{$user->last_name}}</td>
+                                                    <td calss="sorting_1">{{$user->education}}</td>
+                                                    <td calss="sorting_1">
+                                                        @if ($user->national_id != 'NULL')
+                                                            {{$user->national_id}}
+                                                        @elseif ($user->passport_number)
+                                                            {{$user->passport_number}}
+                                                        @endif
+                                                    </td>
+                                                    <td calss="sorting_1">
+                                                        @if ($user->affiliation)
+                                                            FabLab
+                                                        @elseif ($user->programming)
+                                                            Digital Center
+                                                        {{-- @elseif ($user->programming)
+                                                            Coding Academy
+                                                        @elseif ($user->programming)
+                                                            Big By Orange --}}
+                                                        @endif
+                                                    </td>
+                                                    <td calss="sorting_1">{{$user->residence}}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                <a class="dropdown-item " href="{{ route('fablab_users.delete', ['id' => $user->id] )}}">
+                                                                    <i class="bx bx-edit-alt mr-1"></i>Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

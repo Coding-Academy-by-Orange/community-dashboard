@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="email-id-icon">Email</label>
                                         <div class="position-relative has-icon-left">
@@ -52,6 +52,27 @@
                                             </div>
                                             @error('email')
                                             <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="component-icon">Component</label>
+                                        <div class="position-relative has-icon-left">
+                                            <select name="component" id="component" class="form-control @error('component') is-invalid @enderror" value="{{ old('component') }}">
+                                                <option value="">--Select One--</option>
+                                                <option value="codingacademy">Coding Academy</option>
+                                                <option value="bigbyorange">Big By Orange</option>
+                                                <option value="fablab">Fablab</option>
+                                                <option value="digitalcenter">Digital Center</option>
+                                            </select>
+                                            <div class="form-control-position">
+                                                <i class="bx bx-user"></i>
+                                            </div>  @error('component')
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                             @enderror
                                         </div>
                                     </div>

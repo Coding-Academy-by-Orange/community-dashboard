@@ -2,13 +2,25 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ODCController;
 use App\Http\Controllers\FablabUsersController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | User Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/',"HomeController@publicLanding");
+Route::get('/',function(){
+    return view ('public.landingpage');
+});
+
+Route::get('/test',function(){
+    return view ('test');
+});
+Route::post('/test', [TestController::class , 'store'])->name('test.store');
+
+
 
 
 Auth::routes();
@@ -118,7 +130,32 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 });
 
 
+// Coding Academy
+
+Route::get('/codingacademy',"HomeController@publicLanding");
+
 // Fablab Registration Form
 
 Route::get('/fablab-registration', [FablabUsersController::class , 'index']);
 Route::post('/fablab-registration', [FablabUsersController::class , 'store'])->name('fablab-registration.store');
+Route::get('/admin/{id}/users', [FablabUsersController::class , 'destroy'])->name('fablab_users.delete');
+
+// ODC Registration Form
+
+Route::get('/ODC', [ODCController::class , 'index']);
+Route::post('/ODC', [ODCController::class , 'store'])->name('ODC.store');
+
+
+// Big By Oramge Registration Form
+
+Route::resource('/BigByOrange-registration',"BigbyOrangeController");
+
+Route::get('/thanks' , function(){
+    return view('public.thanks');
+})->name('thanks');
+
+Route::post('/clear-flash-session', function () {
+    session()->forget('status');
+    session()->forget('error');
+});
+

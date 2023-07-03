@@ -19,6 +19,7 @@
                                 <th>Number</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Component</th>
                                 <th>action</th>
                             </tr>
                             </thead>
@@ -30,15 +31,31 @@
                                 <td>{{$count}} </td>
                                 <td>{{$admin->fname}} </td>
                                 <td>{{$admin->email}}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item " href="{{ route('admins.edit',$admin->id)}}"><i
-                                                    class="bx bx-edit-alt mr-1"></i>Edit</a>
+                                @if ($admin->component == 'codingacademy')
+                                    <td>Coding Academy</td>
+                                @elseif ($admin->component == 'fablab')
+                                    <td>Fablab</td>
+                                @elseif ($admin->component == 'bigbyorange')
+                                    <td>Big By Orange</td>
+                                @elseif ($admin->component == 'digitalcenter')
+                                    <td>Digital Center</td>
+                                @else
+                                    <td>Super Admin</td>
+                                @endif
+
+                                @if ($admin->is_super)
+                                    <td>-</td>
+                                @else
+                                    <td>
+                                        <div class="dropdown">
+                                            <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu"></span>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item " href="{{ route('admins.edit',$admin->id)}}"><i
+                                                        class="bx bx-edit-alt mr-1"></i>Edit</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
                             </tbody>

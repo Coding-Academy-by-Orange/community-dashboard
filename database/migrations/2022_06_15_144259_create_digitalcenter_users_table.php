@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFablabUsersTable extends Migration
+class CreateDigitalcenterUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFablabUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('fablab_users', function (Blueprint $table) {
+        Schema::create('digitalcenter_users', function (Blueprint $table) {
             $table->id();
 
             $table->string('first_name');
@@ -22,24 +22,26 @@ class CreateFablabUsersTable extends Migration
             $table->string('last_name');
 
             $table->string('nationality');
-            $table->string('affiliation');
             $table->string('gender');
             $table->string('email')->unique();
 
             $table->string('passport_number')->unique()->nullable();
+            $table->string('other_nationalty')->nullable();
             $table->bigInteger('national_id')->unique()->nullable();
             $table->integer('age');
             $table->bigInteger('mobile')->unique();
-            $table->bigInteger('whatsapp')->unique();
+            $table->bigInteger('whatsapp')->nullable();
 
             $table->string('residence');
             $table->string('education');
-            $table->string('major_study')->default('without_major')->nullable();
             $table->string('employment');
+            $table->string('center');
 
-            $table->string('program');
-            $table->string('technology_type');
-            $table->string('idea_description');
+            $table->string('obstacles');
+            $table->string('type_of_obstacles')->nullable();
+
+            $table->string('programming');
+            $table->string('news')->nullable();
 
             $table->timestamps();
         });
@@ -52,6 +54,6 @@ class CreateFablabUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fablab_users');
+        Schema::dropIfExists('digitalcenter_users');
     }
 }

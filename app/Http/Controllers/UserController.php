@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Questionnaire;
+use Excel;
+use App\ODC;
 use App\User;
 use Carbon\Carbon;
+use App\FablabUsers;
+use App\Questionnaire;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Excel;
-use App\Imports\UsersImport;
-use App\Exports\UsersExport;
 
 class UserController extends Controller
 {
@@ -46,18 +49,55 @@ class UserController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+        if($user->component == 'fablab'){
+            return view('admin.user.read',[
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', FablabUsers::orderBy('first_name')->get());
+        }
+        else if ($user->component == 'digitalcenter'){
+            return view('admin.user.read',[
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', ODC::orderBy('first_name')->get());
+        }
+        else if (Auth::user()->is_super) {
 
-        return view('admin.user.read',[
-            'status' => 'All',
-            'result_1' => 'All',
-            'nationality' => 'All',
-            'gender' => 'All',
-            'year' => 'All',
-            'commitment' => 'All',
-            'educational_background' => 'All',
-	    'educational_level' => 'All',
-	    'academy_location' => 'ALL'
-        ])->with('users', User::where('nationality', "!=", null)->orderBy('en_first_name')->get());
+            // $FablabUsers = FablabUsers::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
+            // $ODCUsers = ODC::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
+
+
+            $FablabUsers = FablabUsers::get();
+            $ODCUsers = ODC::get();
+            $user = $FablabUsers->concat($ODCUsers);
+            return view('admin.user.read',[
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', $user);
+        }
+
     }
 
     /**

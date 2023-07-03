@@ -27,7 +27,9 @@ class AdminRegisterController extends Controller
             'fname' => $request['fname'],
             'lname' => $request['lname'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            'is_super' => '0',
+            'component' =>  $request['component'],
+            'password' =>bcrypt($request['password']),
         ]);
         return redirect()->route('admins.index')->with('status_store', 'A new admin has been added successfully ');
     }

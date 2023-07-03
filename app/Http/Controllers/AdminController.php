@@ -56,7 +56,9 @@ class AdminController extends Controller
             'lname' => 'Required|min:3',
             'email' => 'Required|email',
             'password' => 'required | min:6 | confirmed',
+            'component' => 'required',
         ]);
+        $validated['password'] = bcrypt($validated['password']);
         $admin->update($validated);
         return redirect()->route('admins.index')->with('status_update', 'The data has been updated successfully');
     }

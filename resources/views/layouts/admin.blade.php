@@ -62,6 +62,7 @@
 
 <!-- BEGIN: Body-->
 <body>
+
 <div class="vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static  " data-open="click"
      data-menu="vertical-menu-modern" data-col="2-columns">
 
@@ -113,7 +114,19 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ route('admin.dashboard') }}">
-                        <h4 class="text-warning mb-0">Coding Academy </h4></a></li>
+                        <h4 class="text-warning mb-0">
+                            @if (Auth::user()->is_super)
+                                Orange Dashboard
+                            @elseif (Auth::user()->component == 'digitalcenter')
+                                Digital Center
+                            @elseif (Auth::user()->component == 'fablab')
+                                FabLab
+                            @elseif (Auth::user()->component == 'codingacademy')
+                                Coding Academy
+                            @elseif (Auth::user()->component == 'bigbyorange')
+                                Big By Orange
+                            @endif
+                        </h4></a></li>
             </ul>
         </div>
         <div class="shadow-bottom"></div>
@@ -135,9 +148,11 @@
                                                                                        ></i><span
                             class="menu-title text-truncate">Manage Questionnaires </span></a>
                 </li>
-                <li class=" nav-item"><a href="{{route('admins.index')}}" ><i class="bx bx-user-circle"></i><span
-                            class="menu-title text-truncate" > Manage Admins </span></a>
-                </li>
+                @if (Auth::user()->is_super)
+                    <li class=" nav-item"><a href="{{route('admins.index')}}" ><i class="bx bx-user-circle"></i><span
+                                class="menu-title text-truncate" > Manage Admins </span></a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
