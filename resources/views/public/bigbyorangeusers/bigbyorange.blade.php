@@ -89,26 +89,27 @@
         </div>
         </nav>
 
-    @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
-        </div>
-    @elseif(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
-        </div>
-    @endif
-
     <div class="main">
         <div class="container">
             <div class="row align-items-center g-lg-5 py-5">
                 <div class="col-8 mx-auto">
+                    
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
+                        </div>
+                    @endif
+
                     <form class="p-4 p-md-5 rounded-3 contact-form" action="{{route('BigByOrange-registration.store')}}" method="POST">
                         @csrf
                         <h1>Registration Form</h1>
@@ -767,79 +768,79 @@
                                         <span style="margin-top: 1vw">E-commerce</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Cyber Security', old('startup_serve'))) checked @endif name="startup_registered[]" value="Cyber Security" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Cyber Security', old('startup_serve'))) checked @endif name="startup_serve[]" value="Cyber Security" type="checkbox">
                                         <span style="margin-top: 1vw">Cyber Security</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Digital Fabrication', old('startup_serve'))) checked @endif name="startup_registered[]" value="Digital Fabrication" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Digital Fabrication', old('startup_serve'))) checked @endif name="startup_serve[]" value="Digital Fabrication" type="checkbox">
                                         <span style="margin-top: 1vw">Digital Fabrication</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('AgriTech', old('startup_serve'))) checked @endif name="startup_registered[]" value="AgriTech" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('AgriTech', old('startup_serve'))) checked @endif name="startup_serve[]" value="AgriTech" type="checkbox">
                                         <span style="margin-top: 1vw">AgriTech</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('FintTech', old('startup_serve'))) checked @endif name="startup_registered[]" value="FintTech" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('FintTech', old('startup_serve'))) checked @endif name="startup_serve[]" value="FintTech" type="checkbox">
                                         <span style="margin-top: 1vw">FintTech</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Construction & Manufacturing', old('startup_serve'))) checked @endif name="startup_registered[]" value="Construction & Manufacturing" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Construction & Manufacturing', old('startup_serve'))) checked @endif name="startup_serve[]" value="Construction & Manufacturing" type="checkbox">
                                         <span style="margin-top: 1vw">Construction & Manufacturing</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Social Media', old('startup_serve'))) checked @endif name="startup_registered[]" value="Social Media" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Social Media', old('startup_serve'))) checked @endif name="startup_serve[]" value="Social Media" type="checkbox">
                                         <span style="margin-top: 1vw">Social Media</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Travel & Tourism', old('startup_serve'))) checked @endif name="startup_registered[]" value="Travel & Tourism" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Travel & Tourism', old('startup_serve'))) checked @endif name="startup_serve[]" value="Travel & Tourism" type="checkbox">
                                         <span style="margin-top: 1vw">Travel & Tourism</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Data, AI & ML', old('startup_serve'))) checked @endif name="startup_registered[]" value="Data, AI & ML"type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Data, AI & ML', old('startup_serve'))) checked @endif name="startup_serve[]" value="Data, AI & ML"type="checkbox">
                                         <span style="margin-top: 1vw">Data, AI & ML</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Gaming', old('startup_serve'))) checked @endif name="startup_registered[]" value="Gaming" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Gaming', old('startup_serve'))) checked @endif name="startup_serve[]" value="Gaming" type="checkbox">
                                         <span style="margin-top: 1vw">Gaming</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Entertainment', old('startup_serve'))) checked @endif name="startup_registered[]" value="Entertainment" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Entertainment', old('startup_serve'))) checked @endif name="startup_serve[]" value="Entertainment" type="checkbox">
                                         <span style="margin-top: 1vw">Entertainment</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Creative', old('startup_serve'))) checked @endif name="startup_registered[]" value="Creative" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Creative', old('startup_serve'))) checked @endif name="startup_serve[]" value="Creative" type="checkbox">
                                         <span style="margin-top: 1vw">Creative (Art, Media & Design)</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('HealthTech', old('startup_serve'))) checked @endif name="startup_registered[]" value="HealthTech" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('HealthTech', old('startup_serve'))) checked @endif name="startup_serve[]" value="HealthTech" type="checkbox">
                                         <span style="margin-top: 1vw">HealthTech</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('SportsTech', old('startup_serve'))) checked @endif name="startup_registered[]" value="SportsTech" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('SportsTech', old('startup_serve'))) checked @endif name="startup_serve[]" value="SportsTech" type="checkbox">
                                         <span style="margin-top: 1vw">SportsTech</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Blockchain', old('startup_serve'))) checked @endif name="startup_registered[]" value="Blockchain" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Blockchain', old('startup_serve'))) checked @endif name="startup_serve[]" value="Blockchain" type="checkbox">
                                         <span style="margin-top: 1vw">Blockchain</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('IOT', old('startup_serve'))) checked @endif name="startup_registered[]" value="IOT" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('IOT', old('startup_serve'))) checked @endif name="startup_serve[]" value="IOT" type="checkbox">
                                         <span style="margin-top: 1vw">IOT</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Supply Chain & Logistics', old('startup_serve'))) checked @endif name="startup_registered[]" value="Supply Chain & Logistics" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Supply Chain & Logistics', old('startup_serve'))) checked @endif name="startup_serve[]" value="Supply Chain & Logistics" type="checkbox">
                                         <span style="margin-top: 1vw">Supply Chain & Logistics</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('FoodTech', old('startup_serve'))) checked @endif name="startup_registered[]" value="FoodTech" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('FoodTech', old('startup_serve'))) checked @endif name="startup_serve[]" value="FoodTech" type="checkbox">
                                         <span style="margin-top: 1vw">FoodTech</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Utility & Energy', old('startup_serve'))) checked @endif name="startup_registered[]" value="Utility & Energy" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Utility & Energy', old('startup_serve'))) checked @endif name="startup_serve[]" value="Utility & Energy" type="checkbox">
                                         <span style="margin-top: 1vw">Utility & Energy</span>
                                         <br>
 
-                                        <input @if(is_array(old('startup_serve')) && in_array('Retail', old('startup_serve'))) checked @endif name="startup_registered[]" value="Retail" type="checkbox">
+                                        <input @if(is_array(old('startup_serve')) && in_array('Retail', old('startup_serve'))) checked @endif name="startup_serve[]" value="Retail" type="checkbox">
                                         <span style="margin-top: 1vw">Retail</span>
                                         <br>
 
@@ -849,9 +850,9 @@
                                         <br>
 
                                     </div>
-                                    @if ($errors->has('startup_registered'))
+                                    @if ($errors->has('startup_serve'))
                                     <div class="alert alert-danger">
-                                        {{ $errors->first('startup_registered') }}
+                                        {{ $errors->first('startup_serve') }}
                                     </div>
                                     @endif
                                     </div>

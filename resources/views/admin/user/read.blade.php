@@ -60,6 +60,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('admin-assets/custom/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png" type="image/x-icon">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js"
             integrity="sha512-2uu1jrAmW1A+SMwih5DAPqzFS2PI+OPw79OVLS4NJ6jGHQ/GmIVDDlWwz4KLO8DnoUmYdU8hTtFcp8je6zxbCg=="
             crossorigin="anonymous"></script>
@@ -485,9 +487,9 @@
                                                         @elseif ($user->programming)
                                                             Digital Center
                                                         {{-- @elseif ($user->programming)
-                                                            Coding Academy
-                                                        @elseif ($user->programming)
-                                                            Big By Orange --}}
+                                                            Coding Academy --}}
+                                                        @elseif ($user->linkedin_profile)
+                                                            Big By Orange
                                                         @endif
                                                     </td>
                                                     <td calss="sorting_1">{{$user->residence}}</td>

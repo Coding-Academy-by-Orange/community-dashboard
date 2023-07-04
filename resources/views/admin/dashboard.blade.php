@@ -63,7 +63,17 @@
                                     <i class="bx bx-user font-medium-5"></i>
                                 </div>
                                 <div class="text-muted line-ellipsis">All Applicants</div>
-                                <h3 class="mb-0">{{App\User::count()}}</h3>
+                                <h3 class="mb-0">
+                                    @if (Auth::user()->is_super)
+                                        {{App\ODC::count() + App\BigbyOrange::count() + App\FablabUsers::count()}}
+                                    @elseif (Auth::user()->component == 'digitalcenter')
+                                        {{App\ODC::count()}}
+                                    @elseif (Auth::user()->component == 'fablab')
+                                        {{App\FablabUsers::count()}}
+                                    @elseif (Auth::user()->component == 'bigbyorange')
+                                        {{App\BigbyOrange::count()}}
+                                    @endif
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -74,7 +84,17 @@
                                     <i class="bx bx-user-check font-medium-5"></i>
                                 </div>
                                 <div class="text-muted line-ellipsis">Verified Applicants</div>
-                                <h3 class="mb-0">{{App\User::where('nationality', "!=" ,null)->count()}}</h3>
+                                <h3 class="mb-0">
+                                    @if (Auth::user()->is_super)
+                                        {{App\ODC::where('nationality', "!=" ,null)->count() + App\BigbyOrange::where('nationality', "!=" ,null)->count() + App\FablabUsers::where('nationality', "!=" ,null)->count()}}
+                                    @elseif (Auth::user()->component == 'digitalcenter')
+                                        {{App\ODC::where('nationality', "!=" ,null)->count()}}
+                                    @elseif (Auth::user()->component == 'fablab')
+                                        {{App\FablabUsers::where('nationality', "!=" ,null)->count()}}
+                                    @elseif (Auth::user()->component == 'bigbyorange')
+                                        {{App\BigbyOrange::where('nationality', "!=" ,null)->count()}}
+                                    @endif
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -88,7 +108,18 @@
                                     <h5 class="d-flex align-items-center "><i class="bx bx-male bx-md"></i> Male</h5>
                                     <div class="d-flex" style="position: relative;">
 
-                                        <h6 class="ml-50 text-muted">{{App\User::where('gender', 1)->count()}} Applicant</h6>
+                                        <h6 class="ml-50 text-muted">
+                                            @if (Auth::user()->is_super)
+                                                {{App\ODC::where('gender', 'Male')->count() + App\BigbyOrange::where('gender', 'Male')->count() + App\FablabUsers::where('gender', 'Male')->count()}}
+                                            @elseif (Auth::user()->component == 'digitalcenter')
+                                                {{App\ODC::where('gender', 'Male')->count()}}
+                                            @elseif (Auth::user()->component == 'fablab')
+                                                {{App\FablabUsers::where('gender', 'Male')->count()}}
+                                            @elseif (Auth::user()->component == 'bigbyorange')
+                                                {{App\BigbyOrange::where('gender', 'Male')->count()}}
+                                            @endif
+                                            Applicant
+                                        </h6>
                                         <div class="resize-triggers">
                                             <div class="expand-trigger">
                                                 <div style="width: 95px; height: 70px;"></div>
@@ -102,7 +133,18 @@
                                     </h5>
                                     <div class="d-flex" style="position: relative;">
 
-                                        <h6 class="ml-50 text-muted">{{App\User::where('gender', 0)->count()}} Applicant</h6>
+                                        <h6 class="ml-50 text-muted">
+                                            @if (Auth::user()->is_super)
+                                                {{App\ODC::where('gender', 'Female')->count() + App\BigbyOrange::where('gender', 'Female')->count() + App\FablabUsers::where('gender', 'Female')->count()}}
+                                            @elseif (Auth::user()->component == 'digitalcenter')
+                                                {{App\ODC::where('gender', 'Female')->count()}}
+                                            @elseif (Auth::user()->component == 'fablab')
+                                                {{App\FablabUsers::where('gender', 'Female')->count()}}
+                                            @elseif (Auth::user()->component == 'bigbyorange')
+                                                {{App\BigbyOrange::where('gender', 'Female')->count()}}
+                                            @endif
+                                            Applicant
+                                        </h6>
                                         <div class="resize-triggers">
                                             <div class="expand-trigger">
                                                 <div style="width: 95px; height: 70px;"></div>

@@ -57,6 +57,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js" integrity="sha512-2uu1jrAmW1A+SMwih5DAPqzFS2PI+OPw79OVLS4NJ6jGHQ/GmIVDDlWwz4KLO8DnoUmYdU8hTtFcp8je6zxbCg==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png" type="image/x-icon">
 </head>
 <!-- END: Head-->
 
@@ -140,6 +141,7 @@
                                                                            ></i><span
                             class="menu-title text-truncate"> Manage Applicants </span></a>
                 </li>
+                @if (Auth::user()->is_super)
                 <li class=" nav-item"><a href="{{route('notifications.index')}}"><i class="bx bxs-bell-ring"
                                                                            ></i><span
                             class="menu-title text-truncate"> Manage Notifications </span></a>
@@ -148,7 +150,6 @@
                                                                                        ></i><span
                             class="menu-title text-truncate">Manage Questionnaires </span></a>
                 </li>
-                @if (Auth::user()->is_super)
                     <li class=" nav-item"><a href="{{route('admins.index')}}" ><i class="bx bx-user-circle"></i><span
                                 class="menu-title text-truncate" > Manage Admins </span></a>
                     </li>

@@ -6,6 +6,7 @@ use Excel;
 use App\ODC;
 use App\User;
 use Carbon\Carbon;
+use App\BigbyOrange;
 use App\FablabUsers;
 use App\Questionnaire;
 use App\Exports\UsersExport;
@@ -76,6 +77,19 @@ class UserController extends Controller
                 'academy_location' => 'ALL'
             ])->with('users', ODC::orderBy('first_name')->get());
         }
+        else if ($user->component == 'bigbyorange'){
+            return view('admin.user.read',[
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', BigbyOrange::orderBy('first_name')->get());
+        }
         else if (Auth::user()->is_super) {
 
             // $FablabUsers = FablabUsers::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
@@ -84,7 +98,8 @@ class UserController extends Controller
 
             $FablabUsers = FablabUsers::get();
             $ODCUsers = ODC::get();
-            $user = $FablabUsers->concat($ODCUsers);
+            $BigbyOrangeUsers = BigbyOrange::get();
+            $user = $FablabUsers->concat($ODCUsers)->concat($BigbyOrangeUsers);
             return view('admin.user.read',[
                 'status' => 'All',
                 'result_1' => 'All',

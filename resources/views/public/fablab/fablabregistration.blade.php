@@ -79,21 +79,7 @@
         </div>
         </nav>
 
-        @if($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
-            </div>
-        @elseif(session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
-            </div>
-        @endif
+
 
         <script>
             function clearFlashSession() {
@@ -117,6 +103,21 @@
         <div class="container">
             <div class="row align-items-center g-lg-5 py-5">
                 <div class="col-8 mx-auto">
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="clearFlashSession()"></button>
+                        </div>
+                    @endif
                     <form class="p-4 p-md-5 rounded-3" action="{{route('fablab-registration.store')}}" method="POST">
                         @csrf
                         <h1>Registration Form</h1>
