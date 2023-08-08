@@ -24,6 +24,7 @@ class AdminLoginController extends Controller
 
     public function login(Request $request)
     {
+
         $request->validate([
             'email' => 'required|email|exists:admins,email',
             'password' => 'required|string',
@@ -34,11 +35,9 @@ class AdminLoginController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             $email = $request->email;
-            $admin = Admin::where('email' , $email)->get();
+            $admin = Admin::where('email', $email)->get();
             return redirect('/admin/dashboard');
-
         }
-
 
         return back()->withInput($request->only('email', 'remember'));
     }

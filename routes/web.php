@@ -11,14 +11,15 @@ use App\Http\Controllers\TestController;
 | User Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/',function(){
-    return view ('public.landingpage');
+
+Route::get('/', function () {
+    return view('public.landingpage');
 });
 
-Route::get('/test',function(){
-    return view ('test');
+Route::get('/test', function () {
+    return view('test');
 });
-Route::post('/test', [TestController::class , 'store'])->name('test.store');
+Route::post('/test', [TestController::class, 'store'])->name('test.store');
 
 
 
@@ -29,24 +30,24 @@ Auth::routes();
 Route::get('/home', "HomeController@showDashboard")->name('homeDashboard');
 
 // Manual Register
-Route::get('/register', "Auth\RegisterController@index" );
-Route::get('/terms', "Auth\RegisterController@terms" );
-Route::get('/help', "Auth\RegisterController@help" );
+Route::get('/register', "Auth\RegisterController@index");
+Route::get('/terms', "Auth\RegisterController@terms");
+Route::get('/help', "Auth\RegisterController@help");
 
 // Google login & Register
 Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback')->name('login.google.callback');
 
 
-Route::post('register/step1', "Auth\RegisterController@register_step1" )->name('register.step1');
-Route::view('/email/verification', "auth.email_verification2" )->name('auth.email.verification2');
+Route::post('register/step1', "Auth\RegisterController@register_step1")->name('register.step1');
+Route::view('/email/verification', "auth.email_verification2")->name('auth.email.verification2');
 //Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
 // Hard Coded To Skip Email validation
 //Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
-Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification" )->name('resend.email.verification.submit');
-Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification" )->name('resend.mobile.verification.submit');
+Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification")->name('resend.email.verification.submit');
+Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification")->name('resend.mobile.verification.submit');
 
 
 // User Routes
@@ -96,8 +97,6 @@ Route::prefix('admin')->group(function () {
 
 
     Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-
-
 });
 //Admin Auth + Pages
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
@@ -114,8 +113,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('users/status/{id}', 'UserController@status')->name('users.status');
 
 
-    Route::get('file-import-export','UserController@fileImportExport');
-    Route::post('/file-import','UserController@fileImport')->name('file-import');
+    Route::get('file-import-export', 'UserController@fileImportExport');
+    Route::post('/file-import', 'UserController@fileImport')->name('file-import');
     Route::get('file-export', 'UserController@fileExport')->name('file-export');
 
     // Notification Crud
@@ -126,31 +125,30 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Admin CRUD
     Route::resource('/admins', "AdminController");
-
 });
 
 
 // Coding Academy
 
-Route::get('/codingacademy',"HomeController@publicLanding");
+Route::get('/codingacademy', "HomeController@publicLanding");
 
 // Fablab Registration Form
 
-Route::get('/fablab-registration', [FablabUsersController::class , 'index']);
-Route::post('/fablab-registration', [FablabUsersController::class , 'store'])->name('fablab-registration.store');
-Route::get('/admin/{id}/users', [FablabUsersController::class , 'destroy'])->name('fablab_users.delete');
+Route::get('/fablab-registration', [FablabUsersController::class, 'index']);
+Route::post('/fablab-registration', [FablabUsersController::class, 'store'])->name('fablab-registration.store');
+Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name('fablab_users.delete');
 
 // ODC Registration Form
 
-Route::get('/ODC', [ODCController::class , 'index']);
-Route::post('/ODC', [ODCController::class , 'store'])->name('ODC.store');
+Route::get('/ODC', [ODCController::class, 'index']);
+Route::post('/ODC', [ODCController::class, 'store'])->name('ODC.store');
 
 
 // Big By Oramge Registration Form
 
-Route::resource('/BigByOrange-registration',"BigbyOrangeController");
+Route::resource('/BigByOrange-registration', "BigbyOrangeController");
 
-Route::get('/thanks' , function(){
+Route::get('/thanks', function () {
     return view('public.thanks');
 })->name('thanks');
 
@@ -158,4 +156,3 @@ Route::post('/clear-flash-session', function () {
     session()->forget('status');
     session()->forget('error');
 });
-

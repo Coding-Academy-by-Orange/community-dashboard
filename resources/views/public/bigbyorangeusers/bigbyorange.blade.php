@@ -1218,9 +1218,9 @@
         if (document.getElementById('nationality').value != ""){
             showIdentification()
         }
-        if (document.getElementById('IHaveObstacles') != ''){
-            showObstacles()
-        }
+        // if (document.getElementById('IHaveObstacles') != ''){
+        //     showObstacles()
+        // }
 
 
         function showIdentification() {

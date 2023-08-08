@@ -10,11 +10,15 @@ use App\BigbyOrange;
 use App\FablabUsers;
 use App\Questionnaire;
 use App\Exports\UsersExport;
+use App\Exports\BigExport;
+use App\Exports\FabLabExport;
+use App\Exports\ODCExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -27,12 +31,12 @@ class UserController extends Controller
 
     public function fileImportExport()
     {
-       return view('file-import');
+        return view('file-import');
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function fileImport(Request $request)
     {
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
@@ -40,19 +44,31 @@ class UserController extends Controller
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
+    
+    //this function was edited by Alina
     public function fileExport()
     {
-        return Excel::download(new UsersExport, 'users-collection.xlsx');
+        $user = Auth::user();
+        if ($user->component == 'fablab') {
+            return Excel::download(new FablabExport, 'FabLab-collection.xlsx');
+        } else if ($user->component == 'digitalcenter') {
+            return Excel::download(new ODCExport, 'ODC-collection.xlsx');
+        } else if ($user->component == 'bigbyorange') {
+            return Excel::download(new BigExport, 'BigByOrange-collection.xlsx');
+        } else if (Auth::user()->is_super) {
+        };
+
+        //return Excel::download(new UsersExport, 'users-collection.xlsx');
     }
 
 
     public function index()
     {
         $user = Auth::user();
-        if($user->component == 'fablab'){
-            return view('admin.user.read',[
+        if ($user->component == 'fablab') {
+            return view('admin.user.read', [
                 'status' => 'All',
                 'result_1' => 'All',
                 'nationality' => 'All',
@@ -63,9 +79,8 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', FablabUsers::orderBy('first_name')->get());
-        }
-        else if ($user->component == 'digitalcenter'){
-            return view('admin.user.read',[
+        } else if ($user->component == 'digitalcenter') {
+            return view('admin.user.read', [
                 'status' => 'All',
                 'result_1' => 'All',
                 'nationality' => 'All',
@@ -76,9 +91,8 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', ODC::orderBy('first_name')->get());
-        }
-        else if ($user->component == 'bigbyorange'){
-            return view('admin.user.read',[
+        } else if ($user->component == 'bigbyorange') {
+            return view('admin.user.read', [
                 'status' => 'All',
                 'result_1' => 'All',
                 'nationality' => 'All',
@@ -89,8 +103,7 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', BigbyOrange::orderBy('first_name')->get());
-        }
-        else if (Auth::user()->is_super) {
+        } else if (Auth::user()->is_super) {
 
             // $FablabUsers = FablabUsers::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
             // $ODCUsers = ODC::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
@@ -100,7 +113,7 @@ class UserController extends Controller
             $ODCUsers = ODC::get();
             $BigbyOrangeUsers = BigbyOrange::get();
             $user = $FablabUsers->concat($ODCUsers)->concat($BigbyOrangeUsers);
-            return view('admin.user.read',[
+            return view('admin.user.read', [
                 'status' => 'All',
                 'result_1' => 'All',
                 'nationality' => 'All',
@@ -112,7 +125,6 @@ class UserController extends Controller
                 'academy_location' => 'ALL'
             ])->with('users', $user);
         }
-
     }
 
     /**
@@ -121,110 +133,112 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
 
-    public function filter(Request $request){
+    public function filter(Request $request)
+    {
         $users = User::query();
-        if($request->filled('status')){
+        if ($request->filled('status')) {
             $users->where('status', $request->status)->orderBy('en_first_name');
         }
-        if($request->filled('result_1')){
+        if ($request->filled('result_1')) {
             $users->where('result_1', $request->result_1)->orderBy('en_first_name');
         }
-        if($request->filled('nationality')){
+        if ($request->filled('nationality')) {
             $users->where('nationality', $request->nationality)->orderBy('en_first_name');
         }
-        if($request->filled('gender')){
+        if ($request->filled('gender')) {
             $users->where('gender', $request->gender)->orderBy('en_first_name');
         }
-        if($request->filled('year')){
+        if ($request->filled('year')) {
             $users->where('year', $request->year)->orderBy('en_first_name');
         }
-        if($request->filled('commitment')){
+        if ($request->filled('commitment')) {
             $users->where('is_committed', $request->commitment)->orderBy('en_first_name');
         }
-        if($request->filled('educational_background')){
+        if ($request->filled('educational_background')) {
             $users->where('educational_background', $request->educational_background)->orderBy('en_first_name');
         }
-        if($request->filled('educational_level')){
+        if ($request->filled('educational_level')) {
             $users->where('educational_level', $request->educational_level)->orderBy('en_first_name');
         }
 
-	if($request->filled('academy_location')){
-		$users->where('academy_location',$request->academy_location)->orderBy('en_first_name');
-	}
-        if( $request->status != ""){
+        if ($request->filled('academy_location')) {
+            $users->where('academy_location', $request->academy_location)->orderBy('en_first_name');
+        }
+        if ($request->status != "") {
             $status = $request->status;
-        }else{
+        } else {
             $status = "All";
         }
-        if( $request->result_1 != ""){
+        if ($request->result_1 != "") {
             $result_1 = $request->result_1;
-        }else{
+        } else {
             $result_1 = "All";
         }
-        if( $request->nationality != ""){
+        if ($request->nationality != "") {
             $nationality = $request->nationality;
-        }else{
+        } else {
             $nationality = "All";
         }
-        if( $request->gender != ""){
+        if ($request->gender != "") {
             $gender = $request->gender;
-        }else{
+        } else {
             $gender = "All";
         }
-        if( $request->year != ""){
+        if ($request->year != "") {
             $year = $request->year;
-        }else{
+        } else {
             $year = "All";
         }
-        if( $request->commitment != ""){
+        if ($request->commitment != "") {
             $commitment = $request->commitment;
-        }else{
+        } else {
             $commitment = "All";
         }
-        if( $request->educational_background != ""){
+        if ($request->educational_background != "") {
             $educational_background = $request->educational_background;
-        }else{
+        } else {
             $educational_background = "All";
         }
-        if( $request->educational_level != ""){
+        if ($request->educational_level != "") {
             $educational_level = $request->educational_level;
-        }else{
+        } else {
             $educational_level = "All";
-	}
-	if($request->academy_location != ""){
-		$academy_location = $request->academy_location;
-	}else{
-		$academy_location = "ALL";
-	}
+        }
+        if ($request->academy_location != "") {
+            $academy_location = $request->academy_location;
+        } else {
+            $academy_location = "ALL";
+        }
         return view('admin.user.read', [
-            'users' => $users->where('nationality', "!=" ,null)->get(),
+            'users' => $users->where('nationality', "!=", null)->get(),
             'status' => $status,
             'result_1' => $result_1,
             'nationality' => $nationality,
             'gender' => $gender,
             'year' => $year,
             'commitment' => $commitment,
-            'educational_background' => $educational_background ,
-	    'educational_level' => $educational_level,
-	    'academy_location'  => $academy_location,
+            'educational_background' => $educational_background,
+            'educational_level' => $educational_level,
+            'academy_location'  => $academy_location,
             "personal_img" => $request->personal_img,
             "id_img" => $request->personal_img,
             "vaccination_img" => $request->personal_img,
         ]);
     }
 
-    public function status(Request $request, $id){
+    public function status(Request $request, $id)
+    {
         $validated = $request->validate([
             'result_1' => 'required'
         ]);
         User::where('id', $id)->first()->update(
             [
-                'result_1' => $request->result_1 ,
-                'status' =>$request->result_1 ,
-                ]
+                'result_1' => $request->result_1,
+                'status' => $request->result_1,
+            ]
 
         );
-        return back()->with('status_store', 'The Status Has been Updated Successfully' );
+        return back()->with('status_store', 'The Status Has been Updated Successfully');
     }
 
 
@@ -261,28 +275,28 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        $dateOfBirth = $user->day."/".$user->month."/".$user->year;
+        $dateOfBirth = $user->day . "/" . $user->month . "/" . $user->year;
         $age =  Carbon::parse($dateOfBirth)->age;
-        if(!DB::table('code_challenges')->where('user_id', $user->id)->exists()){
+        if (!DB::table('code_challenges')->where('user_id', $user->id)->exists()) {
             $code_score = '_';
             $code_account_link = '_';
             $code_score_image = '_';
-        }else{
+        } else {
             $html_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->html_certificate);
             $css_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->css_certificate);
             $js_certificate = Storage::disk('local')->url(DB::table('code_challenges')->where('user_id', $user->id)->first()->js_certificate);
         }
-        if(!DB::table('english_quizzes')->where('user_id', $user->id)->exists()){
+        if (!DB::table('english_quizzes')->where('user_id', $user->id)->exists()) {
             $english_score = '_';
             $english_account_link = '_';
             $english_score_image = '_';
-        }else{
-            $english_score = DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score ;
-            $english_account_link = DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_account_link ;
+        } else {
+            $english_score = DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score;
+            $english_account_link = DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_account_link;
             $english_score_image = Storage::disk('local')->url(DB::table('english_quizzes')->where('user_id', $user->id)->first()->english_score_image);
         }
-        $questionnaires = Questionnaire::all() ;
-        return view('admin.user.update', compact(['age','html_certificate','css_certificate','js_certificate', 'english_score' , 'english_account_link' , 'english_score_image',  'questionnaires', 'user']));
+        $questionnaires = Questionnaire::all();
+        return view('admin.user.update', compact(['age', 'html_certificate', 'css_certificate', 'js_certificate', 'english_score', 'english_account_link', 'english_score_image',  'questionnaires', 'user']));
     }
 
     /**

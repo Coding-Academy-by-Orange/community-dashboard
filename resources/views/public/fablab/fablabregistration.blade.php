@@ -550,9 +550,10 @@
         if (document.getElementById('nationality').value != ""){
             showIdentification()
         }
-        if (document.getElementById('IHaveObstacles') != ''){
-            showObstacles()
-        }
+        //this block of code produces an error and dosnt let the rest of the script load
+        // if (document.getElementById('IHaveObstacles') != ''){
+        //     showObstacles()
+        // }
 
         function showIdentification() {
 
