@@ -55,13 +55,13 @@
                 </div>
             </div> --}}
             {{-- <div class="col-lg-7"> --}}
-                <div class="row">
+               
 
-                    <div class="col-sm-6 col-12 dashboard-users-success">
+                    <div class=" col-lg-12 dashboard-users-success">
                         <div class="card text-center">
                             <div class="card-body py-1">
-                                <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
-                                    <i class="bx bx-user font-medium-5"></i>
+                                <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
+                                    <i class="bx bx-user-check font-medium-5"></i>
                                 </div>
                                 <div class="text-muted line-ellipsis">All Applicants</div>
                                 <h3 class="mb-0">
@@ -78,27 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-12 dashboard-users-danger">
-                        <div class="card text-center">
-                            <div class="card-body py-1">
-                                <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
-                                    <i class="bx bx-user-check font-medium-5"></i>
-                                </div>
-                                <div class="text-muted line-ellipsis">Verified Applicants</div>
-                                <h3 class="mb-0">
-                                    @if (Auth::user()->is_super)
-                                        {{ App\ODC::where('nationality', '!=', null)->count() + App\BigbyOrange::where('nationality', '!=', null)->count() + App\FablabUsers::where('nationality', '!=', null)->count() }}
-                                    @elseif (Auth::user()->component == 'digitalcenter')
-                                        {{ App\ODC::where('nationality', '!=', null)->count() }}
-                                    @elseif (Auth::user()->component == 'fablab')
-                                        {{ App\FablabUsers::where('nationality', '!=', null)->count() }}
-                                    @elseif (Auth::user()->component == 'bigbyorange')
-                                        {{ App\BigbyOrange::where('nationality', '!=', null)->count() }}
-                                    @endif
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-lg-12  ">
                         <div class="card ">
                             <div class="card-header ">
@@ -162,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                
             {{-- </div> --}}
         </div>
         <div class="row">
