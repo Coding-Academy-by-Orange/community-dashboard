@@ -457,7 +457,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" style="margin-top: 3vw">
+                        {{-- <div class="form-group" style="margin-top: 3vw">
                             <label for="technology_type" class="is-required">What technological lab do you wish to get access to?<span
                                 class="sr-only"> (required)</span></label>
                             <div>
@@ -496,7 +496,7 @@
                                     </div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group" style="margin-top: 3vw">
                             <label for="idea_description" class="is-required">Please describe your idea in less than 200 words<span class="sr-only"> (required)</span></label>

@@ -86,7 +86,7 @@ class BigbyOrangeController extends Controller
                 'grandfather_name' => 'required',
 
                 'linkedin_profile' => 'required|url',
-                'birthday' => 'required',
+                'birthday' => 'required|date|before:today',
                 'gender' => 'required',
                 'nationality' => 'required',
 
@@ -102,6 +102,8 @@ class BigbyOrangeController extends Controller
 
                 'Position' => 'required',
                 'ProvideOfPosition' => 'required|url',
+            ],[
+                'birthday.before' => 'The date must not be in the future.',
             ]);
 
             if ($validator->fails()) {
