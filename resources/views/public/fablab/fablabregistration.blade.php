@@ -344,7 +344,7 @@
                             <small>eg: 077********</small>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="affiliation" class="is-required">Affiliation<span class="sr-only">
                                     (required)</span></label>
                             <div class="input-group ">
@@ -357,7 +357,28 @@
                                     {{ $errors->first('affiliation') }}
                                 </div>
                             @endif
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="affiliation" class="is-required">Affiliation<span class="sr-only">(required)</span></label>
+                            <div class="input-group">
+                                <select name="affiliation" class="form-control mobile @error('affiliation') is-invalid @enderror"
+                                        id="affiliation" required>
+                                    <option value="" selected disabled>Select an Affiliation</option>
+                                    <option value="Fablab Amman" {{ old('affiliation') === 'Fablab Amman' ? 'selected' : '' }}>Fablab Amman</option>
+                                    <option value="Fablab Irbid" {{ old('affiliation') === 'Fablab Irbid' ? 'selected' : '' }}>Fablab Irbid</option>
+                                    <option value="Fablab Karak" {{ old('affiliation') === 'Fablab Karak' ? 'selected' : '' }}>Fablab Karak</option>
+                                    <option value="Fablab Aqaba" {{ old('affiliation') === 'Fablab Aqaba' ? 'selected' : '' }}>Fablab Aqaba</option>
+                                    <option value="Fablab As salt" {{ old('affiliation') === 'Fablab As salt' ? 'selected' : '' }}>Fablab As salt</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            @if ($errors->has('affiliation'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('affiliation') }}
+                                </div>
+                            @endif
                         </div>
+                        
 
                         <div class="form-group">
                             <label for="residence" class="is-required">Governorate of residence<span class="sr-only">

@@ -85,7 +85,7 @@
                                             @if (Auth::user()->is_super)
                                                 Orange Dashboard
                                             @elseif (Auth::user()->component == 'digitalcenter')
-                                                Digital Center
+                                            Orange Community Digital Centers
                                             @elseif (Auth::user()->component == 'fablab')
                                                 FabLab
                                             @elseif (Auth::user()->component == 'codingacademy')

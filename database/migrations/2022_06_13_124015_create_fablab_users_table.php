@@ -38,7 +38,7 @@ class CreateFablabUsersTable extends Migration
             $table->string('employment');
 
             $table->string('program');
-            $table->string('technology_type');
+            $table->string('technology_type')->nullable();
             $table->string('idea_description');
 
             $table->timestamps();

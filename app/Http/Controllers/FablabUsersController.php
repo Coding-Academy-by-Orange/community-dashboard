@@ -168,52 +168,6 @@ class FablabUsersController extends Controller
         session()->forget('status');
         session()->forget('error');
 
-        // $validated_data = $request->validate([
-        //     'father_name' => 'required',
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'grandfather_name' => 'required',
-        //     'nationality' => 'required',
-        //     'age' => 'required|numeric|digits_between:1,2|min:18',
-        //     'gender' => 'required',
-        //     'email' => 'required|email|unique:users',
-        //     'mobile' => 'required|numeric|digits:10|regex:/^07/|unique:users',
-        //     'whatsapp' => 'required|numeric|digits:10|regex:/^07/',
-        //     'residence' => 'required',
-        //     'education' => 'required',
-        //     'employment' => 'required',
-        //     'affiliation' => 'required',
-        // ], [
-        //     'father_name.required' => 'The father\'s name field is required.',
-        //     'first_name.required' => 'The first name field is required.',
-        //     'last_name.required' => 'The last name field is required.',
-        //     'grandfather_name.required' => 'The grandfather\'s name field is required.',
-        //     'nationality.required' => 'The nationality field is required.',
-        //     'age.required' => 'The age field is required.',
-        //     'age.numeric' => 'The age field should be a numeric value.',
-        //     'age.digits_between' => 'The age field should be between 1 and 2 digits.',
-        //     'age.min' => 'The age field should be at least 18 years.',
-        //     'gender.required' => 'The gender field is required.',
-        //     'email.required' => 'The email field is required.',
-        //     'email.email' => 'The email field should be a valid email address.',
-        //     'email.unique' => 'The email field should be unique.',
-        //     'mobile.required' => 'The mobile number field is required.',
-        //     'mobile.numeric' => 'The mobile number field should be a numeric value.',
-        //     'mobile.digits' => 'The mobile number field should have exactly 10 digits.',
-        //     'mobile.regex' => 'The mobile number field should start with "07".',
-        //     'whatsapp.required' => 'The whatsapp number field is required.',
-        //     'whatsapp.numeric' => 'The whatsapp number field should be a numeric value.',
-        //     'whatsapp.digits' => 'The whatsapp number field should have exactly 10 digits.',
-        //     'whatsapp.regex' => 'The whatsapp number field should start with "07".',
-        //     'residence.required' => 'The residence field is required.',
-        //     'education.required' => 'The education field is required.',
-        //     'employment.required' => 'The employment field is required.',
-        //     'affiliation.required' => 'The affiliation field is required.',
-        //     'program.required' => 'The program field is required.',
-        //     'technology_type.required' => 'The technology type field is required.',
-        //     'idea_description.required' => 'The idea description field is required.',
-        // ]);
-
 
 
         if($request->input('nationality') == 'Jordanian'){
@@ -285,7 +239,7 @@ class FablabUsersController extends Controller
             $new_user->major_study = $request->input('major_study');
             $new_user->employment = $request->input('employment');
             $new_user->program = $request->input('program');
-            $new_user->technology_type = $request->input('technology_type');
+           // $new_user->technology_type = $request->input('technology_type');
             $new_user->idea_description = $request->input('idea_description');
 
             $new_user->save();
@@ -296,7 +250,7 @@ class FablabUsersController extends Controller
             if ($e->errorInfo[1] === 1062) {
 
                 $errorMessage = [];
-
+                dd($e->errorInfo);
                 if($request->input('nationality') == 'Jordanian'){
                     $exists = FablabUsers::where('national_id',$request->input('national_id'))->exists();
                     if ($exists) {
@@ -325,6 +279,7 @@ class FablabUsersController extends Controller
                 return redirect('/fablab-registration')->withErrors($errorMessage)->withInput();
 
             }  else {
+                dd($e->errorInfo);
                 $errorMessage  = 'An error occurred during registration.';
                 $request->session()->put('error', $errorMessage);
                 return redirect('/fablab-registration')->withInput();
