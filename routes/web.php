@@ -1,5 +1,7 @@
 <?php
 
+use App\FablabUsers;
+use App\Http\Controllers\BigbyOrangeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ODCController;
@@ -125,6 +127,12 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Admin CRUD
     Route::resource('/admins', "AdminController");
+
+
+    //filter
+    Route::post('big/filter', [BigbyOrangeController::class, 'filter'])->name('big.filter');
+    Route::post('ODC/filter', [ODCController::class, 'filter'])->name('ODC.filter');
+    Route::post('fablab/filter', [FablabUsersController::class, 'filter'])->name('fablab.filter');
 });
 
 
@@ -147,6 +155,7 @@ Route::post('/ODC', [ODCController::class, 'store'])->name('ODC.store');
 // Big By Oramge Registration Form
 
 Route::resource('/BigByOrange-registration', "BigbyOrangeController");
+
 
 Route::get('/thanks', function () {
     return view('public.thanks');

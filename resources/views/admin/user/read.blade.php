@@ -136,25 +136,33 @@
     <div class="d-md-flex flex-md-equal w-100">
         <div class="col-lg-3 mt-1">
             <div class="mt-1 ">
-                <form method="post" action="{{ route('users.filter') }}">
+               
+                
+                <form method="post" action="@if (Auth::user()->component == 'digitalcenter')
+                    {{route('ODC.filter')}}
+                @elseif (Auth::user()->component == 'fablab')
+                    {{route('fablab.filter')}}
+                @elseif (Auth::user()->component == 'bigbyorange')
+                    {{route('big.filter')}}
+                @endif">
                     @csrf
                     <div class="rounded d-flex flex-wrap">
-                        <div class="col-12 col-sm-12 col-lg-6">
+                        {{-- <div class="col-12 col-sm-12 col-lg-6">
                             <label for="submission">Application Status</label>
                             <fieldset class="form-group">
                                 <select class="form-control" id="submission" name="status">
-                                    <option @if ($status == 'All') selected @endif value="">All
+                                    <option @if ($status ?? '' == 'All') selected @endif value="">All
                                     </option>
-                                    <option @if ($status == 'submitted') selected @endif value="submitted">Fully
+                                    <option @if ($status ?? '' == 'submitted') selected @endif value="submitted">Fully
                                         Submitted
                                     </option>
-                                    <option @if ($status == 'in_progress') selected @endif value="in_progress">
+                                    <option @if ($status ?? '' == 'in_progress') selected @endif value="in_progress">
                                         Partial Submitted
                                     </option>
                                 </select>
                             </fieldset>
-                        </div>
-                        <div class="col-12 col-sm-12 col-lg-6">
+                        </div> --}}
+                        {{-- <div class="col-12 col-sm-12 col-lg-6">
                             <label for="result_1">Results</label>
                             <fieldset class="form-group">
                                 <select class="form-control" id="result_1" name="result_1">
@@ -209,7 +217,7 @@
                                     </option>
                                 </select>
                             </fieldset>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-sm-12 col-lg-6">
                             <label for="">Nationality</label>
                             <fieldset class="form-group">
@@ -286,24 +294,24 @@
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-12 col-sm-12 col-lg-6">
+                        {{-- <div class="col-12 col-sm-12 col-lg-6">
                             <label for="">Commitment</label>
                             <fieldset class="form-group">
                                 <select class="form-control" id="" name="commitment">
-                                    <option @if ($commitment == 'All') selected @endif value="">
+                                    <option @if ($commitment ?? '' == 'All') selected @endif value="">
                                         All
                                     </option>
-                                    <option @if ($commitment == '1') selected @endif value="1">
+                                    <option @if ($commitment ?? '' == '1') selected @endif value="1">
                                         Committed
                                     </option>
-                                    <option @if ($commitment == '0') selected @endif value="0">
+                                    <option @if ($commitment ?? '' == '0') selected @endif value="0">
                                         Not
                                         Committed
                                     </option>
                                 </select>
                             </fieldset>
-                        </div>
-                        <div class="col-12 col-sm-12 col-lg-6">
+                        </div> --}}
+                        {{-- <div class="col-12 col-sm-12 col-lg-6">
                             <label for="educational_background">Edu. Background</label>
                             <fieldset class="form-group">
                                 <select class="form-control" id="educational_background"
@@ -318,33 +326,56 @@
                                     </option>
                                 </select>
                             </fieldset>
-                        </div>
+                        </div> --}}
+                        {{-- <div class="col-12 col-sm-12 col-lg-6">
+                            <label for="">Edu. Level</label>
+                            <fieldset class="form-group">
+                                <select class="form-control" id="" name="educational_level">
+                                    <option @if ($educational_level ?? '' == 'All') selected @endif value="">All
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'high_school') selected @endif value="high_school">
+                                        High School
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'diploma') selected @endif value="diploma">Diploma
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'high_diploma') selected @endif value="high_diploma">
+                                        High Diploma
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'bachelor') selected @endif value="bachelor">
+                                        Bachelor
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'master_degree') selected @endif value="master_degree">
+                                        Master Degree
+                                    </option>
+                                    <option @if ($educational_level ?? '' == 'p.h.d') selected @endif value="p.h.d">P.H.D
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div> --}}
                         <div class="col-12 col-sm-12 col-lg-6">
                             <label for="">Edu. Level</label>
                             <fieldset class="form-group">
                                 <select class="form-control" id="" name="educational_level">
-                                    <option @if ($educational_level == 'All') selected @endif value="">All
+                                    <option @if ($educational_level ?? '' == 'All') selected @endif value="">All
                                     </option>
-                                    <option @if ($educational_level == 'high_school') selected @endif value="high_school">
-                                        High School
+                                    <option @if ($educational_level ?? '' == 'Below Tawjihi') selected @endif value="Below Tawjihi">
+                                        Below Tawjihi
                                     </option>
-                                    <option @if ($educational_level == 'diploma') selected @endif value="diploma">Diploma
+                                    <option @if ($educational_level ?? '' == 'Tawjihi') selected @endif value="Tawjihi">Tawjihi
                                     </option>
-                                    <option @if ($educational_level == 'high_diploma') selected @endif value="high_diploma">
-                                        High Diploma
+                                    <option @if ($educational_level ?? '' == 'Diploma') selected @endif value="Diploma">
+                                        Diploma
                                     </option>
-                                    <option @if ($educational_level == 'bachelor') selected @endif value="bachelor">
-                                        Bachelor
+                                    <option @if ($educational_level ?? '' == 'Undergraduate') selected @endif value="Undergraduate">
+                                        Undergraduate
                                     </option>
-                                    <option @if ($educational_level == 'master_degree') selected @endif value="master_degree">
-                                        Master Degree
-                                    </option>
-                                    <option @if ($educational_level == 'p.h.d') selected @endif value="p.h.d">P.H.D
+                                    <option @if ($educational_level ?? '' == 'Graduate') selected @endif value="Graduate">
+                                        Graduate
                                     </option>
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-12 col-sm12 col-lg-6">
+                        {{-- <div class="col-12 col-sm12 col-lg-6">
                             <label>Training Location</label>
                             <fieldset class="form-group">
                                 <select class="form-control" name="academy_location">
@@ -356,7 +387,7 @@
                                     <option value="balqa">Balqa</option>
                                 </select>
                             </fieldset>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-sm-12 col-lg-12 d-flex align-items-center justify-content-start">
                             <button type="submit" class="col-12 btn btn-primary btn-block glow mb-0">Filter
                             </button>
@@ -383,7 +414,7 @@
                         </div>
                     </div>
                     <div class="p-0 col-lg-12 col-md-12 col-12 d-flex flex-wrap ">
-                        <kbd class="text-white mr-2 bg-light mb-1">Application Status:({{ $status }})</kbd>
+                        {{-- <kbd class="text-white mr-2 bg-light mb-1">Application Status:({{ $status ?? '' }})</kbd> --}}
                         @if ($nationality == 'All')
                             <kbd class="text-white mr-2 bg-light mb-1">Nationality:(All)</kbd>
                         @elseif($nationality == 1)
@@ -399,16 +430,16 @@
                             <kbd class="text-white mr-2 bg-light mb-1">Gender:(Female)</kbd>
                         @endif
                         <kbd class="text-white mr-2 bg-light mb-1">Year of Birth:({{ $year }})</kbd>
-                        @if ($commitment == 'All')
+                        {{-- @if ($commitment ?? '' == 'All')
                             <kbd class="text-white mr-2 bg-light mb-1">Committed:(All)</kbd>
-                        @elseif($commitment == 1)
+                        @elseif($commitment ?? '' == 1)
                             <kbd class="text-white mr-2 bg-light mb-1">Committed:(Yes)</kbd>
-                        @elseif($commitment == 0)
+                        @elseif($commitment ?? '' == 0)
                             <kbd class="text-white mr-2 bg-light mb-1">Committed:(No)</kbd>
-                        @endif
-                        <kbd class="text-white mr-2 bg-light mb-1">Edu.
-                            Background:({{ $educational_background }})</kbd>
-                        <kbd class="text-white mr-2 bg-light mb-1">Educ. Level:({{ $educational_level }}
+                        @endif --}}
+                        {{-- <kbd class="text-white mr-2 bg-light mb-1">Edu.
+                            Background:({{ $educational_background }})</kbd> --}}
+                        <kbd class="text-white mr-2 bg-light mb-1">Educ. Level:({{ $educational_level ?? '' }}
                             )</kbd>
                     </div>
                 </div>
@@ -430,7 +461,7 @@
                 </div>
             </div> -->
                             <!-- <button class="btn btn-primary">Import data</button> -->
-                            <a class="btn btn-success" href="{{ route('file-export') }}">Export data</a>
+                            <a class="btn btn-success mb-2 mt-2" href="{{ route('file-export') }}">Export data</a>
                         </form>
 
                         <div class="users-list-table">

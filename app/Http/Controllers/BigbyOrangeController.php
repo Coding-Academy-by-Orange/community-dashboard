@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class BigbyOrangeController extends Controller
 {
@@ -601,6 +603,53 @@ class BigbyOrangeController extends Controller
                 }
             }
         }
+    }
+
+    public function filter(Request $request)
+    {
+        $users = BigbyOrange::query();
+        if ($request->filled('nationality')) {
+            $users->where('nationality', $request->nationality)->orderBy('first_name');
+        }
+        if ($request->filled('gender')) {
+            $users->where('gender', $request->gender)->orderBy('first_name');
+        }
+        if ($request->filled('year')) {
+            $users->whereYear('birthday', $request->year)->orderBy('first_name');
+        }
+        if ($request->filled('educational_level')) {
+            $users->where('education', $request->educational_level)->orderBy('first_name');
+        }
+
+
+        if ($request->nationality != "") {
+            $nationality = $request->nationality;
+        } else {
+            $nationality = "All";
+        }
+        if ($request->gender != "") {
+            $gender = $request->gender;
+        } else {
+            $gender = "All";
+        }
+        if ($request->year != "") {
+            $year = $request->year;
+        } else {
+            $year = "All";
+        }
+        if ($request->educational_level != "") {
+            $educational_level = $request->educational_level;
+        } else {
+            $educational_level = "All";
+        }
+       
+        return view('admin.user.read', [
+            'users' => $users->where('nationality', "!=", null)->get(),
+            'nationality' => $nationality,
+            'gender' => $gender,
+            'year' => $year,
+            'education' => $educational_level,
+        ]);
     }
 
     /**

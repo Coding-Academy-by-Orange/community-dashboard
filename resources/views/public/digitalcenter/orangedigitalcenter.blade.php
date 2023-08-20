@@ -880,17 +880,17 @@
 
 
     <script>
-       $(document).ready(function() {
-        var $genderMale = $('#genderMale');
-        var $genderFemale = $('#genderFemale');
-        var $centerSelect = $('#center');
-        var $femaleOptions = $('.female');
-        
-        $genderMale.add($genderFemale).change(function() {
-            var gender = $('input[name="gender"]:checked').val();
-            $femaleOptions.toggle(gender === 'Female');
+        $(document).ready(function() {
+            var $genderMale = $('#genderMale');
+            var $genderFemale = $('#genderFemale');
+            var $centerSelect = $('#center');
+            var $femaleOptions = $('.female');
+
+            $genderMale.add($genderFemale).change(function() {
+                var gender = $('input[name="gender"]:checked').val();
+                $femaleOptions.toggle(gender === 'Female');
+            });
         });
-    });
         if (document.getElementById('nationality').value != "") {
             showIdentification()
         }
