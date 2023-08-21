@@ -481,7 +481,7 @@
                                                         <th>National ID/Passport Number</th>
                                                         <th>Component</th>
                                                         <th>Residence</th>
-                                                        <th>Action</th>
+                                                        {{-- <th>Action</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -513,7 +513,7 @@
                                                                 @endif
                                                             </td>
                                                             <td calss="sorting_1">{{ $user->residence }}</td>
-                                                            <td>
+                                                            {{-- <td>
                                                                 <div class="dropdown">
                                                                     <span
                                                                         class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
@@ -525,8 +525,8 @@
                                                                             <i
                                                                                 class="bx bx-edit-alt mr-1"></i>Delete</a>
                                                                     </div>
-                                                                </div>
-                                                            </td>
+                                                                </div> 
+                                                            </td> --}}
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
