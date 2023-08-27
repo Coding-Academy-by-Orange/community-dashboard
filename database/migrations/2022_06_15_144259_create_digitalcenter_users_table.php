@@ -42,6 +42,7 @@ class CreateDigitalcenterUsersTable extends Migration
 
             $table->string('programming');
             $table->string('news')->nullable();
+            $table->string('status')->default('pending');
 
             $table->timestamps();
         });

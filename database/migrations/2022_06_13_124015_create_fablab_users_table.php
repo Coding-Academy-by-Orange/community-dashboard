@@ -41,6 +41,8 @@ class CreateFablabUsersTable extends Migration
             $table->string('technology_type')->nullable();
             $table->string('idea_description');
 
+            $table->string('status')->default('pending');
+
             $table->timestamps();
         });
     }

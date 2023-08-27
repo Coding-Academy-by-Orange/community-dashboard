@@ -164,32 +164,12 @@ class ODCController extends Controller
                     $allErrors['obstacles'] = $error;
                 }
             }
-
         }
 
         session()->forget('status');
         session()->forget('error');
 
-        // $validated_data = $request->validate([
-        //     'father_name' => 'required',
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'grandfather_name' => 'required',
-        //     'nationality' => 'required',
-        //     'age' => 'required|numeric|digits_between:1,2|min:18',
-        //     'gender' => 'required',
-        //     'email' => 'required|email',
-        //     'mobile' => 'required|numeric|digits:10|regex:/^07/',
-        //     'residence' => 'required',
-        //     'education' => 'required',
-        //     'employment' => 'required',
-        //     'center' => 'required',
-        //     'obstacles' => 'required|min:1',
-        //     'programming' => 'required|array|min:1',
-        // ]);
-
-
-        if($request->input('obstacles') == 'Yes'){
+        if ($request->input('obstacles') == 'Yes') {
             $validator = Validator::make($request->all(), [
                 'type_of_obstacles' => 'required',
             ]);
@@ -202,7 +182,7 @@ class ODCController extends Controller
             }
         }
 
-        if($request->input('nationality') == 'Jordanian'){
+        if ($request->input('nationality') == 'Jordanian') {
             $validator = Validator::make($request->all(), [
                 'national_id' => 'required|digits:10|unique:digitalcenter_users,national_id',
             ]);
@@ -227,13 +207,11 @@ class ODCController extends Controller
         }
 
 
-        if ($allErrors != []){
-            // dd($allErrors);
+        if ($allErrors != []) {
             return redirect('/ODC')->withErrors($allErrors)->withInput();
         }
 
         try {
-            // dd('try to add');
             $new_user = new ODC;
 
             $new_user->first_name = $request->input('first_name');
@@ -243,17 +221,17 @@ class ODCController extends Controller
             $new_user->nationality = $request->input('nationality');
             $new_user->gender = $request->input('gender');
             $new_user->email = $request->input('email');
-            if($request->input('nationality') == 'Jordanian'){
+            if ($request->input('nationality') == 'Jordanian') {
                 $new_user->national_id = $request->input('national_id');
             } else {
                 $new_user->passport_number = $request->input('passport_number');
-                if($request->input('other_nationalty')){
+                if ($request->input('other_nationalty')) {
                     $new_user->other_nationalty = $request->input('other_nationalty');
                 };
             };
             $new_user->age = $request->input('age');
             $new_user->mobile = $request->input('mobile');
-            if($request->input('whatsapp')){
+            if ($request->input('whatsapp')) {
                 $new_user->whatsapp = $request->input('whatsapp');
             };
             $new_user->residence = $request->input('residence');
@@ -262,68 +240,47 @@ class ODCController extends Controller
             $new_user->center = $request->input('center');
             $new_user->programming = serialize($request->input('programming'));
             $new_user->obstacles = $request->input('obstacles');
-            if($request->input('obstacles') == 'Yes'){
+            if ($request->input('obstacles') == 'Yes') {
                 $new_user->type_of_obstacles = serialize($request->input('type_of_obstacles'));
             };
-            if($request->input('news')){
+            if ($request->input('news')) {
                 $new_user->news = $request->input('news');
             };
 
             $new_user->save();
             return redirect('/thanks');
-
         } catch (QueryException $e) {
 
             if ($e->errorInfo[1] === 1062) {
 
-            $errorMessage = [];
+                $errorMessage = [];
 
-            if($request->input('nationality') == 'Jordanian'){
-                $exists = ODC::where('national_id',$request->input('national_id'))->exists();
+                if ($request->input('nationality') == 'Jordanian') {
+                    $exists = ODC::where('national_id', $request->input('national_id'))->exists();
+                    if ($exists) {
+                        array_push($errorMessage, 'الرقم الوطني المستخدم قد تم التسجيل به من قبل.');
+                    }
+                } else {
+                    $exists = ODC::where('passport_number', $request->input('passport_number'))->exists();
+                    if ($exists) {
+                        array_push($errorMessage, 'رقم جواز السفر المستخدم قد تم التجسيل به من قبل.');
+                    }
+                };
+
+
+                $exists = ODC::where('email', $request->input('email'))->exists();
                 if ($exists) {
-                    array_push($errorMessage , 'الرقم الوطني المستخدم قد تم التسجيل به من قبل.');
+                    array_push($errorMessage, 'الايميل المستخدم قد تم التسجيل به من قبل.');
                 }
+                $exists = ODC::where('mobile', $request->input('mobile'))->exists();
+                if ($exists) {
+                    array_push($errorMessage, 'رقم الهاتف المستخدم قد تم التسجيل به من قبل.');
+                }
+
+                return redirect('/ODC')->withErrors($errorMessage)->withInput();
+
+
             } else {
-                $exists = ODC::where('passport_number',$request->input('passport_number'))->exists();
-                if ($exists) {
-                    array_push($errorMessage , 'رقم جواز السفر المستخدم قد تم التجسيل به من قبل.');
-                }
-            };
-
-
-            $exists = ODC::where('email',$request->input('email'))->exists();
-            if ($exists) {
-                array_push($errorMessage , 'الايميل المستخدم قد تم التسجيل به من قبل.');
-            }
-            $exists = ODC::where('mobile',$request->input('mobile'))->exists();
-            if ($exists) {
-                array_push($errorMessage , 'رقم الهاتف المستخدم قد تم التسجيل به من قبل.');
-            }
-
-            return redirect('/ODC')->withErrors($errorMessage)->withInput();
-
-
-
-                // if (strpos($e->errorInfo[2], $national_id) !== false) {
-                //     $errorMessage  = 'الرقم الوطني المستخدم قد تم التسجيل به من قبل.';
-                //     $request->session()->put('error', $errorMessage);
-                //     return redirect('/ODC')->withInput();
-                // } else if (strpos($e->errorInfo[2], $passport_number) !== false) {
-                //     $errorMessage  = 'رقم جواز السفر المستخدم قد تم التجسيل به من قبل.';
-                //     $request->session()->put('error', $errorMessage);
-                //     return redirect('/ODC')->withInput();
-                // } else if (strpos($e->errorInfo[2], $email) !== false) {
-                //     $errorMessage  = 'الايميل المستخدم قد تم التسجيل به من قبل.';
-                //     $request->session()->put('error', $errorMessage);
-                //     return redirect('/ODC')->withInput();
-                // } else if (strpos($e->errorInfo[2], $mobile) !== false) {
-                //     $errorMessage  = 'رقم الهاتف المستخدم قد تم التسجيل به من قبل.';
-                //     $request->session()->put('error', $errorMessage);
-                //     return redirect('/ODC')->withInput();
-                // }
-
-
-            }  else {
                 $errorMessage  = 'حدث خطأ في عملية التسجيل.';
                 $request->session()->put('error', $errorMessage);
                 return redirect('/ODC')->withInput();
@@ -344,10 +301,10 @@ class ODCController extends Controller
         if ($request->filled('year')) {
             $currentYear = now()->year;
             $birthYear = $currentYear - $request->year;
-            
+
             $users->where('age', $birthYear)->orderBy('first_name');
         }
-        
+
         if ($request->filled('educational_level')) {
             $users->where('education', $request->educational_level)->orderBy('first_name');
         }
@@ -373,8 +330,8 @@ class ODCController extends Controller
         } else {
             $educational_level = "All";
         }
-       
-        return view('admin.user.read', [
+
+        return view('admin.student.read', [
             'users' => $users->where('nationality', "!=", null)->get(),
             'nationality' => $nationality,
             'gender' => $gender,
@@ -383,17 +340,26 @@ class ODCController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ODC  $oDC
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ODC $oDC)
+
+    public function show($id)
     {
-        //
+        $student = ODC::findOrFail($id);
+        return view('admin.user.odc.show', compact('student'));
     }
 
+    public function changeStatus(Request $request, $id)
+    {
+        $student = ODC::findOrFail($id);
+
+        // Validate the request here if needed
+
+        $newStatus = $request->input('new_status');
+        $student->status = $newStatus;
+        $student->save();
+
+        return redirect()->route('admin.user.odc.show', $student->id)
+            ->with('status', 'User status changed successfully.');
+    }
     /**
      * Show the form for editing the specified resource.
      *

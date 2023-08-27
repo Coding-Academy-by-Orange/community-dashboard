@@ -133,6 +133,18 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('big/filter', [BigbyOrangeController::class, 'filter'])->name('big.filter');
     Route::post('ODC/filter', [ODCController::class, 'filter'])->name('ODC.filter');
     Route::post('fablab/filter', [FablabUsersController::class, 'filter'])->name('fablab.filter');
+
+    // Fablab User
+    Route::get('/user/fablab/show/{id}', [FablabUsersController::class, 'show'])->name('admin.user.fablab.show');
+    Route::post('/user/fablab/show/{id}/change-status', [FablabUsersController::class, 'changeStatus'])->name('admin.user.fablab.changeUserStatus');
+
+    // BigbyOrange User
+    Route::get('/user/big/show/{id}', [BigbyOrangeController::class, 'show'])->name('admin.user.big.show');
+    Route::post('/user/big/show/{id}/change-status', [BigbyOrangeController::class, 'changeStatus'])->name('admin.user.big.changeUserStatus');
+
+    // ODC User
+    Route::get('/user/odc/show/{id}', [ODCController::class, 'show'])->name('admin.user.odc.show');
+    Route::post('/user/odc/show/{id}/change-status', [ODCController::class, 'changeStatus'])->name('admin.user.odc.changeUserStatus');
 });
 
 

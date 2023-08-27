@@ -85,7 +85,7 @@
                                             @if (Auth::user()->is_super)
                                                 Orange Dashboard
                                             @elseif (Auth::user()->component == 'digitalcenter')
-                                            Orange Community Digital Centers
+                                                Orange Community Digital Centers
                                             @elseif (Auth::user()->component == 'fablab')
                                                 FabLab
                                             @elseif (Auth::user()->component == 'codingacademy')
@@ -136,15 +136,14 @@
     <div class="d-md-flex flex-md-equal w-100">
         <div class="col-lg-3 mt-1">
             <div class="mt-1 ">
-               
-                
-                <form method="post" action="@if (Auth::user()->component == 'digitalcenter')
-                    {{route('ODC.filter')}}
+
+
+                <form method="post"
+                    action="@if (Auth::user()->component == 'digitalcenter') {{ route('ODC.filter') }}
                 @elseif (Auth::user()->component == 'fablab')
-                    {{route('fablab.filter')}}
+                    {{ route('fablab.filter') }}
                 @elseif (Auth::user()->component == 'bigbyorange')
-                    {{route('big.filter')}}
-                @endif">
+                    {{ route('big.filter') }} @endif">
                     @csrf
                     <div class="rounded d-flex flex-wrap">
                         {{-- <div class="col-12 col-sm-12 col-lg-6">
@@ -481,7 +480,7 @@
                                                         <th>National ID/Passport Number</th>
                                                         <th>Component</th>
                                                         <th>Residence</th>
-                                                        {{-- <th>Action</th> --}}
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -513,20 +512,31 @@
                                                                 @endif
                                                             </td>
                                                             <td calss="sorting_1">{{ $user->residence }}</td>
-                                                            {{-- <td>
+                                                            <td>
                                                                 <div class="dropdown">
                                                                     <span
                                                                         class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
                                                                         data-toggle="dropdown" aria-haspopup="true"
                                                                         aria-expanded="false" role="menu"></span>
                                                                     <div class="dropdown-menu dropdown-menu-right">
+                                                                        @if (Auth::user()->is_super)
                                                                         <a class="dropdown-item "
-                                                                            href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
-                                                                            <i
-                                                                                class="bx bx-edit-alt mr-1"></i>Delete</a>
+                                                                        href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
+                                                                        <i class="bx bx-edit-alt mr-1"></i>Delete
+                                                                    </a>
+                                                                        @endif
+                                                                       
+                                                                        <a class="dropdown-item "
+                                                                            href="@if (Auth::user()->component == 'digitalcenter') {{ route('admin.user.odc.show', $user->id) }}
+                                                                            @elseif (Auth::user()->component == 'fablab')
+                                                                                {{ route('admin.fablab.show', $user->id) }}
+                                                                            @elseif (Auth::user()->component == 'bigbyorange')
+                                                                                {{ route('admin.big.show', $user->id) }} @endif">
+                                                                            <i class="bx bx-edit-alt mr-1"></i>Edit
+                                                                        </a>
                                                                     </div>
-                                                                </div> 
-                                                            </td> --}}
+                                                                </div>
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

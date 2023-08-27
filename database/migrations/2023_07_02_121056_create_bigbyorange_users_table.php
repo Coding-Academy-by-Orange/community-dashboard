@@ -71,6 +71,8 @@ class CreateBigbyorangeUsersTable extends Migration
             $table->text('expectations');
             $table->string('consent_to_receiving');
 
+            $table->string('status')->default('pending');
+
 
             $table->timestamps();
         });

@@ -59,22 +59,20 @@ class BigbyOrangeController extends Controller
             ]);
             $errors = $validator->errors();
 
-            if ( ($errors->has('evaluation_purposes')) || ($evaluation_purposes == 'No') || ($evaluation_purposes == 'no')) {
-                array_push($allErrors , 'You should choose "Yes" to complete the form');
+            if (($errors->has('evaluation_purposes')) || ($evaluation_purposes == 'No') || ($evaluation_purposes == 'no')) {
+                array_push($allErrors, 'You should choose "Yes" to complete the form');
                 session()->put('step1', $allErrors);
             } else {
                 session()->forget('step1'); // Clear the session if there are no errors
             }
 
-            if ($allErrors != []){
+            if ($allErrors != []) {
                 return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step1', $request->all());
                 return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 2]);
             }
-
-        }
-        elseif ($request->input('step') == 2) {
+        } elseif ($request->input('step') == 2) {
             // Process step 2 and redirect to step 3
 
             // dd('step 2');
@@ -104,7 +102,7 @@ class BigbyOrangeController extends Controller
 
                 'Position' => 'required',
                 'ProvideOfPosition' => 'required|url',
-            ],[
+            ], [
                 'birthday.before' => 'The date must not be in the future.',
             ]);
 
@@ -238,10 +236,9 @@ class BigbyOrangeController extends Controller
                         $allErrors['linkedin_profile'] = $error;
                     }
                 }
-
             }
 
-            if($request->input('nationality') == 'Jordanian'){
+            if ($request->input('nationality') == 'Jordanian') {
                 $validator = Validator::make($request->all(), [
                     'national_id' => 'required|digits:10|unique:bigbyorange_users,national_id',
                 ]);
@@ -265,7 +262,7 @@ class BigbyOrangeController extends Controller
                 }
             }
 
-            if($request->input('education') == 'Undergraduate' || $request->input('education') == 'Graduate' ){
+            if ($request->input('education') == 'Undergraduate' || $request->input('education') == 'Graduate') {
                 $validator = Validator::make($request->all(), [
                     'major_study' => 'required',
                 ]);
@@ -281,7 +278,7 @@ class BigbyOrangeController extends Controller
             session()->forget('step1');
             session()->put('step2', $allErrors);
 
-            if ($allErrors != []){
+            if ($allErrors != []) {
                 return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step2', $request->all());
@@ -289,10 +286,7 @@ class BigbyOrangeController extends Controller
                 // dd(Session::get('form_step2'));
                 return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 3]);
             }
-
-        }
-
-        elseif ($request->input('step') == 3) {
+        } elseif ($request->input('step') == 3) {
 
             // dd('step 3');
 
@@ -445,10 +439,9 @@ class BigbyOrangeController extends Controller
                         $allErrors['milestones_and_achievements'] = $error;
                     }
                 }
-
             }
 
-            if ($allErrors != []){
+            if ($allErrors != []) {
                 return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step3', $request->all());
@@ -458,10 +451,7 @@ class BigbyOrangeController extends Controller
                 // dd(Session::get('form_step3'));
                 return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 4]);
             }
-
-        }
-
-        elseif ($request->input('step') == 4) {
+        } elseif ($request->input('step') == 4) {
             // dd('step 4');
 
             $allErrors = [];
@@ -508,13 +498,11 @@ class BigbyOrangeController extends Controller
                 }
             }
 
-            if ($allErrors != []){
+            if ($allErrors != []) {
                 return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
             } else {
 
                 Session::put('form_step4', $request->all());
-
-                // dd(Session::get('form_step2')['first_name']);
 
                 try {
                     $new_user = new BigbyOrange;
@@ -533,7 +521,7 @@ class BigbyOrangeController extends Controller
                     $new_user->last_name = Session::get('form_step2')['last_name'];
 
                     $new_user->nationality = Session::get('form_step2')['nationality'];
-                    if(Session::get('form_step2')['nationality'] == 'Jordanian'){
+                    if (Session::get('form_step2')['nationality'] == 'Jordanian') {
                         $new_user->national_id = Session::get('form_step2')['national_id'];
                     } else {
                         $new_user->passport_number = Session::get('form_step2')['passport_number'];
@@ -590,16 +578,13 @@ class BigbyOrangeController extends Controller
                     $new_user->expectations = Session::get('form_step4')['expectations'];
                     $new_user->consent_to_receiving = Session::get('form_step4')['consent_to_receiving'];
 
-                    // dd($new_user);
 
                     $new_user->save();
                     return redirect('/thanks');
-
                 } catch (QueryException $e) {
-                        dd($e);
-                        $errorMessage  = 'حدث خطأ في عملية التسجيل.';
-                        $request->session()->put('error', $errorMessage);
-                        return redirect('/ODC')->withInput();
+                    $errorMessage  = 'حدث خطأ في عملية التسجيل.';
+                    $request->session()->put('error', $errorMessage);
+                    return redirect('/ODC')->withInput();
                 }
             }
         }
@@ -642,7 +627,7 @@ class BigbyOrangeController extends Controller
         } else {
             $educational_level = "All";
         }
-       
+
         return view('admin.user.read', [
             'users' => $users->where('nationality', "!=", null)->get(),
             'nationality' => $nationality,
@@ -652,15 +637,25 @@ class BigbyOrangeController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BigbyOrange  $bigbyOrange
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BigbyOrange $bigbyOrange)
+   
+    public function show($id)
     {
-        //
+        $user = BigbyOrange::findOrFail($id);
+        return view('admin.big.show', compact('user'));
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $user = BigbyOrange::findOrFail($id);
+
+        // Validate the request here if needed
+
+        $newStatus = $request->input('new_status');
+        $user->status = $newStatus;
+        $user->save();
+
+        return redirect()->route('admin.big.show', $user->id)
+            ->with('status', 'User status changed successfully.');
     }
 
     /**

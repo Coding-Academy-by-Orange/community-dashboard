@@ -209,7 +209,6 @@ class FablabUsersController extends Controller
         }
 
         if ($allErrors != []){
-            // dd($allErrors);
             return redirect('/fablab-registration')->withErrors($allErrors)->withInput();
         }
 
@@ -279,7 +278,6 @@ class FablabUsersController extends Controller
                 return redirect('/fablab-registration')->withErrors($errorMessage)->withInput();
 
             }  else {
-                dd($e->errorInfo);
                 $errorMessage  = 'An error occurred during registration.';
                 $request->session()->put('error', $errorMessage);
                 return redirect('/fablab-registration')->withInput();
@@ -333,15 +331,24 @@ class FablabUsersController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FablabUsers  $fablabUsers
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FablabUsers $fablabUsers)
+    public function show($id)
     {
-        //
+        $user = FablabUsers::findOrFail($id);
+        return view('admin.fablab.show', compact('user'));
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $user = FablabUsers::findOrFail($id);
+
+        // Validate the request here if needed
+
+        $newStatus = $request->input('new_status');
+        $user->status = $newStatus;
+        $user->save();
+
+        return redirect()->route('admin.fablab.show', $user->id)
+            ->with('status', 'User status changed successfully.');
     }
 
     /**
