@@ -640,21 +640,21 @@ class BigbyOrangeController extends Controller
    
     public function show($id)
     {
-        $user = BigbyOrange::findOrFail($id);
-        return view('admin.big.show', compact('user'));
+        $student = BigbyOrange::findOrFail($id);
+        return view('admin.user.big.show', compact('student'));
     }
 
     public function changeStatus(Request $request, $id)
     {
-        $user = BigbyOrange::findOrFail($id);
+        $student = BigbyOrange::findOrFail($id);
 
         // Validate the request here if needed
 
         $newStatus = $request->input('new_status');
-        $user->status = $newStatus;
-        $user->save();
+        $student->status = $newStatus;
+        $student->save();
 
-        return redirect()->route('admin.big.show', $user->id)
+        return redirect()->route('admin.user.big.show', $student->id)
             ->with('status', 'User status changed successfully.');
     }
 

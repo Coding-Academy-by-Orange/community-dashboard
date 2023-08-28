@@ -333,21 +333,21 @@ class FablabUsersController extends Controller
 
     public function show($id)
     {
-        $user = FablabUsers::findOrFail($id);
-        return view('admin.fablab.show', compact('user'));
+        $student = FablabUsers::findOrFail($id);
+        return view('admin.user.fablab.show', compact('student'));
     }
 
     public function changeStatus(Request $request, $id)
     {
-        $user = FablabUsers::findOrFail($id);
+        $student = FablabUsers::findOrFail($id);
 
         // Validate the request here if needed
 
         $newStatus = $request->input('new_status');
-        $user->status = $newStatus;
-        $user->save();
+        $student->status = $newStatus;
+        $student->save();
 
-        return redirect()->route('admin.fablab.show', $user->id)
+        return redirect()->route('admin.user.fablab.show', $student->id)
             ->with('status', 'User status changed successfully.');
     }
 

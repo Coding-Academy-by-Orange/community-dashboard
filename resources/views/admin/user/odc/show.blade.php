@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <hr>
-                <form action="{{ route('admin.user.odc.changeUserStatus', $student->id) }}" method="POST">
+                <form action="{{ route('admin.user.odc.changeStatus', $student->id) }}" method="POST">
                     @csrf
                     <label for="new_status">Change Status:</label>
                     <select name="new_status" id="new_status" class="form-control mb-3">

@@ -136,15 +136,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Fablab User
     Route::get('/user/fablab/show/{id}', [FablabUsersController::class, 'show'])->name('admin.user.fablab.show');
-    Route::post('/user/fablab/show/{id}/change-status', [FablabUsersController::class, 'changeStatus'])->name('admin.user.fablab.changeUserStatus');
+    Route::post('/user/fablab/show/{id}/change-status', [FablabUsersController::class, 'changeStatus'])->name('admin.user.fablab.changeStatus');
 
     // BigbyOrange User
     Route::get('/user/big/show/{id}', [BigbyOrangeController::class, 'show'])->name('admin.user.big.show');
-    Route::post('/user/big/show/{id}/change-status', [BigbyOrangeController::class, 'changeStatus'])->name('admin.user.big.changeUserStatus');
+    Route::post('/user/big/show/{id}/change-status', [BigbyOrangeController::class, 'changeStatus'])->name('admin.user.big.changeStatus');
 
     // ODC User
     Route::get('/user/odc/show/{id}', [ODCController::class, 'show'])->name('admin.user.odc.show');
-    Route::post('/user/odc/show/{id}/change-status', [ODCController::class, 'changeStatus'])->name('admin.user.odc.changeUserStatus');
+    Route::post('/user/odc/show/{id}/change-status', [ODCController::class, 'changeStatus'])->name('admin.user.odc.changeStatus');
 });
 
 

@@ -51,7 +51,7 @@
                 <option value="pending"@if ($student->status == 'pending') selected @endif>Pending</option>
                 <option value="rejected"@if ($student->status == 'rejected') selected @endif>Rejected</option>
             </select>
-            <button type="submit">Change Status</button>
+            <button type="submit" class="btn btn-primary glow mb-0">Change Status</button>
         </form>
     </div>
 

@@ -529,9 +529,9 @@
                                                                         <a class="dropdown-item "
                                                                             href="@if (Auth::user()->component == 'digitalcenter') {{ route('admin.user.odc.show', $user->id) }}
                                                                             @elseif (Auth::user()->component == 'fablab')
-                                                                                {{ route('admin.fablab.show', $user->id) }}
+                                                                                {{ route('admin.user.fablab.show', $user->id) }}
                                                                             @elseif (Auth::user()->component == 'bigbyorange')
-                                                                                {{ route('admin.big.show', $user->id) }} @endif">
+                                                                                {{ route('admin.user.big.show', $user->id) }} @endif">
                                                                             <i class="bx bx-edit-alt mr-1"></i>Edit
                                                                         </a>
                                                                     </div>
