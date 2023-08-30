@@ -55,94 +55,94 @@
                 </div>
             </div> --}}
             {{-- <div class="col-lg-7"> --}}
-               
 
-                    <div class=" col-lg-12 dashboard-users-success">
-                        <div class="card text-center">
-                            <div class="card-body py-1">
-                                <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
-                                    <i class="bx bx-user-check font-medium-5"></i>
-                                </div>
-                                <div class="text-muted line-ellipsis">All Applicants</div>
-                                <h3 class="mb-0">
+
+            <div class=" col-lg-12 dashboard-users-success">
+                <div class="card text-center">
+                    <div class="card-body py-1">
+                        <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
+                            <i class="bx bx-user-check font-medium-5"></i>
+                        </div>
+                        <div class="text-muted line-ellipsis">All Applicants</div>
+                        <h3 class="mb-0">
+                            @if (Auth::user()->is_super)
+                                {{ App\ODC::count() + App\BigbyOrange::count() + App\FablabUsers::count() }}
+                            @elseif (Auth::user()->component == 'digitalcenter')
+                                {{ App\ODC::count() }}
+                            @elseif (Auth::user()->component == 'fablab')
+                                {{ App\FablabUsers::count() }}
+                            @elseif (Auth::user()->component == 'bigbyorange')
+                                {{ App\BigbyOrange::count() }}
+                            @endif
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12  ">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h3 class="greeting-text text-left">Ages Distribution</h3>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class=" ">
+                            <h5 class="d-flex align-items-center "><i class="bx bx-male bx-md"></i> Male</h5>
+                            <div class="d-flex" style="position: relative;">
+
+                                <h6 class="ml-50 text-muted">
                                     @if (Auth::user()->is_super)
-                                        {{ App\ODC::count() + App\BigbyOrange::count() + App\FablabUsers::count() }}
+                                        {{ App\ODC::where('gender', 'Male')->count() + App\BigbyOrange::where('gender', 'Male')->count() + App\FablabUsers::where('gender', 'Male')->count() }}
                                     @elseif (Auth::user()->component == 'digitalcenter')
-                                        {{ App\ODC::count() }}
+                                        {{ App\ODC::where('gender', 'Male')->count() }}
                                     @elseif (Auth::user()->component == 'fablab')
-                                        {{ App\FablabUsers::count() }}
+                                        {{ App\FablabUsers::where('gender', 'Male')->count() }}
                                     @elseif (Auth::user()->component == 'bigbyorange')
-                                        {{ App\BigbyOrange::count() }}
+                                        {{ App\BigbyOrange::where('gender', 'Male')->count() }}
                                     @endif
-                                </h3>
+                                    Applicant
+                                </h6>
+                                <div class="resize-triggers">
+                                    <div class="expand-trigger">
+                                        <div style="width: 95px; height: 70px;"></div>
+                                    </div>
+                                    <div class="contract-trigger"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-lg-12  ">
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h3 class="greeting-text text-left">Ages Distribution</h3>
-                            </div>
-                            <div class="d-flex justify-content-around">
-                                <div class=" ">
-                                    <h5 class="d-flex align-items-center "><i class="bx bx-male bx-md"></i> Male</h5>
-                                    <div class="d-flex" style="position: relative;">
+                        <div class=" ">
+                            <h5 class="d-flex align-items-center "><i class="bx bx-female bx-md"></i> Female
+                            </h5>
+                            <div class="d-flex" style="position: relative;">
 
-                                        <h6 class="ml-50 text-muted">
-                                            @if (Auth::user()->is_super)
-                                                {{ App\ODC::where('gender', 'Male')->count() + App\BigbyOrange::where('gender', 'Male')->count() + App\FablabUsers::where('gender', 'Male')->count() }}
-                                            @elseif (Auth::user()->component == 'digitalcenter')
-                                                {{ App\ODC::where('gender', 'Male')->count() }}
-                                            @elseif (Auth::user()->component == 'fablab')
-                                                {{ App\FablabUsers::where('gender', 'Male')->count() }}
-                                            @elseif (Auth::user()->component == 'bigbyorange')
-                                                {{ App\BigbyOrange::where('gender', 'Male')->count() }}
-                                            @endif
-                                            Applicant
-                                        </h6>
-                                        <div class="resize-triggers">
-                                            <div class="expand-trigger">
-                                                <div style="width: 95px; height: 70px;"></div>
-                                            </div>
-                                            <div class="contract-trigger"></div>
-                                        </div>
+                                <h6 class="ml-50 text-muted">
+                                    @if (Auth::user()->is_super)
+                                        {{ App\ODC::where('gender', 'Female')->count() + App\BigbyOrange::where('gender', 'Female')->count() + App\FablabUsers::where('gender', 'Female')->count() }}
+                                    @elseif (Auth::user()->component == 'digitalcenter')
+                                        {{ App\ODC::where('gender', 'Female')->count() }}
+                                    @elseif (Auth::user()->component == 'fablab')
+                                        {{ App\FablabUsers::where('gender', 'Female')->count() }}
+                                    @elseif (Auth::user()->component == 'bigbyorange')
+                                        {{ App\BigbyOrange::where('gender', 'Female')->count() }}
+                                    @endif
+                                    Applicant
+                                </h6>
+                                <div class="resize-triggers">
+                                    <div class="expand-trigger">
+                                        <div style="width: 95px; height: 70px;"></div>
                                     </div>
-                                </div>
-                                <div class=" ">
-                                    <h5 class="d-flex align-items-center "><i class="bx bx-female bx-md"></i> Female
-                                    </h5>
-                                    <div class="d-flex" style="position: relative;">
-
-                                        <h6 class="ml-50 text-muted">
-                                            @if (Auth::user()->is_super)
-                                                {{ App\ODC::where('gender', 'Female')->count() + App\BigbyOrange::where('gender', 'Female')->count() + App\FablabUsers::where('gender', 'Female')->count() }}
-                                            @elseif (Auth::user()->component == 'digitalcenter')
-                                                {{ App\ODC::where('gender', 'Female')->count() }}
-                                            @elseif (Auth::user()->component == 'fablab')
-                                                {{ App\FablabUsers::where('gender', 'Female')->count() }}
-                                            @elseif (Auth::user()->component == 'bigbyorange')
-                                                {{ App\BigbyOrange::where('gender', 'Female')->count() }}
-                                            @endif
-                                            Applicant
-                                        </h6>
-                                        <div class="resize-triggers">
-                                            <div class="expand-trigger">
-                                                <div style="width: 95px; height: 70px;"></div>
-                                            </div>
-                                            <div class="contract-trigger"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="d-flex justify-content-between align-items-end">
-                                    <canvas id="myChart-ages"></canvas>
+                                    <div class="contract-trigger"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
+                    <div class="card-body pt-0">
+                        <div class="d-flex justify-content-between align-items-end">
+                            <canvas id="myChart-ages"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{-- </div> --}}
         </div>
         <div class="row">
@@ -419,7 +419,7 @@
             </div>
         </div>
     </section> --}}
-    <script>
+    {{-- <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'doughnut',
@@ -444,7 +444,7 @@
                 drawOnChartArea: false
             }
         });
-    </script>
+    </script> --}}
     <script>
         @if (Auth::check())
             @php
@@ -493,42 +493,67 @@
                 @endphp
             @elseif ($component == 'bigbyorange')
                 @php
-                    $ageColumnName = 'birthday';
+                    $birthdayColumnName = 'birthday';
                     $userCounts = [
-                        \App\BigbyOrange::whereYear($ageColumnName, '>', 2003)->count(),
-                        \App\BigbyOrange::whereYear($ageColumnName, '>=', 2001)
-                            ->whereYear($ageColumnName, '<=', 2003)
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count(),
-                        \App\BigbyOrange::whereYear($ageColumnName, '>=', 1998)
-                            ->whereYear($ageColumnName, '<=', 2000)
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count(),
-                        \App\BigbyOrange::whereYear($ageColumnName, '>=', 1995)
-                            ->whereYear($ageColumnName, '<=', 1997)
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count(),
-                        \App\BigbyOrange::whereYear($ageColumnName, '>=', 1991)
-                            ->whereYear($ageColumnName, '<=', 1994)
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count(),
-                        \App\BigbyOrange::whereYear($ageColumnName, '<', 1991)->count(),
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
-            @else
+            @elseif ($component == '')
                 @php
-                    $ageColumnName = 'year';
+                    $ageColumnName = 'age';
+                    $birthdayColumnName = 'birthday';
                     $userCounts = [
-                        \App\User::where('year', '>', 2003)->count(),
-                        \App\User::where('year', '>=', 2001)
-                            ->where('year', '<=', 2003)
+                        \App\ODC::where($ageColumnName, '<', 17)->count() + \App\FablabUsers::where($ageColumnName, '<', 17)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\ODC::where($ageColumnName, '<=', 20)
+                            ->where($ageColumnName, '>', 17)
+                            ->count() +
+                        \App\FablabUsers::where($ageColumnName, '<=', 20)
+                            ->where($ageColumnName, '>', 17)
+                            ->count() +
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count(),
-                        \App\User::where('year', '>=', 1998)
-                            ->where('year', '<=', 2000)
+                        \App\ODC::where($ageColumnName, '<=', 23)
+                            ->where($ageColumnName, '>', 20)
+                            ->count() +
+                        \App\FablabUsers::where($ageColumnName, '<=', 23)
+                            ->where($ageColumnName, '>', 20)
+                            ->count() +
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count(),
-                        \App\User::where('year', '>=', 1995)
-                            ->where('year', '<=', 1997)
+                        \App\ODC::where($ageColumnName, '<=', 26)
+                            ->where($ageColumnName, '>', 23)
+                            ->count() +
+                        \App\FablabUsers::where($ageColumnName, '<=', 26)
+                            ->where($ageColumnName, '>', 23)
+                            ->count() +
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count(),
-                        \App\User::where('year', '>=', 1991)
-                            ->where('year', '<=', 1994)
+                        \App\ODC::where($ageColumnName, '<=', 30)
+                            ->where($ageColumnName, '>', 26)
+                            ->count() +
+                        \App\FablabUsers::where($ageColumnName, '<=', 30)
+                            ->where($ageColumnName, '>', 26)
+                            ->count() +
+                        \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count(),
-                        \App\User::where('year', '<', 1991)->count(),
+                        \App\ODC::where($ageColumnName, '>', 30)->count() + \App\FablabUsers::where($ageColumnName, '>', 30)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
             @endif
@@ -571,7 +596,7 @@
             }
         });
     </script>
-    <script>
+    {{-- <script>
         var ctx = document.getElementById('myChart-background').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'pie',
@@ -598,65 +623,47 @@
                 },
             }
         });
-    </script>
+    </script> --}}
     <script>
         @if (Auth::check())
             @php
                 $component = Auth::user()->component;
             @endphp
 
-            @if ($component == 'digitalcenter') 
+            @if ($component == 'digitalcenter')
                 @php
                     $ageColumnName = 'education';
-                    $userCounts = [
-                        \App\ODC::where($ageColumnName, 'Below Tawjihi')->count(),
-                        \App\ODC::where($ageColumnName, 'Tawjihi')->count(),
-                        \App\ODC::where($ageColumnName, 'Diploma')->count(),
-                        \App\ODC::where($ageColumnName, 'Undergraduate')->count(),
-                        \App\ODC::where($ageColumnName, 'Graduate')->count(),
-                    ];
+                    $userCounts = [\App\ODC::where($ageColumnName, 'Below Tawjihi')->count(), \App\ODC::where($ageColumnName, 'Tawjihi')->count(), \App\ODC::where($ageColumnName, 'Diploma')->count(), \App\ODC::where($ageColumnName, 'Undergraduate')->count(), \App\ODC::where($ageColumnName, 'Graduate')->count()];
                 @endphp
             @elseif ($component == 'fablab')
                 @php
-                $ageColumnName = 'education';
-                    $userCounts = [
-                        \App\FablabUsers::where($ageColumnName, 'Below Tawjihi')->count(),
-                        \App\FablabUsers::where($ageColumnName, 'Tawjihi')->count(),
-                        \App\FablabUsers::where($ageColumnName, 'Diploma')->count(),
-                        \App\FablabUsers::where($ageColumnName, 'Undergraduate')->count(),
-                        \App\FablabUsers::where($ageColumnName, 'Graduate')->count(),  
-                    ];
+                    $ageColumnName = 'education';
+                    $userCounts = [\App\FablabUsers::where($ageColumnName, 'Below Tawjihi')->count(), \App\FablabUsers::where($ageColumnName, 'Tawjihi')->count(), \App\FablabUsers::where($ageColumnName, 'Diploma')->count(), \App\FablabUsers::where($ageColumnName, 'Undergraduate')->count(), \App\FablabUsers::where($ageColumnName, 'Graduate')->count()];
                 @endphp
             @elseif ($component == 'bigbyorange')
                 @php
-                $ageColumnName = 'education';
-                    $userCounts = [
-                        \App\BigbyOrange::where($ageColumnName, 'Below Tawjihi')->count(),
-                        \App\BigbyOrange::where($ageColumnName, 'Tawjihi')->count(),
-                        \App\BigbyOrange::where($ageColumnName, 'Diploma')->count(),
-                        \App\BigbyOrange::where($ageColumnName, 'Undergraduate')->count(),
-                        \App\BigbyOrange::where($ageColumnName, 'Graduate')->count(), 
-                       
-                    ];
+                    $ageColumnName = 'education';
+                    $userCounts = [\App\BigbyOrange::where($ageColumnName, 'Below Tawjihi')->count(), \App\BigbyOrange::where($ageColumnName, 'Tawjihi')->count(), \App\BigbyOrange::where($ageColumnName, 'Diploma')->count(), \App\BigbyOrange::where($ageColumnName, 'Undergraduate')->count(), \App\BigbyOrange::where($ageColumnName, 'Graduate')->count()];
                 @endphp
             @else
                 @php
-                    $ageColumnName = 'educational_level';
+                    $ageColumnName = 'education';
                     $userCounts = [
-                        \App\User::where('year', '>', 2003)->count(),
-                        \App\User::where('year', '>=', 2001)
-                            ->where('year', '<=', 2003)
-                            ->count(),
-                        \App\User::where('year', '>=', 1998)
-                            ->where('year', '<=', 2000)
-                            ->count(),
-                        \App\User::where('year', '>=', 1995)
-                            ->where('year', '<=', 1997)
-                            ->count(),
-                        \App\User::where('year', '>=', 1991)
-                            ->where('year', '<=', 1994)
-                            ->count(),
-                        \App\User::where('year', '<', 1991)->count(),
+                        \App\BigbyOrange::where($ageColumnName, 'Below Tawjihi')->count()
+                        + \App\FablabUsers::where($ageColumnName, 'Below Tawjihi')->count()
+                        + \App\ODC::where($ageColumnName, 'Below Tawjihi')->count(),
+                        \App\BigbyOrange::where($ageColumnName, 'Tawjihi')->count()
+                        + \App\FablabUsers::where($ageColumnName, 'Tawjihi')->count()
+                        +  \App\ODC::where($ageColumnName, 'Tawjihi')->count(),
+                        \App\BigbyOrange::where($ageColumnName, 'Diploma')->count()
+                        + \App\FablabUsers::where($ageColumnName, 'Diploma')->count()
+                        +  \App\ODC::where($ageColumnName, 'Diploma')->count(),
+                        \App\BigbyOrange::where($ageColumnName, 'Undergraduate')->count()
+                        + \App\FablabUsers::where($ageColumnName, 'Undergraduate')->count()
+                        + \App\ODC::where($ageColumnName, 'Undergraduate')->count(),
+                        \App\BigbyOrange::where($ageColumnName, 'Graduate')->count()
+                        + \App\FablabUsers::where($ageColumnName, 'Graduate')->count()
+                        + \App\ODC::where($ageColumnName, 'Graduate')->count(),
                     ];
                 @endphp
             @endif
@@ -665,9 +672,7 @@
         var myChart = new Chart(ctx, {
             type: 'polarArea',
             data: {
-                labels: ['High School', 'Diploma', 'High Diploma', 'Bachelor Degree', 'Master Degree',
-                    'Ph.D Degree'
-                ],
+                labels: ['Below Tawjihi', 'Tawjihi', 'Diploma', 'Undergraduate', 'Graduate'],
                 datasets: [{
                     data: [{{ implode(',', $userCounts) }}],
                     backgroundColor: [
@@ -702,80 +707,63 @@
                 $component = Auth::user()->component;
             @endphp
 
-            @if ($component == 'digitalcenter') 
+            @if ($component == 'digitalcenter')
                 @php
                     $ColumnName = 'residence';
-                    $userCounts = [
-                        App\ODC::where($ColumnName, 'Amman')->count() ,
-                        App\ODC::where($ColumnName, 'Irbid')->count() ,
-                        App\ODC::where($ColumnName, 'Balqa')->count() ,
-                        App\ODC::where($ColumnName, 'Zarqa')->count() ,
-                        App\ODC::where($ColumnName, 'Karak')->count() ,
-                        App\ODC::where($ColumnName,'Jarash')->count() ,
-                        App\ODC::where($ColumnName, 'Tafilah')->count() ,
-                        App\ODC::where($ColumnName, 'Ajloun')->count() ,
-                        App\ODC::where($ColumnName,'Aqaba')->count() ,
-                        App\ODC::where($ColumnName, 'Madaba')->count() ,
-                        App\ODC::where($ColumnName, 'Ma\'an')->count() ,
-                        App\ODC::where($ColumnName, 'Mafraq')->count() 
-                    ];
+                    $userCounts = [App\ODC::where($ColumnName, 'Amman')->count(), App\ODC::where($ColumnName, 'Irbid')->count(), App\ODC::where($ColumnName, 'Balqa')->count(), App\ODC::where($ColumnName, 'Zarqa')->count(), App\ODC::where($ColumnName, 'Karak')->count(), App\ODC::where($ColumnName, 'Jarash')->count(), App\ODC::where($ColumnName, 'Tafilah')->count(), App\ODC::where($ColumnName, 'Ajloun')->count(), App\ODC::where($ColumnName, 'Aqaba')->count(), App\ODC::where($ColumnName, 'Madaba')->count(), App\ODC::where($ColumnName, 'Ma\'an')->count(), App\ODC::where($ColumnName, 'Mafraq')->count()];
                 @endphp
             @elseif ($component == 'fablab')
                 @php
-                $ColumnName = 'residence';
-                    $userCounts = [
-                        \App\FablabUsers::where($ColumnName, 'Amman')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Irbid')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Balqa')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Zarqa')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Karak')->count() ,
-                        \App\FablabUsers::where($ColumnName,'Jarash')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Tafilah')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Ajloun')->count() ,
-                        \App\FablabUsers::where($ColumnName,'Aqaba')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Madaba')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Ma\'an')->count() ,
-                        \App\FablabUsers::where($ColumnName, 'Mafraq')->count() 
-                    ];
-                
+                    $ColumnName = 'residence';
+                    $userCounts = [\App\FablabUsers::where($ColumnName, 'Amman')->count(), \App\FablabUsers::where($ColumnName, 'Irbid')->count(), \App\FablabUsers::where($ColumnName, 'Balqa')->count(), \App\FablabUsers::where($ColumnName, 'Zarqa')->count(), \App\FablabUsers::where($ColumnName, 'Karak')->count(), \App\FablabUsers::where($ColumnName, 'Jarash')->count(), \App\FablabUsers::where($ColumnName, 'Tafilah')->count(), \App\FablabUsers::where($ColumnName, 'Ajloun')->count(), \App\FablabUsers::where($ColumnName, 'Aqaba')->count(), \App\FablabUsers::where($ColumnName, 'Madaba')->count(), \App\FablabUsers::where($ColumnName, 'Ma\'an')->count(), \App\FablabUsers::where($ColumnName, 'Mafraq')->count()];
+                    
                 @endphp
             @elseif ($component == 'bigbyorange')
                 @php
-                $ColumnName = 'residence';
-                    $userCounts = [
-                        \App\BigbyOrange::where($ColumnName, 'Amman')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Irbid')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Balqa')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Zarqa')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Karak')->count() ,
-                        \App\BigbyOrange::where($ColumnName,'Jarash')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Tafilah')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Ajloun')->count() ,
-                        \App\BigbyOrange::where($ColumnName,'Aqaba')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Madaba')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Ma\'an')->count() ,
-                        \App\BigbyOrange::where($ColumnName, 'Mafraq')->count() 
-                    ];
-                
+                    $ColumnName = 'residence';
+                    $userCounts = [\App\BigbyOrange::where($ColumnName, 'Amman')->count(), \App\BigbyOrange::where($ColumnName, 'Irbid')->count(), \App\BigbyOrange::where($ColumnName, 'Balqa')->count(), \App\BigbyOrange::where($ColumnName, 'Zarqa')->count(), \App\BigbyOrange::where($ColumnName, 'Karak')->count(), \App\BigbyOrange::where($ColumnName, 'Jarash')->count(), \App\BigbyOrange::where($ColumnName, 'Tafilah')->count(), \App\BigbyOrange::where($ColumnName, 'Ajloun')->count(), \App\BigbyOrange::where($ColumnName, 'Aqaba')->count(), \App\BigbyOrange::where($ColumnName, 'Madaba')->count(), \App\BigbyOrange::where($ColumnName, 'Ma\'an')->count(), \App\BigbyOrange::where($ColumnName, 'Mafraq')->count()];
+                    
                 @endphp
             @else
                 @php
-                    $ageColumnName = 'educational_level';
+                $ColumnName = 'residence';
                     $userCounts = [
-                        \App\User::where('year', '>', 2003)->count(),
-                        \App\User::where('year', '>=', 2001)
-                            ->where('year', '<=', 2003)
-                            ->count(),
-                        \App\User::where('year', '>=', 1998)
-                            ->where('year', '<=', 2000)
-                            ->count(),
-                        \App\User::where('year', '>=', 1995)
-                            ->where('year', '<=', 1997)
-                            ->count(),
-                        \App\User::where('year', '>=', 1991)
-                            ->where('year', '<=', 1994)
-                            ->count(),
-                        \App\User::where('year', '<', 1991)->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Amman')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Amman')->count()
+                        + App\ODC::where($ColumnName, 'Amman')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Irbid')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Irbid')->count()
+                        + App\ODC::where($ColumnName, 'Irbid')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Balqa')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Balqa')->count()
+                        + App\ODC::where($ColumnName, 'Balqa')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Zarqa')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Zarqa')->count()
+                        + App\ODC::where($ColumnName, 'Zarqa')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Karak')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Karak')->count()
+                        + App\ODC::where($ColumnName, 'Karak')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Jarash')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Jarash')->count()
+                        + App\ODC::where($ColumnName, 'Jarash')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Tafilah')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Tafilah')->count()
+                        + App\ODC::where($ColumnName, 'Tafilah')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Ajloun')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Ajloun')->count()
+                        + App\ODC::where($ColumnName, 'Ajloun')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Aqaba')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Aqaba')->count()
+                        + App\ODC::where($ColumnName, 'Aqaba')->count(),
+                        \App\BigbyOrange::where($ColumnName, 'Madaba')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Madaba')->count()
+                        + App\ODC::where($ColumnName, 'Madaba')->count(),
+                        App\BigbyOrange::where($ColumnName, 'Ma\'an')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Ma\'an')->count()
+                        + App\ODC::where($ColumnName, 'Ma\'an')->count(),
+                        App\BigbyOrange::where($ColumnName, 'Mafraq')->count()
+                        + \App\FablabUsers::where($ColumnName, 'Mafraq')->count()
+                        + App\ODC::where($ColumnName, 'Mafraq')->count(),
                     ];
                     
                 @endphp
@@ -828,7 +816,7 @@
             }
         });
     </script>
-    <script>
+    {{-- <script>
         var ctx = document.getElementById('myChart-filtration').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -875,5 +863,5 @@
                 },
             }
         });
-    </script>
+    </script> --}}
 @endsection

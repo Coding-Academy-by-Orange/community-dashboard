@@ -75,16 +75,15 @@
                         {{ $item }} ,
                     @endforeach
                 </p>
-
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-6">
                 @php
-                    $array = unserialize($student->startup_serve);
+                    $service = unserialize($student->startup_serve);
                 @endphp
-                <p>StartUp Serves: @foreach ($array ?? '' as $item)
+                <p>StartUp Service: @foreach ($service ?? '' as $item)
                         {{ $item }} ,
                     @endforeach
                 </p>
@@ -102,8 +101,8 @@
                 </p>
                 <p>Amount Of Funds: {{ $student->amount_of_funds }}</p>
             </div>
-            <div class="col-6">
 
+            <div class="col-6">
                 <p>New Funds:
                     {{ $student->new_funds }}
                 </p>
@@ -158,8 +157,6 @@
             </select>
             <button type="submit"class="btn btn-primary glow mb-0">Change Status</button>
         </form>
+
     </div>
-
-
-
 @endsection

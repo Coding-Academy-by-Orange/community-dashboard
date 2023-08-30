@@ -82,9 +82,7 @@
                                 <li class="nav-item mr-auto"><a class="navbar-brand"
                                         href="{{ route('admin.dashboard') }}">
                                         <h4 class="text-warning ml-1">
-                                            @if (Auth::user()->is_super)
-                                                Orange Dashboard
-                                            @elseif (Auth::user()->component == 'digitalcenter')
+                                            @if (Auth::user()->component == 'digitalcenter')
                                                 Orange Community Digital Centers
                                             @elseif (Auth::user()->component == 'fablab')
                                                 FabLab
@@ -92,6 +90,8 @@
                                                 Coding Academy
                                             @elseif (Auth::user()->component == 'bigbyorange')
                                                 Big By Orange
+                                            @elseif (Auth::user()->is_super)
+                                                Orange Dashboard
                                             @endif
                                         </h4>
                                     </a></li>
@@ -453,13 +453,6 @@
                     <section class="basic-datatable">
                         <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <!--  <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
-                <div class="custom-file text-left">
-                    <input type="file" name="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-            </div> -->
-                            <!-- <button class="btn btn-primary">Import data</button> -->
                             <a class="btn btn-success mb-2 mt-2" href="{{ route('file-export') }}">Export data</a>
                         </form>
 
@@ -520,12 +513,12 @@
                                                                         aria-expanded="false" role="menu"></span>
                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                         @if (Auth::user()->is_super)
-                                                                        <a class="dropdown-item "
-                                                                        href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
-                                                                        <i class="bx bx-edit-alt mr-1"></i>Delete
-                                                                    </a>
+                                                                            <a class="dropdown-item "
+                                                                                href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
+                                                                                <i
+                                                                                    class="bx bx-edit-alt mr-1"></i>Delete
+                                                                            </a>
                                                                         @endif
-                                                                       
                                                                         <a class="dropdown-item "
                                                                             href="@if (Auth::user()->component == 'digitalcenter') {{ route('admin.user.odc.show', $user->id) }}
                                                                             @elseif (Auth::user()->component == 'fablab')
@@ -575,7 +568,7 @@
     <script src="{{ asset('admin-assets/vendors/js/extensions/moment.min.js') }}"></script>
     <script src="{{ asset('admin-assets/vendors/js/pickers/daterange/daterangepicker.js') }}"></script>
     <script src="{{ asset('admin-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
-    <script src=".{{ asset('admin-assets/vendors/js/extensions/dragula.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/vendors/js/extensions/dragula.min.js') }}"></script>
     <script src="{{ asset('admin-assets/vendors/js/extensions/swiper.min.js') }}"></script>
     <!-- END: Page Vendor JS-->
 

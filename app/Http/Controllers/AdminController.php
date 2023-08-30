@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::orderByDesc('id')->get();
+        $user =Auth::user();
+        if ($user->component == 'fablab') {
+            $admins = Admin::orderByDesc('id')->where('component', 'fablab')->get();
+        } else if ($user->component == 'digitalcenter') {
+            $admins = Admin::orderByDesc('id')->where('component', 'digitalcenter')->get();
+        } else if ($user->component == 'bigbyorange') {
+            $admins = Admin::orderByDesc('id')->where('component', 'bigbyorange')->get();
+        } else if ((Auth::user()->is_super) &&($user->component == '')) {
+            $admins = Admin::orderByDesc('id')->get();
+        };
         return view('admin.admin.read', compact('admins'));
     }
 

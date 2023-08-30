@@ -46,7 +46,7 @@ class UserController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    
+
     //this function was edited by Alina
     public function fileExport()
     {
@@ -103,15 +103,12 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', BigbyOrange::orderBy('first_name')->get());
-        } else if (Auth::user()->is_super) {
+        } else if ($user->is_super) {
 
-            // $FablabUsers = FablabUsers::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
-            // $ODCUsers = ODC::select('id', 'first_name', 'last_name', 'education', 'national_id', 'passport_number', 'residence')->get();
+            $FablabUsers = FablabUsers::select('*', DB::raw("'fablab_users' as source_table"))->get();
+            $ODCUsers = ODC::select('*', DB::raw("'digitalcenter_users' as source_table"))->get();
+            $BigbyOrangeUsers = BigbyOrange::select('*', DB::raw("'bigbyorange_users' as source_table"))->get();
 
-
-            $FablabUsers = FablabUsers::get();
-            $ODCUsers = ODC::get();
-            $BigbyOrangeUsers = BigbyOrange::get();
             $user = $FablabUsers->concat($ODCUsers)->concat($BigbyOrangeUsers);
             return view('admin.user.read', [
                 'status' => 'All',

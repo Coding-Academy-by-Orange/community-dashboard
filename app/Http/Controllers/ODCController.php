@@ -331,7 +331,7 @@ class ODCController extends Controller
             $educational_level = "All";
         }
 
-        return view('admin.student.read', [
+        return view('admin.user.read', [
             'users' => $users->where('nationality', "!=", null)->get(),
             'nationality' => $nationality,
             'gender' => $gender,
