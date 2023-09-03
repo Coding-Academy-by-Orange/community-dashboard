@@ -5,6 +5,7 @@ use App\Http\Controllers\BigbyOrangeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ODCController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\FablabUsersController;
 use App\Http\Controllers\TestController;
 
@@ -128,6 +129,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     // Admin CRUD
     Route::resource('/admins', "AdminController");
 
+    //activity CRUD
+    Route::resource('/activity', "ActivityController");
 
     //filter
     Route::post('big/filter', [BigbyOrangeController::class, 'filter'])->name('big.filter');

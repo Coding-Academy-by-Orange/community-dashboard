@@ -152,6 +152,9 @@
                                 class="bx bxs-user-detail"></i><span class="menu-title text-truncate"> Manage
                                 Applicants </span></a>
                     </li>
+                    <li class=" nav-item"><a href="{{ route('activity.index') }}"><i
+                        class="bx bxs-user-detail"></i><span class="menu-title text-truncate">create activity </span></a>
+            </li>
                     @if (Auth::user()->is_super)
                         <li class=" nav-item"><a href="{{ route('notifications.index') }}"><i
                                     class="bx bxs-bell-ring"></i><span class="menu-title text-truncate"> Manage

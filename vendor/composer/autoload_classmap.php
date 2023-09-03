@@ -7,12 +7,16 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AdminsTableSeeder' => $baseDir . '/database/seeds/AdminsTableSeeder.php',
+    'App\\Activity' => $baseDir . '/app/Activity.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\BigbyOrange' => $baseDir . '/app/BigbyOrange.php',
     'App\\CodeChallenge' => $baseDir . '/app/CodeChallenge.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\EnglishQuiz' => $baseDir . '/app/EnglishQuiz.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Exports\\BigExport' => $baseDir . '/app/Exports/BigExport.php',
+    'App\\Exports\\FabLabExport' => $baseDir . '/app/Exports/FabLabExport.php',
+    'App\\Exports\\ODCExport' => $baseDir . '/app/Exports/ODCExport.php',
     'App\\Exports\\UsersExport' => $baseDir . '/app/Exports/UsersExport.php',
     'App\\FablabUsers' => $baseDir . '/app/FablabUsers.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',

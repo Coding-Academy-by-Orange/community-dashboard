@@ -636,12 +636,16 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
 
     public static $classMap = array (
         'AdminsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsTableSeeder.php',
+        'App\\Activity' => __DIR__ . '/../..' . '/app/Activity.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\BigbyOrange' => __DIR__ . '/../..' . '/app/BigbyOrange.php',
         'App\\CodeChallenge' => __DIR__ . '/../..' . '/app/CodeChallenge.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\EnglishQuiz' => __DIR__ . '/../..' . '/app/EnglishQuiz.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\BigExport' => __DIR__ . '/../..' . '/app/Exports/BigExport.php',
+        'App\\Exports\\FabLabExport' => __DIR__ . '/../..' . '/app/Exports/FabLabExport.php',
+        'App\\Exports\\ODCExport' => __DIR__ . '/../..' . '/app/Exports/ODCExport.php',
         'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
         'App\\FablabUsers' => __DIR__ . '/../..' . '/app/FablabUsers.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
