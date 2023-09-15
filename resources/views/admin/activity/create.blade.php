@@ -2,7 +2,6 @@
 @section('main')
     <section id="basic-horizontal-layouts">
         <div class="row match-height">
-
             <div class=" col-12">
                 <div class="card">
                     <div class="card-header">
@@ -11,7 +10,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
                             @csrf <!-- CSRF Token -->
-
+                            <input type="hidden" name="activity_id" value="{{ $activity_id }}">
                             <div class="form-body">
                                 <!-- Activity Name -->
                                 <div class="row">

@@ -635,6 +635,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
     );
 
     public static $classMap = array (
+        'ActivityRegisterSeeder' => __DIR__ . '/../..' . '/database/seeds/ActivityRegisterSeeder.php',
         'AdminsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsTableSeeder.php',
         'App\\Activity' => __DIR__ . '/../..' . '/app/Activity.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
@@ -648,6 +649,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\Exports\\ODCExport' => __DIR__ . '/../..' . '/app/Exports/ODCExport.php',
         'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
         'App\\FablabUsers' => __DIR__ . '/../..' . '/app/FablabUsers.php',
+        'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminLoginController.php',
         'App\\Http\\Controllers\\Auth\\AdminRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminRegisterController.php',
@@ -697,6 +699,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\System' => __DIR__ . '/../..' . '/app/System.php',
         'App\\Test' => __DIR__ . '/../..' . '/app/Test.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\activity_register' => __DIR__ . '/../..' . '/app/activity_register.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

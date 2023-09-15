@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,28 +14,32 @@
             type="font/woff2" crossorigin="anonymous">
         <link rel="preload" href="{{ asset('assets/boosted/dist/fonts/HelvNeue75_W1G.woff2') }}" as="font"
             type="font/woff2" crossorigin="anonymous">
-        <link href="{{ asset('assets/boosted/dist/css/orangeHelvetica.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/boosted/dist/css/orangeIcons.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/boosted/dist/css/boosted.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.2/dist/css/orangeHelvetica.min.css"
+            integrity="sha384-6rPwIH6o8roADEALG0VtZOLfj0bDJ8KUOX7N+cjS+7NkwAaBQOZwRPOIiKWJa0aL" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.2/dist/css/orangeIcons.min.css"
+            integrity="sha384-XQ+QuxWl/eBTAPcvP8xjhUXg+GB+kArKZpnDyXUz1pLOe6yAfZzxkSygkYxNfKHT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.2/dist/css/boosted.min.css"
+            integrity="sha384-gf+Y5XR9AaDz8jxrG8h6a3BYpN7fOpxA97a0i8QHgwnRKNOuahm7ZQfqzxaNW+aJ" crossorigin="anonymous">
+        {{-- <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet"> --}}
         <link rel="preconnect" href="https://code.jquery.com" crossorigin="anonymous">
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous">
         <link rel="shortcut icon"
             href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
             type="image/x-icon">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
             integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-            crossorigin="anonymous" />
+            crossorigin="anonymous" /> --}}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{{ asset('assets/js/countries.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.2/js/countrySelect.min.js"
-            integrity="sha512-agmFjG7H3K/n7ca70w6lzdO0MxUFWYcaDrw5WpwBMjhXxfrchssrKyZrJOSEN7q4vIeTcHUX5A7mM6zjbE2ZAA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.1/dist/js/boosted.min.js"
+            integrity="sha384-5/uuaktuMuP89rRLLF12Nmffr7aMWkLWFVq2xzMjqdXlOiMsRRHpbz3oG92Gvj7u" crossorigin="anonymous">
+        </script>
     </head>
 
 <body>
-
-
     <nav role="navigation" id="mainNav"
         class="navbar navbar-light bg-white navbar-expand-md pt-2 border-bottom pb-0 mb-2 pt-1"
         aria-label="Main navigation">
@@ -80,9 +82,6 @@
             </div>
         </div>
     </nav>
-
-
-
     {{-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white ; border-bottom : 5px solid black">
             <div class="container-fluid d-flex" style="justify-content: space-between">
                 <div>
@@ -112,8 +111,6 @@
                 </div>
             </div>
         </nav> --}}
-
-
     <div class="main">
         <div class="container">
             <div class="row align-items-center g-lg-5 py-5 d-flex" style="justify-content: space-around">
@@ -193,9 +190,72 @@
             </div>
         </div>
     </div>
+    @if (isset($activities) && count($activities) > 0)
+        <hr>
+        <section id="basic-horizontal-layouts">
+            <div class="container">
+                <h2>Activities</h2>
+                <div class="px-4">
+                    @foreach ($activities as $activity)
+                        <div class="card my-3">
+                            <div class="card-title">
+                                <h3 class="p-2 m-0">{{ $activity->activity_name }}</h3>
+                            </div>
+                            @if (is_array($activity->image) && count($activity->image) > 1)
+                                <div id="activity{{ $activity->id }}" class="carousel slide"
+                                    data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($activity->image as $index => $imagePath)
+                                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                                <img src="{{ asset('storage/' . $imagePath) }}" class="d-block w-100"
+                                                    style="height: 350px;" alt="{{ $activity->activity_name }}">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#activity{{ $activity->id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#activity{{ $activity->id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </button>
+                                </div>
+                            @else
+                                @php
+                                    $imageArray = json_decode($activity->image);
+                                @endphp
+                                <div>
+                                    <img src="{{ asset('storage/' . $imageArray[0]) }}" class="w-100"
+                                        style="height: 350px;" alt="{{ $activity->activity_name }}">
+                                </div>
+                            @endif
 
-
-    <script></script>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        {{ date('Y/m/d', strtotime($activity->start_date)) }}
+                                        - {{ date('Y/m/d', strtotime($activity->end_date)) }}
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        {{$activity->location}}
+                                    </div>
+                                </div>
+                                <p>{{ implode(' ', array_slice(explode(' ', strip_tags($activity->description)), 0, 100)) }}
+                                </p>
+                                <div class="card-footer"><a href="{{ route('show', $activity) }}"
+                                        class="btn btn-primary">See More</a></div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 </body>
 
 </html>

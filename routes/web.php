@@ -1,11 +1,13 @@
 <?php
 
+use App\Activity;
 use App\FablabUsers;
 use App\Http\Controllers\BigbyOrangeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ODCController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityRegisterController;
 use App\Http\Controllers\FablabUsersController;
 use App\Http\Controllers\TestController;
 
@@ -15,16 +17,18 @@ use App\Http\Controllers\TestController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('public.landingpage');
-});
+Route::get('/', 'ActivityController@index');
+
+Route::get('/activity/show/{id}', [ActivityController::class, 'show'])->name('show');
+// activity registration routes
+Route::get('/activity/register/{activity_id}', 'ActivityRegisterController@create')->name('activity.register');
+Route::post('/activity/register', 'ActivityRegisterController@store')->name('activity.register.store');
+
 
 Route::get('/test', function () {
     return view('test');
 });
 Route::post('/test', [TestController::class, 'store'])->name('test.store');
-
-
 
 
 Auth::routes();
@@ -51,6 +55,8 @@ Route::view('/email/verification', "auth.email_verification2")->name('auth.email
 
 Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification")->name('resend.email.verification.submit');
 Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification")->name('resend.mobile.verification.submit');
+
+
 
 
 // User Routes
@@ -131,6 +137,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     //activity CRUD
     Route::resource('/activity', "ActivityController");
+
+    // activity registration routes
+    Route::get('/register/create/{activity_id}', [ActivityRegisterController::class,'create'])->name('admin.activity.register.create');
+    Route::post('/register/create', [ActivityRegisterController::class,'store'])->name('admin.activity.register.store');
+    Route::get('/register/index/{activity_id}', [ActivityRegisterController::class,'index'])->name('admin.activity.register.index');
+    Route::delete('/activity/register/{id}', 'ActivityRegisterController@destroy')->name('admin.activity.register.destroy');
+
+   
+
 
     //filter
     Route::post('big/filter', [BigbyOrangeController::class, 'filter'])->name('big.filter');

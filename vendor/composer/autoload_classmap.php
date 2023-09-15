@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ActivityRegisterSeeder' => $baseDir . '/database/seeds/ActivityRegisterSeeder.php',
     'AdminsTableSeeder' => $baseDir . '/database/seeds/AdminsTableSeeder.php',
     'App\\Activity' => $baseDir . '/app/Activity.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
@@ -19,6 +20,7 @@ return array(
     'App\\Exports\\ODCExport' => $baseDir . '/app/Exports/ODCExport.php',
     'App\\Exports\\UsersExport' => $baseDir . '/app/Exports/UsersExport.php',
     'App\\FablabUsers' => $baseDir . '/app/FablabUsers.php',
+    'App\\Http\\Controllers\\ActivityController' => $baseDir . '/app/Http/Controllers/ActivityController.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\AdminLoginController' => $baseDir . '/app/Http/Controllers/Auth/AdminLoginController.php',
     'App\\Http\\Controllers\\Auth\\AdminRegisterController' => $baseDir . '/app/Http/Controllers/Auth/AdminRegisterController.php',
@@ -68,6 +70,7 @@ return array(
     'App\\System' => $baseDir . '/app/System.php',
     'App\\Test' => $baseDir . '/app/Test.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\activity_register' => $baseDir . '/app/activity_register.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/CorsService.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
