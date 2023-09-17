@@ -16,37 +16,47 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $user = Auth::user();
-        if ($user) {
-            if ($user->is_super == '1') {
-                // Admin can see all activities
-                $activities = Activity::whereIn('component', $user->component)->get();
-            } else {
-                // Regular user, filter by component and timeline
+
+     public function index()
+     {
+         $user = Auth::user();
+         if ($user) {
+             if ($user->is_super == '1') {
+                 if (empty($user->component)) {
+                     $activities = Activity::all();
+                 } else {
+                     $activities = Activity::whereIn('component', $user->component)->get();
+                 }
+             } else {
                 $activities = Activity::where(function ($query) use ($user) {
-                    $query->where('component', $user->component)
-                        ->orWhere(function ($query) use ($user) {
-                            $query->where('component', $user->component)
-                                ->where('admin_id', $user->id);
-                        });
+                    $query->where(function ($query) use ($user) {
+                        $query->where('component', $user->component)
+                            ->where('admin_id', $user->id)
+                            ->where('end_date', '>', now());
+                    })
+                    ->orWhere(function ($query) use ($user) {
+                        $query->where('component', $user->component)
+                            ->where('admin_id', '<>', $user->id)
+                            ->where('start_date', '<=', now())
+                            ->where('end_date', '>', now());
+                    });
                 })
-                    ->whereIn('timeline', ['private', 'both'])
-                    ->where('end_date', '>', now())
-                    ->orderBy('start_date')
-                    ->orderBy('end_date')
-                    ->get();
-            }
-            return view('admin.activity.index', compact('activities'));
-        } else {
-            $activities = Activity::whereIn('timeline', ['public', 'both'])->orderBy('start_date')
+                ->orderBy('start_date')
                 ->orderBy('end_date')
                 ->get();
-            return view('public.landingpage', compact('activities'));
-        }
-    }
-
+            }
+            return view('admin.activity.index', compact('activities'));
+         } else {
+             $activities = Activity::whereIn('timeline', ['public'])
+                 ->where('end_date', '>', now())
+                 ->where('start_date', '<=', now())
+                 ->orderBy('start_date')
+                 ->orderBy('end_date')
+                 ->get();
+             return view('public.landingpage', compact('activities'));
+         }
+     }
+     
     /**
      * Show the form for creating a new resource.
      *
@@ -54,7 +64,6 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.activity.create');
     }
 
@@ -66,10 +75,9 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'activity_type' => 'required|string',
+            'activity_type' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'description' => 'required|string',
@@ -81,28 +89,24 @@ class ActivityController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // Redirect back with errors and input
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         if ($request->hasFile('images')) {
-            $imagePaths = []; // Create an array to store the new image paths
+            $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
                 $imageName = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-                // Store the image with the generated name in the specified directory
                 $imagePath = 'admin-assets/images/activity/' . $imageName;
                 $image->storeAs('public', $imagePath);
 
-                // Add the image path to the array
                 $imagePaths[] = $imagePath;
             }
         } else {
-            $imagePaths = null; // No images provided
+            $imagePaths = null;
         }
 
-        // Create and save the activity
         $admin = Auth::guard('admin')->user();
 
         $activity = new Activity([
@@ -139,7 +143,7 @@ class ActivityController extends Controller
                 'activity' => Activity::findOrFail($id)
             ]);
         } else {
-            
+
             return view('public.activity.show', [
                 'activity' => Activity::findOrFail($id)
             ]);
@@ -168,10 +172,9 @@ class ActivityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate the request
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'activity_type' => 'required|string',
+            'activity_type' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'description' => 'required|string',
@@ -183,29 +186,22 @@ class ActivityController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // Redirect back with errors and input
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-        // Find the activity to update
         $activity = Activity::findOrFail($id);
 
-        // Handle image upload only if new images are provided
         if ($request->hasFile('images')) {
-            $imagePaths = []; // Create an array to store the new image paths
+            $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
                 $imageName = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-                // Store the image with the generated name in the specified directory
                 $imagePath = 'admin-assets/images/activity/' . $imageName;
                 $image->storeAs('public', $imagePath);
 
-                // Add the image path to the array
                 $imagePaths[] = $imagePath;
             }
 
-            // Update the activity with new images
             $activity->update([
                 'activity_name' => $request->input('name'),
                 'activity_type' => $request->input('activity_type'),
@@ -219,7 +215,6 @@ class ActivityController extends Controller
                 'video' => $request->input('video'),
             ]);
         } else {
-            // Update the activity without changing the images
             $activity->update([
                 'activity_name' => $request->input('name'),
                 'activity_type' => $request->input('activity_type'),
@@ -233,7 +228,6 @@ class ActivityController extends Controller
             ]);
         }
 
-        // Redirect to the activity show page or any other page you prefer
         return redirect()->route('activity.show', $activity->id);
     }
 
@@ -245,18 +239,12 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        // Find the activity by ID
         $activity = Activity::findOrFail($id);
 
-        // Check if the authenticated user has permission to delete this activity
         if (Auth::id() === $activity->admin_id || Auth::user()->is_super == 1) {
-            // Delete the activity
             $activity->delete();
-
-            // Redirect back with a success message
             return redirect()->route('activity.index')->with('success', 'Activity deleted successfully.');
         } else {
-            // If the user doesn't have permission, show an error message or redirect as needed.
             return redirect()->route('activity.index')->with('error', 'You do not have permission to delete this activity.');
         }
     }

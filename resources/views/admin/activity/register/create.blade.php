@@ -14,64 +14,23 @@
                             <input type="hidden" name="activity_id" value="{{ $activity_id }}">
                             <input type="hidden" name="admin_id" value="{{ auth()->user()->id }}">
                             <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                            <input type="hidden" name="first_name" value="{{ auth()->user()->fname }}">
+                            <input type="hidden" name="last_name" value="{{ auth()->user()->lname }}">
                             <input type="hidden" name="component" value="{{ auth()->user()->component }}">
                             
-                            <div class="form-group">
-                                <label for="email" class="is-required">Name<span class="sr-only">
-                                        (required)</span></label>
-                                <div class="input-group ">
-                                    <input style="margin-right : 10px ; margin-bottom : 10px" name="first_name"
-                                        placeholder="First Name" type="text"
-                                        class="form-control email @error('first_name') is-invalid @enderror "
-                                        id="first_name" value="{{ old('first_name') }}" required>
-
-                                    <input name="father_name" placeholder="Father's Name" type="text"
-                                        class="form-control email @error('father_name') is-invalid @enderror "
-                                        id="father_name" value="{{ old('father_name') }}" required>
-                                </div>
-                                <div class="input-group ">
-                                    <input style="margin-right : 10px ; margin-bottom : 10px" name="grandfather_name"
-                                        placeholder="Grandfather's Name" type="text"
-                                        class="form-control email @error('grandfather_name') is-invalid @enderror "
-                                        id="grandfather_name" value="{{ old('grandfather_name') }}" required>
-
-                                    <input name="last_name" placeholder="Last Name" type="text"
-                                        class="form-control email @error('last_name') is-invalid @enderror " id="last_name"
-                                        value="{{ old('last_name') }}" required>
-                                </div>
-                                @if ($errors->has('first_name'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('first_name') }}
-                                    </div>
-                                @endif
-                                @if ($errors->has('father_name'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('father_name') }}
-                                    </div>
-                                @endif
-                                @if ($errors->has('grandfather_name'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('grandfather_name') }}
-                                    </div>
-                                @endif
-                                @if ($errors->has('last_name'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('last_name') }}
-                                    </div>
-                                @endif
-                            </div>
+                            
 
                             <div class="form-group">
-                                <label for="birthday" class="is-required">Birthday<span class="sr-only">
+                                <label for="birthdate" class="is-required">Birthdate<span class="sr-only">
                                         (required)</span></label>
                                 <div class="input-group ">
-                                    <input name="birthday" required
-                                        type="date"class="form-control email @error('birthday') is-invalid @enderror "
-                                        id="birthday"value="{{ old('birthday') }}">
+                                    <input name="birthdate" required
+                                        type="date"class="form-control email @error('birthdate') is-invalid @enderror "
+                                        id="birthdate"value="{{ old('birthdate') }}">
                                 </div>
-                                @if ($errors->has('birthday'))
+                                @if ($errors->has('birthdate'))
                                     <div class="alert alert-danger">
-                                        {{ $errors->first('birthday') }}
+                                        {{ $errors->first('birthdate') }}
                                     </div>
                                 @endif
                             </div>

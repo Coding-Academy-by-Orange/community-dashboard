@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
                             @csrf <!-- CSRF Token -->
-                            <input type="hidden" name="activity_id" value="{{ $activity_id }}">
                             <div class="form-body">
                                 <!-- Activity Name -->
                                 <div class="row">
@@ -30,15 +29,18 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="activity_type">Activity Type</label>
-                                            <input type="text" id="activity_type" name="activity_type"
-                                                class="form-control @error('activity_type') is-invalid @enderror"
-                                                value="{{ old('activity_type') }}" required>
+                                            <select id="activity_type" name="activity_type" class="form-control @error('activity_type') is-invalid @enderror" required>
+                                                <option value="">Select Activity Type</option> <!-- Add a default option -->
+                                                <option value="Registration" {{ old('activity_type') == 'Registration' ? 'selected' : '' }}>Registration</option>
+                                                <option value="Event" {{ old('activity_type') == 'Event' ? 'selected' : '' }}>Event</option>
+                                                <option value="News" {{ old('activity_type') == 'News' ? 'selected' : '' }}>News</option>
+                                            </select>
                                             @error('activity_type')
-                                                <span class="invalid-feedback"
-                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <div class="row">
@@ -159,7 +161,6 @@
                                                 class="form-control @error('timeline') is-invalid @enderror" required>
                                                 <option value="private">Private</option>
                                                 <option value="public">Public</option>
-                                                <option value="both">Both</option>
                                             </select>
                                             @error('timeline')
                                                 <span class="invalid-feedback"

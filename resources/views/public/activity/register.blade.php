@@ -217,16 +217,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="birthday" class="is-required">Birthday<span class="sr-only">
+                            <label for="birthdate" class="is-required">Birthdate<span class="sr-only">
                                     (required)</span></label>
                             <div class="input-group ">
-                                <input name="birthday" required
-                                    type="date"class="form-control email @error('birthday') is-invalid @enderror "
-                                    id="birthday"value="{{ old('birthday') }}">
+                                <input name="birthdate" required
+                                    type="date"class="form-control email @error('birthdate') is-invalid @enderror "
+                                    id="birthdate"value="{{ old('birthdate') }}">
                             </div>
-                            @if ($errors->has('birthday'))
+                            @if ($errors->has('birthdate'))
                                 <div class="alert alert-danger">
-                                    {{ $errors->first('birthday') }}
+                                    {{ $errors->first('birthdate') }}
                                 </div>
                             @endif
                         </div>

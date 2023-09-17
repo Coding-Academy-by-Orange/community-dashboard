@@ -17,8 +17,8 @@ class CreateActivityRegistersTable extends Migration
             $table->id();
 
             $table->string('first_name');
-            $table->string('father_name');
-            $table->string('grandfather_name');
+            $table->string('father_name')->nullable();
+            $table->string('grandfather_name')->nullable();
             $table->string('last_name');
 
             $table->string('nationality')->nullable();
@@ -28,7 +28,7 @@ class CreateActivityRegistersTable extends Migration
             $table->string('passport_number')->unique()->nullable();
             $table->bigInteger('national_id')->unique()->nullable();
             
-            $table->date('birthday')->nullable();
+            $table->date('birthdate')->nullable();
             $table->bigInteger('mobile')->unique();
 
             $table->string('residence');

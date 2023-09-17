@@ -7,7 +7,6 @@ use App\Activity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 
 class ActivityRegisterController extends Controller
@@ -19,18 +18,14 @@ class ActivityRegisterController extends Controller
      */
     public function index($activity_id)
     {
-        // Assuming you have an Activity model
-    $activity = Activity::find($activity_id);
+        $activity = Activity::find($activity_id);
 
-    if (!$activity) {
-        abort(404); // Activity not found
-    }
-  
+        if (!$activity) {
+            abort(404);
+        }
+        $participants = $activity->activity_register;
 
-    // Assuming you have a relationship defined between Activity and participants
-    $participants = $activity->activity_register;
-
-    return view('admin.activity.register.index', compact('participants', 'activity'));
+        return view('admin.activity.register.index', compact('participants', 'activity'));
     }
 
     /**
@@ -63,15 +58,13 @@ class ActivityRegisterController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/',
-                'birthday' => 'required|date',
-                'father_name' => 'required',
+                'birthdate' => 'required|date',
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'grandfather_name' => 'required',
                 'gender' => 'required',
                 'residence' => 'required',
                 'admin_id' => 'required',
-                'component'=>'required',
+                'component' => 'required',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
@@ -81,15 +74,13 @@ class ActivityRegisterController extends Controller
             $new_user->activity_id = $request->input('activity_id');
             $new_user->admin_id = $request->input('admin_id');
             $new_user->first_name = $request->input('first_name');
-            $new_user->father_name = $request->input('father_name');
-            $new_user->grandfather_name = $request->input('grandfather_name');
             $new_user->last_name = $request->input('last_name');
             $new_user->gender = $request->input('gender');
             $new_user->email = $request->input('email');
-            $new_user->birthday = $request->input('birthday');
+            $new_user->birthdate = $request->input('birthdate');
             $new_user->mobile = $request->input('mobile');
             $new_user->residence = $request->input('residence');
-            $new_user->component= $request->input('component');
+            $new_user->component = $request->input('component');
 
             $new_user->save();
             return redirect('/thanks');
@@ -97,7 +88,7 @@ class ActivityRegisterController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/',
-                'birthday' => 'required|date',
+                'birthdate' => 'required|date',
                 'father_name' => 'required',
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -139,7 +130,7 @@ class ActivityRegisterController extends Controller
                 $new_user->passport_number = $request->input('passport_number');
             }
 
-            $new_user->birthday = $request->input('birthday');
+            $new_user->birthdate = $request->input('birthdate');
             $new_user->mobile = $request->input('mobile');
             $new_user->residence = $request->input('residence');
             $new_user->education = $request->input('education');
@@ -199,10 +190,10 @@ class ActivityRegisterController extends Controller
         if (!$activityRegister) {
             abort(404); // Or you can handle it differently, e.g., redirect back with an error message
         }
-    
+
         // Delete the activity_register record
         $activityRegister->delete();
-    
+
         // Redirect back or to a different page after deletion
         return redirect()->back()->with('success', 'Activity registration deleted successfully');
     }
