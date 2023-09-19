@@ -29,8 +29,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="activity_type">Activity Type</label>
-                                            <select id="activity_type" name="activity_type" class="form-control @error('activity_type') is-invalid @enderror" required>
-                                                <option value="">Select Activity Type</option> <!-- Add a default option -->
+                                            <select id="activity_type" name="activity_type" class="form-control @error('activity_type') is-invalid @enderror">
+                                                <option value="">Select Activity Type</option>
                                                 <option value="Registration" {{ old('activity_type') == 'Registration' ? 'selected' : '' }}>Registration</option>
                                                 <option value="Event" {{ old('activity_type') == 'Event' ? 'selected' : '' }}>Event</option>
                                                 <option value="News" {{ old('activity_type') == 'News' ? 'selected' : '' }}>News</option>
@@ -40,7 +40,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
                                 </div>
 
                                 <div class="row">

@@ -47,7 +47,7 @@ class ActivityController extends Controller
             }
             return view('admin.activity.index', compact('activities'));
          } else {
-             $activities = Activity::whereIn('timeline', ['public'])
+             $activities = Activity::where('timeline',"public")
                  ->where('end_date', '>', now())
                  ->where('start_date', '<=', now())
                  ->orderBy('start_date')

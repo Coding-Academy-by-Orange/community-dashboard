@@ -30,12 +30,14 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="activity_type">Activity Type</label>
-                                        <input type="text" id="activity_type" name="activity_type"
-                                            class="form-control @error('activity_type') is-invalid @enderror"
-                                            value="{{ old('activity_type', $activity->activity_type) }}" required>
+                                        <select id="activity_type" name="activity_type" class="form-control @error('activity_type') is-invalid @enderror">
+                                            <option value="">Select Activity Type</option>
+                                            <option value="Registration" {{ old('activity_type') == 'Registration' ? 'selected' : '' }}>Registration</option>
+                                            <option value="Event" {{ old('activity_type') == 'Event' ? 'selected' : '' }}>Event</option>
+                                            <option value="News" {{ old('activity_type') == 'News' ? 'selected' : '' }}>News</option>
+                                        </select>
                                         @error('activity_type')
-                                            <span class="invalid-feedback"
-                                                role="alert"><strong>{{ $message }}</strong></span>
+                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
                                 </div>
@@ -163,8 +165,6 @@
                                             <option value="public"
                                                 {{ $activity->timeline === 'public' ? 'selected' : '' }}>Public
                                             </option>
-                                            <option value="both"
-                                                {{ $activity->timeline === 'both' ? 'selected' : '' }}>Both</option>
                                         </select>
                                         @error('timeline')
                                             <span class="invalid-feedback"

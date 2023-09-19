@@ -33,7 +33,7 @@
                                     <td>{{ $participant->email }}</td>
                                     <td>{{ $participant->mobile }}</td>
                                     <td>{{ $participant->gender }}</td>
-                                    <td>{{ $participant->birthday }}</td>
+                                    <td>{{ $participant->birthdate }}</td>
                                     <td>{{ $participant->residence }}</td>
                                     <td>
                                         <div class="dropdown">
