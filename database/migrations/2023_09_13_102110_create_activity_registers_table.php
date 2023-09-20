@@ -37,7 +37,9 @@ class CreateActivityRegistersTable extends Migration
 
             $table->string('component')->nullable();
             $table->foreignId('admin_id')->nullable()->constrained('admins')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('activity_id')->constrained('activity')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('activity_id')->references('id')->on('activity'); 
+
+            $table->foreignId('activity_id')->constrained('activities')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

@@ -26,8 +26,8 @@ class CreateActivitiesTable extends Migration
             $table->text('video')->nullable();
             $table->string('timeline');
             $table->string('component');
-
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
