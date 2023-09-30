@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BigbyOrange;
+use App\Activity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
@@ -20,7 +21,16 @@ class BigbyOrangeController extends Controller
      */
     public function index()
     {
-        return view('public.bigbyorangeusers.bigbyorange')->withInput(['step' => 1]);
+        $activities = Activity::where('timeline',"public")
+        ->where('component', "bigbyorange")
+        ->where('end_date', '>', now())
+        ->where('start_date', '<=', now())
+        ->orderBy('start_date')
+        ->orderBy('end_date')
+        ->take(5)
+        ->get();
+    return view('public.bigbyorangeusers.bigbyorange', compact('activities'));
+       
     }
 
     /**
@@ -30,7 +40,7 @@ class BigbyOrangeController extends Controller
      */
     public function create()
     {
-        //
+        return view('public.bigbyorangeusers.create')->withInput(['step' => 1]);
     }
 
     /**
@@ -67,10 +77,10 @@ class BigbyOrangeController extends Controller
             }
 
             if ($allErrors != []) {
-                return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
+                return redirect()->route('BigByOrange.create')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step1', $request->all());
-                return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 2]);
+                return redirect()->route('BigByOrange.create')->withInput(['step' => 2]);
             }
         } elseif ($request->input('step') == 2) {
             // Process step 2 and redirect to step 3
@@ -279,12 +289,12 @@ class BigbyOrangeController extends Controller
             session()->put('step2', $allErrors);
 
             if ($allErrors != []) {
-                return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
+                return redirect()->route('BigByOrange.create')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step2', $request->all());
                 // dd(Session::get('form_step1'));
                 // dd(Session::get('form_step2'));
-                return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 3]);
+                return redirect()->route('BigByOrange.create')->withInput(['step' => 3]);
             }
         } elseif ($request->input('step') == 3) {
 
@@ -442,14 +452,14 @@ class BigbyOrangeController extends Controller
             }
 
             if ($allErrors != []) {
-                return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
+                return redirect()->route('BigByOrange.create')->withErrors($allErrors)->withInput();
             } else {
                 Session::put('form_step3', $request->all());
 
                 // dd(Session::get('form_step1'));
                 // dd(Session::get('form_step2'));
                 // dd(Session::get('form_step3'));
-                return redirect()->route('BigByOrange-registration.index')->withInput(['step' => 4]);
+                return redirect()->route('BigByOrange.create')->withInput(['step' => 4]);
             }
         } elseif ($request->input('step') == 4) {
             // dd('step 4');
@@ -499,7 +509,7 @@ class BigbyOrangeController extends Controller
             }
 
             if ($allErrors != []) {
-                return redirect()->route('BigByOrange-registration.index')->withErrors($allErrors)->withInput();
+                return redirect()->route('BigByOrange.create')->withErrors($allErrors)->withInput();
             } else {
 
                 Session::put('form_step4', $request->all());

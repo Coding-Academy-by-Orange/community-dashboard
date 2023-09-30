@@ -52,6 +52,7 @@ class ActivityController extends Controller
                  ->where('start_date', '<=', now())
                  ->orderBy('start_date')
                  ->orderBy('end_date')
+                 ->take(5)
                  ->get();
              return view('public.landingpage', compact('activities'));
          }

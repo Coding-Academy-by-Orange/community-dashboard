@@ -12,686 +12,449 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="user registration website - registration process - coding academy by orange ">
         <title>@yield('title')</title>
-        <link rel="preload" href="{{ asset('assets/boosted/dist/fonts/HelvNeue55_W1G.woff2') }}" as="font"
-            type="font/woff2" crossorigin="anonymous">
-        <link rel="preload" href="{{ asset('assets/boosted/dist/fonts/HelvNeue75_W1G.woff2') }}" as="font"
-            type="font/woff2" crossorigin="anonymous">
-        <link href="{{ asset('assets/boosted/dist/css/orangeHelvetica.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/boosted/dist/css/orangeIcons.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/boosted/dist/css/boosted.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet">
+       
+        {{-- <link href="{{ asset('assets/css/client.css') }}" rel="stylesheet"> --}}
         <link rel="preconnect" href="https://code.jquery.com" crossorigin="anonymous">
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous">
         <link rel="shortcut icon"
             href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
             type="image/x-icon">
-
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-            crossorigin="anonymous" />
+            <link rel="stylesheet" href="{{ asset('css/style.landing.css') }}">
+            <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+            <link rel="stylesheet" type="text/css"
+            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+        <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/orange-helvetica.min.css" rel="stylesheet"
+            integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/orange-helvetica.min.css" rel="stylesheet"
+            integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet"
+            integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{{ asset('assets/js/countries.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.2/js/countrySelect.min.js"
-            integrity="sha512-agmFjG7H3K/n7ca70w6lzdO0MxUFWYcaDrw5WpwBMjhXxfrchssrKyZrJOSEN7q4vIeTcHUX5A7mM6zjbE2ZAA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
         </script>
-
-
+        <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.1/dist/js/boosted.min.js"
+            integrity="sha384-5/uuaktuMuP89rRLLF12Nmffr7aMWkLWFVq2xzMjqdXlOiMsRRHpbz3oG92Gvj7u" crossorigin="anonymous">
+        </script>
     </head>
 
 <body>
-    <nav role="navigation" id="mainNav"
-        class="navbar navbar-light bg-white navbar-expand-md pt-2 border-bottom pb-0 mb-2 pt-1"
-        aria-label="Main navigation">
-        <div class="container-fluid">
-            <a href="/">
-                <img id="imgw" src="https://boosted.orange.com/docs/5.2/assets/brand/orange-logo.svg"
-                    class="d-inline-block align-bottom mr-3" alt="Back to homepage" title="Back to homepage"
-                    height="70" loading="lazy" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#orange-navbar-collapse"
-                aria-controls="orange-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse justify-content-end collapse" id="orange-navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/">Home </a></li>
-                    <li class="nav-item"><a class="nav-link " href="/codingacademy">Coding Academy</a></li>
-                    <li class="nav-item"><a class="nav-link active" style="color: #f16e00 ; border-color : #f16e00"
-                            href="/fablab-registration">Fablab</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/ODC">Generic Digital Centers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('BigByOrange-registration.index') }}">Big By
-                            Orange</a></li>
-                </ul>
-                <ul class="navbar-nav">
-                    @guest
-                    @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link logout-style" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+    <header class="sticky-top">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg pb-2"
+            aria-label="Global navigation - With one line title example">
+            <div class="container-xxl">
+
+                <!-- Orange brand logo -->
+                <div class="navbar-brand me-auto me-lg-4">
+                    <a class="stretched-link" href="/">
+                        <img src="https://boosted.orange.com/docs/5.2/assets/brand/orange-logo.svg" width="50"
+                            height="50" alt="Boosted - Back to Home" loading="lazy">
+                    </a>
+                </div>
+
+                <!-- Burger menu (visible on small screens) -->
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target=".global-header-1" aria-controls="global-header-1.1 global-header-1.2"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar with links -->
+                <div id="global-header-1.1" class="navbar-collapse collapse me-lg-auto global-header-1">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active" href="/">Home </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/codingacademy">Coding Academy</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('fablab.index') }}">Fablab</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('ODC.index') }}">Generic Digital Centers</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                                href="{{ route('BigByOrange.index') }}">Big By Orange</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/help" target="_blank">Help </a></li>
+                        <li class="nav-item"><a class="nav-link" href="/terms" target="_blank"> Terms & Conditions</a>
                         </li>
-                    @endguest
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
-
-
-    <script>
-        function clearFlashSession() {
-            // Make an AJAX request to the route that clears the session data
-            fetch('/clear-flash-session', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token for Laravel's CSRF protection
-                }
-            });
-
-            // Hide the flash message
-            document.querySelector('.alert').style.display = 'none';
-        }
-    </script>
-
+        </nav>
+    </header>
 
 
     <div class="main">
-        <div class="container">
-            <div class="row align-items-center g-lg-5 py-5">
-                <div class="col-8 mx-auto">
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                                onclick="clearFlashSession()"></button>
+        <section>
+            <div class="container" id='colorBlock'></div>
+            <div class="container-fluid pt-5 bg-dark  ps-0 pe-5 me-0 " id="header">
+                <div class="card ">
+                    <div class="card-img bg-dark">
+                        <img src="{{ asset('assets/img/landing-page.webp') }}"class="float-end"
+                            style="min-width: 51em; height:65vh" alt="...">
+                    </div>
+                    <div class="card-img-overlay  text-primary">
+                        <div class="container float-start w-50">
+                            <p class="breadcrumb text-primary">Orange CSR</p>
+                            <h1 class="text-primary">Orange CSR</h1>
+                            <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
+                            <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
+                                lives and local communities through digital transformation</p>
+                                <a href="{{route('fablab.create')}}" class="btn btn-primary">Register Now</a>
                         </div>
-                    @elseif(session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                                onclick="clearFlashSession()"></button>
-                        </div>
-                    @endif
-                    <form class="p-4 p-md-5 rounded-3" action="{{ route('fablab-registration.store') }}"
-                        method="POST">
-                        @csrf
-                        <h1>Registration Form</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-                        <div class="form-group">
-                            <label for="email" class="is-required">Name<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input style="margin-right : 10px ; margin-bottom : 10px" name="first_name"
-                                    placeholder="First Name" type="text"
-                                    class="form-control email @error('first_name') is-invalid @enderror "
-                                    id="first_name" value="{{ old('first_name') }}" required>
-
-                                <input name="father_name" placeholder="Father's Name" type="text"
-                                    class="form-control email @error('father_name') is-invalid @enderror "
-                                    id="father_name" value="{{ old('father_name') }}" required>
-
-                            </div>
-
-                            <div class="input-group ">
-                                <input style="margin-right : 10px ; margin-bottom : 10px" name="grandfather_name"
-                                    placeholder="Grandfather's Name" type="text"
-                                    class="form-control email @error('grandfather_name') is-invalid @enderror "
-                                    id="grandfather_name" value="{{ old('grandfather_name') }}" required>
-
-                                <input name="last_name" placeholder="Last Name" type="text"
-                                    class="form-control email @error('last_name') is-invalid @enderror "
-                                    id="last_name" value="{{ old('last_name') }}" required>
-
-                            </div>
-                            @if ($errors->has('first_name'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('first_name') }}
-                                </div>
-                            @endif
-                            @if ($errors->has('father_name'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('father_name') }}
-                                </div>
-                            @endif
-                            @if ($errors->has('grandfather_name'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('grandfather_name') }}
-                                </div>
-                            @endif
-                            @if ($errors->has('last_name'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('last_name') }}
-                                </div>
-                            @endif
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="nationality" class="is-required">Nationality<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <select name="nationality"
-                                    class="form-control email @error('nationality') is-invalid @enderror "
-                                    value="{{ old('nationality') }}" required id="nationality"
-                                    onchange="showIdentification()">
-                                    <option value="" selected>-- Please Select --</option>
-                                    <option value="Jordanian" @if (old('nationality') == 'Jordanian') selected @endif>
-                                        Jordanian</option>
-                                    <option value="NoneJordanian" @if (old('nationality') == 'NoneJordanian') selected @endif>
-                                        Non-Jordanian</option>
-                                </select>
-                            </div>
-                            @if ($errors->has('nationality'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('nationality') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group National_ID" style="display:none">
-                            <label for="national_id" class="is-required National_ID" style="display:none">National ID
-                                #<span class="sr-only"> (required)</span></label>
-                            <div class="input-group">
-                                <input name="national_id" type="text"
-                                    class="form-control email National_ID @error('national_id') is-invalid @enderror "
-                                    id="national_id" value="{{ old('national_id') }}" style="display:none">
-                            </div>
-                            @if ($errors->has('national_id'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('national_id') }}
-                                </div>
-                            @endif
-                            @if (session('national_id'))
-                                <div class="alert alert-danger">
-                                    {{ session('national_id') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group Passport_No" style="display:none">
-                            <label for="passport_number" class="is-required Passport_No" style="display:none">Refugee
-                                ID or Passport No.<span class="sr-only"> (required)</span></label>
-                            <div class="input-group">
-                                <input name="passport_number" type="text"
-                                    class="form-control email Passport_No @error('passport_number') is-invalid @enderror "
-                                    id="passport_number" value="{{ old('passport_number') }}" style="display:none">
-                            </div>
-                            @if ($errors->has('passport_number'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('passport_number') }}
-                                </div>
-                            @endif
-                            @if (session('passport_number'))
-                                <div class="alert alert-danger">
-                                    {{ session('passport_number') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="age" class="is-required">Age<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input name="age" required
-                                    type="text"class="form-control email @error('age') is-invalid @enderror "
-                                    id="age"value="{{ old('age') }}">
-                            </div>
-                            @if ($errors->has('age'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('age') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="gender" class="is-required">Gender<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input style="height:25px; width:25px;" name="gender" value="Male" required
-                                    type="radio" class=" email @error('gender') is-invalid @enderror "
-                                    id="gender" @if (old('gender') == 'Male') checked @endif>
-                                <p style="margin-top: 3px ; margin-right : 5vw ; padding-left: 8px">Male</p>
-
-                                <input style="height:25px; width:25px;" name="gender" value="Female" required
-                                    type="radio" class="email @error('gender') is-invalid @enderror "
-                                    id="gender" @if (old('gender') == 'Female') checked @endif>
-                                <p style="margin-top: 3px; padding-left: 8px">Female</p>
-                            </div>
-                            @if ($errors->has('gender'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('gender') }}
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="is-required">Email address<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input name="email" type="text"
-                                    class="form-control email @error('email') is-invalid @enderror " id="email"
-                                    value="{{ old('email') }}" required>
-                            </div>
-
-                            @if ($errors->has('email'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('email') }}
-                                </div>
-                            @endif
-                            @if (session('email'))
-                                <div class="alert alert-danger">
-                                    {{ session('email') }}
-                                </div>
-                            @endif
-                            <small>eg: username@domain.com </small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mobile" class="is-required">Mobile<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input name="mobile" type="text"
-                                    class="form-control mobile @error('mobile') is-invalid @enderror " id="mobile"
-                                    value="{{ old('mobile') }}" required>
-                            </div>
-                            @if ($errors->has('mobile'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('mobile') }}
-                                </div>
-                            @endif
-                            @if (session('mobile'))
-                                <div class="alert alert-danger">
-                                    {{ session('mobile') }}
-                                </div>
-                            @endif
-                            <small>eg: 077********</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="whatsapp" class="is-required">Whatsapp Number<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input name="whatsapp" type="text"
-                                    class="form-control mobile @error('whatsapp') is-invalid @enderror "
-                                    id="whatsapp" value="{{ old('whatsapp') }}" required>
-                            </div>
-                            @if ($errors->has('whatsapp'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('whatsapp') }}
-                                </div>
-                            @endif
-                            @if (session('whatsapp'))
-                                <div class="alert alert-danger">
-                                    {{ session('whatsapp') }}
-                                </div>
-                            @endif
-                            <small>eg: 077********</small>
-                        </div>
-
-                        {{-- <div class="form-group">
-                            <label for="affiliation" class="is-required">Affiliation<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group ">
-                                <input name="affiliation" type="text"
-                                    class="form-control mobile @error('affiliation') is-invalid @enderror "
-                                    id="affiliation" value="{{ old('affiliation') }}" required>
-                            </div>
-                            @if ($errors->has('affiliation'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('affiliation') }}
-                                </div>
-                            @endif
-                        </div> --}}
-                        <div class="form-group">
-                            <label for="affiliation" class="is-required">Affiliation<span class="sr-only">(required)</span></label>
-                            <div class="input-group">
-                                <select name="affiliation" class="form-control mobile @error('affiliation') is-invalid @enderror"
-                                        id="affiliation" required>
-                                    <option value="" selected disabled>Select an Affiliation</option>
-                                    <option value="Fablab Amman" {{ old('affiliation') === 'Fablab Amman' ? 'selected' : '' }}>Fablab Amman</option>
-                                    <option value="Fablab Irbid" {{ old('affiliation') === 'Fablab Irbid' ? 'selected' : '' }}>Fablab Irbid</option>
-                                    <option value="Fablab Karak" {{ old('affiliation') === 'Fablab Karak' ? 'selected' : '' }}>Fablab Karak</option>
-                                    <option value="Fablab Aqaba" {{ old('affiliation') === 'Fablab Aqaba' ? 'selected' : '' }}>Fablab Aqaba</option>
-                                    <option value="Fablab As salt" {{ old('affiliation') === 'Fablab As salt' ? 'selected' : '' }}>Fablab As salt</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-                            @if ($errors->has('affiliation'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('affiliation') }}
-                                </div>
-                            @endif
-                        </div>
-                        
-
-                        <div class="form-group">
-                            <label for="residence" class="is-required">Governorate of residence<span class="sr-only">
-                                    (required)</span></label>
-                            <div class="input-group">
-                                <select name="residence"
-                                    class="form-control email @error('residence') is-invalid @enderror "
-                                    id="" required>
-                                    <option value="" selected>-- Please Select --</option>
-                                    <option value="Irbid" @if (old('residence') == 'Irbid') selected @endif>Irbid
-                                    </option>
-                                    <option value="Ajloun" @if (old('residence') == 'Ajloun') selected @endif>Ajloun
-                                    </option>
-                                    <option value="Jerash" @if (old('residence') == 'Jerash') selected @endif>Jerash
-                                    </option>
-                                    <option value="Mafraq" @if (old('residence') == 'Mafraq') selected @endif>Mafraq
-                                    </option>
-                                    <option value="Balqa" @if (old('residence') == 'Balqa') selected @endif>Balqa
-                                    </option>
-                                    <option value="Amman" @if (old('residence') == 'Amman') selected @endif>Amman
-                                    </option>
-                                    <option value="Zarqa" @if (old('residence') == 'Zarqa') selected @endif>Zarqa
-                                    </option>
-                                    <option value="Madaba" @if (old('residence') == 'Madaba') selected @endif>Madaba
-                                    </option>
-                                    <option value="Karak" @if (old('residence') == 'Karak') selected @endif>Karak
-                                    </option>
-                                    <option value="Tafilah" @if (old('residence') == 'Tafilah') selected @endif>Tafilah
-                                    </option>
-                                    <option value="Ma'an" @if (old('residence') == "Ma'an") selected @endif>Ma'an
-                                    </option>
-                                    <option value="Aqaba" @if (old('residence') == 'Aqaba') selected @endif>Aqaba
-                                    </option>
-                                </select>
-                                @if ($errors->has('residence'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('residence') }}
+        <section>
+            <div class="container px-5 center">
+                <h2>News and Activities</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi veniam
+                    modi aut, dignissimos sapiente non, velit quos dolore distinctio veritatis ullam iure et hic! Ad, ut
+                    accusamus.</p>
+            </div>
+            @if (isset($activities) && count($activities) > 0)
+                <div class="container slide-activity px-4">
+                    @foreach ($activities as $activity)
+                        <div class="card " style=" width: 15em;">
+                            @if (is_array($activity->image) && count($activity->image) > 1)
+                                <div id="activity{{ $activity->id }}" class="carousel slide card-img"
+                                    data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($activity->image as $index => $imagePath)
+                                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                                <img src="{{ asset('storage/' . $imagePath) }}" class="d-block"
+                                                    style="height: 50vh;" alt="{{ $activity->activity_name }}">
+                                            </div>
+                                        @endforeach
                                     </div>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="margin-top: 3vw">
-                            <label for="education" class="is-required">Education Level Attained<span class="sr-only">
-                                    (required)</span></label>
-                            <div>
-
-                                <input style="margin-top: 15px" name="education" value="Below Tawjihi" required
-                                    type="radio" class=" @error('education') is-invalid @enderror "
-                                    @if (old('education') == 'Below Tawjihi') checked @endif>
-                                <span style="margin-top: 1vw ; margin-right : 4vw">Below Tawjihi</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="education" value="Tawjihi" required
-                                    type="radio" class=" @error('education') is-invalid @enderror "
-                                    @if (old('education') == 'Tawjihi') checked @endif>
-                                <span style="margin-top: 2vw">Tawjihi/High School Diploma</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="education" value="Diploma" required
-                                    type="radio" class=" @error('education') is-invalid @enderror "
-                                    @if (old('education') == 'Diploma') checked @endif>
-                                <span style="margin-top: 1vw">Diploma</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="education" value="Undergraduate" required
-                                    type="radio" class="@error('education') is-invalid @enderror "
-                                    @if (old('education') == 'Undergraduate') checked @endif>
-                                <span style="margin-top: 1vw">Undergraduate (Baccalaureate)</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="education" value="Graduate" required
-                                    type="radio" class="@error('education') is-invalid @enderror "
-                                    @if (old('education') == 'Graduate') checked @endif>
-                                <span style="margin-top: 1vw">Graduate (Masters and PhD)</span>
-                                <br>
-
-                                <br class="major_education" style="display:none">
-
-                                <p class="major_education" style="display:none">What is your major? <span
-                                        style="color: red">*</span></p>
-                                <input type="text" name='major_study'
-                                    class="major_education form-control @error('major_study') is-invalid @enderror "
-                                    value="{{ old('education') }}" style="display:none">
-                                <br class="major_education" style="display:none">
-
-                                @if ($errors->has('education'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('education') }}
-                                    </div>
-                                @endif
-                            </div>
-                            @if ($errors->has('major_education'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('major_education') }}
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#activity{{ $activity->id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#activity{{ $activity->id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </button>
                                 </div>
+                            @else
+                                @php
+                                    $imageArray = json_decode($activity->image);
+                                @endphp
+                                <img src="{{ asset('storage/' . $imageArray[0]) }}" class="card-img"
+                                    style="height: 50vh; " alt="{{ $activity->activity_name }}">
                             @endif
-                        </div>
-
-                        <div class="form-group" style="margin-top: 3vw">
-                            <label for="employment" class="is-required">Employment Status<span class="sr-only">
-                                    (required)</span></label>
-                            <div>
-
-                                <input style="margin-top: 15px" name="employment" value="Part-Time" required
-                                    type="radio" class=" @error('employment') is-invalid @enderror "
-                                    @if (old('employment') == 'Part-Time') checked @endif>
-                                <span style="margin-top: 1vw ; margin-right : 4vw">Part-Time</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="employment" value="Full-time" required
-                                    type="radio" class=" @error('employment') is-invalid @enderror "
-                                    @if (old('employment') == 'Full-time') checked @endif>
-                                <span style="margin-top: 1vw">Full-time</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="employment" value="Self-Employed" required
-                                    type="radio" class=" @error('employment') is-invalid @enderror "
-                                    @if (old('employment') == 'Self-Employed') checked @endif>
-                                <span style="margin-top: 1vw">Self-Employed</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="employment" value="Unemployed" required
-                                    type="radio" class="@error('employment') is-invalid @enderror "
-                                    @if (old('employment') == 'Unemployed') checked @endif>
-                                <span style="margin-top: 1vw">Unemployed</span>
-                                <br>
-
-                            </div>
-                            @if ($errors->has('employment'))
-                                <div class="alert alert-danger">
-                                    {{ $errors->first('employment') }}
+                            <div class="card-img-overlay pt-5 pb-0 text-white">
+                                <h1 class="py-3">{{ $activity->activity_name }} </h1>
+                                <div class="d-flex justify-content-between py-3">
+                                    <div>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        {{ date('Y/m/d', strtotime($activity->start_date)) }}
+                                        - {{ date('Y/m/d', strtotime($activity->end_date)) }}
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        {{ $activity->location }}
+                                    </div>
                                 </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group" style="margin-top: 3vw">
-                            <label for="program" class="is-required">Choose the program you wish to join<span
-                                    class="sr-only"> (required)</span></label>
-                            <div>
-                                <input style="margin-top: 15px" name="program" value="Innovators in Residence (IIRs)"
-                                    required type="radio" class=" @error('program') is-invalid @enderror "
-                                    @if (old('program') == 'Innovators in Residence (IIRs)') checked @endif>
-                                <span style="margin-top: 1vw ; margin-right : 4vw">Innovators in Residence
-                                    (IIRs)</span>
-                                <br>
-                                @if ($errors->has('program'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('program') }}
-                                    </div>
-                                @endif
+                                <p class="text-truncate"style="max-width: 150px;">{{ $activity->description }}
+                                </p>
+                                <a href="{{ route('show', $activity) }}" class="btn btn-primary mt-4">See More</a>
                             </div>
                         </div>
-
-                        {{-- <div class="form-group" style="margin-top: 3vw">
-                            <label for="technology_type" class="is-required">What technological lab do you wish to get access to?<span
-                                class="sr-only"> (required)</span></label>
-                            <div>
-
-                                <input style="margin-top: 15px" name="technology_type" value="AI Lab" required type="radio" class=" @error('technology_type') is-invalid @enderror " @if (old('technology_type') == 'AI Lab') checked @endif>
-                                <span style="margin-top: 1vw ; margin-right : 4vw">AI Lab</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="technology_type" value="IoT Lab" required type="radio"
-                                class=" @error('technology_type') is-invalid @enderror "
-                                @if (old('technology_type') == 'IoT Lab') checked @endif>
-                                <span style="margin-top: 1vw">IoT Lab</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="technology_type" value="5G Lab" required type="radio"
-                                class=" @error('technology_type') is-invalid @enderror "
-                                @if (old('technology_type') == '5G Lab') checked @endif>
-                                <span style="margin-top: 1vw">5G Lab</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="technology_type" value="AR/VR Lab" required type="radio"
-                                class="@error('technology_type') is-invalid @enderror "
-                                @if (old('technology_type') == 'AR/VR Lab') checked @endif>
-                                <span style="margin-top: 1vw">AR/VR Lab</span>
-                                <br>
-
-                                <input style="margin-top: 15px" name="technology_type" value="Blockchain Lab" required type="radio"
-                                class="@error('technology_type') is-invalid @enderror "
-                                @if (old('technology_type') == 'Blockchain Lab') checked @endif>
-                                <span style="margin-top: 1vw">Blockchain Lab</span>
-                                <br>
-
-                                @if ($errors->has('technology_type'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('technology_type') }}
-                                    </div>
-                                @endif
-                            </div>
-                        </div> --}}
-
-                        <div class="form-group" style="margin-top: 3vw">
-                            <label for="idea_description" class="is-required">Please describe your idea in less than
-                                200 words<span class="sr-only"> (required)</span></label>
-                            <div class="input-group ">
-                                <textarea style="height: 10vw" name="idea_description" type="text"
-                                    class="form-control mobile @error('idea_description') is-invalid @enderror " id="idea_description" required>{{ old('idea_description') }}</textarea>
-                                @if ($errors->has('idea_description'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('idea_description') }}
-                                    </div>
-                                @endif
+                    @endforeach
+                </div>
+            @endif
+        </section>
+        <section class="impact">
+            <div class="container text-white p-5">
+                <div class="our-impact-header center mb-5">
+                    <div class="sub-title">On the Society</div>
+                    <h1>Our Impact</h1>
+                </div>
+                <div class="slider-impact pt-5">
+                    <div class="d-flex ">
+                        <div class="container">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                             </div>
                         </div>
-
-
-                        <h4>Survey Description:</h4>
-                        <p>Acceptance in this program grants you 50 HRs access to our labs to develop your idea. You may
-                            request longer access in future.
-                            As a prerequisite, applicants to this program are expected to have successfully built a
-                            proof-of-concept prototype for their work.</p>
-
-                        <h4>Data Protection Policy:</h4>
-                        <p>What will we do with the data? The data collected from this survey will be used for tracking
-                            of your engagement in the program and evaluating the program’s performance. Your answers
-                            will be treated confidentially, and what you wrote will not be revealed to others besides
-                            the people of the monitoring and evaluation of the program. Your study data will be handled
-                            as confidentially as possible, and all procedures are compliant with Jordanian Privacy Laws.
-                            If results of this study are published or presented, individual names and other personally
-                            identifiable information will not be used.</p>
-
-
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input @error('chAgree') is-invalid @enderror"
-                                    id="chAgree" name="chAgree" type="checkbox"
-                                    @if (old('chAgree')) checked @endif required>
-                                <label class="custom-control-label " for="chAgree">Please check the box to continue
-                                    <span class="mandatory-txt">*</span></label>
-
-                                @error('chAgree')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong> The Terms & Conditions Not Checked </strong>
-                                    </span>
-                                @enderror
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
                         </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" d-flex">
+                        <div class="container">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" d-flex">
+                        <div class="container">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                        <div class="container border-start">
+                            <div class="container text-primary number p-3">336</div>
+                            <div class="container px-3 ">
+                                <div class="impact-title pb-1">Title Title</div>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer bg-dark navbar-dark pt-5">
+            <div class="container-xxl footer-title-content ">
+
+                <div class="d-flex justify-content-center">
+                    <h3 class="pe-5">Sign up to our mailing list</h3>
+                    <form class="d-flex col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5 gap-2 gap-md-3">
+                        <label for="inputEmail" class="visually-hidden">Email</label>
+                        <input type="email" class="form-control text-bg-dark border-dark" id="inputEmail"
+                            placeholder="Enter your email">
+                        <button type="submit" class="btn btn-primary btn-inverse text-nowrap">Sign up</button>
                     </form>
-
+                </div>
+            </div>
+            <hr>
+            <div class="container-xxl footer-nav">
+                <nav class="accordion accordion-dark" id="accordion2" aria-label="Sitemap footer 2">
+                    <div class="row">
+                        <div class="footer-column col-md-4">
+                            <h3 class="accordion-header footer-heading" id="headingTwo2">
+                                <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="true"
+                                    aria-controls="collapseTwo2">
+                                    Category
+                                </button>
+                                <span class="d-none d-md-flex">Category</span>
+                            </h3>
+                            <div id="collapseTwo2" class="container-xxl accordion-collapse collapse"
+                                aria-labelledby="headingTwo2" data-bs-parent="#accordion2">
+                                <ul class="navbar-nav">
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingTwo2">Subcategory</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-column col-md-4">
+                            <h3 class="accordion-header footer-heading" id="headingThree2">
+                                <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseThree2" aria-expanded="true"
+                                    aria-controls="collapseThree2">
+                                    Category
+                                </button>
+                                <span class="d-none d-md-flex">Category</span>
+                            </h3>
+                            <div id="collapseThree2" class="container-xxl accordion-collapse collapse"
+                                aria-labelledby="headingThree2" data-bs-parent="#accordion2">
+                                <ul class="navbar-nav">
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingThree2">Subcategory</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-column col-md-4">
+                            <h3 class="accordion-header footer-heading" id="headingFour2">
+                                <button class="accordion-button collapsed container-xxl px-1 d-md-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseFour2" aria-expanded="true"
+                                    aria-controls="collapseFour2">
+                                    Category
+                                </button>
+                                <span class="d-none d-md-flex">Category</span>
+                            </h3>
+                            <div id="collapseFour2" class="container-xxl accordion-collapse collapse"
+                                aria-labelledby="headingFour2" data-bs-parent="#accordion2">
+                                <ul class="navbar-nav">
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                    <li><a class="nav-link" href="#"
+                                            aria-describedby="headingFour2">Subcategory</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <hr>
+            <div class="container-xxl footer-terms">
+                <div class="d-flex justify-content-around">
+                    <ul class="navbar-nav gap-2 flex-row align-self-start">
+                        <li class="footer-heading me-md-3">Follow Us</li>
+                        <li><a href="#" class="btn btn-icon btn-social btn-twitter btn-inverse"><span
+                                    class="visually-hidden">Twitter</span></a></li>
+                        <li><a href="#" class="btn btn-icon btn-social btn-facebook btn-inverse"><span
+                                    class="visually-hidden">Facebook</span></a></li>
+                        <li><a href="#" class="btn btn-icon btn-social btn-instagram btn-inverse"><span
+                                    class="visually-hidden">Instagram</span></a></li>
+                        <li><a href="#" class="btn btn-icon btn-social btn-youtube btn-inverse"><span
+                                    class="visually-hidden">YouTube</span></a></li>
+                    </ul>
+                    <ul class="navbar-nav gap-md-3">
+                        <li class="fw-bold">© Orange 2023</li>
+                        <li><a class="nav-link" href="#">Terms and conditions</a></li>
+                        <li><a class="nav-link" href="#">Privacy</a></li>
+                        <li><a class="nav-link" href="#">Accessibility statement</a></li>
+                        <li><a class="nav-link" href="#">Cookie policy</a></li>
+                    </ul>
                 </div>
 
             </div>
-        </div>
+        </footer>
     </div>
-
-
-    <script>
-        if (document.getElementById('nationality').value != "") {
-            showIdentification()
-        }
-        //this block of code produces an error and dosnt let the rest of the script load
-        // if (document.getElementById('IHaveObstacles') != ''){
-        //     showObstacles()
-        // }
-
-        function showIdentification() {
-
-            var input_national_id = document.querySelectorAll('input[name="national_id"]');
-            var input_passport_number = document.querySelectorAll('input[name="passport_number"]');
-
-            var National_ID = document.getElementsByClassName('National_ID');
-            var Passport_No = document.getElementsByClassName('Passport_No');
-            if (document.getElementById('nationality').value == 'Jordanian') {
-                for (var i = 0; i < National_ID.length; i++) {
-                    National_ID[i].style.display = 'block';
-                    Passport_No[i].style.display = 'none';
-                    input_national_id.required = true;
-                    input_passport_number.required = false;
-                }
-            } else if (document.getElementById('nationality').value == 'NoneJordanian') {
-                for (var i = 0; i < Passport_No.length; i++) {
-                    Passport_No[i].style.display = 'block';
-                    National_ID[i].style.display = 'none';
-                    input_passport_number.required = true;
-                    input_national_id.required = false;
-                }
-            } else {
-                for (var i = 0; i < Passport_No.length; i++) {
-                    National_ID[i].style.display = 'none';
-                    Passport_No[i].style.display = 'none';
-                    input_passport_number.required = false;
-                    input_national_id.required = false;
-                }
-            }
-        }
-
-
-        var educationRadios = document.querySelectorAll('input[name="education"]');
-        var majorEducationElements = document.getElementsByClassName('major_education');
-
-        for (var i = 0; i < educationRadios.length; i++) {
-            educationRadios[i].addEventListener('change', function() {
-                if (this.value === 'Undergraduate' || this.value === 'Graduate') {
-                    for (var j = 0; j < majorEducationElements.length; j++) {
-                        majorEducationElements[j].style.display = 'block';
-                        majorEducationElements[j].setAttribute('required', '');
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.slide-activity').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                arrows: true,
+                dots: true,
+                speed: 300,
+                infinite: true,
+                autoplaySpeed: 5000,
+                autoplay: true,
+                responsive: [{
+                        breakpoint: 991,
+                        settings: {
+                            slidesToShow: 4,
+                        }
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 1,
+                        }
                     }
-                } else {
-                    for (var j = 0; j < majorEducationElements.length; j++) {
-                        majorEducationElements[j].style.display = 'none';
-                        majorEducationElements[j].removeAttribute('required');
-                    }
-                }
+                ]
             });
-        }
+            $('.slider-impact').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                dots: true,
+                speed: 300,
+                infinite: true,
+                autoplaySpeed: 5000,
+                autoplay: true,
+                responsive: [{
+                        breakpoint: 991,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 1,
+                        }
+                    }
+                ]
+            });
+        });
     </script>
 </body>
 

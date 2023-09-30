@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FablabUsers;
+use App\Activity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
@@ -17,7 +18,15 @@ class FablabUsersController extends Controller
      */
     public function index()
     {
-        return view('public.fablab.fablabregistration');
+        $activities = Activity::where('timeline',"public")
+        ->where('component', "fablab")
+        ->where('end_date', '>', now())
+        ->where('start_date', '<=', now())
+        ->orderBy('start_date')
+        ->orderBy('end_date')
+        ->take(5)
+        ->get();
+        return view('public.fablab.fablabregistration', compact('activities'));
     }
 
     /**
@@ -27,7 +36,7 @@ class FablabUsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('public.fablab.create');
     }
 
     /**

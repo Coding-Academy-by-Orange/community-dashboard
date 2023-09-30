@@ -136,15 +136,28 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::resource('/admins', "AdminController");
 
     //activity CRUD
-    Route::resource('/activity', "ActivityController");
+    // Create (Show create form and Store data)
+    Route::get('/activity/create', 'ActivityController@create')->name('activity.create');
+    Route::post('/activity', 'ActivityController@store')->name('activity.store');
+
+    // Read (Show all activities and a single activity)
+    Route::get('/activity', 'ActivityController@index')->name('activity.index');
+    Route::get('/activity/{id}', 'ActivityController@show')->name('activity.show');
+
+    // Update (Show edit form and Update data)
+    Route::get('/activity/{id}/edit', 'ActivityController@edit')->name('activity.edit');
+    Route::put('/activity/{id}', 'ActivityController@update')->name('activity.update');
+
+    // Delete (Delete data)
+    Route::delete('/activity/{id}', 'ActivityController@destroy')->name('activity.destroy');
 
     // activity registration routes
-    Route::get('/register/create/{activity_id}', [ActivityRegisterController::class,'create'])->name('admin.activity.register.create');
-    Route::post('/register/create', [ActivityRegisterController::class,'store'])->name('admin.activity.register.store');
-    Route::get('/register/index/{activity_id}', [ActivityRegisterController::class,'index'])->name('admin.activity.register.index');
+    Route::get('/register/create/{activity_id}', [ActivityRegisterController::class, 'create'])->name('admin.activity.register.create');
+    Route::post('/register/create', [ActivityRegisterController::class, 'store'])->name('admin.activity.register.store');
+    Route::get('/register/index/{activity_id}', [ActivityRegisterController::class, 'index'])->name('admin.activity.register.index');
     Route::delete('/activity/register/{id}', 'ActivityRegisterController@destroy')->name('admin.activity.register.destroy');
 
-   
+
 
 
     //filter
@@ -167,24 +180,17 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 
 // Coding Academy
-
 Route::get('/codingacademy', "HomeController@publicLanding");
 
 // Fablab Registration Form
-
-Route::get('/fablab-registration', [FablabUsersController::class, 'index']);
-Route::post('/fablab-registration', [FablabUsersController::class, 'store'])->name('fablab-registration.store');
+Route::resource('/fablab', 'FablabUsersController')->except('destroy');
 Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name('fablab_users.delete');
 
 // ODC Registration Form
+Route::resource('/ODC', "ODCController");
 
-Route::get('/ODC', [ODCController::class, 'index']);
-Route::post('/ODC', [ODCController::class, 'store'])->name('ODC.store');
-
-
-// Big By Oramge Registration Form
-
-Route::resource('/BigByOrange-registration', "BigbyOrangeController");
+// Big By Orange Registration Form
+Route::resource('/BigByOrange', "BigbyOrangeController");
 
 
 Route::get('/thanks', function () {

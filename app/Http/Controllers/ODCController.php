@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ODC;
+use App\Activity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
@@ -18,7 +19,15 @@ class ODCController extends Controller
      */
     public function index()
     {
-        return view('public.digitalcenter.orangedigitalcenter');
+        $activities = Activity::where('timeline',"public")
+        ->where('component', "digitalcenter")
+        ->where('end_date', '>', now())
+        ->where('start_date', '<=', now())
+        ->orderBy('start_date')
+        ->orderBy('end_date')
+        ->take(5)
+        ->get();
+        return view('public.digitalcenter.orangedigitalcenter', compact('activities'));
     }
 
     /**
@@ -28,7 +37,7 @@ class ODCController extends Controller
      */
     public function create()
     {
-        //
+        return view('public.digitalcenter.create');
     }
 
     /**

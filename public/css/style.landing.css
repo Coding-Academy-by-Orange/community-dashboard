@@ -1,0 +1,106 @@
+body {
+    overflow-x: hidden;
+}
+
+#colorBlock {
+    height: 50vh;
+    background-color: black;
+    position: absolute;
+}
+
+#header .card {
+    border-width: 0.0005em !important;
+    border-color: gray !important;
+}
+
+.components {
+    border-bottom: 0.25rem solid #ffd200 !important;
+    box-shadow: 0px 2px 14px #00000024;
+}
+
+.components .fa-solid {
+    background-color: #f5f5f5;
+    border: 0.125rem solid #eeeeee;
+}
+
+.component-name {
+    font-size: 1.25rem;
+}
+
+.components:hover {
+    border: 0 !important;
+    background-color: #f16e00;
+    color: white !important;
+}
+
+.components:hover .fa-solid {
+    background-color: #ff912e !important;
+    border-color: #ffd200 !important;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.slide-activity .card-img-overlay {
+    background-image:
+        linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.8));
+    background-size: cover;
+    color: white;
+    padding: 20px;
+}
+
+.slide-activity .card {
+    border-top: 0.25rem solid #ffd200 !important;
+}
+
+.impact {
+    background: url(../assets/img/impact.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+    height: 31rem;
+    width: 100%;
+}
+
+.our-impact-header h1::after {
+    content: '';
+    position: absolute;
+    background-color: #ff7900;
+    width: 4rem;
+    height: 0.25rem;
+}
+
+.slick-slide {
+    background-color: transparent;
+}
+
+.slick-slide .border-start {
+    border-color: #eeeeee !important;
+}
+
+.slider-impact .number {
+    font-size: 2.8125rem;
+    font-weight: bold;
+}
+
+.impact-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.slick-dots {
+    font-size: larger;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #ff7900 !important;
+}
+
+@media (min-width: 576px) {
+    .our-impact-header h1::after {
+        left: 47%;
+        bottom: 75rem;
+    }
+}
