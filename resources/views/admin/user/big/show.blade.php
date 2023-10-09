@@ -153,6 +153,9 @@
             <select name="new_status" id="new_status" class="form-control mb-3">
                 <option value="accepted" @if ($student->status == 'accepted') selected @endif>Accepted</option>
                 <option value="pending"@if ($student->status == 'pending') selected @endif>Pending</option>
+                <option value="enrolled"@if ($student->status == 'enrolled') selected @endif>Enrolled</option>
+                <option value="finall acceptance"@if ($student->status == 'finall acceptance') selected @endif>Finall Acceptance
+                </option>
                 <option value="rejected"@if ($student->status == 'rejected') selected @endif>Rejected</option>
             </select>
             <button type="submit"class="btn btn-primary glow mb-0">Change Status</button>

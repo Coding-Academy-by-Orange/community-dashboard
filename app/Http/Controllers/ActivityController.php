@@ -47,13 +47,25 @@ class ActivityController extends Controller
             }
             return view('admin.activity.index', compact('activities'));
         } else {
-            $activities = Activity::where('timeline', "public")
-                ->where('end_date', '>', now())
-                ->where('start_date', '<=', now())
-                ->orderBy('start_date')
-                ->orderBy('end_date')
-                ->take(5)
-                ->get();
+            $activities = Activity::whereIn('timeline', ["public", "component"])
+            ->where(function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNotNull('publication_date')
+                        ->where('publication_date', '<=', now());
+                })->orWhere(function ($subquery) {
+                    $subquery->whereNull('publication_date')
+                        ->whereNull('start_date')
+                        ->whereNull('end_date');
+                });
+            })
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
             return view('public.landingpage', compact('activities'));
         }
     }

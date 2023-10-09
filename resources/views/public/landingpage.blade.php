@@ -3,112 +3,111 @@
     Home
 @endsection
 @section('main')
-        <section>
-            <div class="container" id='colorBlock'></div>
-            <div class="container-fluid pt-5 bg-dark  ps-0 pe-5 me-0 " id="header">
-                <div class="card ">
-                    <div class="card-img bg-dark">
-                        <img src="{{ asset('assets/img/landing-page.webp') }}"class="float-end"
-                            style="min-width: 51em; height:65vh" alt="...">
+    <section>
+        <div class="container" id='colorBlock'></div>
+        <div class="container-fluid pt-5 bg-dark  ps-0 pe-5 me-0 " id="header">
+            <div class="card ">
+                <div class="card-img bg-dark">
+                    <img src="{{ asset('assets/img/landing-page.webp') }}"class="float-end"
+                        style="min-width: 51em; height:65vh" alt="...">
+                </div>
+                <div class="card-img-overlay  text-primary">
+                    <div class="container float-start w-50">
+                        <p class="breadcrumb text-primary">Orange CSR</p>
+                        <h1 class="text-primary">Orange CSR</h1>
+                        <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
+                        <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
+                            lives and local communities through digital transformation</p>
                     </div>
-                    <div class="card-img-overlay  text-primary">
-                        <div class="container float-start w-50">
-                            <p class="breadcrumb text-primary">Orange CSR</p>
-                            <h1 class="text-primary">Orange CSR</h1>
-                            <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
-                            <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
-                                lives and local communities through digital transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container my-5">
+        <div class="d-flex ">
+            <div class="p-2">
+                <a href="/codingacademy" class="p-3 card d-flex text-decoration-none components">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="fa-solid fa-school h2 p-3 mb-0"></span>
+                        </div>
+                        <div class="col-7 mb-0 pt-3 component-name">
+                            Coding Academy
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-        </section>
-        <section class="container my-5">
-            <div class="d-flex ">
-                <div class="p-2">
-                    <a href="/codingacademy" class="p-3 card d-flex text-decoration-none components">
-                        <div class="row">
-                            <div class="col-5">
-                                <span class="fa-solid fa-school h2 p-3 mb-0"></span>
-                            </div>
-                            <div class="col-7 mb-0 pt-3 component-name">
-                                Coding Academy
-                            </div>
+            <div class="p-2">
+                <a href="{{ route('fablab.index') }}" class="p-3 card d-flex text-decoration-none components">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="fa-solid fa-rocket h2 p-3 mb-0"></span>
                         </div>
-                    </a>
-                </div>
-                <div class="p-2">
-                    <a href="{{route('fablab.index')}}" class="p-3 card d-flex text-decoration-none components">
-                        <div class="row">
-                            <div class="col-5">
-                                <span class="fa-solid fa-rocket h2 p-3 mb-0"></span>
-                            </div>
-                            <div class="col-7 mb-0 pt-3 component-name">
-                                FabLab
-                            </div>
+                        <div class="col-7 mb-0 pt-3 component-name">
+                            FabLab
                         </div>
-                    </a>
-                </div>
-                <div class="p-2">
-                    <a href="/ODC" class="p-3 card d-flex text-decoration-none components">
-                        <div class="row">
-                            <div class="col-5">
-                                <span class="fa-solid fa-building h2 p-3 mb-0"></span>
-                            </div>
-                            <div class="col-7 mb-0 pt-3 component-name">
-                                ODC
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="p-2">
-                    <a href="{{ route('BigByOrange.index') }}"
-                        class="p-3 card d-flex text-decoration-none components">
-                        <div class="row">
-                            <div class="col-5">
-                                <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
-                            </div>
-                            <div class="col-7 mb-0 pt-3 component-name">
-                                Big By Orange
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="p-2">
-                    <a href="{{ route('codingschool.index') }}"
-                        class="p-3 card d-flex text-decoration-none components">
-                        <div class="row">
-                            <div class="col-5">
-                                <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
-                            </div>
-                            <div class="col-7 mb-0 pt-3 component-name">
-                                Coding School
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
-        </section>
-        <section>
-            <div class="container px-5 center">
-                <h2>News and Activities</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi veniam
-                    modi aut, dignissimos sapiente non, velit quos dolore distinctio veritatis ullam iure et hic! Ad, ut
-                    accusamus.</p>
+            <div class="p-2">
+                <a href="/ODC" class="p-3 card d-flex text-decoration-none components">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="fa-solid fa-building h2 p-3 mb-0"></span>
+                        </div>
+                        <div class="col-7 mb-0 pt-3 component-name">
+                            ODC
+                        </div>
+                    </div>
+                </a>
             </div>
-            @if (isset($activities) && count($activities) > 0)
+            <div class="p-2">
+                <a href="{{ route('BigByOrange.index') }}" class="p-3 card d-flex text-decoration-none components">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
+                        </div>
+                        <div class="col-7 mb-0 pt-3 component-name">
+                            Big By Orange
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="p-2">
+                <a href="{{ route('codingschool.index') }}" class="p-3 card d-flex text-decoration-none components">
+                    <div class="row">
+                        <div class="col-5">
+                            <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
+                        </div>
+                        <div class="col-7 mb-0 pt-3 component-name">
+                            Coding School
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container px-5 center">
+            <h2>News and Activities</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi veniam
+                modi aut, dignissimos sapiente non, velit quos dolore distinctio veritatis ullam iure et hic! Ad, ut
+                accusamus.</p>
+        </div>
+        @if (isset($activities) && count($activities) > 0)
             <div class="container slide-activity px-4">
                 @foreach ($activities as $activity)
-                    <div class="card " style=" width: 15em;">
+                    <div class="card " style=" width: 15em; position: relative;">
+                        <div class="triangle"> <span class="text">{{$activity->component}}</span></div>
                         @php
-                        $imageArray = json_decode($activity->image);
-                    @endphp
-                        @if (is_array( $imageArray) && count( $imageArray) > 1)
+                            $imageArray = json_decode($activity->image);
+                        @endphp
+                        @if (is_array($imageArray) && count($imageArray) > 1)
                             <div id="activity{{ $activity->id }}" class="carousel slide card-img" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    @foreach ( $imageArray as $index => $imagePath)
+                                    @foreach ($imageArray as $index => $imagePath)
                                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                            <img src="{{ URL::asset("storage/image/" . $imagePath) }}" class="d-block"
+                                            <img src="{{ URL::asset('storage/image/' . $imagePath) }}" class="d-block"
                                                 style="height: 50vh;" alt="{{ $activity->activity_name }}">
                                         </div>
                                     @endforeach
@@ -128,15 +127,15 @@
                             @php
                                 $imageArray = json_decode($activity->image);
                             @endphp
-                            <img src="{{URL::asset("storage/image/".$imageArray)}}"  class="card-img" style="height: 50vh; "
-                                alt="{{ $activity->activity_name }}">
+                            <img src="{{ URL::asset('storage/image/' . $imageArray) }}" class="card-img"
+                                style="height: 50vh; " alt="{{ $activity->activity_name }}">
                         @endif
                         <div class="card-img-overlay pt-5 pb-0 text-white">
                             <h1 class="py-3">{{ $activity->activity_name }} </h1>
-                                <div class="py-3">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    {{ $activity->location }}
-                                </div>
+                            <div class="py-3">
+                                <i class="fa-solid fa-location-dot"></i>
+                                {{ $activity->location }}
+                            </div>
                             <p class="text-truncate"style="max-width: 150px;">{{ $activity->description }}
                             </p>
                             <a href="{{ route('show', $activity) }}" class="btn btn-primary mt-4">See
@@ -146,107 +145,107 @@
                 @endforeach
             </div>
         @endif
-        </section>
-        <section class="impact">
-            <div class="container text-white pt-5">
-                <div class="our-impact-header center mb-5">
-                    <div class="sub-title">On the Society</div>
-                    <h1>Our Impact</h1>
+    </section>
+    <section class="impact">
+        <div class="container text-white pt-5">
+            <div class="our-impact-header center mb-5">
+                <div class="sub-title">On the Society</div>
+                <h1>Our Impact</h1>
+            </div>
+            <div class="slider-impact pt-5">
+                <div class="d-flex ">
+                    <div class="container">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="slider-impact pt-5">
-                    <div class="d-flex ">
-                        <div class="container">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                <div class=" d-flex">
+                    <div class="container">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
                     </div>
-                    <div class=" d-flex">
-                        <div class="container">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
-                        </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
                     </div>
-                    <div class=" d-flex">
-                        <div class="container">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                    </div>
+                </div>
+                <div class=" d-flex">
+                    <div class="container">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
-                        <div class="container border-start">
-                            <div class="container text-primary number p-3">336</div>
-                            <div class="container px-3 ">
-                                <div class="impact-title pb-1">Title Title</div>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                            </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div class="container border-start">
+                        <div class="container text-primary number p-3">336</div>
+                        <div class="container px-3 ">
+                            <div class="impact-title pb-1">Title Title</div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -298,4 +297,4 @@
             });
         });
     </script>
-    @endsection
+@endsection

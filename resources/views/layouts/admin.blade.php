@@ -133,6 +133,8 @@
                                     Coding Academy
                                 @elseif (Auth::user()->component == 'bigbyorange')
                                     Big By Orange
+                                @elseif (Auth::user()->component == 'codingschool')
+                                    Coding School
                                 @elseif (Auth::user()->is_super)
                                     Orange Dashboard
                                 @endif

@@ -14,13 +14,16 @@
                         <div>
                         </div>
                     </div>
+                    @php
+                        $imageArray = json_decode($activity->image);
+                    @endphp
                     <div class="card-body">
-                        @if (is_array($activity->image) && count($activity->image) > 1)
+                        @if (is_array($imageArray) && count($imageArray) > 1)
                             <div id="activity{{ $activity->id }}" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    @foreach ($activity->image as $index => $imagePath)
+                                    @foreach ($imageArray as $index => $imagePath)
                                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                            <img src="{{ asset('storage/' . $imagePath) }}" class="d-block w-100"
+                                            <img src="{{ asset('storage/image/' . $imagePath) }}" class="d-block w-100"
                                                 style="height: 350px;" alt="{{ $activity->activity_name }}">
                                         </div>
                                     @endforeach
@@ -37,22 +40,25 @@
                                 </button>
                             </div>
                         @else
-                            @php
-                                $imageArray = json_decode($activity->image);
-                            @endphp
                             <div>
-                                <img src="{{ asset('storage/' . $imageArray[0]) }}" class="w-100" style="height: 350px;"
-                                    alt="{{ $activity->activity_name }}">
+                                <img src="{{ URL::asset('storage/image/' . $imageArray) }}" class="w-100"
+                                    style="height: 350px;" alt="{{ $activity->activity_name }}">
                             </div>
                         @endif
-
+                        @php
+                            $currentDate = now();
+                            $startDate = $activity->start_date;
+                            $endDate = $activity->end_date;
+                        @endphp
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <div>
-                                    <i class="fa-regular fa-calendar"></i>
-                                    {{ date('Y/m/d', strtotime($activity->start_date)) }}
-                                    - {{ date('Y/m/d', strtotime($activity->end_date)) }}
-                                </div>
+                                @if ($startDate && $endDate)
+                                    <div>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        {{ date('Y/m/d', strtotime($activity->start_date)) }}
+                                        - {{ date('Y/m/d', strtotime($activity->end_date)) }}
+                                    </div>
+                                @endif
                                 <div>
                                     <i class="fa-solid fa-location-dot"></i>
                                     {{ $activity->location }}
@@ -79,17 +85,13 @@
                             <p>{{ $activity->description }}</p>
                         </div>
                         <div class="card-footer">
-                            @php
-                                $currentDate = now();
-                                $startDate = $activity->start_date;
-                                $endDate = $activity->end_date;
-                            @endphp
-                        
+
                             @if ($startDate && $endDate && $currentDate >= $startDate && $currentDate <= $endDate)
-                                <a href="{{ route('activity.register', ['activity_id' => $activity->id]) }}">Register for this activity</a>
+                                <a href="{{ route('activity.register', ['activity_id' => $activity->id]) }}">Register for
+                                    this activity</a>
                             @endif
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

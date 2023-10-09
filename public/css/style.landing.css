@@ -98,6 +98,25 @@ body {
     color: #ff7900 !important;
 }
 
+.triangle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 7em solid transparent;
+    border-top: 7em solid #ff7900;
+}
+
+.text {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    padding: 0.2em;
+    transform: translate(-90%, -300%) rotate(45deg);
+}
+
+
 @media (min-width: 576px) {
     .our-impact-header h1::after {
         left: 47%;

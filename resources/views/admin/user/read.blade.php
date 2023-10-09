@@ -136,8 +136,6 @@
     <div class="d-md-flex flex-md-equal w-100">
         <div class="col-lg-3 mt-1">
             <div class="mt-1 ">
-
-
                 <form method="post"
                     action="@if (Auth::user()->component == 'digitalcenter') {{ route('ODC.filter') }}
                 @elseif (Auth::user()->component == 'fablab')
@@ -224,10 +222,10 @@
                                     <option @if ($nationality == 'All') selected @endif value="">
                                         All
                                     </option>
-                                    <option @if ($nationality == '1') selected @endif value="1">
+                                    <option @if ($nationality == '1') selected @endif value="Jordanian">
                                         Jordanian
                                     </option>
-                                    <option @if ($nationality == '0') selected @endif value="0">
+                                    <option @if ($nationality == '0') selected @endif value="NoneJordanian">
                                         Non
                                         Jordanian
                                     </option>
@@ -240,9 +238,9 @@
                                 <select class="form-control" id="" name="gender">
                                     <option @if ($gender == 'All') selected @endif value="">All
                                     </option>
-                                    <option @if ($gender == '1') selected @endif value="1">Male
+                                    <option @if ($gender == 'male') selected @endif value="1">Male
                                     </option>
-                                    <option @if ($gender == '0') selected @endif value="0">Female
+                                    <option @if ($gender == 'female') selected @endif value="0">Female
                                     </option>
                                 </select>
                             </fieldset>

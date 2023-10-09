@@ -311,54 +311,39 @@ class ODCController extends Controller
     public function filter(Request $request)
     {
         $users = ODC::query();
+    
         if ($request->filled('nationality')) {
-            $users->where('nationality', $request->nationality)->orderBy('first_name');
+            $users->where('nationality', $request->nationality);
         }
         if ($request->filled('gender')) {
-            $users->where('gender', $request->gender)->orderBy('first_name');
+            $users->where('gender', $request->gender);
         }
         if ($request->filled('year')) {
             $currentYear = now()->year;
             $birthYear = $currentYear - $request->year;
-
-            $users->where('age', $birthYear)->orderBy('first_name');
+    
+            $users->where('age', $birthYear);
         }
-
         if ($request->filled('educational_level')) {
-            $users->where('education', $request->educational_level)->orderBy('first_name');
+            $users->where('education', $request->educational_level);
         }
-
-
-        if ($request->nationality != "") {
-            $nationality = $request->nationality;
-        } else {
-            $nationality = "All";
-        }
-        if ($request->gender != "") {
-            $gender = $request->gender;
-        } else {
-            $gender = "All";
-        }
-        if ($request->year != "") {
-            $year = $request->year;
-        } else {
-            $year = "All";
-        }
-        if ($request->educational_level != "") {
-            $educational_level = $request->educational_level;
-        } else {
-            $educational_level = "All";
-        }
-
+    
+        $users->orderBy('first_name'); // Apply ordering after all filters
+    
+        $nationality = $request->filled('nationality') ? $request->nationality : "All";
+        $gender = $request->filled('gender') ? $request->gender : "All";
+        $year = $request->filled('year') ? $request->year : "All";
+        $educational_level = $request->filled('educational_level') ? $request->educational_level : "All";
+    
         return view('admin.user.read', [
-            'users' => $users->where('nationality', "!=", null)->get(),
+            'users' => $users->get(), // Removed the unnecessary where clause
             'nationality' => $nationality,
             'gender' => $gender,
             'year' => $year,
             'education' => $educational_level,
         ]);
     }
-
+    
 
     public function show($id)
     {
