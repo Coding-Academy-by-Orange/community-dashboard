@@ -31,8 +31,8 @@ class CreateBigbyorangeUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('passport_number')->unique()->nullable();
             $table->bigInteger('national_id')->unique()->nullable();
-            $table->date('birthday');
-            $table->bigInteger('mobile')->unique();
+            $table->date('birthdate');
+            $table->string('mobile')->unique();
             $table->string('residence');
             $table->string('education');
             $table->string('major_study')->default('without_major')->nullable();

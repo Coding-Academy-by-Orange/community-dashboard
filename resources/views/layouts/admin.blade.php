@@ -154,7 +154,7 @@
                     </li>
                     <li class=" nav-item"><a href="{{ route('activity.index') }}"><i
                                 class='bx bx-landscape'></i><span class="menu-title text-truncate">Manage
-                                Acticities </span></a>
+                                Activities </span></a>
                     </li>
                     @if (Auth::user()->is_super)
                         <li class=" nav-item"><a href="{{ route('notifications.index') }}"><i

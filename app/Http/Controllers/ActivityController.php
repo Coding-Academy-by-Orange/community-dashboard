@@ -17,47 +17,47 @@ class ActivityController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function index()
-     {
-         $user = Auth::user();
-         if ($user) {
-             if ($user->is_super == '1') {
-                 if (empty($user->component)) {
-                     $activities = Activity::all();
-                 } else {
-                     $activities = Activity::whereIn('component', $user->component)->get();
-                 }
-             } else {
+    public function index()
+    {
+        $user = Auth::user();
+        if ($user) {
+            if ($user->is_super == '1') {
+                if (empty($user->component)) {
+                    $activities = Activity::all();
+                } else {
+                    $activities = Activity::where('component', $user->component)->get();
+                }
+            } else {
                 $activities = Activity::where(function ($query) use ($user) {
                     $query->where(function ($query) use ($user) {
                         $query->where('component', $user->component)
                             ->where('admin_id', $user->id)
                             ->where('end_date', '>', now());
                     })
-                    ->orWhere(function ($query) use ($user) {
-                        $query->where('component', $user->component)
-                            ->where('admin_id', '<>', $user->id)
-                            ->where('start_date', '<=', now())
-                            ->where('end_date', '>', now());
-                    });
+                        ->orWhere(function ($query) use ($user) {
+                            $query->where('component', $user->component)
+                                ->where('admin_id', '<>', $user->id)
+                                ->where('start_date', '<=', now())
+                                ->where('end_date', '>', now());
+                        });
                 })
-                ->orderBy('start_date')
-                ->orderBy('end_date')
-                ->get();
+                    ->orderBy('start_date')
+                    ->orderBy('end_date')
+                    ->get();
             }
             return view('admin.activity.index', compact('activities'));
-         } else {
-             $activities = Activity::where('timeline',"public")
-                 ->where('end_date', '>', now())
-                 ->where('start_date', '<=', now())
-                 ->orderBy('start_date')
-                 ->orderBy('end_date')
-                 ->take(5)
-                 ->get();
-             return view('public.landingpage', compact('activities'));
-         }
-     }
-     
+        } else {
+            $activities = Activity::where('timeline', "public")
+                ->where('end_date', '>', now())
+                ->where('start_date', '<=', now())
+                ->orderBy('start_date')
+                ->orderBy('end_date')
+                ->take(5)
+                ->get();
+            return view('public.landingpage', compact('activities'));
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,11 +76,13 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'activity_type' => 'nullable|string',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'publication_date' => 'nullable|date',
             'description' => 'required|string',
             'location' => 'required|string',
             'cohort' => 'nullable|string',
@@ -97,12 +99,15 @@ class ActivityController extends Controller
             $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
-                $imageName = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                 $img = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-                $imagePath = 'admin-assets/images/activity/' . $imageName;
-                $image->storeAs('public', $imagePath);
+                // $imagePath = 'admin-assets/images/activity/' . $imageName;
+                // $image->storeAs('public', $imagePath);
+                // $request->file('images')->storeAs('public/image', $imageName);
+                // $img = $request->file('image')->getClientOriginalName();
+                $image->storeAs('public/image', $img);
 
-                $imagePaths[] = $imagePath;
+                $imagePaths[] = $img;
             }
         } else {
             $imagePaths = null;
@@ -115,6 +120,7 @@ class ActivityController extends Controller
             'activity_type' => $request->input('activity_type'),
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
+            'publication_date' => $request->input('publication_date'),
             'description' => $request->input('description'),
             'location' => $request->input('location'),
             'cohort' => $request->input('cohort'),

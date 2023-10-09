@@ -2,10 +2,13 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class BigbyOrange extends Model
 {
+
+
     protected $table = 'bigbyorange_users';
     protected $fillable = [
         'describe_the_effect',

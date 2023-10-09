@@ -93,6 +93,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'a1af1fc0cffb5f61cbaf64dbe030fdb9' => __DIR__ . '/..' . '/laravel/legacy-factories/helpers.php',
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
     );
 
@@ -200,7 +201,9 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         ),
         'I' => 
         array (
+            'Illuminate\\Support\\' => 19,
             'Illuminate\\Foundation\\Auth\\' => 27,
+            'Illuminate\\Database\\Eloquent\\' => 29,
             'Illuminate\\' => 11,
         ),
         'G' => 
@@ -500,9 +503,17 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         array (
             0 => __DIR__ . '/..' . '/laravel/socialite/src',
         ),
+        'Illuminate\\Support\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/macroable',
+        ),
         'Illuminate\\Foundation\\Auth\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
+        ),
+        'Illuminate\\Database\\Eloquent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/legacy-factories/src',
         ),
         'Illuminate\\' => 
         array (
@@ -636,7 +647,6 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
 
     public static $classMap = array (
         'ActivityRegisterSeeder' => __DIR__ . '/../..' . '/database/seeds/ActivityRegisterSeeder.php',
-        'AdminsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminsTableSeeder.php',
         'App\\Activity' => __DIR__ . '/../..' . '/app/Activity.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\BigbyOrange' => __DIR__ . '/../..' . '/app/BigbyOrange.php',
@@ -650,6 +660,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
         'App\\FablabUsers' => __DIR__ . '/../..' . '/app/FablabUsers.php',
         'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
+        'App\\Http\\Controllers\\ActivityRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityRegisterController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminLoginController.php',
         'App\\Http\\Controllers\\Auth\\AdminRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminRegisterController.php',
@@ -661,6 +672,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\BigbyOrangeController' => __DIR__ . '/../..' . '/app/Http/Controllers/BigbyOrangeController.php',
         'App\\Http\\Controllers\\CodeChallengeController' => __DIR__ . '/../..' . '/app/Http/Controllers/CodeChallengeController.php',
+        'App\\Http\\Controllers\\CodingSchoolController' => __DIR__ . '/../..' . '/app/Http/Controllers/CodingSchoolController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EnglishQuizController' => __DIR__ . '/../..' . '/app/Http/Controllers/EnglishQuizController.php',
         'App\\Http\\Controllers\\FablabUsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/FablabUsersController.php',
@@ -700,6 +712,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\Test' => __DIR__ . '/../..' . '/app/Test.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\activity_register' => __DIR__ . '/../..' . '/app/activity_register.php',
+        'App\\codingSchool' => __DIR__ . '/../..' . '/app/codingSchool.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -791,6 +804,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'CodingSchoolSeeder' => __DIR__ . '/../..' . '/database/seeds/CodingSchoolSeeder.php',
         'Complex\\Complex' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Complex.php',
         'Complex\\Exception' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Exception.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -2242,10 +2256,11 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'Illuminate\\Database\\Eloquent\\Concerns\\HasTimestamps' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasTimestamps.php',
         'Illuminate\\Database\\Eloquent\\Concerns\\HidesAttributes' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HidesAttributes.php',
         'Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php',
-        'Illuminate\\Database\\Eloquent\\Factory' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Factory.php',
-        'Illuminate\\Database\\Eloquent\\FactoryBuilder' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/FactoryBuilder.php',
+        'Illuminate\\Database\\Eloquent\\Factory' => __DIR__ . '/..' . '/laravel/legacy-factories/src/Factory.php',
+        'Illuminate\\Database\\Eloquent\\FactoryBuilder' => __DIR__ . '/..' . '/laravel/legacy-factories/src/FactoryBuilder.php',
         'Illuminate\\Database\\Eloquent\\HigherOrderBuilderProxy' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/HigherOrderBuilderProxy.php',
         'Illuminate\\Database\\Eloquent\\JsonEncodingException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/JsonEncodingException.php',
+        'Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider' => __DIR__ . '/..' . '/laravel/legacy-factories/src/LegacyFactoryServiceProvider.php',
         'Illuminate\\Database\\Eloquent\\MassAssignmentException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/MassAssignmentException.php',
         'Illuminate\\Database\\Eloquent\\Model' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Model.php',
         'Illuminate\\Database\\Eloquent\\ModelNotFoundException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/ModelNotFoundException.php',
@@ -2754,7 +2769,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'Illuminate\\Support\\Traits\\EnumeratesValues' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/EnumeratesValues.php',
         'Illuminate\\Support\\Traits\\ForwardsCalls' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php',
         'Illuminate\\Support\\Traits\\Localizable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/Localizable.php',
-        'Illuminate\\Support\\Traits\\Macroable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/Macroable.php',
+        'Illuminate\\Support\\Traits\\Macroable' => __DIR__ . '/..' . '/illuminate/macroable/Traits/Macroable.php',
         'Illuminate\\Support\\Traits\\ReflectsClosures' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/ReflectsClosures.php',
         'Illuminate\\Support\\Traits\\Tappable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/Traits/Tappable.php',
         'Illuminate\\Support\\ViewErrorBag' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/ViewErrorBag.php',
@@ -6132,6 +6147,9 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'ZipStream\\Option\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Version.php',
         'ZipStream\\Stream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Stream.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
+        'activitiesSeeder' => __DIR__ . '/../..' . '/database/seeds/activitiesSeeder.php',
+        'adminsSeeder' => __DIR__ . '/../..' . '/database/seeds/adminsSeeder.php',
+        'bigbyorange_usrersSeeder' => __DIR__ . '/../..' . '/database/seeds/bigbyorange_usrersSeeder.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

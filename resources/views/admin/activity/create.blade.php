@@ -29,27 +29,34 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="activity_type">Activity Type</label>
-                                            <select id="activity_type" name="activity_type" class="form-control @error('activity_type') is-invalid @enderror">
+                                            <select id="activity_type" name="activity_type"
+                                                class="form-control @error('activity_type') is-invalid @enderror">
                                                 <option value="">Select Activity Type</option>
-                                                <option value="Registration" {{ old('activity_type') == 'Registration' ? 'selected' : '' }}>Registration</option>
-                                                <option value="Event" {{ old('activity_type') == 'Event' ? 'selected' : '' }}>Event</option>
-                                                <option value="News" {{ old('activity_type') == 'News' ? 'selected' : '' }}>News</option>
+                                                <option value="Registration"
+                                                    {{ old('activity_type') == 'Registration' ? 'selected' : '' }}>
+                                                    Registration</option>
+                                                <option value="Event"
+                                                    {{ old('activity_type') == 'Event' ? 'selected' : '' }}>Event</option>
+                                                <option value="News"
+                                                    {{ old('activity_type') == 'News' ? 'selected' : '' }}>News</option>
                                             </select>
                                             @error('activity_type')
-                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                {{-- Dates (Initially Hidden) --}}
+                                <div class="row" id= "datesInput" style="display: none">
                                     <!-- Start Date -->
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="start_date">Start Date</label>
                                             <input type="date" id="start_date" name="start_date"
                                                 class="form-control @error('start_date') is-invalid @enderror"
-                                                value="{{ old('start_date') }}" required>
+                                                value="{{ old('start_date') }}">
                                             @error('start_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -58,12 +65,12 @@
                                     </div>
 
                                     <!-- End Date -->
-                                    <div class="col-6">
+                                    <div class="col-6" >
                                         <div class="form-group">
                                             <label for="end_date">End Date</label>
                                             <input type="date" id="end_date" name="end_date"
                                                 class="form-control @error('end_date') is-invalid @enderror"
-                                                value="{{ old('end_date') }}" required>
+                                                value="{{ old('end_date') }}">
                                             @error('end_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -87,18 +94,43 @@
                                     </div>
                                 </div>
 
-                                <!-- Location -->
+                                <!-- Location Dropdown -->
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="location">Location</label>
-                                            <input type="text" id="location" name="location"
-                                                class="form-control @error('location') is-invalid @enderror"
-                                                value="{{ old('location') }}" required>
-                                            @error('location')
+                                            <select id="location-dropdown" class="form-control">
+                                                <option value="Amman">Amman</option>
+                                                <option value="Irbid">Irbid</option>
+                                                <option value="Zarqa">Zarqa</option>
+                                                <option value="Balqaa">Balqaa</option>
+                                                <option value="Aqaba">Aqaba</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Publication Date -->
+                                    <div class="col-6" >
+                                        <div class="form-group">
+                                            <label for="start_date">Publication Date</label>
+                                            <input type="date" id="publication_date" name="publication_date"
+                                                class="form-control @error('publication_date') is-invalid @enderror"
+                                                value="{{ old('publication_date') }}" required>
+                                            @error('publication_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Location Input (Initially Hidden) -->
+                                <div class="row" id="other-location" style="display: none;">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="location">Other Location</label>
+                                            <input type="text" id="location" name="location" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -159,6 +191,7 @@
                                             <select id="timeline" name="timeline"
                                                 class="form-control @error('timeline') is-invalid @enderror" required>
                                                 <option value="private">Private</option>
+                                                <option value="component">Private(component)</option>
                                                 <option value="public">Public</option>
                                             </select>
                                             @error('timeline')
@@ -168,33 +201,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <!-- Component -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="component">Component</label>
-                                        <input type="text" id="component" name="component" class="form-control @error('component') is-invalid @enderror" value="{{ old('component') }}" required>
-                                        @error('component')
-                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            <!-- User ID -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="user_id">User ID</label>
-                                        <input type="text" id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror" value="{{ old('user_id') }}" required>
-                                        @error('user_id')
-                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div> --}}
-
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="reset" class="btn btn-secondary mr-1">Reset</button>
@@ -209,4 +215,27 @@
             </div>
         </div>
     </section>
+    <script>
+        var locationDropdown = document.getElementById("location-dropdown");
+        var otherLocationInput = document.getElementById("other-location");
+    
+        locationDropdown.addEventListener("change", function () {
+            if (locationDropdown.value === "other") {
+                otherLocationInput.style.display = "block";
+            } else {
+                otherLocationInput.style.display = "none"; 
+            }
+        });
+
+        var typeDropdown = document.getElementById("activity_type");
+        var datesInput = document.getElementById("datesInput");
+    
+        typeDropdown.addEventListener("change", function () {
+            if (typeDropdown.value === "Registration") {
+                datesInput.style.display = "flex";
+            } else {
+                datesInput.style.display = "none"; 
+            }
+        });
+    </script>
 @endsection

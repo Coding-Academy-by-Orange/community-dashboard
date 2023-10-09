@@ -17,8 +17,9 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->string('activity_name');
             $table->string('activity_type')->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->date('publication_date')->nullable();
             $table->text('description');
             $table->text('location');
             $table->string('cohort')->nullable();

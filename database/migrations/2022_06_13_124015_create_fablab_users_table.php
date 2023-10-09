@@ -28,9 +28,9 @@ class CreateFablabUsersTable extends Migration
 
             $table->string('passport_number')->unique()->nullable();
             $table->bigInteger('national_id')->unique()->nullable();
-            $table->integer('age');
-            $table->bigInteger('mobile')->unique();
-            $table->bigInteger('whatsapp')->unique();
+            $table->date('birthdate');
+            $table->string('mobile')->unique();
+            $table->string('whatsapp')->unique()->nullable();
 
             $table->string('residence');
             $table->string('education');
@@ -38,8 +38,7 @@ class CreateFablabUsersTable extends Migration
             $table->string('employment');
 
             $table->string('program');
-            $table->string('technology_type')->nullable();
-            $table->string('idea_description');
+            $table->text('idea_description');
 
             $table->string('status')->default('pending');
 

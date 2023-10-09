@@ -24,7 +24,7 @@
                                         <div class="carousel-inner">
                                             @foreach ($activity->image as $index => $imagePath)
                                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                                    <img src="{{ asset('storage/' . $imagePath) }}" class="w-100"
+                                                    <img src="{{ asset('storage/image/' . $imagePath) }}" class="w-100"
                                                         style="height: 350px;" alt="{{ $activity->activity_name }}">
                                                 </div>
                                             @endforeach
@@ -45,7 +45,7 @@
                                         $imageArray = json_decode($activity->image);
                                     @endphp
                                     <div>
-                                        <img src="{{ asset('storage/' . $imageArray[0]) }}" class="w-100"
+                                        <img src="{{ asset('storage/image/' . $imageArray) }}" class="w-100"
                                             style="height: 350px;" alt="{{ $activity->activity_name }}">
                                     </div>
                                 @endif

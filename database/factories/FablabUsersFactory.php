@@ -7,6 +7,5 @@ use App\FablabUsers;
 
 $factory->define(FablabUsers::class, function (Faker $faker) {
     return [
-        //
     ];
 });

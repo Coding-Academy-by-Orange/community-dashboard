@@ -28,9 +28,9 @@ class CreateDigitalcenterUsersTable extends Migration
             $table->string('passport_number')->unique()->nullable();
             $table->string('other_nationalty')->nullable();
             $table->bigInteger('national_id')->unique()->nullable();
-            $table->integer('age');
-            $table->bigInteger('mobile')->unique();
-            $table->bigInteger('whatsapp')->nullable();
+            $table->date('birthdate');
+            $table->string('mobile')->unique();
+            $table->string('whatsapp')->nullable();
 
             $table->string('residence');
             $table->string('education');

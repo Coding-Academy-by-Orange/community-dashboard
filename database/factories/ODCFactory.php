@@ -7,6 +7,5 @@ use App\ODC;
 
 $factory->define(ODC::class, function (Faker $faker) {
     return [
-        //
     ];
 });

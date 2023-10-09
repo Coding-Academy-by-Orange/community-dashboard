@@ -18,14 +18,26 @@ class FablabUsersController extends Controller
      */
     public function index()
     {
-        $activities = Activity::where('timeline',"public")
-        ->where('component', "fablab")
-        ->where('end_date', '>', now())
-        ->where('start_date', '<=', now())
-        ->orderBy('start_date')
-        ->orderBy('end_date')
-        ->take(5)
-        ->get();
+        $activities = Activity::where('component', 'fablab')
+            ->whereIn('timeline', ["public", "component"])
+            ->where(function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNotNull('publication_date')
+                        ->where('publication_date', '<=', now());
+                })->orWhere(function ($subquery) {
+                    $subquery->whereNull('publication_date')
+                        ->whereNull('start_date')
+                        ->whereNull('end_date');
+                });
+            })
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
         return view('public.fablab.fablabregistration', compact('activities'));
     }
 
@@ -54,7 +66,7 @@ class FablabUsersController extends Controller
             'email' => 'required|email|unique:fablab_users,email',
             'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/|unique:fablab_users,mobile',
             'whatsapp' => 'required|numeric|digits:10|regex:/^07/|unique:fablab_users,whatsapp',
-            'age' => 'required|numeric|digits_between:1,2|min:18',
+            'birthdate' => 'required|date|before:today',
             'father_name' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
@@ -92,15 +104,12 @@ class FablabUsersController extends Controller
                 }
             }
 
-            if ($errors->has('age')) {
-                $ageErrors = $errors->get('age');
-                foreach ($ageErrors as $error) {
-                    $allErrors['age'] = $error;
+            if ($errors->has('birthdate')) {
+                $birthdateErrors = $errors->get('birthdate');
+                foreach ($birthdateErrors as $error) {
+                    $allErrors['birthdate'] = $error;
                 }
             }
-
-
-
 
             if ($errors->has('father_name')) {
                 $father_nameErrors = $errors->get('father_name');
@@ -132,8 +141,6 @@ class FablabUsersController extends Controller
                     $allErrors['father_name'] = $error;
                 }
             }
-
-
 
             if ($errors->has('nationality')) {
                 $nationalityErrors = $errors->get('nationality');
@@ -171,7 +178,6 @@ class FablabUsersController extends Controller
                     $allErrors['affiliation'] = $error;
                 }
             }
-
         }
 
         session()->forget('status');
@@ -179,7 +185,7 @@ class FablabUsersController extends Controller
 
 
 
-        if($request->input('nationality') == 'Jordanian'){
+        if ($request->input('nationality') == 'Jordanian') {
             $validator = Validator::make($request->all(), [
                 'national_id' => 'required|digits:10|unique:fablab_users,national_id',
             ]);
@@ -204,7 +210,7 @@ class FablabUsersController extends Controller
         }
 
 
-        if($request->input('education') == 'Undergraduate' || $request->input('education') == 'Graduate' ){
+        if ($request->input('education') == 'Undergraduate' || $request->input('education') == 'Graduate') {
             $validator = Validator::make($request->all(), [
                 'major_study' => 'required',
             ]);
@@ -217,7 +223,7 @@ class FablabUsersController extends Controller
             }
         }
 
-        if ($allErrors != []){
+        if ($allErrors != []) {
             return redirect('/fablab-registration')->withErrors($allErrors)->withInput();
         }
 
@@ -233,13 +239,13 @@ class FablabUsersController extends Controller
             $new_user->gender = $request->input('gender');
             $new_user->email = $request->input('email');
 
-            if($request->input('nationality') == 'Jordanian'){
+            if ($request->input('nationality') == 'Jordanian') {
                 $new_user->national_id = $request->input('national_id');
             } else {
                 $new_user->passport_number = $request->input('passport_number');
             };
 
-            $new_user->age = $request->input('age');
+            $new_user->birthdate = $request->input('birthdate');
             $new_user->mobile = $request->input('mobile');
             $new_user->whatsapp = $request->input('whatsapp');
             $new_user->residence = $request->input('residence');
@@ -247,46 +253,44 @@ class FablabUsersController extends Controller
             $new_user->major_study = $request->input('major_study');
             $new_user->employment = $request->input('employment');
             $new_user->program = $request->input('program');
-           // $new_user->technology_type = $request->input('technology_type');
+            // $new_user->technology_type = $request->input('technology_type');
             $new_user->idea_description = $request->input('idea_description');
 
             $new_user->save();
 
             return redirect('/thanks');
-
         } catch (QueryException $e) {
             if ($e->errorInfo[1] === 1062) {
 
                 $errorMessage = [];
                 dd($e->errorInfo);
-                if($request->input('nationality') == 'Jordanian'){
-                    $exists = FablabUsers::where('national_id',$request->input('national_id'))->exists();
+                if ($request->input('nationality') == 'Jordanian') {
+                    $exists = FablabUsers::where('national_id', $request->input('national_id'))->exists();
                     if ($exists) {
-                        array_push($errorMessage , 'The national id is already registered.');
+                        array_push($errorMessage, 'The national id is already registered.');
                     }
                 } else {
-                    $exists = FablabUsers::where('passport_number',$request->input('passport_number'))->exists();
+                    $exists = FablabUsers::where('passport_number', $request->input('passport_number'))->exists();
                     if ($exists) {
-                        array_push($errorMessage , 'The passport number is already registered.');
+                        array_push($errorMessage, 'The passport number is already registered.');
                     }
                 };
 
-                $exists = FablabUsers::where('email',$request->input('email'))->exists();
+                $exists = FablabUsers::where('email', $request->input('email'))->exists();
                 if ($exists) {
-                    array_push($errorMessage , 'The email address is already registered.');
+                    array_push($errorMessage, 'The email address is already registered.');
                 }
-                $exists = FablabUsers::where('mobile',$request->input('mobile'))->exists();
+                $exists = FablabUsers::where('mobile', $request->input('mobile'))->exists();
                 if ($exists) {
-                    array_push($errorMessage , 'The mobile is already registered.');
+                    array_push($errorMessage, 'The mobile is already registered.');
                 }
-                $exists = FablabUsers::where('whatsapp',$request->input('whatsapp'))->exists();
+                $exists = FablabUsers::where('whatsapp', $request->input('whatsapp'))->exists();
                 if ($exists) {
-                    array_push($errorMessage , 'The whatsapp is already registered.');
+                    array_push($errorMessage, 'The whatsapp is already registered.');
                 }
 
                 return redirect('/fablab-registration')->withErrors($errorMessage)->withInput();
-
-            }  else {
+            } else {
                 $errorMessage  = 'An error occurred during registration.';
                 $request->session()->put('error', $errorMessage);
                 return redirect('/fablab-registration')->withInput();
@@ -330,7 +334,7 @@ class FablabUsersController extends Controller
         } else {
             $educational_level = "All";
         }
-       
+
         return view('admin.user.read', [
             'users' => $users->where('nationality', "!=", null)->get(),
             'nationality' => $nationality,

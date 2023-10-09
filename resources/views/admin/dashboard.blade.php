@@ -144,22 +144,8 @@
                     </div>
                 </div>
             </div>
-
-            {{-- </div> --}}
         </div>
         <div class="row">
-            {{-- <div class="col-lg-4  ">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h3 class="greeting-text text-left">Educational Background</h3>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="d-flex justify-content-between align-items-end">
-                            <canvas id="myChart-background"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-lg-6  ">
                 <div class="card ">
                     <div class="card-header ">
@@ -455,47 +441,47 @@
 
             @if ($component == 'digitalcenter')
                 @php
-                    $ageColumnName = 'age';
+                    $birthdayColumnName = 'birthdate';
                     $userCounts = [
-                        \App\ODC::where($ageColumnName, '<', 17)->count(),
-                        \App\ODC::where($ageColumnName, '<=', 20)
-                            ->where($ageColumnName, '>', 17)
+                        \App\ODC::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 23)
-                            ->where($ageColumnName, '>', 20)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 26)
-                            ->where($ageColumnName, '>', 23)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 30)
-                            ->where($ageColumnName, '>', 26)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '>', 30)->count(),
+                        \App\ODC::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
             @elseif ($component == 'fablab')
                 @php
-                    $ageColumnName = 'age';
+                    $birthdayColumnName = 'birthdate';
                     $userCounts = [
-                        \App\FablabUsers::where($ageColumnName, '<', 17)->count(),
-                        \App\FablabUsers::where($ageColumnName, '<=', 20)
-                            ->where($ageColumnName, '>', 17)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count(),
-                        \App\FablabUsers::where($ageColumnName, '<=', 23)
-                            ->where($ageColumnName, '>', 20)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count(),
-                        \App\FablabUsers::where($ageColumnName, '<=', 26)
-                            ->where($ageColumnName, '>', 23)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count(),
-                        \App\FablabUsers::where($ageColumnName, '<=', 30)
-                            ->where($ageColumnName, '>', 26)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count(),
-                        \App\FablabUsers::where($ageColumnName, '>', 30)->count(),
+                        \App\FablabUsers::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
             @elseif ($component == 'bigbyorange')
                 @php
-                    $birthdayColumnName = 'birthday';
+                    $birthdayColumnName = 'birthdate';
                     $userCounts = [
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 2001)
@@ -516,50 +502,52 @@
             @elseif ($component == '')
                 @php
                     $ageColumnName = 'age';
-                    $birthdayColumnName = 'birthday';
+                    $birthdayColumnName = 'birthdate';
                     $userCounts = [
-                        \App\ODC::where($ageColumnName, '<', 17)->count() + \App\FablabUsers::where($ageColumnName, '<', 17)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
-                        \App\ODC::where($ageColumnName, '<=', 20)
-                            ->where($ageColumnName, '>', 17)
+                        \App\ODC::where($birthdayColumnName, '>', 2003)->count() + \App\FablabUsers::where($birthdayColumnName, '>', 2003)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count() +
-                        \App\FablabUsers::where($ageColumnName, '<=', 20)
-                            ->where($ageColumnName, '>', 17)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count() +
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 2001)
                             ->whereYear($birthdayColumnName, '<=', 2003)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 23)
-                            ->where($ageColumnName, '>', 20)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count() +
-                        \App\FablabUsers::where($ageColumnName, '<=', 23)
-                            ->where($ageColumnName, '>', 20)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count() +
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1998)
                             ->whereYear($birthdayColumnName, '<=', 2000)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 26)
-                            ->where($ageColumnName, '>', 23)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count() +
-                        \App\FablabUsers::where($ageColumnName, '<=', 26)
-                            ->where($ageColumnName, '>', 23)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count() +
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1995)
                             ->whereYear($birthdayColumnName, '<=', 1997)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '<=', 30)
-                            ->where($ageColumnName, '>', 26)
+                        \App\ODC::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count() +
-                        \App\FablabUsers::where($ageColumnName, '<=', 30)
-                            ->where($ageColumnName, '>', 26)
+                        \App\FablabUsers::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count() +
                         \App\BigbyOrange::whereYear($birthdayColumnName, '>=', 1991)
                             ->whereYear($birthdayColumnName, '<=', 1994)
                             ->count(),
-                        \App\ODC::where($ageColumnName, '>', 30)->count() + \App\FablabUsers::where($ageColumnName, '>', 30)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '<', 1991)->count(),
+                        \App\ODC::whereYear($birthdayColumnName, '<', 1991)->count() + \App\FablabUsers::whereYear($birthdayColumnName, '<', 1991)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
             @endif
         @endif
+
+        var userCounts = [{{ implode(',', $userCounts) }}];
         var date = new Date();
         var currentYear = date.getFullYear();
         var ctx = document.getElementById('myChart-ages').getContext('2d');
@@ -571,7 +559,7 @@
                 ],
                 datasets: [{
                     label: '# of applicants',
-                    data: [{{ implode(',', $userCounts) }}],
+                    data: userCounts,
                     backgroundColor: [
                         '#FF5B5C',
                         'rgba(73, 88, 234, 1)',

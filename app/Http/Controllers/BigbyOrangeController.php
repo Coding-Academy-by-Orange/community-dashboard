@@ -21,16 +21,28 @@ class BigbyOrangeController extends Controller
      */
     public function index()
     {
-        $activities = Activity::where('timeline',"public")
-        ->where('component', "bigbyorange")
-        ->where('end_date', '>', now())
-        ->where('start_date', '<=', now())
-        ->orderBy('start_date')
-        ->orderBy('end_date')
-        ->take(5)
-        ->get();
-    return view('public.bigbyorangeusers.bigbyorange', compact('activities'));
-       
+        $activities = Activity::where('component', 'bigbyorange')
+            ->whereIn('timeline', ["public", "component"])
+            ->where(function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNotNull('publication_date')
+                        ->where('publication_date', '<=', now());
+                })->orWhere(function ($subquery) {
+                    $subquery->whereNull('publication_date')
+                        ->whereNull('start_date')
+                        ->whereNull('end_date');
+                });
+            })
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
+
+        return view('public.bigbyorangeusers.bigbyorange', compact('activities'));
     }
 
     /**
@@ -96,7 +108,7 @@ class BigbyOrangeController extends Controller
                 'grandfather_name' => 'required',
 
                 'linkedin_profile' => 'required|url',
-                'birthday' => 'required|date|before:today',
+                'birthdate' => 'required|date|before:today',
                 'gender' => 'required',
                 'nationality' => 'required',
 
@@ -113,7 +125,7 @@ class BigbyOrangeController extends Controller
                 'Position' => 'required',
                 'ProvideOfPosition' => 'required|url',
             ], [
-                'birthday.before' => 'The date must not be in the future.',
+                'birthdate.before' => 'The date must not be in the future.',
             ]);
 
             if ($validator->fails()) {
@@ -163,10 +175,10 @@ class BigbyOrangeController extends Controller
                     }
                 }
 
-                if ($errors->has('birthday')) {
-                    $birthdayErrors = $errors->get('birthday');
-                    foreach ($birthdayErrors as $error) {
-                        $allErrors['birthday'] = $error;
+                if ($errors->has('birthdate')) {
+                    $birthdateErrors = $errors->get('birthdate');
+                    foreach ($birthdateErrors as $error) {
+                        $allErrors['birthdate'] = $error;
                     }
                 }
 
@@ -539,7 +551,7 @@ class BigbyOrangeController extends Controller
                     $new_user->major_study = Session::get('form_step2')['major_study'];
 
                     $new_user->linkedin_profile = Session::get('form_step2')['linkedin_profile'];
-                    $new_user->birthday = Session::get('form_step2')['birthday'];
+                    $new_user->birthdate = Session::get('form_step2')['birthdate'];
                     $new_user->gender = Session::get('form_step2')['gender'];
                     $new_user->email = Session::get('form_step2')['email'];
 
@@ -610,7 +622,7 @@ class BigbyOrangeController extends Controller
             $users->where('gender', $request->gender)->orderBy('first_name');
         }
         if ($request->filled('year')) {
-            $users->whereYear('birthday', $request->year)->orderBy('first_name');
+            $users->whereYear('birthdate', $request->year)->orderBy('first_name');
         }
         if ($request->filled('educational_level')) {
             $users->where('education', $request->educational_level)->orderBy('first_name');
@@ -647,7 +659,7 @@ class BigbyOrangeController extends Controller
         ]);
     }
 
-   
+
     public function show($id)
     {
         $student = BigbyOrange::findOrFail($id);

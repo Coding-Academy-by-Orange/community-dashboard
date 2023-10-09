@@ -19,14 +19,26 @@ class ODCController extends Controller
      */
     public function index()
     {
-        $activities = Activity::where('timeline',"public")
-        ->where('component', "digitalcenter")
-        ->where('end_date', '>', now())
-        ->where('start_date', '<=', now())
-        ->orderBy('start_date')
-        ->orderBy('end_date')
-        ->take(5)
-        ->get();
+        $activities = Activity::where('component', 'digitalcenter')
+            ->whereIn('timeline', ["public", "component"])
+            ->where(function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNotNull('publication_date')
+                        ->where('publication_date', '<=', now());
+                })->orWhere(function ($subquery) {
+                    $subquery->whereNull('publication_date')
+                        ->whereNull('start_date')
+                        ->whereNull('end_date');
+                });
+            })
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
         return view('public.digitalcenter.orangedigitalcenter', compact('activities'));
     }
 
@@ -54,7 +66,7 @@ class ODCController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:digitalcenter_users,email',
             'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/|unique:digitalcenter_users,mobile',
-            'age' => 'required|numeric|digits_between:1,2|min:18',
+            'birthdate' => 'required|date|before:today',
             'father_name' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
@@ -87,10 +99,10 @@ class ODCController extends Controller
                 }
             }
 
-            if ($errors->has('age')) {
-                $ageErrors = $errors->get('age');
-                foreach ($ageErrors as $error) {
-                    $allErrors['age'] = $error;
+            if ($errors->has('birthdate')) {
+                $birthdateErrors = $errors->get('birthdate');
+                foreach ($birthdateErrors as $error) {
+                    $allErrors['birthdate'] = $error;
                 }
             }
 
@@ -238,7 +250,7 @@ class ODCController extends Controller
                     $new_user->other_nationalty = $request->input('other_nationalty');
                 };
             };
-            $new_user->age = $request->input('age');
+            $new_user->birthdate = $request->input('birthdate');
             $new_user->mobile = $request->input('mobile');
             if ($request->input('whatsapp')) {
                 $new_user->whatsapp = $request->input('whatsapp');
@@ -287,8 +299,6 @@ class ODCController extends Controller
                 }
 
                 return redirect('/ODC')->withErrors($errorMessage)->withInput();
-
-
             } else {
                 $errorMessage  = 'حدث خطأ في عملية التسجيل.';
                 $request->session()->put('error', $errorMessage);
