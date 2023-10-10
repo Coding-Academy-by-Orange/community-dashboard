@@ -48,24 +48,24 @@ class ActivityController extends Controller
             return view('admin.activity.index', compact('activities'));
         } else {
             $activities = Activity::whereIn('timeline', ["public", "component"])
-            ->where(function ($query) {
-                $query->where(function ($subquery) {
-                    $subquery->whereNotNull('publication_date')
-                        ->where('publication_date', '<=', now());
-                })->orWhere(function ($subquery) {
-                    $subquery->whereNull('publication_date')
-                        ->whereNull('start_date')
-                        ->whereNull('end_date');
-                });
-            })
-            ->orWhere(function ($query) {
-                $query->whereNotNull('end_date')
-                    ->where('end_date', '>', now());
-            })
-            ->orderBy('start_date')
-            ->orderBy('end_date')
-            ->take(5)
-            ->get();
+                ->where(function ($query) {
+                    $query->where(function ($subquery) {
+                        $subquery->whereNotNull('publication_date')
+                            ->where('publication_date', '<=', now());
+                    })->orWhere(function ($subquery) {
+                        $subquery->whereNull('publication_date')
+                            ->whereNull('start_date')
+                            ->whereNull('end_date');
+                    });
+                })
+                ->orWhere(function ($query) {
+                    $query->whereNotNull('end_date')
+                        ->where('end_date', '>', now());
+                })
+                ->orderBy('start_date')
+                ->orderBy('end_date')
+                ->take(5)
+                ->get();
             return view('public.landingpage', compact('activities'));
         }
     }
@@ -101,6 +101,8 @@ class ActivityController extends Controller
             'timeline' => 'required|string',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video' => 'nullable|string',
+            'other_location' => 'required_if:location,other|string', 
+
         ]);
 
         if ($validator->fails()) {
@@ -111,7 +113,7 @@ class ActivityController extends Controller
             $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
-                 $img = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $img = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
                 // $imagePath = 'admin-assets/images/activity/' . $imageName;
                 // $image->storeAs('public', $imagePath);
@@ -126,7 +128,10 @@ class ActivityController extends Controller
         }
 
         $admin = Auth::guard('admin')->user();
-
+        $location = $request->input('location');
+        if ($location === 'other') {
+            $location = $request->input('other_location');
+        }
         $activity = new Activity([
             'activity_name' => $request->input('name'),
             'activity_type' => $request->input('activity_type'),
@@ -134,7 +139,7 @@ class ActivityController extends Controller
             'end_date' => $request->input('end_date'),
             'publication_date' => $request->input('publication_date'),
             'description' => $request->input('description'),
-            'location' => $request->input('location'),
+            'location' => $location,
             'cohort' => $request->input('cohort'),
             'timeline' => $request->input('timeline'),
             'image' => json_encode($imagePaths),
@@ -142,7 +147,6 @@ class ActivityController extends Controller
             'component' => $admin->component,
             'admin_id' => $admin->id,
         ]);
-
         $activity->save();
         return redirect('/thanks');
     }

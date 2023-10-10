@@ -271,7 +271,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-
         $dateOfBirth = $user->day . "/" . $user->month . "/" . $user->year;
         $age =  Carbon::parse($dateOfBirth)->age;
         if (!DB::table('code_challenges')->where('user_id', $user->id)->exists()) {

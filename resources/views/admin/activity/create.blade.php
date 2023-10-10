@@ -129,7 +129,7 @@
                                 <div class="row" id="other-location" style="display: none;">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="location">Other Location</label>
+                                            <label for="other-location">Other Location</label>
                                             <input type="text" id="location" name="location" class="form-control">
                                         </div>
                                     </div>

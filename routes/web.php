@@ -189,6 +189,7 @@ Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name
 // ODC Registration Form
 Route::resource('/ODC', "ODCController");
 
+// Coding school
 Route::resource('/codingschool', "CodingSchoolController");
 
 // Big By Orange Registration Form
