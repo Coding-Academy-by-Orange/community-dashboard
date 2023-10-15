@@ -18,11 +18,14 @@
                                 <div class="card-header">
                                     <h3>{{ $activity->activity_name }}</h3>
                                 </div>
-                                @if (is_array($activity->image) && count($activity->image) > 1)
+                                @php
+                                $imageArray = json_decode($activity->image);
+                            @endphp
+                                @if (is_array( $imageArray) && count( $imageArray) > 1)
                                     <div id="activityCarousel-{{ $activity->id }}" class="carousel slide"
                                         data-ride="carousel">
                                         <div class="carousel-inner">
-                                            @foreach ($activity->image as $index => $imagePath)
+                                            @foreach ( $imageArray as $index => $imagePath)
                                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                                     <img src="{{ asset('storage/image/' . $imagePath) }}" class="w-100"
                                                         style="height: 350px;" alt="{{ $activity->activity_name }}">
@@ -41,9 +44,6 @@
                                         </a>
                                     </div>
                                 @else
-                                    @php
-                                        $imageArray = json_decode($activity->image);
-                                    @endphp
                                     <div>
                                         <img src="{{ asset('storage/image/' . $imageArray) }}" class="w-100"
                                             style="height: 350px;" alt="{{ $activity->activity_name }}">

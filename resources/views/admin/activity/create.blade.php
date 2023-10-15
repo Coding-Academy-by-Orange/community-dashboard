@@ -99,7 +99,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="location">Location</label>
-                                            <select id="location-dropdown" class="form-control">
+                                            <select id="location-dropdown" name="location"class="form-control">
                                                 <option value="Amman">Amman</option>
                                                 <option value="Irbid">Irbid</option>
                                                 <option value="Zarqa">Zarqa</option>
@@ -130,7 +130,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="other-location">Other Location</label>
-                                            <input type="text" id="location" name="location" class="form-control">
+                                            <input type="text" id="location" name="other-location" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -222,8 +222,11 @@
         locationDropdown.addEventListener("change", function () {
             if (locationDropdown.value === "other") {
                 otherLocationInput.style.display = "block";
+                otherLocationInput.setAttribute("required", "required");
             } else {
                 otherLocationInput.style.display = "none"; 
+                otherLocationInput.removeAttribute("required"); 
+
             }
         });
 

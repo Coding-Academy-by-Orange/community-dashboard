@@ -23,6 +23,7 @@ class CodingSchoolSeeder extends Seeder
                 'mobile' => $faker->unique()->phoneNumber,
                 'birthdate' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'gender' => $faker->randomElement(['male', 'female']),
+                'residence' => $faker->randomElement(['Amman', 'Zarqa', 'Irbid', 'Ajloun', 'Jerash', 'Mafraq', 'Balqa', 'Madaba', 'Karak', 'Tafilah', "Ma'an", 'Aqaba']),
                 'education' => $faker->randomElement(['Below Tawjihi', 'Tawjihi', 'Diploma', 'Undergraduate', 'Graduate']),
             ]);
         }

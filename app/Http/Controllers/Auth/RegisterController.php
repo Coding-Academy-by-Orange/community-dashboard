@@ -42,15 +42,17 @@ class RegisterController extends Controller
 
     public function index()
     {
-	    return view('auth.register');
-	    //return view('auth.close');
+        return view('auth.register');
+        //return view('auth.close');
     }
 
-    public function terms(){
+    public function terms()
+    {
         return view('auth.terms');
     }
 
-    public function help(){
+    public function help()
+    {
         return view('auth.help');
     }
 
@@ -85,12 +87,12 @@ class RegisterController extends Controller
         $to_email = auth()->user()->email;
         // $data = array('name' => "Coding Academy", 'body' => "Your Verification Code is: 1243 ");
         $data = [
-                    'name'=> 'Coding Academy',
-                    'body'=> 'Your Verification Code is: 1243',
-                    'code'=> $emailCode
-                ];
+            'name' => 'Coding Academy',
+            'body' => 'Your Verification Code is: 1243',
+            'code' => $emailCode
+        ];
 
-	$subject = 'Verification Code - Orange Coding Academy';
+        $subject = 'Verification Code - Orange Coding Academy';
         Mail::to($to_email)->send(new SendEmailVerification($data, $subject));
         // Mail::send('emails.verification', $data, function ($message) use ($to_name, $to_email) {
         //     $message->to($to_email, $to_name)
@@ -101,7 +103,7 @@ class RegisterController extends Controller
 
         // Hard coded escape email validation
         //dd(auth()->user()->email_verification);
-       // return redirect()->route('register.step2',auth()->user()->email_verification);
+        // return redirect()->route('register.step2',auth()->user()->email_verification);
 
     }
 
@@ -110,7 +112,7 @@ class RegisterController extends Controller
         //prepare variable for sending mails
         $mcode = mt_rand(1000, 9999);
         $content = [
-            "receiverMobile" => substr(auth()->user()->mobile , 1) ,
+            "receiverMobile" => substr(auth()->user()->mobile, 1),
             "mobile_verification" => $mcode,
             'senderMobile' => 777777777,
             'code' => $mcode,
@@ -118,7 +120,7 @@ class RegisterController extends Controller
         ];
         if (auth()->user()->is_email_verified == '1' && auth()->user()->is_mobile_verified == '1') {
             return redirect()->route('client.dashboard');
-        }elseif(auth()->user()->is_email_verified == '1' && auth()->user()->is_mobile_verified == '0'){
+        } elseif (auth()->user()->is_email_verified == '1' && auth()->user()->is_mobile_verified == '0') {
             User::updateAndSendSMS($content);
             return redirect()->route('basic.info.step3.index');
         }
@@ -127,7 +129,7 @@ class RegisterController extends Controller
         ]);
         $user = auth()->user();
         if ($request->email_verification == $user->email_verification) {
-//            if (auth()->user()->email_verification == $request->email_verification) {
+            //            if (auth()->user()->email_verification == $request->email_verification) {
             $user = User::where('id', Auth::user()->id)->first();
             User::where('id', auth()->id())->update([
                 "is_email_verified" => 1,
@@ -137,19 +139,18 @@ class RegisterController extends Controller
         } else {
             return back()->with('status_destroy', "Please enter a valid code!");
         }
-
     }
 
     public function resend_email_verification()
     {
-       //$emailCode = mt_rand(1000, 9999);
-       $to_email = auth()->user()->email;
-       $emailCode = auth()->user()->email_verification;
-         //$data = array('name' => "Coding Academy", 'body' => "Your Verification Code is: 1243 ");
+        //$emailCode = mt_rand(1000, 9999);
+        $to_email = auth()->user()->email;
+        $emailCode = auth()->user()->email_verification;
+        //$data = array('name' => "Coding Academy", 'body' => "Your Verification Code is: 1243 ");
         $data = [
-            'name'=> 'Coding Academy',
-            'body'=> 'Your Verification Code is: ',
-            'code'=> $emailCode
+            'name' => 'Coding Academy',
+            'body' => 'Your Verification Code is: ',
+            'code' => $emailCode
         ];
 
         $subject = 'Verification Code';
@@ -162,17 +163,17 @@ class RegisterController extends Controller
     {
         $mcode = mt_rand(1000, 9999);
         $content = [
-            "receiverMobile" => substr(auth()->user()->mobile , 1) ,
+            "receiverMobile" => substr(auth()->user()->mobile, 1),
             "mobile_verification" => $mcode,
             'senderMobile' => 777777777,
             'code' => $mcode
         ];
         User::updateAndSendSMS($content);
-//        $code = mt_rand(1000, 9999);
-//        $user = User::where('id', Auth::user()->id)->first();
-//        User::where('id', $user->id)->update([
-//            "mobile_verification" => $code,
-//        ]);
+        //        $code = mt_rand(1000, 9999);
+        //        $user = User::where('id', Auth::user()->id)->first();
+        //        User::where('id', $user->id)->update([
+        //            "mobile_verification" => $code,
+        //        ]);
         return back()->with("status_store", "A verification code has been resent ");
     }
 
@@ -182,7 +183,7 @@ class RegisterController extends Controller
         $user = User::where('id', auth()->id())->first();
 
 
-        if ($user->en_first_name == '' || $user->en_first_name == null) {
+        if ($user->first_name == '' || $user->first_name == null) {
             return view('client.basic_information');
         }
 
@@ -218,22 +219,23 @@ class RegisterController extends Controller
             "nationality" => 'required',
             "gender" => 'required',
             "martial_status" => 'required',
-            "year" => 'required|string|size:4',
-            "month" => 'required|string',
-            "day" => 'required|string|size:2',
+            // "year" => 'required|string|size:4',
+            // "month" => 'required|string',
+            // "day" => 'required|string|size:2',
+            'birthdate' => 'required|date',
             'id_img' => 'required|image',
             'personal_img' => 'required|image',
             'vaccination_img' => 'required|image',
-            "en_first_name" => array(
+            "first_name" => array(
                 'required'
             ),
-            "en_second_name" => array(
+            "second_name" => array(
                 'required'
             ),
-            "en_third_name" => array(
+            "third_name" => array(
                 'required'
             ),
-            "en_last_name" => array(
+            "last_name" => array(
                 'required'
             ),
             "ar_first_name" => array(
@@ -249,35 +251,35 @@ class RegisterController extends Controller
                 'required'
             )
         ]);
-        if ($request->id_img != null && $request->personal_img && $request->vaccination_img  ) {
-            $id_img= Storage::disk('public')->put('images', $request->file('id_img'));
-            $personal_img= Storage::disk('public')->put('images', $request->file('personal_img'));
-            $vaccination_img= Storage::disk('public')->put('images', $request->file('vaccination_img'));
+        if ($request->id_img != null && $request->personal_img && $request->vaccination_img) {
+            $id_img = Storage::disk('public')->put('images', $request->file('id_img'));
+            $personal_img = Storage::disk('public')->put('images', $request->file('personal_img'));
+            $vaccination_img = Storage::disk('public')->put('images', $request->file('vaccination_img'));
         }
         User::where('id', $user->id)->update($validated);
-        User::where('id', $user->id)->update(['id_img'=>$id_img,'personal_img'=>$personal_img,'vaccination_img' =>$vaccination_img]);
+        User::where('id', $user->id)->update(['id_img' => $id_img, 'personal_img' => $personal_img, 'vaccination_img' => $vaccination_img]);
 
 
         return redirect(route('client.dashboard'))->with('status_store', 'Your account has been Created Successfully ');
     }
 
-//    public function basic_info_step2(Request $request)
-//    {
-//        $code = mt_rand(1000, 9999);
-//        $request->validate([
-//            'mobile' => 'required',
-//        ]);
-//        $content = [
-//            "receiverMobile" => $request->mobile,
-//            "mobile_verification" => $code,
-//            'senderMobile' => 777777777,
-//            'code' => $code
-//        ];
-//        User::updateAndSendSMS($content);
-//
-//        return redirect()->route('basic.info.step3.index');
-//
-//    }
+    //    public function basic_info_step2(Request $request)
+    //    {
+    //        $code = mt_rand(1000, 9999);
+    //        $request->validate([
+    //            'mobile' => 'required',
+    //        ]);
+    //        $content = [
+    //            "receiverMobile" => $request->mobile,
+    //            "mobile_verification" => $code,
+    //            'senderMobile' => 777777777,
+    //            'code' => $code
+    //        ];
+    //        User::updateAndSendSMS($content);
+    //
+    //        return redirect()->route('basic.info.step3.index');
+    //
+    //    }
 
     public function basic_info_step3(Request $request)
     {
@@ -293,6 +295,5 @@ class RegisterController extends Controller
         } else {
             return back()->with('status_destroy', 'please enter a valid code');
         }
-
     }
 }

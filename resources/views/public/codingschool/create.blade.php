@@ -12,28 +12,28 @@
 
 
                 <div class="form-group">
-                    <label for="email" class="is-required">Name<span class="sr-only">
+                    <label for="email" class="is-required mb-2">Name<span class="sr-only">
                             (required)</span></label>
                     <div class="input-group ">
-                        <input style="margin-right : 10px ; margin-bottom : 10px" name="first_name"
+                        <input  name="first_name"
                             placeholder="First Name" type="text"
-                            class="form-control email @error('first_name') is-invalid @enderror " id="first_name"
+                            class="form-control email @error('first_name') is-invalid @enderror mb-2 me-2" id="first_name"
                             value="{{ old('first_name') }}" required>
 
                         <input name="father_name" placeholder="Father's Name" type="text"
-                            class="form-control email @error('father_name') is-invalid @enderror " id="father_name"
+                            class="form-control email @error('father_name') is-invalid @enderror mb-2 me-2" id="father_name"
                             value="{{ old('father_name') }}" required>
 
                     </div>
 
                     <div class="input-group ">
-                        <input style="margin-right : 10px ; margin-bottom : 10px" name="grandfather_name"
+                        <input  name="grandfather_name"
                             placeholder="Grandfather's Name" type="text"
-                            class="form-control email @error('grandfather_name') is-invalid @enderror "
+                            class="form-control email @error('grandfather_name') is-invalid @enderror mb-2 me-2"
                             id="grandfather_name" value="{{ old('grandfather_name') }}" required>
 
                         <input name="last_name" placeholder="Last Name" type="text"
-                            class="form-control email @error('last_name') is-invalid @enderror " id="last_name"
+                            class="form-control email @error('last_name') is-invalid @enderror mb-2 me-2" id="last_name"
                             value="{{ old('last_name') }}" required>
 
                     </div>
@@ -61,7 +61,7 @@
 
 
                 <div class="form-group">
-                    <label for="birthdate" class="is-required">Birthdate<span class="sr-only">
+                    <label for="birthdate" class="is-required mb-2">Birthdate<span class="sr-only">
                             (required)</span></label>
                     <div class="input-group ">
                         <input name="birthdate" required

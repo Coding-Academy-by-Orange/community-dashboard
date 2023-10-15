@@ -16,6 +16,7 @@ body {
 .components {
     border-bottom: 0.25rem solid #ffd200 !important;
     box-shadow: 0px 2px 14px #00000024;
+    height: 20vh !important;
 }
 
 .components .fa-solid {
@@ -69,13 +70,15 @@ body {
     background-color: #ff7900;
     width: 4rem;
     height: 0.25rem;
+    left: 48%;
+    bottom: 65rem;
 }
 
 .slick-slide {
     background-color: transparent;
 }
 
-.slick-slide .border-start {
+.slider-impact .border-start {
     border-color: #eeeeee !important;
 }
 
@@ -113,13 +116,44 @@ body {
     z-index: 2;
     color: white;
     padding: 0.2em;
-    transform: translate(-90%, -300%) rotate(45deg);
+    transform: translate(-95%, -200%) rotate(45deg);
 }
 
 
-@media (min-width: 576px) {
+@media (max-width: 944px) {
     .our-impact-header h1::after {
-        left: 47%;
-        bottom: 67rem;
+        bottom: 70rem;
+    }
+}
+
+@media (max-width: 707px) {
+
+    .slider-impact .border-start {
+        border-color: transparent !important;
+    }
+
+    .components {
+        height: 20vh !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .our-impact-header h1::after {
+        bottom: 50rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .our-impact-header h1::after {
+        left: 46%;
+        bottom: 68rem;
+    }
+
+    .component-name {
+        font-size: 1rem;
+    }
+
+    .components {
+        height: 18vh !important;
     }
 }

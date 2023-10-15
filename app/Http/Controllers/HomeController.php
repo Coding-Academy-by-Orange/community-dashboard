@@ -35,7 +35,7 @@ class HomeController extends Controller
      */
     public function publicLanding()
     {
-    return view('public.codingacademy.coding-academy');
+    //return view('public.codingacademy.coding-academy');
     }
 
     public function showDashboard()

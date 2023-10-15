@@ -26,6 +26,7 @@ class CreateCodingSchoolsTable extends Migration
             $table->date('birthdate');
             $table->string('gender');
 
+            $table->string('residence');
             $table->string('education');
             $table->string('major_study')->default('without_major')->nullable();
 

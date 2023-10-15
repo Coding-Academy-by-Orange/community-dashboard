@@ -17,14 +17,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user =Auth::user();
+        $user = Auth::user();
         if ($user->component == 'fablab') {
             $admins = Admin::orderByDesc('id')->where('component', 'fablab')->get();
         } else if ($user->component == 'digitalcenter') {
             $admins = Admin::orderByDesc('id')->where('component', 'digitalcenter')->get();
         } else if ($user->component == 'bigbyorange') {
             $admins = Admin::orderByDesc('id')->where('component', 'bigbyorange')->get();
-        } else if ((Auth::user()->is_super) &&($user->component == '')) {
+        } else if ($user->component == 'codingacademy') {
+            $admins = Admin::orderByDesc('id')->where('component', 'codingacademy')->get();
+        } else if ($user->component == 'codingschool') {
+            $admins = Admin::orderByDesc('id')->where('component', 'codingschool')->get();
+        } else if ((Auth::user()->is_super) && ($user->component == '')) {
             $admins = Admin::orderByDesc('id')->get();
         };
         return view('admin.admin.read', compact('admins'));
@@ -47,7 +51,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('admin.admin.update' , compact('admin'));
+        return view('admin.admin.update', compact('admin'));
     }
 
     /**
@@ -60,7 +64,7 @@ class AdminController extends Controller
     // Admin $admin
     public function update(Request $request, Admin $admin)
     {
-//        dd($admin);
+        //        dd($admin);
         $validated = $request->validate([
             'fname' => 'Required|min:3',
             'lname' => 'Required|min:3',
@@ -72,6 +76,4 @@ class AdminController extends Controller
         $admin->update($validated);
         return redirect()->route('admins.index')->with('status_update', 'The data has been updated successfully');
     }
-
-
 }

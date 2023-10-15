@@ -14,7 +14,7 @@
                 <div class="card-img-overlay  text-primary">
                     <div class="container float-start w-50">
                         <p class="breadcrumb text-primary">Orange CSR</p>
-                        <h1 class="text-primary">Orange CSR</h1>
+                        <h1 class="text-primary">Fablab</h1>
                         <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
                         <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
                             lives and local communities through digital transformation</p>
@@ -24,60 +24,60 @@
         </div>
     </section>
     <section class="container my-5">
-        <div class="d-flex ">
-            <div class="p-2">
+        <div class="row">
+            <div class="col mb-3">
                 <a href="/codingacademy" class="p-3 card d-flex text-decoration-none components">
                     <div class="row">
-                        <div class="col-5">
-                            <span class="fa-solid fa-school h2 p-3 mb-0"></span>
+                        <div class="col-lg-5 ">
+                            <span class="fa-solid fa-school h4 p-3 mb-0"></span>
                         </div>
-                        <div class="col-7 mb-0 pt-3 component-name">
+                        <div class="col-lg-7  mb-0 pt-3  component-name">
                             Coding Academy
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="p-2">
+            <div class="col mb-3">
                 <a href="{{ route('fablab.index') }}" class="p-3 card d-flex text-decoration-none components">
                     <div class="row">
-                        <div class="col-5">
-                            <span class="fa-solid fa-rocket h2 p-3 mb-0"></span>
+                        <div class="col-lg-5">
+                            <span class="fa-solid fa-rocket h4 p-3 mb-0"></span>
                         </div>
-                        <div class="col-7 mb-0 pt-3 component-name">
+                        <div class="col-lg-7 mb-0 pt-3 component-name">
                             FabLab
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="p-2">
+            <div class="col mb-3">
                 <a href="/ODC" class="p-3 card d-flex text-decoration-none components">
                     <div class="row">
-                        <div class="col-5">
-                            <span class="fa-solid fa-building h2 p-3 mb-0"></span>
+                        <div class="col-lg-5">
+                            <span class="fa-solid fa-building h4 p-3 mb-0"></span>
                         </div>
-                        <div class="col-7 mb-0 pt-3 component-name">
+                        <div class="col-lg-7 mb-0 pt-3 component-name">
                             ODC
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="p-2">
+            <div class="col mb-3">
                 <a href="{{ route('BigByOrange.index') }}" class="p-3 card d-flex text-decoration-none components">
                     <div class="row">
-                        <div class="col-5">
-                            <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
+                        <div class="col-lg-5">
+                            <span class="fa-solid fa-microchip h4 p-3 mb-0"></span>
                         </div>
-                        <div class="col-7 mb-0 pt-3 component-name">
+                        <div class="col-lg-7 mb-0 pt-3 component-name">
                             Big By Orange
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="p-2">
+            <div class="col mb-3">
                 <a href="{{ route('codingschool.index') }}" class="p-3 card d-flex text-decoration-none components">
                     <div class="row">
                         <div class="col-5">
-                            <span class="fa-solid fa-microchip h2 p-3 mb-0"></span>
+                            <span class="fa-solid fa-microchip h4 p-3 mb-0"></span>
                         </div>
                         <div class="col-7 mb-0 pt-3 component-name">
                             Coding School
@@ -98,7 +98,19 @@
             <div class="container slide-activity px-4">
                 @foreach ($activities as $activity)
                     <div class="card " style=" width: 15em; position: relative;">
-                        <div class="triangle"> <span class="text">{{$activity->component}}</span></div>
+                        <div class="triangle"><span class="text p-1 text-start">
+                                @if ($activity->component == 'digitalcenter')
+                                    Digital Centers
+                                @elseif ($activity->component == 'fablab')
+                                    FabLab
+                                @elseif ($activity->component == 'codingacademy')
+                                    Coding Academy
+                                @elseif ($activity->component == 'bigbyorange')
+                                    Big By Orange
+                                @elseif ($activity->component == 'codingschool')
+                                    Coding School
+                                @endif
+                            </span></div>
                         @php
                             $imageArray = json_decode($activity->image);
                         @endphp
@@ -132,10 +144,7 @@
                         @endif
                         <div class="card-img-overlay pt-5 pb-0 text-white">
                             <h1 class="py-3">{{ $activity->activity_name }} </h1>
-                            <div class="py-3">
-                                <i class="fa-solid fa-location-dot"></i>
-                                {{ $activity->location }}
-                            </div>
+
                             <p class="text-truncate"style="max-width: 150px;">{{ $activity->description }}
                             </p>
                             <a href="{{ route('show', $activity) }}" class="btn btn-primary mt-4">See
@@ -153,96 +162,93 @@
                 <h1>Our Impact</h1>
             </div>
             <div class="slider-impact pt-5">
-                <div class="d-flex ">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
-                <div class=" d-flex">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
-                <div class=" d-flex">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -273,8 +279,8 @@
                 ]
             });
             $('.slider-impact').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
+                slidesToShow: 4,
+                slidesToScroll: 4,
                 arrows: false,
                 dots: true,
                 speed: 300,
@@ -284,13 +290,15 @@
                 responsive: [{
                         breakpoint: 991,
                         settings: {
-                            slidesToShow: 1,
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
                         }
                     },
                     {
                         breakpoint: 767,
                         settings: {
                             slidesToShow: 1,
+                            slidesToScroll: 1,
                         }
                     }
                 ]

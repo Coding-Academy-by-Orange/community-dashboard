@@ -33,7 +33,7 @@ class BigExport implements FromCollection, WithHeadings
             'Email',
             'Passport Number',
             'National ID',
-            'Birthday',
+            'Birthdate',
             'Mobile',
             'Residence',
             'Education',

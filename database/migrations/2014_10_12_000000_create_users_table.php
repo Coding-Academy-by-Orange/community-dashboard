@@ -27,15 +27,18 @@ class CreateUsersTable extends Migration
             $table->boolean('is_mobile_verified')->default(0);
             $table->boolean('nationality')->nullable();
             $table->text('country')->nullable();
-            $table->bigInteger('identity_number')->nullable();
-            $table->bigInteger('residency_number')->nullable();
-            $table->bigInteger('year')->nullable();
-            $table->string('month')->nullable();
-            $table->bigInteger('day')->nullable();
-            $table->string('en_first_name')->nullable();
-            $table->string('en_second_name')->nullable();
-            $table->string('en_third_name')->nullable();
-            $table->string('en_last_name')->nullable();
+            // $table->bigInteger('identity_number')->nullable();
+            // $table->bigInteger('residency_number')->nullable();
+            $table->string('passport_number')->unique()->nullable();
+            $table->bigInteger('national_id')->unique()->nullable();
+            // $table->bigInteger('year')->nullable();
+            // $table->string('month')->nullable();
+            // $table->bigInteger('day')->nullable();
+            $table->date('birthdate')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('second_name')->nullable();
+            $table->string('third_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('ar_first_name')->nullable();
             $table->string('ar_second_name')->nullable();
             $table->string('ar_third_name')->nullable();
@@ -45,7 +48,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken()->nullable();
 
             // basic info
-            $table->string('educational_level')->nullable();
+            $table->string('education')->nullable();
             $table->string('educational_status')->nullable();
             $table->string('field')->nullable();
             $table->string('educational_background')->nullable();
@@ -60,7 +63,7 @@ class CreateUsersTable extends Migration
             $table->string('fullName_1')->nullable();
             $table->bigInteger('relative_mobile_2')->nullable();
             $table->string('relative_relation_2')->nullable();
-             $table->string('fullName_2')->nullable();
+            $table->string('fullName_2')->nullable();
             $table->string('is_committed')->nullable();
 
             //is submitted

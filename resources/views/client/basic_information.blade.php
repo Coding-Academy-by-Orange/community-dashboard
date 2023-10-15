@@ -45,7 +45,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12 col-sm-12 country  mb-lg-0 pl-lg-1 ">
+                                    <div class="form-group col-lg-3 col-md-12 col-sm-12 country mb-lg-0 pl-lg-1">
                                         <label for="country" class="is-required">Country</label>
                                         <select name="country"
                                                 class="custom-select @error('country') is-invalid @enderror"
@@ -299,8 +299,13 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12 col-sm-12 ">
-                                        <label class=" is-required " for="ar_first_name">Date Of Birth</label>
-                                        <div class="flexDirection d-flex justify-content-between bod-error-msg">
+                                        <label class=" is-required " for="">Date Of Birth</label>
+                                        <input name="birthdate" type="date"
+                                        class="form-control mr-2   @error('birthdate') is-invalid @enderror "
+                                         id="birthdate"
+                                        required
+                                        value="{{old('birthdate')}}">
+                                        {{-- <div class="flexDirection d-flex justify-content-between bod-error-msg">
                                             <select
                                                 class="px-0 form-control mr-1 year @error('year') is-invalid @enderror"
                                                 name="year" oninput="validateForm()"
@@ -453,7 +458,7 @@
                                                     31
                                                 </option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div id="">
                                         <div class="form-group col-lg-12 mb-1" id="en-name">
@@ -462,26 +467,26 @@
                                                     English</label>
                                                 <div
                                                     class="flexDirection col-md-12 d-flex justify-content-between">
-                                                    <input name="en_first_name" type="text"
-                                                           class="form-control mr-2 en_name1  @error('en_first_name') is-invalid @enderror "
+                                                    <input name="first_name" type="text"
+                                                           class="form-control mr-2 en_name1  @error('first_name') is-invalid @enderror "
                                                            placeholder="First name" id="en_first_name"
                                                            required
-                                                           value="{{old('en_first_name')}}">
-                                                    <input name="en_second_name" type="text"
-                                                           class="form-control mr-2 en_name2 @error('en_second_name') is-invalid @enderror "
+                                                           value="{{old('first_name')}}">
+                                                    <input name="second_name" type="text"
+                                                           class="form-control mr-2 en_name2 @error('second_name') is-invalid @enderror "
                                                            placeholder="Second name" id="en_second_name"
                                                            required
-                                                           value="{{old('en_second_name')}}">
-                                                    <input name="en_third_name" type="text"
-                                                           class="form-control  mr-2 en_name3  @error('en_third_name') is-invalid @enderror "
+                                                           value="{{old('second_name')}}">
+                                                    <input name="third_name" type="text"
+                                                           class="form-control  mr-2 en_name3  @error('third_name') is-invalid @enderror "
                                                            placeholder="Third name" id="en_third_name"
                                                            required
-                                                           value="{{old('en_third_name')}}">
-                                                    <input name="en_last_name" type="text"
-                                                           class="form-control mr-2  en_name4  @error('en_last_name') is-invalid @enderror "
+                                                           value="{{old('third_name')}}">
+                                                    <input name="last_name" type="text"
+                                                           class="form-control mr-2  en_name4  @error('last_name') is-invalid @enderror "
                                                            placeholder="Last name" id="en_family_name"
                                                            required
-                                                           value="{{old('en_last_name')}}">
+                                                           value="{{old('last_name')}}">
                                                 </div>
                                             </div>
                                             <small class=" my-2">

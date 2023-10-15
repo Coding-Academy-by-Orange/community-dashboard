@@ -87,102 +87,99 @@
         @endif
     </section>
     <section class="impact">
-        <div class="container text-white p-5">
+        <div class="container text-white pt-5">
             <div class="our-impact-header center mb-5">
                 <div class="sub-title">On the Society</div>
                 <h1>Our Impact</h1>
             </div>
             <div class="slider-impact pt-5">
-                <div class="d-flex ">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
-                <div class=" d-flex">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
-                <div class=" d-flex">
-                    <div class="container">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                    </div>
-                    <div class="container border-start">
-                        <div class="container text-primary number p-3">336</div>
-                        <div class="container px-3 ">
-                            <div class="impact-title pb-1">Title Title</div>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
                     </div>
                 </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+                <div class="container border-start">
+                    <div class="container text-primary number p-3">336</div>
+                    <div class="container px-3 ">
+                        <div class="impact-title pb-1">Title Title</div>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -213,8 +210,8 @@
                 ]
             });
             $('.slider-impact').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
+                slidesToShow: 4,
+                slidesToScroll: 4,
                 arrows: false,
                 dots: true,
                 speed: 300,
@@ -224,13 +221,15 @@
                 responsive: [{
                         breakpoint: 991,
                         settings: {
-                            slidesToShow: 1,
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
                         }
                     },
                     {
                         breakpoint: 767,
                         settings: {
                             slidesToShow: 1,
+                            slidesToScroll: 1,
                         }
                     }
                 ]

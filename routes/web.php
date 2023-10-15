@@ -2,13 +2,21 @@
 
 use App\Activity;
 use App\FablabUsers;
-use App\Http\Controllers\BigbyOrangeController;
+use App\Http\Controllers\Big\BigbyOrangeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ODCController;
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\ActivityRegisterController;
-use App\Http\Controllers\FablabUsersController;
+use App\Http\Controllers\ODC\ODCController;
+use App\Http\Controllers\Activity\ActivityController;
+use App\Http\Controllers\Activity\ActivityRegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Fablab\FablabUsersController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\AdminRegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CodingAcademy\PersonalInformationController;
+use App\Http\Controllers\CodingAcademy\ControllerCodingAcademy;
 use App\Http\Controllers\TestController;
 
 /*
@@ -17,12 +25,12 @@ use App\Http\Controllers\TestController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', 'ActivityController@index');
+Route::get('/', [ActivityController::class, 'index']);
 
 Route::get('/activity/show/{id}', [ActivityController::class, 'show'])->name('show');
 // activity registration routes
-Route::get('/activity/register/{activity_id}', 'ActivityRegisterController@create')->name('activity.register');
-Route::post('/activity/register', 'ActivityRegisterController@store')->name('activity.register.store');
+Route::get('/activity/register/{activity_id}', [ActivityController::class, 'create'])->name('activity.register');
+Route::post('/activity/register', [ActivityController::class, 'store'])->name('activity.register.store');
 
 
 Route::get('/test', function () {
@@ -34,27 +42,26 @@ Route::post('/test', [TestController::class, 'store'])->name('test.store');
 Auth::routes();
 
 
-Route::get('/home', "HomeController@showDashboard")->name('homeDashboard');
+Route::get('/home', [HomeController::class, 'showDashboard'])->name('homeDashboard');
 
 // Manual Register
-Route::get('/register', "Auth\RegisterController@index");
-Route::get('/terms', "Auth\RegisterController@terms");
-Route::get('/help', "Auth\RegisterController@help");
+Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/terms', [RegisterController::class, 'terms']);
+Route::get('/help', [RegisterController::class, 'help']);
 
 // Google login & Register
-Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('login.google');
-Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback')->name('login.google.callback');
+Route::get('/login/google', [LoginController::class, 'redirectToProvider'])->name('login.google');
+Route::get('/login/google/callback', [LoginController::class, 'handleProviderCallback'])->name('login.google.callback');
 
-
-Route::post('register/step1', "Auth\RegisterController@register_step1")->name('register.step1');
+Route::post('register/step1', [RegisterController::class, 'register_step1'])->name('register.step1');
+Route::post('register/step2', [RegisterController::class, 'register_step2'])->name('register.step2');
 Route::view('/email/verification', "auth.email_verification2")->name('auth.email.verification2');
-//Route::post('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
 
-// Hard Coded To Skip Email validation
-//Route::get('register/step2', "Auth\RegisterController@register_step2" )->name('register.step2');
+// Hard Coded To Skip Email validation 
+//Route::get('register/step2',[RegisterController::class, 'register_step2'] )->name('register.step2');
 
-Route::get('resend/email/verification', "Auth\RegisterController@resend_email_verification")->name('resend.email.verification.submit');
-Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_verification")->name('resend.mobile.verification.submit');
+Route::get('resend/email/verification', [RegisterController::class, 'resend_email_verification'])->name('resend.email.verification.submit');
+Route::get('resend/mobile/verification', [RegisterController::class, 'resend_mobile_verification'])->name('resend.mobile.verification.submit');
 
 
 
@@ -63,34 +70,33 @@ Route::get('resend/mobile/verification', "Auth\RegisterController@resend_mobile_
 Route::middleware(['auth'])->prefix('/user/')->group(function () {
 
     // Basic info
-    Route::get('basic/info/step1', "Auth\RegisterController@basic_info_index")->name('basic.info');
-    Route::post('basic/info/step1', "Auth\RegisterController@basic_info_step1")->name('basic.info.step1.submit');
-    Route::get('basic/info/step2/index', "Auth\RegisterController@basic_info_step2_index")->name('basic.info.step2.index');
-    Route::post('basic/info/step2', "Auth\RegisterController@basic_info_step2")->name('basic.info.step2.submit');
-    Route::get('basic/info/step3/index', "Auth\RegisterController@basic_info_step3_index")->name('basic.info.step3.index');
-    Route::post('basic/info/step3', "Auth\RegisterController@basic_info_step3")->name('basic.info.step3.submit');
+    Route::get('basic/info/step1', [RegisterController::class, 'basic_info_index'])->name('basic.info');
+    Route::POST('basic/info/step1', [RegisterController::class, 'basic_info_step1'])->name('basic.info.step1.submit');
+    Route::get('basic/info/step2/index', [RegisterController::class, 'basic_info_step2_index'])->name('basic.info.step2.index');
+    Route::POST('basic/info/step2', [RegisterController::class, 'basic_info_step2'])->name('basic.info.step2.submit');
+    Route::get('basic/info/step3/index', [RegisterController::class, 'basic_info_step3_index'])->name('basic.info.step3.index');
+    Route::POST('basic/info/step3', [RegisterController::class, 'basic_info_step3'])->name('basic.info.step3.submit');
 
     // Dashboard
-    Route::get('dashboard', "HomeController@showDashboard")->name('client.dashboard');
-    Route::post('submission', "HomeController@submission")->name('client.submission');
+    Route::get('dashboard', [HomeController::class, 'showDashboard'])->name('client.dashboard');
+    Route::post('submission', [HomeController::class, 'submission'])->name('client.submission');
 
     // Personal Information CRUD
-    Route::get('personal/information', "PersonalInformationController@index")->name('personal.information');
-    Route::post('personal/information/step1', "PersonalInformationController@personal_information_step1")->name('personal.information.step1.submit');
-    Route::post('personal/information/step2', "PersonalInformationController@personal_information_step2")->name('personal.information.step2.submit');
-    Route::post('personal/information/step3', "PersonalInformationController@personal_information_step3")->name('personal.information.step3.submit');
-    Route::post('personal/information/step4', "PersonalInformationController@personal_information_step4")->name('personal.information.step4.submit');
+    Route::get('personal/information', [PersonalInformationController::class, 'index'])->name('personal.information');
+    Route::post('personal/information/step1', [PersonalInformationController::class, 'personal_information_step1'])->name('personal.information.step1.submit');
+    Route::post('personal/information/step2', [PersonalInformationController::class, 'personal_information_step2'])->name('personal.information.step2.submit');
+    Route::post('personal/information/step3', [PersonalInformationController::class, 'personal_information_step3'])->name('personal.information.step3.submit');
+    Route::post('personal/information/step4', [PersonalInformationController::class, 'personal_information_step4'])->name('personal.information.step4.submit');
 
     // Questionnaire Answer CRUD
-    Route::resource('questionnaires/answers', "QuestionnaireAnswerController");
+    Route::resource('questionnaires/answers', "CodingAcademy/QuestionnaireAnswerController");
 
     // English Quiz  CRUD
-    Route::resource('english/quizzes', "EnglishQuizController");
+    Route::resource('english/quizzes', "CodingAcademy/EnglishQuizController");
 
     // Code Challenge CRUD
-    Route::resource('code/challenges', "CodeChallengeController");
+    Route::resource('code/challenges', "CodingAcademy/CodeChallengeController");
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -101,64 +107,59 @@ Route::middleware(['auth'])->prefix('/user/')->group(function () {
 //Admin Auth
 Route::prefix('admin')->group(function () {
     //Admin Auth
-    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-
-
-    Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
+    Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
 //Admin Auth + Pages
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     // Admin create
-    Route::get('/register', 'Auth\AdminRegisterController@showRegisterForm')->name('admin.register');
-    Route::post('/register', 'Auth\AdminRegisterController@create')->name('admin.register.submit');
+    Route::get('/register', [AdminRegisterController::class, 'showRegisterForm'])->name('admin.register');
+    Route::post('/register', [AdminRegisterController::class, 'create'])->name('admin.register.submit');
 
     //Admin Dashboard
     Route::view('/dashboard', "admin.dashboard")->name('admin.dashboard');
 
     // User CRUD
     Route::resource('/users', "UserController");
-    Route::post('users/filter', 'UserController@filter')->name('users.filter');
-    Route::get('users/status/{id}', 'UserController@status')->name('users.status');
+    Route::post('users/filter', [UserController::class, 'filter'])->name('users.filter');
+    Route::get('users/status/{id}', [UserController::class, 'status'])->name('users.status');
 
 
-    Route::get('file-import-export', 'UserController@fileImportExport');
-    Route::post('/file-import', 'UserController@fileImport')->name('file-import');
-    Route::get('file-export', 'UserController@fileExport')->name('file-export');
+    // Route::get('file-import-export', [UserController::class, 'fileImportExport']);
+    // Route::post('/file-import', [UserController::class, 'fileImport'])->name('file-import');
+    Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
 
     // Notification Crud
-    Route::resource('/notifications', "NotificationController");
+    Route::resource('/notifications', "CodinAcademy\NotificationController");
 
     // Questionnaire CRUD
-    Route::resource('/questionnaires', "QuestionnaireController");
+    Route::resource('/questionnaires', "CodinAcademy\QuestionnaireController");
 
     // Admin CRUD
     Route::resource('/admins', "AdminController");
 
     //activity CRUD
     // Create (Show create form and Store data)
-    Route::get('/activity/create', 'ActivityController@create')->name('activity.create');
-    Route::post('/activity', 'ActivityController@store')->name('activity.store');
+    Route::get('/activity/create', [ActivityController::class, 'create'])->name('activity.create');
+    Route::post('/activity', [ActivityController::class, 'store'])->name('activity.store');
 
     // Read (Show all activities and a single activity)
-    Route::get('/activity', 'ActivityController@index')->name('activity.index');
-    Route::get('/activity/{id}', 'ActivityController@show')->name('activity.show');
+    Route::get('/activity', [ActivityController::class, 'index'])->name('activity.index');
+    Route::get('/activity/{id}', [ActivityController::class, 'show'])->name('activity.show');
 
     // Update (Show edit form and Update data)
-    Route::get('/activity/{id}/edit', 'ActivityController@edit')->name('activity.edit');
-    Route::put('/activity/{id}', 'ActivityController@update')->name('activity.update');
+    Route::get('/activity/{id}/edit', [ActivityController::class, 'edit'])->name('activity.edit');
+    Route::put('/activity/{id}', [ActivityController::class, 'update'])->name('activity.update');
 
     // Delete (Delete data)
-    Route::delete('/activity/{id}', 'ActivityController@destroy')->name('activity.destroy');
+    Route::delete('/activity/{id}', [ActivityController::class, 'destroy'])->name('activity.destroy');
 
     // activity registration routes
     Route::get('/register/create/{activity_id}', [ActivityRegisterController::class, 'create'])->name('admin.activity.register.create');
     Route::post('/register/create', [ActivityRegisterController::class, 'store'])->name('admin.activity.register.store');
     Route::get('/register/index/{activity_id}', [ActivityRegisterController::class, 'index'])->name('admin.activity.register.index');
-    Route::delete('/activity/register/{id}', 'ActivityRegisterController@destroy')->name('admin.activity.register.destroy');
-
-
-
+    Route::delete('/activity/register/{id}', [ActivityRegisterController::class, 'destroy'])->name('admin.activity.register.destroy');
 
     //filter
     Route::post('big/filter', [BigbyOrangeController::class, 'filter'])->name('big.filter');
@@ -180,21 +181,22 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 
 // Coding Academy
-Route::get('/codingacademy', "HomeController@publicLanding");
+Route::get('/codingacademy', [ControllerCodingAcademy::class, 'index']);
+Route::get('/codingacademy/create', [ControllerCodingAcademy::class, 'create'])->name('codingacademy.create');
+
 
 // Fablab Registration Form
-Route::resource('/fablab', 'FablabUsersController')->except('destroy');
+Route::resource('/fablab', 'Fablab\FablabUsersController')->except('destroy');
 Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name('fablab_users.delete');
 
 // ODC Registration Form
-Route::resource('/ODC', "ODCController");
+Route::resource('/ODC', "ODC\ODCController");
 
 // Coding school
-Route::resource('/codingschool', "CodingSchoolController");
+Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
 
 // Big By Orange Registration Form
-Route::resource('/BigByOrange', "BigbyOrangeController");
-
+Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
 Route::get('/thanks', function () {
     return view('public.thanks');

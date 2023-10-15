@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    dashboard
+    Dashboard
 @endsection
 @section('main')
     {{--    <h2 class="my-2">Applicants Statistics</h2> --}}
@@ -71,8 +71,12 @@
                                 {{ App\FablabUsers::count() }}
                             @elseif (Auth::user()->component == 'bigbyorange')
                                 {{ App\BigbyOrange::count() }}
+                            @elseif (Auth::user()->component == 'codingschool')
+                                {{ App\codingSchool::count() }}
+                            @elseif (Auth::user()->component == 'codingacademy')
+                                {{ App\User::count() }}
                             @elseif (Auth::user()->is_super && Auth::user()->component == '')
-                                {{ App\ODC::count() + App\BigbyOrange::count() + App\FablabUsers::count() }}
+                                {{ App\ODC::count() + App\BigbyOrange::count() + App\FablabUsers::count() + App\User::count() + App\codingSchool::count() }}
                             @endif
                         </h3>
                     </div>
@@ -97,8 +101,12 @@
                                         {{ App\FablabUsers::where('gender', 'Male')->count() }}
                                     @elseif (Auth::user()->component == 'bigbyorange')
                                         {{ App\BigbyOrange::where('gender', 'Male')->count() }}
+                                    @elseif (Auth::user()->component == 'codingschool')
+                                        {{ App\codingSchool::where('gender', 'Male')->count() }}
+                                    @elseif (Auth::user()->component == 'codingacademy')
+                                        {{ App\User::where('gender', 'Male')->count() }}
                                     @elseif (Auth::user()->is_super && Auth::user()->component == '')
-                                        {{ App\ODC::where('gender', 'Male')->count() + App\BigbyOrange::where('gender', 'Male')->count() + App\FablabUsers::where('gender', 'Male')->count() }}
+                                        {{ App\ODC::where('gender', 'Male')->count() + App\BigbyOrange::where('gender', 'Male')->count() + App\FablabUsers::where('gender', 'Male')->count() + App\User::where('gender', 'Male')->count() + App\codingSchool::where('gender', 'Male')->count() }}
                                     @endif
                                     Applicant
                                 </h6>
@@ -123,8 +131,12 @@
                                         {{ App\FablabUsers::where('gender', 'Female')->count() }}
                                     @elseif (Auth::user()->component == 'bigbyorange')
                                         {{ App\BigbyOrange::where('gender', 'Female')->count() }}
+                                    @elseif (Auth::user()->component == 'codingschool')
+                                        {{ App\codingSchool::where('gender', 'Female')->count() }}
+                                    @elseif (Auth::user()->component == 'codingacademy')
+                                        {{ App\User::where('gender', 'Female')->count() }}
                                     @elseif (Auth::user()->is_super && Auth::user()->component == '')
-                                        {{ App\ODC::where('gender', 'Female')->count() + App\BigbyOrange::where('gender', 'Female')->count() + App\FablabUsers::where('gender', 'Female')->count() }}
+                                        {{ App\ODC::where('gender', 'Female')->count() + App\BigbyOrange::where('gender', 'Female')->count() + App\FablabUsers::where('gender', 'Female')->count() + App\User::where('gender', 'Female')->count() + App\codingSchool::where('gender', 'Female')->count() }}
                                     @endif
                                     Applicant
                                 </h6>
@@ -438,7 +450,6 @@
             @php
                 $component = Auth::user()->component;
             @endphp
-
             @if ($component == 'digitalcenter')
                 @php
                     $birthdayColumnName = 'birthdate';
@@ -479,6 +490,46 @@
                         \App\FablabUsers::whereYear($birthdayColumnName, '<', 1991)->count(),
                     ];
                 @endphp
+            @elseif ($component == 'codingschool')
+                @php
+                    $birthdayColumnName = 'birthdate';
+                    $userCounts = [
+                        \App\codingSchool::whereYear($birthdayColumnName, '>', 2003)->count(),
+                        \App\codingSchool::whereYear($birthdayColumnName, '>=', 2001)
+                            ->whereYear($birthdayColumnName, '<=', 2003)
+                            ->count(),
+                        \App\codingSchool::whereYear($birthdayColumnName, '>=', 1998)
+                            ->whereYear($birthdayColumnName, '<=', 2000)
+                            ->count(),
+                        \App\codingSchool::whereYear($birthdayColumnName, '>=', 1995)
+                            ->whereYear($birthdayColumnName, '<=', 1997)
+                            ->count(),
+                        \App\codingSchool::whereYear($birthdayColumnName, '>=', 1991)
+                            ->whereYear($birthdayColumnName, '<=', 1994)
+                            ->count(),
+                        \App\codingSchool::whereYear($birthdayColumnName, '<', 1991)->count(),
+                    ];
+                @endphp
+            @elseif ($component == 'codingacademy')
+                @php
+                    $birthdayColumnName = 'year';
+                    $userCounts = [
+                        \App\User::where($birthdayColumnName, '>', 2003)->count(),
+                        \App\User::where($birthdayColumnName, '>=', 2001)
+                            ->where($birthdayColumnName, '<=', 2003)
+                            ->count(),
+                        \App\User::where($birthdayColumnName, '>=', 1998)
+                            ->where($birthdayColumnName, '<=', 2000)
+                            ->count(),
+                        \App\User::where($birthdayColumnName, '>=', 1995)
+                            ->where($birthdayColumnName, '<=', 1997)
+                            ->count(),
+                        \App\User::where($birthdayColumnName, '>=', 1991)
+                            ->where($birthdayColumnName, '<=', 1994)
+                            ->count(),
+                        \App\User::where($birthdayColumnName, '<', 1991)->count(),
+                    ];
+                @endphp
             @elseif ($component == 'bigbyorange')
                 @php
                     $birthdayColumnName = 'birthdate';
@@ -501,7 +552,6 @@
                 @endphp
             @elseif ($component == '')
                 @php
-                    $ageColumnName = 'age';
                     $birthdayColumnName = 'birthdate';
                     $userCounts = [
                         \App\ODC::where($birthdayColumnName, '>', 2003)->count() + \App\FablabUsers::where($birthdayColumnName, '>', 2003)->count() + \App\BigbyOrange::whereYear($birthdayColumnName, '>', 2003)->count(),
@@ -635,6 +685,16 @@
                     $ageColumnName = 'education';
                     $userCounts = [\App\BigbyOrange::where($ageColumnName, 'Below Tawjihi')->count(), \App\BigbyOrange::where($ageColumnName, 'Tawjihi')->count(), \App\BigbyOrange::where($ageColumnName, 'Diploma')->count(), \App\BigbyOrange::where($ageColumnName, 'Undergraduate')->count(), \App\BigbyOrange::where($ageColumnName, 'Graduate')->count()];
                 @endphp
+            @elseif ($component == 'codingschool')
+                @php
+                    $ageColumnName = 'education';
+                    $userCounts = [\App\codingSchool::where($ageColumnName, 'Below Tawjihi')->count(), \App\codingSchool::where($ageColumnName, 'Tawjihi')->count(), \App\codingSchool::where($ageColumnName, 'Diploma')->count(), \App\codingSchool::where($ageColumnName, 'Undergraduate')->count(), \App\codingSchool::where($ageColumnName, 'Graduate')->count()];
+                @endphp
+            @elseif ($component == 'codingacademy')
+                @php
+                    $ageColumnName = 'educational_level';
+                    $userCounts = [\App\User::where($ageColumnName, 'Below Tawjihi')->count(), \App\User::where($ageColumnName, 'Tawjihi')->count(), \App\User::where($ageColumnName, 'Diploma')->count(), \App\User::where($ageColumnName, 'Undergraduate')->count(), \App\User::where($ageColumnName, 'Graduate')->count()];
+                @endphp
             @else
                 @php
                     $ageColumnName = 'education';
@@ -680,7 +740,6 @@
             @php
                 $component = Auth::user()->component;
             @endphp
-
             @if ($component == 'digitalcenter')
                 @php
                     $ColumnName = 'residence';
@@ -690,13 +749,21 @@
                 @php
                     $ColumnName = 'residence';
                     $userCounts = [\App\FablabUsers::where($ColumnName, 'Amman')->count(), \App\FablabUsers::where($ColumnName, 'Irbid')->count(), \App\FablabUsers::where($ColumnName, 'Balqa')->count(), \App\FablabUsers::where($ColumnName, 'Zarqa')->count(), \App\FablabUsers::where($ColumnName, 'Karak')->count(), \App\FablabUsers::where($ColumnName, 'Jarash')->count(), \App\FablabUsers::where($ColumnName, 'Tafilah')->count(), \App\FablabUsers::where($ColumnName, 'Ajloun')->count(), \App\FablabUsers::where($ColumnName, 'Aqaba')->count(), \App\FablabUsers::where($ColumnName, 'Madaba')->count(), \App\FablabUsers::where($ColumnName, 'Ma\'an')->count(), \App\FablabUsers::where($ColumnName, 'Mafraq')->count()];
-                    
                 @endphp
             @elseif ($component == 'bigbyorange')
                 @php
                     $ColumnName = 'residence';
                     $userCounts = [\App\BigbyOrange::where($ColumnName, 'Amman')->count(), \App\BigbyOrange::where($ColumnName, 'Irbid')->count(), \App\BigbyOrange::where($ColumnName, 'Balqa')->count(), \App\BigbyOrange::where($ColumnName, 'Zarqa')->count(), \App\BigbyOrange::where($ColumnName, 'Karak')->count(), \App\BigbyOrange::where($ColumnName, 'Jarash')->count(), \App\BigbyOrange::where($ColumnName, 'Tafilah')->count(), \App\BigbyOrange::where($ColumnName, 'Ajloun')->count(), \App\BigbyOrange::where($ColumnName, 'Aqaba')->count(), \App\BigbyOrange::where($ColumnName, 'Madaba')->count(), \App\BigbyOrange::where($ColumnName, 'Ma\'an')->count(), \App\BigbyOrange::where($ColumnName, 'Mafraq')->count()];
-                    
+                @endphp
+            @elseif ($component == 'codingschool')
+                @php
+                    $ColumnName = 'residence';
+                    $userCounts = [\App\codingSchool::where($ColumnName, 'Amman')->count(), \App\codingSchool::where($ColumnName, 'Irbid')->count(), \App\codingSchool::where($ColumnName, 'Balqa')->count(), \App\codingSchool::where($ColumnName, 'Zarqa')->count(), \App\codingSchool::where($ColumnName, 'Karak')->count(), \App\codingSchool::where($ColumnName, 'Jarash')->count(), \App\codingSchool::where($ColumnName, 'Tafilah')->count(), \App\codingSchool::where($ColumnName, 'Ajloun')->count(), \App\codingSchool::where($ColumnName, 'Aqaba')->count(), \App\codingSchool::where($ColumnName, 'Madaba')->count(), \App\codingSchool::where($ColumnName, 'Ma\'an')->count(), \App\codingSchool::where($ColumnName, 'Mafraq')->count()];
+                @endphp
+                @elseif ($component == 'codingacademy')
+                @php
+                    $ColumnName = 'city';
+                    $userCounts = [\App\User::where($ColumnName, 'Amman')->count(), \App\User::where($ColumnName, 'Irbid')->count(), \App\User::where($ColumnName, 'Balqa')->count(), \App\User::where($ColumnName, 'Zarqa')->count(), \App\User::where($ColumnName, 'Karak')->count(), \App\User::where($ColumnName, 'Jarash')->count(), \App\User::where($ColumnName, 'Tafilah')->count(), \App\User::where($ColumnName, 'Ajloun')->count(), \App\User::where($ColumnName, 'Aqaba')->count(), \App\User::where($ColumnName, 'Madaba')->count(), \App\User::where($ColumnName, 'Ma\'an')->count(), \App\User::where($ColumnName, 'Mafraq')->count()];
                 @endphp
             @else
                 @php
@@ -715,7 +782,6 @@
                         App\BigbyOrange::where($ColumnName, 'Ma\'an')->count() + \App\FablabUsers::where($ColumnName, 'Ma\'an')->count() + App\ODC::where($ColumnName, 'Ma\'an')->count(),
                         App\BigbyOrange::where($ColumnName, 'Mafraq')->count() + \App\FablabUsers::where($ColumnName, 'Mafraq')->count() + App\ODC::where($ColumnName, 'Mafraq')->count(),
                     ];
-                    
                 @endphp
             @endif
         @endif

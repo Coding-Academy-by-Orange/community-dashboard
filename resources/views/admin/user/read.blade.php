@@ -88,6 +88,8 @@
                                                 FabLab
                                             @elseif (Auth::user()->component == 'codingacademy')
                                                 Coding Academy
+                                            @elseif (Auth::user()->component == 'codingschool')
+                                                Coding School
                                             @elseif (Auth::user()->component == 'bigbyorange')
                                                 Big By Orange
                                             @elseif (Auth::user()->is_super)
@@ -449,16 +451,11 @@
                 <div class="content-body">
                     <!-- users list start -->
                     <section class="basic-datatable">
-                        <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <a class="btn btn-success mb-2 mt-2" href="{{ route('file-export') }}">Export data</a>
-                        </form>
-
+                        <a class="btn btn-success mb-2 mt-2" href="{{ route('file-export') }}">Export data</a>
                         <div class="users-list-table">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card">
-
                                         <!-- datatable start -->
                                         <div class="table-responsive ">
                                             <table class="table zero-configuration">

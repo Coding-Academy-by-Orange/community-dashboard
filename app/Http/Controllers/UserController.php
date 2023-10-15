@@ -7,10 +7,13 @@ use App\ODC;
 use App\User;
 use Carbon\Carbon;
 use App\BigbyOrange;
+use App\codingSchool;
 use App\FablabUsers;
 use App\Questionnaire;
 use App\Exports\UsersExport;
 use App\Exports\BigExport;
+use App\Exports\CodingAcademyExport;
+use App\Exports\CodingSchoolExport;
 use App\Exports\FabLabExport;
 use App\Exports\ODCExport;
 use App\Imports\UsersImport;
@@ -47,7 +50,6 @@ class UserController extends Controller
      * @return \Illuminate\Support\Collection
      */
 
-    //this function was edited by Alina
     public function fileExport()
     {
         $user = Auth::user();
@@ -57,6 +59,10 @@ class UserController extends Controller
             return Excel::download(new ODCExport, 'ODC-collection.xlsx');
         } else if ($user->component == 'bigbyorange') {
             return Excel::download(new BigExport, 'BigByOrange-collection.xlsx');
+        } else if ($user->component == 'codingacademy') {
+            return Excel::download(new CodingAcademyExport, 'CodingAcademy-collection.xlsx');
+        } else if ($user->component == 'codingschool') {
+            return Excel::download(new CodingSchoolExport, 'CodingSchool-collection.xlsx');
         } else if (Auth::user()->is_super) {
         };
 
@@ -103,13 +109,7 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', BigbyOrange::orderBy('first_name')->get());
-        } else if ($user->is_super) {
-
-            $FablabUsers = FablabUsers::select('*', DB::raw("'fablab_users' as source_table"))->get();
-            $ODCUsers = ODC::select('*', DB::raw("'digitalcenter_users' as source_table"))->get();
-            $BigbyOrangeUsers = BigbyOrange::select('*', DB::raw("'bigbyorange_users' as source_table"))->get();
-
-            $user = $FablabUsers->concat($ODCUsers)->concat($BigbyOrangeUsers);
+        } else if ($user->component == 'codingschool') {
             return view('admin.user.read', [
                 'status' => 'All',
                 'result_1' => 'All',
@@ -120,8 +120,20 @@ class UserController extends Controller
                 'educational_background' => 'All',
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
-            ])->with('users', $user);
-        }
+            ])->with('users', codingSchool::orderBy('first_name')->get());
+        } else if ($user->component == 'codingacademy') {
+            return view('admin.user.read', [
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', User::orderBy('en_first_name')->get());
+        } 
     }
 
     /**

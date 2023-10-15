@@ -32,7 +32,7 @@ class FabLabExport implements FromCollection, WithHeadings
             'Email',
             'Passport Number',
             'National ID',
-            'Age',
+            'Birthdate',
             'Mobile',
             'Whatsapp',
             'Residence',
