@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 @section('title') Basic Information @endsection
 @section('links')
 @endsection
