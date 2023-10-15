@@ -13,7 +13,7 @@ class activitiesSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             factory(Activity::class)->create([
                 'activity_name' => $faker->name,
                 'activity_type' => $faker->randomElement(['Registration', 'Event', 'News']),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Activity;
 
 use App\Activity;
+use App\Admin;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class ActivityController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
         if ($user) {
             if ($user->is_super == '1') {
                 if (empty($user->component)) {
@@ -27,47 +28,49 @@ class ActivityController extends Controller
                 } else {
                     $activities = Activity::where('component', $user->component)->get();
                 }
-            } else {
-                $activities = Activity::where(function ($query) use ($user) {
-                    $query->where(function ($query) use ($user) {
-                        $query->where('component', $user->component)
-                            ->where('admin_id', $user->id)
-                            ->where('end_date', '>', now());
-                    })
-                        ->orWhere(function ($query) use ($user) {
-                            $query->where('component', $user->component)
-                                ->where('admin_id', '<>', $user->id)
-                                ->where('start_date', '<=', now())
-                                ->where('end_date', '>', now());
-                        });
-                })
-                    ->orderBy('start_date')
-                    ->orderBy('end_date')
-                    ->get();
+                return view('admin.activity.index', compact('activities'));
             }
-            return view('admin.activity.index', compact('activities'));
-        } else {
-            $activities = Activity::whereIn('timeline', ["public", "component"])
-                ->where(function ($query) {
-                    $query->where(function ($subquery) {
-                        $subquery->whereNotNull('publication_date')
-                            ->where('publication_date', '<=', now());
-                    })->orWhere(function ($subquery) {
-                        $subquery->whereNull('publication_date')
-                            ->whereNull('start_date')
-                            ->whereNull('end_date');
-                    });
-                })
-                ->orWhere(function ($query) {
-                    $query->whereNotNull('end_date')
+
+            $activities = Activity::where(function ($query) use ($user) {
+                $query->where(function ($query) use ($user) {
+                    $query->where('component', $user->component)
+                        ->where('admin_id', $user->id)
                         ->where('end_date', '>', now());
                 })
+                    ->orWhere(function ($query) use ($user) {
+                        $query->where('component', $user->component)
+                            ->where('admin_id', '<>', $user->id)
+                            ->where('start_date', '<=', now())
+                            ->where('end_date', '>', now());
+                    });
+            })
                 ->orderBy('start_date')
                 ->orderBy('end_date')
-                ->take(5)
                 ->get();
-            return view('public.landingpage', compact('activities'));
+            return view('admin.activity.index', compact('activities'));
         }
+
+        $activities = Activity::whereIn('timeline', ["public", "component"])
+            ->where(function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNotNull('publication_date')
+                        ->where('publication_date', '<=', now());
+                })->orWhere(function ($subquery) {
+                    $subquery->whereNull('publication_date')
+                        ->whereNull('start_date')
+                        ->whereNull('end_date');
+                });
+            })
+            ->orWhere(function ($query) {
+                $query->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
+
+        return view('public.landingpage', compact('activities'));
     }
 
     /**
@@ -88,7 +91,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-         //dd($request);
+        //dd($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'activity_type' => 'nullable|string',

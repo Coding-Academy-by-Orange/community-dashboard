@@ -14,7 +14,7 @@
                 <div class="card-img-overlay  text-primary">
                     <div class="container float-start w-50">
                         <p class="breadcrumb text-primary">Orange CSR</p>
-                        <h1 class="text-primary">Fablab</h1>
+                        <h1 class="text-primary">Orange CSR</h1>
                         <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
                         <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
                             lives and local communities through digital transformation</p>
