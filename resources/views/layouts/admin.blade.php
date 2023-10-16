@@ -19,7 +19,7 @@
         href="{{ asset('admin-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}"> --}}
     <!-- END: Vendor CSS-->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
@@ -27,6 +27,9 @@
         integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet"
         integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.1/dist/js/boosted.min.js"
+        integrity="sha384-5/uuaktuMuP89rRLLF12Nmffr7aMWkLWFVq2xzMjqdXlOiMsRRHpbz3oG92Gvj7u" crossorigin="anonymous">
+    </script>
     {{-- <link rel="preconnect" href="https://code.jquery.com" crossorigin="anonymous"> --}}
     <link rel="shortcut icon"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
@@ -38,16 +41,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js"
         integrity="sha512-2uu1jrAmW1A+SMwih5DAPqzFS2PI+OPw79OVLS4NJ6jGHQ/GmIVDDlWwz4KLO8DnoUmYdU8hTtFcp8je6zxbCg=="
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/sc-2.0.5/sp-2.0.0/sl-1.3.4/datatables.min.css" />
+    <link
+        href="https://cdn.datatables.net/v/bs5/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.css"
+        rel="stylesheet">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/sc-2.0.5/sp-2.0.0/sl-1.3.4/datatables.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.js">
     </script>
-
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -121,7 +125,7 @@
                         <li class=" nav-item"><a href="{{ route('activity.index') }}" class="nav-link">Manage
                                 Activities</a>
                         </li>
-                        @if (Auth::user()->is_super)
+                        @if (Auth::guard('admin')->user()->is_super)
                             <li class=" nav-item"><a href="{{ route('notifications.index') }}" class="nav-link">Manage
                                     Notifications</a>
                             </li>
@@ -196,25 +200,49 @@
     <script>
         $(document).ready(function() {
             var table = $(".zero-configuration").DataTable({
+                
+                searchBuilder: {
+                    columns: ':visible',
+                },
                 searchPanes: true,
                 deferRender: true,
-                columnDefs: [{
-                        targets: [1],
-                        render: function(data, type) {
-                            console.debug(type);
-                            return type === "searchpanes" ?
-                                data :
-                                '<a href="https://datatables.net/forums/discussion/72109/searchpanes-v2-0-0-viewcount-displays-0-with-orthogonal-data-type-sp">' +
-                                data +
-                                "</a>";
+                dom: 'Bfrtip',
+                pageLength: 10,
+                columnDefs: [
+                    @if (Auth::guard('admin')->user()->component == 'fablab')
+                        {
+                            targets: [15, 16],
+                            visible: false,
+                            searchPanes: {
+                                show: false
+                            }
                         },
-                        searchPanes: {
-                            show: true,
-                            orthogonal: "searchpanes"
-                        }
-                    },
-                    {
-                        targets: [2],
+                    @elseif (Auth::guard('admin')->user()->component == 'codingacademy') {
+                            targets: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                            visible: false,
+                            searchPanes: {
+                                show: false
+                            },
+                        },
+                    @elseif (Auth::guard('admin')->user()->component == 'digitalcenter') {
+                            targets: [14, 15, 16, 17, 18],
+                            visible: false,
+                            searchPanes: {
+                                show: false
+                            },
+                        },
+                    @elseif (Auth::guard('admin')->user()->component == 'digitalcenter') {
+                            targets: [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+                                29,
+                                30
+                            ],
+                            visible: false,
+                            searchPanes: {
+                                show: false
+                            },
+                        },
+                    @endif {
+                        targets: [5, 6, 7, 10],
                         searchPanes: {
                             show: true,
                             orthogonal: "searchpanes"
@@ -223,17 +251,113 @@
                             console.debug(type);
                             return type === "display" ?
                                 data :
-                                '<a href="https://datatables.net/forums/discussion/72109/searchpanes-v2-0-0-viewcount-displays-0-with-orthogonal-data-type-sp">' +
-                                data +
-                                "</a>";
+                                data;
+                        }
+                    },
+                    {
+                        targets: 9, // Assuming birthdate is the 9th column
+                        searchPanes: {
+                            show: true,
+                            orthogonal: 'searchpanes'
+                        },
+                        render: function(data, type, row, meta) {
+                            if (type === 'searchpanes') {
+                                var dateArray = data.split("-");
+                                if (dateArray.length > 0) {
+                                    return dateArray[
+                                        0
+                                    ]; // Extracting the year from the date for filtering purposes
+                                }
+                                return data;
+                            } else {
+                                return data; // Returning the full date for other purposes
+                            }
+                        }
+                    },
+                    {
+                        targets: [-2],
+
+                        render: function(data, type, row, meta) {
+                            if (type === 'display') {
+                                return moment(data, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD');
+                            } else {
+                                return data; // Returning the full date for other purposes
+                            }
+                        }
+                    },
+
+                ],
+
+            });
+            // Add buttons configuration
+            new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+               
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':not(:last-child)' // Exclude the last column from export
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: ':not(:last-child)' // Exclude the last column from export
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:last-child)' // Exclude the last column from export
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':not(:last-child)' // Exclude the last column from export
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':not(:last-child)' // Exclude the last column from export
+                        }
+                    }
+                ]
+            });
+            new $.fn.dataTable.SearchBuilder(table, {
+
+                searchBuilder: {
+                    columns: ':visible',
+                },
+                buttons: [{
+
+                        columns: ':not(.noVis)'
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        config: {
+                            depthLimit: 2
                         }
                     }
                 ],
-                // ajax: "https://datatables.net/examples/ajax/data/data_5k.txt", /* <-- keep loading indefinitely */
-
+                language: {
+                    searchBuilder: {
+                        button: 'Filter',
+                        condition: 'Comparator',
+                        data: 'Column',
+                    }
+                }
             });
-            table.searchPanes.container().prependTo(table.table().container());
-            table.searchPanes.resizePanes();
+
+            // Place the buttons
+            table.buttons().container().appendTo(table.table().container());
+            table.searchBuilder.container().prependTo(table.table().container());
+            // Append searchPanes container
+            $("div.dtsp-verticalPanes").append(table.searchPanes.container());
+
         });
     </script>
 </body>
