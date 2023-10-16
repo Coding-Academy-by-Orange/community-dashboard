@@ -41,7 +41,7 @@
 
     <header class="sticky-top">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg pb-2"
-            aria-label="Global navigation - With one line title example">
+            aria-label="navigation">
             <div class="container-xxl">
 
                 <!-- Orange brand logo -->

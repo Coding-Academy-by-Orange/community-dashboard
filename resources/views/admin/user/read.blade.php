@@ -1,140 +1,8 @@
-<!DOCTYPE html>
-
-<html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="admin dashboard - registration process - coding academy by orange ">
-    <meta name="keywords" content="admin dashboard - registration process - coding academy by orange  ">
-    <meta name="author" content="Marya Alzubi">
-    <title> Read Applicants </title>
-
-    {{--    <link rel="apple-touch-icon" href="{{asset('admin-assets/images/ico/apple-icon-120.html')}}"> --}}
-    {{--    <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin-assets/images/logo/logo.svg')}}" /> --}}
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/vendors/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/vendors/css/charts/apexcharts.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/vendors/css/extensions/dragula.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets/vendors/css/pickers/daterange/daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/vendors/css/extensions/swiper.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
-    <!-- END: Vendor CSS-->
-
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/bootstrap-extended.min.css') }}">
-    <!-- Copyright © 2014 Monotype Imaging Inc. All rights reserved -->
-    {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeHelvetica.min.css" integrity="sha384-ZWV5rANfkZIt/7HDFToWXT+5LfpEbtDN22vw9WhARiDc+o6zJ4qxwdTwskCbe8NK" crossorigin="anonymous"> --}}
-    <!-- Copyright © 2016 Orange SA. All rights reserved -->
-    {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeIcons.min.css" integrity="sha384-7/+XhgsfiKJOYwQYLCI6P8bz89YJEKD2GLErv3KrHbxQ4wPcJ9JcqVZVKAglgBJP" crossorigin="anonymous"> --}}
-    {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/boosted.min.css" integrity="sha384-gqlCljYk+czxYG/OEUHPObOqdFdx4RFpXrAy+z6dbWdeD1ybOujFGA+lKVLnXtxx" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/colors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/components.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/themes/dark-layout.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/themes/semi-dark-layout.min.css') }}">
-    <!-- END: Theme CSS-->
-
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/pages/chart-chartist.min.css') }}">
-    <!-- END: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/pages/app-users.min.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/custom/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-
-    <link rel="shortcut icon"
-        href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
-        type="image/x-icon">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js"
-        integrity="sha512-2uu1jrAmW1A+SMwih5DAPqzFS2PI+OPw79OVLS4NJ6jGHQ/GmIVDDlWwz4KLO8DnoUmYdU8hTtFcp8je6zxbCg=="
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<!-- END: Head-->
-
-<!-- BEGIN: Body-->
-
-<body>
-    <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu border-bottom ">
-        <div class="navbar-wrapper">
-            <div class="navbar-container content">
-                <div class="navbar-collapse" id="navbar-mobile">
-                    <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                        <div class="navbar-header">
-                            <ul class="nav navbar-nav flex-row">
-                                <li class="nav-item mr-auto"><a class="navbar-brand"
-                                        href="{{ route('admin.dashboard') }}">
-                                        <h4 class="text-warning ml-1">
-                                            @if (Auth::user()->component == 'digitalcenter')
-                                                Orange Community Digital Centers
-                                            @elseif (Auth::user()->component == 'fablab')
-                                                FabLab
-                                            @elseif (Auth::user()->component == 'codingacademy')
-                                                Coding Academy
-                                            @elseif (Auth::user()->component == 'codingschool')
-                                                Coding School
-                                            @elseif (Auth::user()->component == 'bigbyorange')
-                                                Big By Orange
-                                            @elseif (Auth::user()->is_super)
-                                                Orange Dashboard
-                                            @endif
-                                        </h4>
-                                    </a></li>
-                            </ul>
-                        </div>
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a
-                                    class="nav-link nav-menu-main menu-toggle hidden-xs" href="javascript:void(0);"><i
-                                        class="ficon bx bx-menu"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-user nav-item">
-                            <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);"
-                                data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none d-flex flex-row">
-
-                                    <span class="user-name text-capitalize">{{ Auth::guard('admin')->user()->fname }}
-                                    </span>
-                                    <i class="bx bx-caret-down mr-50"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0">
-                                <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    <i class="bx bx-power-off mr-50"></i> Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- END: Header-->
+@extends('layouts.admin')
+@section('title')
+    Dashboard
+@endsection
+@section('main')
     <div class="d-md-flex flex-md-equal w-100">
         <div class="col-lg-3 mt-1">
             <div class="mt-1 ">
@@ -453,19 +321,18 @@
                     <section class="basic-datatable">
                         <a class="btn btn-success mb-2 mt-2" href="{{ route('file-export') }}">Export data</a>
                         <div class="users-list-table">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card">
+                            
+                                   
                                         <!-- datatable start -->
-                                        <div class="table-responsive ">
-                                            <table class="table zero-configuration">
+                                        <div class="container">
+                                            <table id="table" class="display zero-configuration table table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>First name</th>
                                                         <th>Last name</th>
-                                                        <th>Educational Level</th>
-                                                        <th>National ID/Passport Number</th>
+                                                        <th>Education</th>
+                                                        
                                                         <th>Component</th>
                                                         <th>Residence</th>
                                                         <th>Action</th>
@@ -473,21 +340,16 @@
                                                 </thead>
                                                 <tbody>
                                                     @php($count = 0)
+                                                    @endphp
                                                     @foreach ($users as $user)
                                                         <tr role="row">
                                                             @php($count++)
+                                                            @endphp
                                                             <td class="sorting_1">{{ $user->id }}</td>
                                                             <td class="text-capitalize">{{ $user->first_name }}</td>
                                                             <td>{{ $user->last_name }}</td>
                                                             <td calss="sorting_1">{{ $user->education }}</td>
-                                                            <td calss="sorting_1">
-                                                                {{-- fixed the passport_number not showing --}}
-                                                                @if ($user->national_id != null)
-                                                                    {{ $user->national_id }}
-                                                                @elseif ($user->passport_number)
-                                                                    {{ $user->passport_number }}
-                                                                @endif
-                                                            </td>
+                                                           
                                                             <td calss="sorting_1">
                                                                 @if ($user->affiliation)
                                                                     FabLab
@@ -503,10 +365,9 @@
                                                             <td>
                                                                 <div class="dropdown">
                                                                     <span
-                                                                        class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false" role="menu"></span>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer dropdown-toggle"
+                                                                        data-bs-toggle="dropdown"></span>
+                                                                    <div class="dropdown-menu ">
                                                                         @if (Auth::user()->is_super)
                                                                             <a class="dropdown-item "
                                                                                 href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
@@ -529,93 +390,79 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <div class="d-flex justify-content-end">
-                                            </div>
+                                           
                                         </div>
                                         <!-- datatable ends -->
-                                    </div>
-                                </div>
-                            </div>
+                                   
+                              
                         </div>
                     </section>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END: Content-->
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        var table = $(".zero-configuration").DataTable({
+            searchPanes: true,
+            columns: [{
+                    data: "first_name"
+                },
+                {
+                    data: "last_name"
+                },
+                {
+                    data: "education"
+                },
+                {
+                    data: "component"
+                },
+                {
+                    data: "residence"
+                },
+                {
+                    data:"action"
+                }
+            ],
+            deferRender: true,
+            columnDefs: [{
+                    targets: [1],
+                    render: function(data, type) {
+                        console.debug(type);
+                        return type === "searchpanes" ?
+                            data :
+                            '<a href="https://datatables.net/forums/discussion/72109/searchpanes-v2-0-0-viewcount-displays-0-with-orthogonal-data-type-sp">' +
+                data +
+                "</a>";
+                    },
+                    searchPanes: {
+                        show: true,
+                        orthogonal: "searchpanes"
+                    }
+                },
+                {
+                    targets: [2],
+                    searchPanes: {
+                        show: true,
+                        orthogonal: "searchpanes"
+                    },
+                    render: function(data, type) {
+                        console.debug(type);
+                        return type === "display" ?
+                            data :
+                            '<a href="https://datatables.net/forums/discussion/72109/searchpanes-v2-0-0-viewcount-displays-0-with-orthogonal-data-type-sp">' +
+                data +
+                "</a>";
+                    }
+                }
+            ],
+            // ajax: "https://datatables.net/examples/ajax/data/data_5k.txt", /* <-- keep loading indefinitely */
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('admin-assets/vendors/js/vendors.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js') }}"></script>
-    <script src="{{ asset('admin-app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/extensions/moment.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/pickers/daterange/daterangepicker.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/extensions/dragula.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/vendors/js/extensions/swiper.min.js') }}"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('admin-assets/js/scripts/configs/vertical-menu-light.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/core/app-menu.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/core/app.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/scripts/components.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/scripts/footer.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/scripts/customizer.min.js') }}"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('admin-assets/js/scripts/pages/dashboard-ecommerce.min.js') }}"></script>
-    <!-- END: Page JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('admin-assets/js/scripts/datatables/datatable.min.js') }}"></script>
-    <!-- END: Page JS-->
-    <script src="{{ asset('admin-assets/js/scripts/forms/wizard-steps.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/scripts/charts/chart-chartist.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/js/scripts/pages/app-users.min.js') }}"></script>
-    {{-- sweet alert cdn and use --}}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        // create a record
-        @if (session('status_store'))
-            swal({
-                title: "{{ session('status_store') }}",
-                icon: "success",
-                button: "ok",
-            });
-        @endif
-        // update a record
-        @if (session('status_update'))
-            swal({
-                title: "{{ session('status_update') }}",
-                icon: "success",
-                button: "ok",
-            });
-        @endif
-        // delete a record
-        @if (session('status_destroy'))
-            swal({
-                title: "{{ session('status_destroy') }}",
-                icon: "error",
-                button: "ok",
-            });
-        @endif
-    </script>
-    </div>
-</body>
-<!-- END: Body-->
-
-</html>
+        });
+        table.searchPanes.container().prependTo(table.table().container());
+        table.searchPanes.resizePanes();
+    });
+</script>
+@endsection

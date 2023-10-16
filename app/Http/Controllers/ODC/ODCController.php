@@ -311,7 +311,7 @@ class ODCController extends Controller
     public function filter(Request $request)
     {
         $users = ODC::query();
-    
+
         if ($request->filled('nationality')) {
             $users->where('nationality', $request->nationality);
         }
@@ -321,20 +321,20 @@ class ODCController extends Controller
         if ($request->filled('year')) {
             $currentYear = now()->year;
             $birthYear = $currentYear - $request->year;
-    
+
             $users->where('age', $birthYear);
         }
         if ($request->filled('educational_level')) {
             $users->where('education', $request->educational_level);
         }
-    
+
         $users->orderBy('first_name'); // Apply ordering after all filters
-    
+
         $nationality = $request->filled('nationality') ? $request->nationality : "All";
         $gender = $request->filled('gender') ? $request->gender : "All";
         $year = $request->filled('year') ? $request->year : "All";
         $educational_level = $request->filled('educational_level') ? $request->educational_level : "All";
-    
+
         return view('admin.user.read', [
             'users' => $users->get(), // Removed the unnecessary where clause
             'nationality' => $nationality,
@@ -343,7 +343,7 @@ class ODCController extends Controller
             'education' => $educational_level,
         ]);
     }
-    
+
 
     public function show($id)
     {
