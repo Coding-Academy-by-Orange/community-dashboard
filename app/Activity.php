@@ -16,6 +16,10 @@ class Activity extends Model
         'image' => 'array',
     ];
     
+    public function location()
+    {
+        return $this->belongsTo(location::class);
+    }
     public function admin()
     {
         return $this->belongsTo(Admin::class);

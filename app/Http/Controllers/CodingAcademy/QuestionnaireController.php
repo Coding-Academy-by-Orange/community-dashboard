@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CodingAcademy;
 
 use App\Questionnaire;
 use App\QuestionnaireAnswer;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller

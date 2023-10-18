@@ -21,13 +21,13 @@ class CreateActivitiesTable extends Migration
             $table->date('end_date')->nullable();
             $table->date('publication_date')->nullable();
             $table->text('description');
-            $table->text('location');
+            $table->string('location_id');
             $table->string('cohort')->nullable();
             $table->text('image');
             $table->text('video')->nullable();
             $table->string('timeline');
             $table->string('component');
-            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('admin_id');
 
             $table->timestamps();
         });

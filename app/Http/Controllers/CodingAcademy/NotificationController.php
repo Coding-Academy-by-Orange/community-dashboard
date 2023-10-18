@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CodingAcademy;
 
 use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
+
 use Illuminate\Support\Facades\Mail;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use App\Notifications\NotifyApplicants;
+use App\Http\Controllers\Controller;
 class NotificationController extends Controller
 {
     /**

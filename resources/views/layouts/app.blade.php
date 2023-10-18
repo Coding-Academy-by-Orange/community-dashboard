@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,8 @@
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
@@ -40,8 +42,7 @@
 <body>
 
     <header class="sticky-top">
-        <nav class="navbar navbar-dark bg-dark navbar-expand-lg pb-2"
-            aria-label="navigation">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg pb-2" aria-label="navigation">
             <div class="container-xxl">
 
                 <!-- Orange brand logo -->
@@ -64,7 +65,8 @@
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/">Home </a></li>
                         <li class="nav-item"><a class="nav-link" href="/codingacademy">Coding Academy</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('codingschool.index') }}">Coding School</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('codingschool.index') }}">Coding
+                                School</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('fablab.index') }}">Fablab</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('ODC.index') }}">Digital Centers</a>
                         </li>
@@ -138,13 +140,17 @@
                             <ul class="navbar-nav">
                                 <li><a class="nav-link" href="/codingacademy" aria-describedby="headingThree2">Coding
                                         Academy</a></li>
-                                <li><a class="nav-link" href="{{route('codingschool.index')}}" aria-describedby="headingThree2">Coding
+                                <li><a class="nav-link" href="{{ route('codingschool.index') }}"
+                                        aria-describedby="headingThree2">Coding
                                         School</a></li>
-                                <li><a class="nav-link" href="{{ route('fablab.index') }}" aria-describedby="headingThree2">Fablab</a>
+                                <li><a class="nav-link" href="{{ route('fablab.index') }}"
+                                        aria-describedby="headingThree2">Fablab</a>
                                 </li>
-                                <li><a class="nav-link" href="{{ route('ODC.index') }}" aria-describedby="headingThree2">Digital
+                                <li><a class="nav-link" href="{{ route('ODC.index') }}"
+                                        aria-describedby="headingThree2">Digital
                                         Centers</a></li>
-                                <li><a class="nav-link" href="{{ route('BigByOrange.index') }}" aria-describedby="headingThree2">Big By
+                                <li><a class="nav-link" href="{{ route('BigByOrange.index') }}"
+                                        aria-describedby="headingThree2">Big By
                                         Orange</a></li>
                             </ul>
                         </div>
@@ -161,12 +167,11 @@
                         <div id="collapseFour2" class="container-xxl accordion-collapse collapse"
                             aria-labelledby="headingFour2" data-bs-parent="#accordion2">
                             <ul class="navbar-nav">
-                                <li><a class="nav-link" href="#"
-                                        aria-describedby="headingFour2">About us</a></li>
-                                <li><a class="nav-link" href="/help"
-                                        aria-describedby="headingFour2">Help</a></li>
-                                <li><a class="nav-link" href="/terms"
-                                        aria-describedby="headingFour2">Terms & Conditions</a></li>
+                                <li><a class="nav-link" href="#" aria-describedby="headingFour2">About us</a>
+                                </li>
+                                <li><a class="nav-link" href="/help" aria-describedby="headingFour2">Help</a></li>
+                                <li><a class="nav-link" href="/terms" aria-describedby="headingFour2">Terms &
+                                        Conditions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -199,4 +204,5 @@
         </div>
     </footer>
 </body>
+
 </html>

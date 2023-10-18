@@ -264,7 +264,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
-        if (Auth::id() === $activity->admin_id || Auth::user()->is_super == 1) {
+        if (Auth::guard('admin')->user()->id === $activity->admin_id || Auth::guard('admin')->user()->is_super == 1) {
             $activity->delete();
             return redirect()->route('activity.index')->with('success', 'Activity deleted successfully.');
         } else {

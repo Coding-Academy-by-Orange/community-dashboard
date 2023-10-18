@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ODCSeeder::class);
         $this->call(CodingSchoolSeeder::class);
         $this->call(activitiesSeeder::class);
+        $this->call(LocationSeeder::class);
     }
 }

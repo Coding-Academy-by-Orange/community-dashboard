@@ -15,7 +15,7 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('admin_id');
             $table->string('sent_via');
             $table->string('sent_to');
             $table->string('body');
