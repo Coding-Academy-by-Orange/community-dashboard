@@ -20,25 +20,29 @@ class ODCController extends Controller
     public function index()
     {
         $activities = Activity::where('component', 'digitalcenter')
-            ->whereIn('timeline', ["public", "component"])
-            ->where(function ($query) {
-                $query->where(function ($subquery) {
-                    $subquery->whereNotNull('publication_date')
-                        ->where('publication_date', '<=', now());
-                })->orWhere(function ($subquery) {
-                    $subquery->whereNull('publication_date')
-                        ->whereNull('start_date')
-                        ->whereNull('end_date');
+        ->where(function ($query) {
+            $query->where('timeline', 'Public(component)')
+                ->where(function ($subquery) {
+                    $subquery->where(function ($subquery) {
+                        $subquery->whereNotNull('publication_date')
+                            ->where('publication_date', '<=', now());
+                    })->orWhere(function ($subquery) {
+                        $subquery->whereNull('publication_date')
+                            ->whereNull('start_date')
+                            ->whereNull('end_date');
+                    });
                 });
-            })
-            ->orWhere(function ($query) {
-                $query->whereNotNull('end_date')
-                    ->where('end_date', '>', now());
-            })
-            ->orderBy('start_date')
-            ->orderBy('end_date')
-            ->take(5)
-            ->get();
+        })
+        ->orWhere(function ($query) {
+            $query->where('component', 'digitalcenter')
+                ->where('timeline', 'Public(component)')
+                ->whereNotNull('end_date')
+                ->where('end_date', '>', now());
+        })
+        ->orderBy('start_date')
+        ->orderBy('end_date')
+        ->take(5)
+        ->get();
         return view('public.digitalcenter.orangedigitalcenter', compact('activities'));
     }
 
@@ -60,9 +64,7 @@ class ODCController extends Controller
      */
     public function store(Request $request)
     {
-
         $allErrors = [];
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:digitalcenter_users,email',
             'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/|unique:digitalcenter_users,mobile',

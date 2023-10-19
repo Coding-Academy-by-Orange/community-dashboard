@@ -138,6 +138,45 @@
                     @endif
                     <small>eg: 077********</small>
                 </div>
+                <div class="form-group">
+                    <label for="residence" class="is-required">Governorate of residence<span class="sr-only">
+                            (required)</span></label>
+                    <div class="input-group">
+                        <select name="residence" class="form-control email @error('residence') is-invalid @enderror "
+                            id="" required>
+                            <option value="" selected>-- Please Select --</option>
+                            <option value="Irbid" @if (old('residence') == 'Irbid') selected @endif>Irbid
+                            </option>
+                            <option value="Ajloun" @if (old('residence') == 'Ajloun') selected @endif>Ajloun
+                            </option>
+                            <option value="Jerash" @if (old('residence') == 'Jerash') selected @endif>Jerash
+                            </option>
+                            <option value="Mafraq" @if (old('residence') == 'Mafraq') selected @endif>Mafraq
+                            </option>
+                            <option value="Balqa" @if (old('residence') == 'Balqa') selected @endif>Balqa
+                            </option>
+                            <option value="Amman" @if (old('residence') == 'Amman') selected @endif>Amman
+                            </option>
+                            <option value="Zarqa" @if (old('residence') == 'Zarqa') selected @endif>Zarqa
+                            </option>
+                            <option value="Madaba" @if (old('residence') == 'Madaba') selected @endif>Madaba
+                            </option>
+                            <option value="Karak" @if (old('residence') == 'Karak') selected @endif>Karak
+                            </option>
+                            <option value="Tafilah" @if (old('residence') == 'Tafilah') selected @endif>Tafilah
+                            </option>
+                            <option value="Ma'an" @if (old('residence') == "Ma'an") selected @endif>Ma'an
+                            </option>
+                            <option value="Aqaba" @if (old('residence') == 'Aqaba') selected @endif>Aqaba
+                            </option>
+                        </select>
+                        @if ($errors->has('residence'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('residence') }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group" style="margin-top: 3vw">
                     <label for="education" class="is-required">Education Level Attained<span class="sr-only">
                             (required)</span></label>

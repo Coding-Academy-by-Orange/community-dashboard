@@ -98,19 +98,7 @@
             <div class="container slide-activity px-4">
                 @foreach ($activities as $activity)
                     <div class="card " style=" width: 15em; position: relative;">
-                        <div class="triangle"><span class="text p-1 text-start">
-                                @if ($activity->component == 'digitalcenter')
-                                    Digital Centers
-                                @elseif ($activity->component == 'fablab')
-                                    FabLab
-                                @elseif ($activity->component == 'codingacademy')
-                                    Coding Academy
-                                @elseif ($activity->component == 'bigbyorange')
-                                    Big By Orange
-                                @elseif ($activity->component == 'codingschool')
-                                    Coding School
-                                @endif
-                            </span></div>
+                       
                         @php
                             $imageArray = json_decode($activity->image);
                         @endphp
@@ -139,9 +127,23 @@
                             @php
                                 $imageArray = json_decode($activity->image);
                             @endphp
-                            <img src="{{ URL::asset('storage/image/' . $imageArray) }}" class="card-img"
+                            <img src="{{ URL::asset('storage/image/' . $imageArray[0]) }}" class="card-img"
                                 style="height: 50vh; " alt="{{ $activity->activity_name }}">
                         @endif
+                        <div class="triangle"><span class="text p-1 text-start">
+                            @if ($activity->component == 'digitalcenter')
+                                Digital Centers
+                            @elseif ($activity->component == 'fablab')
+                                FabLab
+                            @elseif ($activity->component == 'codingacademy')
+                                Coding Academy
+                            @elseif ($activity->component == 'bigbyorange')
+                                Big By Orange
+                            @elseif ($activity->component == 'codingschool')
+                                Coding School
+                            @endif
+                        </span>
+                    </div>
                         <div class="card-img-overlay pt-5 pb-0 text-white">
                             <h1 class="py-3">{{ $activity->activity_name }} </h1>
 

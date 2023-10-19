@@ -9,7 +9,7 @@ class Activity extends Model
 {
     //
     protected $fillable = [
-        'activity_name', 'activity_type', 'start_date', 'end_date', 'description', 'location', 'cohort', 'timeline', 'image', 'video', 'component', 'admin_id',
+        'activity_name', 'activity_type', 'start_date', 'end_date','publication_date', 'description', 'location_id', 'cohort', 'timeline', 'image', 'video', 'component', 'admin_id',
     ];
 
     protected $casts = [

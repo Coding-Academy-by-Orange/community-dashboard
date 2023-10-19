@@ -15,7 +15,7 @@
                         $imageArray = json_decode($activity->image);
                     @endphp
                         @if (is_array($imageArray) && count($imageArray) > 1)
-                            <div id="activity{{ $activity->id }}" class="carousel slide" data-ride="carousel">
+                            <div id="activity{{ $activity->id }}" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     @foreach ($imageArray as $index => $imagePath)
                                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -24,11 +24,11 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <a class="carousel-control-prev" type="button" data-target="#activity{{ $activity->id }}" data-slide="prev">
+                                <a class="carousel-control-prev" type="button" data-bs-target="#activity{{ $activity->id }}" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                  <a class="carousel-control-next" type="button" data-target="#activity{{ $activity->id }}" data-slide="next">
+                                  <a class="carousel-control-next" type="button" data-bs-target="#activity{{ $activity->id }}" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                   </a>
@@ -36,7 +36,7 @@
                         @else
                            
                             <div>
-                                <img src="{{ asset('storage/image/' . $imageArray) }}" class="w-100" style="height: 350px;"
+                                <img src="{{ asset('storage/image/' . $imageArray[0]) }}" class="w-100" style="height: 350px;"
                                     alt="{{ $activity->activity_name }}">
                             </div>
                         @endif

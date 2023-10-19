@@ -6,7 +6,7 @@
             <div class="col-md-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Vertical Form with Icons</h4>
+                        <h4 class="card-title">Add Admin</h4>
                     </div>
                     <div class="card-body">
                         <form class="form form-horizontal" method="post" action="{{ route('admin.register.submit') }}">

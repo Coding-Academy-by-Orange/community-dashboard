@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\CodingAcademy\PersonalInformationController;
 use App\Http\Controllers\CodingAcademy\ControllerCodingAcademy;
 use App\Http\Controllers\TestController;
@@ -123,7 +124,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [FilterController::class, 'initialFilter'])->name('admin.dashboard');
 
     // Route for the main filter method
-    Route::get('/dashboard/filtered',[FilterController::class, 'filterResults'] );
+    Route::get('/dashboard/filtered',[FilterController::class, 'filterResults'] )->name('dashboard.filter');
 
 
     // User CRUD
@@ -183,6 +184,9 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     // ODC User
     Route::get('/user/odc/show/{id}', [ODCController::class, 'show'])->name('admin.user.odc.show');
     Route::post('/user/odc/show/{id}/change-status', [ODCController::class, 'changeStatus'])->name('admin.user.odc.changeStatus');
+
+    Route::resource('/location', "LocationController");
+    Route::post('/getLocation', [LocationController::class, 'getLocation']);
 });
 
 
@@ -197,7 +201,7 @@ Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name
 
 // ODC Registration Form
 Route::resource('/ODC', "ODC\ODCController");
-Route::resource('/location', "LocationController");
+
 
 // Coding school
 Route::resource('/codingschool', "CodingSchool\CodingSchoolController");

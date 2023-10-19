@@ -77,13 +77,7 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 d-flex justify-content-center">
-                                        @if (Auth::guard('admin')->user()->is_super == 1)
-                                            <form method="POST" action="{{ route('location.destroy', $location) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-secondary me-1">Delete</button>
-                                            </form>
-                                        @endif
+                                        
                                         <button type="reset" class="btn btn-secondary me-1">Reset</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
@@ -91,6 +85,13 @@
 
                             </div>
                         </form>
+                        @if (Auth::guard('admin')->user()->is_super == 1)
+                                            <form method="POST" class="text-center" action="{{ route('location.destroy', $location) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-secondary m-1 ">Delete</button>
+                                            </form>
+                                        @endif
                     </div>
                 </div>
             </div>

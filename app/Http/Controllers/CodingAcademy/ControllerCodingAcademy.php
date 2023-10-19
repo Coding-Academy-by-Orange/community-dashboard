@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\CodingAcademy;
+
 use App\Activity;
 
 use App\Http\Controllers\Controller;
@@ -16,25 +17,30 @@ class ControllerCodingAcademy extends Controller
     public function index()
     {
         $activities = Activity::where('component', 'codingacademy')
-        ->whereIn('timeline', ["public", "component"])
-        ->where(function ($query) {
-            $query->where(function ($subquery) {
-                $subquery->whereNotNull('publication_date')
-                    ->where('publication_date', '<=', now());
-            })->orWhere(function ($subquery) {
-                $subquery->whereNull('publication_date')
-                    ->whereNull('start_date')
-                    ->whereNull('end_date');
-            });
-        })
-        ->orWhere(function ($query) {
-            $query->whereNotNull('end_date')
-                ->where('end_date', '>', now());
-        })
-        ->orderBy('start_date')
-        ->orderBy('end_date')
-        ->take(5)
-        ->get();
+            ->where(function ($query) {
+                $query->where('timeline', 'Public(component)')
+                    ->where(function ($subquery) {
+                        $subquery->where(function ($subquery) {
+                            $subquery->whereNotNull('publication_date')
+                                ->where('publication_date', '<=', now());
+                        })->orWhere(function ($subquery) {
+                            $subquery->whereNull('publication_date')
+                                ->whereNull('start_date')
+                                ->whereNull('end_date');
+                        });
+                    });
+            })
+            ->orWhere(function ($query) {
+                $query->where('component', 'codingacademy')
+                    ->where('timeline', 'Public(component)')
+                    ->whereNotNull('end_date')
+                    ->where('end_date', '>', now());
+            })
+            ->orderBy('start_date')
+            ->orderBy('end_date')
+            ->take(5)
+            ->get();
+
         return view('public.codingacademy.coding-academy', compact('activities'));
     }
 

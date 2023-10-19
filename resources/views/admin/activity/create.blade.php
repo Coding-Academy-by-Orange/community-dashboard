@@ -8,7 +8,7 @@
                         <h4 class="card-title">Create New Activity</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
+                        <form  method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
                             @csrf <!-- CSRF Token -->
                             <div class="form-body">
                                 <!-- Activity Name -->
@@ -65,7 +65,7 @@
                                     </div>
 
                                     <!-- End Date -->
-                                    <div class="col-6" >
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="end_date">End Date</label>
                                             <input type="date" id="end_date" name="end_date"
@@ -94,29 +94,37 @@
                                     </div>
                                 </div>
 
-                                <!-- Location Dropdown -->
+                                <!-- Governorate Dropdown -->
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="location">Location</label>
-                                            <select id="location-dropdown" name="location"class="form-control">
-                                                <option value="Amman">Amman</option>
+                                            <label for="governorate">Location</label>
+                                            <select name="governorate"class="form-control"
+                                                onchange="getLocations(this.value)">
+                                                <option value="">Residence</option>
                                                 <option value="Irbid">Irbid</option>
+                                                <option value="Ajloun">Ajloun</option>
+                                                <option value="Jerash">Jerash</option>
+                                                <option value="Mafraq">Mafraq</option>
+                                                <option value="Balqa">Balqa</option>
+                                                <option value="Amman">Amman</option>
                                                 <option value="Zarqa">Zarqa</option>
-                                                <option value="Balqaa">Balqaa</option>
+                                                <option value="Madaba">Madaba</option>
+                                                <option value="Karak">Karak</option>
+                                                <option value="Tafilah">Tafilah</option>
+                                                <option value="Ma'an">Ma'an</option>
                                                 <option value="Aqaba">Aqaba</option>
-                                                <option value="other">Other</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <!-- Publication Date -->
-                                    <div class="col-6" >
+                                    <div class="col-6">
                                         <div class="form-group">
                                             <label for="start_date">Publication Date</label>
                                             <input type="date" id="publication_date" name="publication_date"
                                                 class="form-control @error('publication_date') is-invalid @enderror"
-                                                value="{{ old('publication_date') }}" required>
+                                                value="{{ old('publication_date') }}">
                                             @error('publication_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -125,12 +133,14 @@
                                     </div>
                                 </div>
 
-                                <!-- Location Input (Initially Hidden) -->
-                                <div class="row" id="other-location" style="display: none;">
+                                <!-- Location Input  -->
+                                <div class="row" id="location">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="other-location">Other Location</label>
-                                            <input type="text" id="location" name="other-location" class="form-control">
+                                            <label for="location">Location</label>
+                                            <select id="location-dropdown" name="location" class="form-control">
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +200,9 @@
                                             <label for="timeline">Timeline</label>
                                             <select id="timeline" name="timeline"
                                                 class="form-control @error('timeline') is-invalid @enderror" required>
-                                                <option value="private">Private</option>
-                                                <option value="component">Private(component)</option>
-                                                <option value="public">Public</option>
+                                                <option value="Private(component)">Private(component)</option>
+                                                <option value="Public(component)">Public(component)</option>
+                                                <option value="Public csr">Public csr</option>
                                             </select>
                                             @error('timeline')
                                                 <span class="invalid-feedback"
@@ -216,28 +226,57 @@
         </div>
     </section>
     <script>
-        var locationDropdown = document.getElementById("location-dropdown");
-        var otherLocationInput = document.getElementById("other-location");
-    
-        locationDropdown.addEventListener("change", function () {
-            if (locationDropdown.value === "other") {
-                otherLocationInput.style.display = "block";
-                otherLocationInput.setAttribute("required", "required");
-            } else {
-                otherLocationInput.style.display = "none"; 
-                otherLocationInput.removeAttribute("required"); 
+        function getLocations(governorate) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            }
-        });
+            // Set up the AJAX request
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/getLocation', // Check if this is the correct URL
+                data: {
+                    governorate: governorate
+                },
+                success: function(data) {
+                    var locations = data.locations;
+                    var locationDropdown = $('#location-dropdown');
+                    locationDropdown.empty();
+                    locationDropdown.append($('<option>', {
+                        value: "",
+                        text: "Select Location"
+                    }));
+                    if (locations && locations.length > 0) {
+                        $.each(locations, function(key, value) {
+                            locationDropdown.append($('<option>', {
+                                value: value.id,
+                                text: value.name
+                            }));
+                        });
+                    }
+                },
+
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle error if necessary
+                    console.error(textStatus, errorThrown);
+                }
+            });
+        }
+
+
 
         var typeDropdown = document.getElementById("activity_type");
         var datesInput = document.getElementById("datesInput");
-    
-        typeDropdown.addEventListener("change", function () {
+
+        typeDropdown.addEventListener("change", function() {
             if (typeDropdown.value === "Registration") {
                 datesInput.style.display = "flex";
             } else {
-                datesInput.style.display = "none"; 
+                datesInput.style.display = "none";
             }
         });
     </script>

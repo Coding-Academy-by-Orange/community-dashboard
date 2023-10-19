@@ -63,14 +63,14 @@
                             @php
                                 $imageArray = json_decode($activity->image);
                             @endphp
-                            <img src="{{ URL::asset('storage/image/' . $imageArray) }}" class="card-img"
+                            <img src="{{ URL::asset('storage/image/' . $imageArray[0]) }}" class="card-img"
                                 style="height: 50vh; " alt="{{ $activity->activity_name }}">
                         @endif
                         <div class="card-img-overlay pt-5 pb-0 text-white">
                             <h1 class="py-3">{{ $activity->activity_name }} </h1>
                             <div class="py-3">
                                 <i class="fa-solid fa-location-dot"></i>
-                                {{ $activity->location }}
+                                {{ $activity->location->name }}
                             </div>
                             <p class="text-truncate"style="max-width: 150px;">{{ $activity->description }}
                             </p>

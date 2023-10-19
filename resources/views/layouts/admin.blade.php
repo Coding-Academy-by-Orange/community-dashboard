@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="description" content="admin dashboard">
     <meta name="keywords" content="statistics, registration,coding,orange, laravel, learning, OCA">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title> @yield('title') </title>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -44,6 +46,9 @@
     <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.1/dist/js/boosted.min.js"
         integrity="sha384-5/uuaktuMuP89rRLLF12Nmffr7aMWkLWFVq2xzMjqdXlOiMsRRHpbz3oG92Gvj7u" crossorigin="anonymous">
     </script>
+    <!-- Include the html2canvas library -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 </head>
 <!-- END: Head-->
 
@@ -60,7 +65,7 @@
                     </a>
                     <h1 class="title">
                         @if (Auth::guard('admin')->user()->component == 'digitalcenter')
-                            Orange Community Digital Centers
+                            Orange Digital Centers
                         @elseif (Auth::guard('admin')->user()->component == 'fablab')
                             FabLab
                         @elseif (Auth::guard('admin')->user()->component == 'codingacademy')

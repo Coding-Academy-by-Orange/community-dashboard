@@ -94,22 +94,59 @@
                                     </div>
                                 </div>
 
-                                <!-- Location -->
+                                <!-- governorate -->
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="location">Location</label>
-                                            <input type="text" id="location" name="location"
-                                                class="form-control @error('location') is-invalid @enderror"
-                                                value="{{ old('location', $activity->location) }}" required>
+                                            <label for="governorate">Governorate</label>
+                                            <select name="governorate"class="form-control"
+                                            onchange="getLocations(this.value)"
+                                            class="form-control @error('location') is-invalid @enderror" required>
+                                            <option value="">Residence</option>
+                                            <option value="Irbid" {{ $activity->location->governorate === 'Irbid' ? 'selected' : '' }}>Irbid</option>
+                                            <option value="Ajloun" {{ $activity->location->governorate === 'Ajloun' ? 'selected' : '' }}>Ajloun</option>
+                                            <option value="Jerash" {{ $activity->location->governorate === 'Jerash' ? 'selected' : '' }}>Jerash</option>
+                                            <option value="Mafraq" {{ $activity->location->governorate === 'Mafraq' ? 'selected' : '' }}>Mafraq</option>
+                                            <option value="Balqa" {{ $activity->location->governorate === 'Balqa' ? 'selected' : '' }}>Balqa</option>
+                                            <option value="Amman" {{ $activity->location->governorate === 'Amman' ? 'selected' : '' }}>Amman</option>
+                                            <option value="Zarqa" {{ $activity->location->governorate === 'Zarqa' ? 'selected' : '' }}>Zarqa</option>
+                                            <option value="Madaba"{{ $activity->location->governorate === 'Madaba' ? 'selected' : '' }}>Madaba</option>
+                                            <option value="Karak" {{ $activity->location->governorate === 'Karak' ? 'selected' : '' }}>Karak</option>
+                                            <option value="Tafilah" {{ $activity->location->governorate === 'Tafilah' ? 'selected' : '' }}>Tafilah</option>
+                                            <option value="Ma'an" {{ $activity->location->governorate === "Ma'an" ? 'selected' : '' }}>Ma'an</option>
+                                            <option value="Aqaba" {{ $activity->location->governorate === 'Aqaba' ? 'selected' : '' }}>Aqaba</option>
+
+                                        </select>
                                             @error('location')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="start_date">Publication Date</label>
+                                            <input type="date" id="publication_date" name="publication_date"
+                                                class="form-control @error('publication_date') is-invalid @enderror"
+                                                value="{{ old('publication_date', $activity->publication_date) }}" required>
+                                            @error('publication_date')
+                                                <span class="invalid-feedback"
+                                                    role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-
+                                  <!-- Location Input  -->
+                                  <div class="row" id="location">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <select id="location-dropdown" name="location" class="form-control">
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Cohort -->
                                 <div class="row">
                                     <div class="col-12">
@@ -165,11 +202,15 @@
                                             <label for="timeline">Timeline</label>
                                             <select id="timeline" name="timeline"
                                                 class="form-control @error('timeline') is-invalid @enderror" required>
-                                                <option value="private"
-                                                    {{ $activity->timeline === 'private' ? 'selected' : '' }}>Private
+                                                <option value="Private(component)"
+                                                    {{ $activity->timeline === 'Private(component)' ? 'selected' : '' }}>Private (component)
                                                 </option>
-                                                <option value="public"
-                                                    {{ $activity->timeline === 'public' ? 'selected' : '' }}>Public
+                                                <option value="Public(component)"
+                                                    {{ $activity->timeline === 'Public(component)' ? 'selected' : '' }}>Public(component)
+                                                </option>
+
+                                                <option value="public csr"
+                                                    {{ $activity->timeline === 'public csr' ? 'selected' : '' }}>public csr
                                                 </option>
                                             </select>
                                             @error('timeline')
@@ -194,4 +235,51 @@
             </div>
         </div>
     </section>
+    <script>
+     document.addEventListener("DOMContentLoaded", function() {
+        var selectedGovernorate = "{{ $activity->location->governorate }}"; // Assuming this is the initial value
+        getLocations(selectedGovernorate);
+    });
+    function getLocations(governorate) {
+        var selectedLocationId= {{ $activity->location_id}}
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Set up the AJAX request
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: '/admin/getLocation', // Check if this is the correct URL
+        data: {
+            governorate: governorate
+        },
+        success: function(data) {
+            var locations = data.locations;
+            var locationDropdown = $('#location-dropdown');
+            locationDropdown.empty();
+            locationDropdown.append($('<option>', {
+                value: "",
+                text: "Select Location"
+            }));
+            if (locations && locations.length > 0) {
+                locations.forEach(function(location) {
+                    var option = $('<option></option>').attr('value', location.id).text(location.name);
+                    if (location.id === selectedLocationId) {
+                        option.attr('selected', 'selected');
+                    }
+                    locationDropdown.append(option);
+                });
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            // Handle error if necessary
+            console.error(textStatus, errorThrown);
+        }
+    });
+}
+</script>
 @endsection

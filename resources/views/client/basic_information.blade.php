@@ -546,10 +546,10 @@
                                                     <option value="" @if (old('gender') == null) selected @endif >
                                                         Select..
                                                     </option>
-                                                    <option value="1" @if (old('gender') == '1') selected @endif >
+                                                    <option value="Male" @if (old('gender') == 'Male') selected @endif >
                                                         Male
                                                     </option>
-                                                    <option value="0" @if (old('gender') == '0') selected @endif >
+                                                    <option value="Female" @if (old('gender') == 'Female') selected @endif >
                                                         Female
                                                     </option>
                                                 </select>

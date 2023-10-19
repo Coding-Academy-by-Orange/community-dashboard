@@ -18,19 +18,23 @@ class CodingSchoolController extends Controller
     public function index()
     {
         $activities = Activity::where('component', 'codingschool')
-            ->whereIn('timeline', ["public", "component"])
             ->where(function ($query) {
-                $query->where(function ($subquery) {
-                    $subquery->whereNotNull('publication_date')
-                        ->where('publication_date', '<=', now());
-                })->orWhere(function ($subquery) {
-                    $subquery->whereNull('publication_date')
-                        ->whereNull('start_date')
-                        ->whereNull('end_date');
-                });
+                $query->where('timeline', 'Public(component)')
+                    ->where(function ($subquery) {
+                        $subquery->where(function ($subquery) {
+                            $subquery->whereNotNull('publication_date')
+                                ->where('publication_date', '<=', now());
+                        })->orWhere(function ($subquery) {
+                            $subquery->whereNull('publication_date')
+                                ->whereNull('start_date')
+                                ->whereNull('end_date');
+                        });
+                    });
             })
             ->orWhere(function ($query) {
-                $query->whereNotNull('end_date')
+                $query->where('component', 'codingschool')
+                    ->where('timeline', 'Public(component)')
+                    ->whereNotNull('end_date')
                     ->where('end_date', '>', now());
             })
             ->orderBy('start_date')
@@ -68,7 +72,8 @@ class CodingSchoolController extends Controller
             'grandfather_name' => 'required',
             'gender' => 'required',
             'education' => 'required',
-            'major_study' => 'required'
+            'major_study' => 'required',
+            'residence' => 'required',
         ]);
 
         $new_user = new codingSchool;
@@ -83,6 +88,7 @@ class CodingSchoolController extends Controller
         $new_user->gender = $request->input('gender');
         $new_user->education = $request->input('education');
         $new_user->major_study = $request->input('major_study');
+        $new_user->residence = $request->input('residence');
         $new_user->save();
         return redirect('/thanks');
     }

@@ -50,7 +50,7 @@ class ActivityController extends Controller
             return view('admin.activity.index', compact('activities'));
         }
 
-        $activities = Activity::whereIn('timeline', ["public", "component"])
+        $activities = Activity::where('timeline', "Public csr")
             ->where(function ($query) {
                 $query->where(function ($subquery) {
                     $subquery->whereNotNull('publication_date')
@@ -102,16 +102,15 @@ class ActivityController extends Controller
             'location' => 'required|string',
             'cohort' => 'nullable|string',
             'timeline' => 'required|string',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'required|image|max:2048',
             'video' => 'nullable|string',
-            'other_location' => 'required_if:location,other|string',
-
         ]);
+
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        //dd($request->input('publication_date'));
         if ($request->hasFile('images')) {
             $imagePaths = [];
 
@@ -126,10 +125,6 @@ class ActivityController extends Controller
         }
 
         $admin = Auth::guard('admin')->user();
-        $location = $request->input('location');
-        if ($location == 'other') {
-            $location = $request->input('other_location');
-        }
         $activity = new Activity([
             'activity_name' => $request->input('name'),
             'activity_type' => $request->input('activity_type'),
@@ -137,7 +132,7 @@ class ActivityController extends Controller
             'end_date' => $request->input('end_date'),
             'publication_date' => $request->input('publication_date'),
             'description' => $request->input('description'),
-            'location' => $location,
+            'location_id' => $request->input('location'),
             'cohort' => $request->input('cohort'),
             'timeline' => $request->input('timeline'),
             'image' => json_encode($imagePaths),
@@ -145,6 +140,7 @@ class ActivityController extends Controller
             'component' => $admin->component,
             'admin_id' => $admin->id,
         ]);
+        //dd($request->input('publication_date'));
         $activity->save();
         return redirect('/thanks');
     }
@@ -198,23 +194,19 @@ class ActivityController extends Controller
             'activity_type' => 'nullable|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'publication_date' => 'nullable|date',
             'description' => 'required|string',
             'location' => 'required|string',
             'cohort' => 'nullable|string',
             'timeline' => 'required|string',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video' => 'nullable|string',
-            'other_location' => 'required_if:location,other|string',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $activity = Activity::findOrFail($id);
-        $location = $request->input('location');
-        if ($location === 'other') {
-            $location = $request->input('other_location');
-        }
         if ($request->hasFile('images')) {
             $imagePaths = [];
 
@@ -230,8 +222,9 @@ class ActivityController extends Controller
                 'activity_type' => $request->input('activity_type'),
                 'start_date' => $request->input('start_date'),
                 'end_date' => $request->input('end_date'),
+                'publication_date' => $request->input('publication_date'),
                 'description' => $request->input('description'),
-                'location' => $location,
+                'location_id' => $request->input('location'),
                 'cohort' => $request->input('cohort'),
                 'timeline' => $request->input('timeline'),
                 'image' => json_encode($imagePaths),
@@ -243,8 +236,9 @@ class ActivityController extends Controller
                 'activity_type' => $request->input('activity_type'),
                 'start_date' => $request->input('start_date'),
                 'end_date' => $request->input('end_date'),
+                'publication_date' => $request->input('publication_date'),
                 'description' => $request->input('description'),
-                'location' => $location,
+                'location_id' => $request->input('location'),
                 'cohort' => $request->input('cohort'),
                 'timeline' => $request->input('timeline'),
                 'video' => $request->input('video'),

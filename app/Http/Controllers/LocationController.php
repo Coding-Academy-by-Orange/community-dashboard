@@ -116,4 +116,13 @@ class LocationController extends Controller
         location::destroy($location->id);
         return redirect('/location');
     }
+
+    public function getLocation(Request $request)
+    {
+        $governorate = $request->input('governorate');
+        // Retrieve locations based on the selected governorate
+        $locations = Location::where('governorate', $governorate)->get(['id', 'name']);
+        return response()->json(['locations' => $locations]);
+    }
+    
 }

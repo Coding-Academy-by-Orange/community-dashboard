@@ -3,7 +3,126 @@
     Dashboard
 @endsection
 @section('main')
-    {{--    <h2 class="my-2">Applicants Statistics</h2> --}}
+    <h2 class="my-2 text-center">Applicants Statistics</h2>
+    <section>
+        <form action="{{ route('dashboard.filter') }}" method="GET">
+            @csrf
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">From</label>
+                <input class="form-input" name="start_date" type="date">
+
+                <label class="input-group-text" for="inputGroupSelect01">Till</label>
+                <input class="form-input" name="end_date" type="date">
+
+                <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+                <select class="form-select" id="inputGroupSelect01" name="gender">
+                    <option value="">Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Residence</label>
+                <select class="form-select" id="inputGroupSelect01" name="residence">
+                    <option value="">Residence</option>
+                    <option value="Irbid">Irbid</option>
+                    <option value="Ajloun">Ajloun</option>
+                    <option value="Jerash">Jerash</option>
+                    <option value="Mafraq">Mafraq</option>
+                    <option value="Balqa">Balqa</option>
+                    <option value="Amman">Amman</option>
+                    <option value="Zarqa">Zarqa</option>
+                    <option value="Madaba">Madaba</option>
+                    <option value="Karak">Karak</option>
+                    <option value="Tafilah">Tafilah</option>
+                    <option value="Ma'an">Ma'an</option>
+                    <option value="Aqaba">Aqaba</option>
+                </select>
+
+                <label class="input-group-text" for="inputGroupSelect01">Education</label>
+                <select class="form-select" id="inputGroupSelect01" name="education">
+                    <option value="">Education</option>
+                    <option value="Below Tawjihi">Below Tawjihi</option>
+                    <option value="Tawjihi">Tawjihi</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Graduate">Graduate</option>
+
+                </select>
+                @if (Auth::guard('admin')->user()->component !== 'codingschool' ||
+                        Auth::guard('admin')->user()->component !== 'bigbyorange')
+                    <label class="input-group-text" for="inputGroupSelect01">center/affliation</label>
+                    <select class="form-select" id="inputGroupSelect01" name="center">
+                        <option value="">center/affliation</option>
+                        @if (Auth::guard('admin')->user()->component == 'codingacademy')
+                            <option value="Irbid">Irbid</option>
+                            <option value="Balqa">Balqa</option>
+                            <option value="Amman">Amman</option>
+                            <option value="Zarqa">Zarqa</option>
+                            <option value="Aqaba">Aqaba</option>
+                        @elseif(Auth::guard('admin')->user()->component == 'fablab')
+                            <option value="Fablab Amman">Fablab Amman</option>
+                            <option value="Fablab Irbid">Fablab Irbid</option>
+                            <option value="Fablab Karak">Fablab Karak</option>
+                            <option value="Fablab Aqaba">Fablab Aqaba</option>
+                            <option value="Fablab As salt">Fablab As salt</option>
+                        @elseif(Auth::guard('admin')->user()->component == 'digitalcenter')
+                            <option value="Amman markah">عمان – مؤسسة الملكه زين الشرف للتطوير / ماركا </option>
+                            <option value="Amman alhashmi">عمان – مركز الاميرة بسمة / الهاشمي</option>
+                            <option value="Irbid abi-saaed">اربد - مركز شباب دير ابي سعيد</option>
+                            <option value="Irbid alhosn">اربد – محطة معرفة الحصن</option>
+                            <option value="Irbid princess-basma/sheikh-hosain">اربد – مركز الاميرة بسمة / الشيخ حسين
+                            </option>
+                            <option value="Mafraq wast-almadinah">المفرق – محطة معرفة وسط المدينه</option>
+                            <option value="Mafraq princess-basma"> المفرق – مركز الاميرة بسمة
+                                /رحاب</option>
+                            <option value="As-salt">السلط –
+                                مركز شابات العارضه</option>
+                            <option value="Ajlon">عجلون –
+                                مركز شابات كفرنجه</option>
+                            <option value="Jerash">جرش -
+                                محطة معرفة الكتة</option>
+                            <option value="Zarqa alhashmiah-uni">
+                                الزرقاء
+                                - الجامعة الهاشمية</option>
+                            <option value="Zarqa youth-center">
+                                الزرقاء – مركز شباب الزرقاء
+                            </option>
+                            <option value="Madaba altheeban">مادبا - محطة معرفة ذيبان</option>
+                            <option value="Madaba maaen">
+                                مادبا – محطة معرفة ماعين</option>
+                            <option value="Madaba mleeh">
+                                مادبا – محطة معرفة مليح</option>
+                            <option value="Madaba princess-basma/wast almadinah">
+                                مادبا – مركز الاميرة بسمة / وسط المدينه</option>
+                            <option value="Madaba orange-club-german-uni">
+                                مادبا – نادي اورنج الجامعه الالمانيه</option>
+                            <option value="Shoubak">معان -
+                                مركز شباب الشوبك</option>
+                            <option value="Ma'an">معان -
+                                مركز شباب معان</option>
+                            <option value="Ma'an alhousaniah">معان – مركز الاميره بسمه /
+                                الحسينيه</option>
+                            <option value="Tafelah">الطفيله
+                                –محطة معرفة اعمار الطفيله</option>
+                            <option value="Karak">
+                                الكرك – نادي ابداع الكرك</option>
+                            <option value="Karak princess-basma/moata">
+                                الكرك – مركز الاميره بسمة / مؤته</option>
+                            <option value="Al-aqaba youth-center">
+                                العقبه – مركز شباب العقبه </option>
+                            <option value="Al-aqaba princess-basma">
+                                العقبه- مركز الاميره بسمة</option>
+                        @endif
+                    </select>
+                @endif
+                <div class="ms-2">
+                    <button type="submit" class="btn btn-primary mb-3">Filter</button>
+                </div>
+            </div>
+        </form>
+        <button onclick="generatePNG()" class="btn btn-primary mb-3">Generate PNG</button>
+    </section>
     <section id="dashboard-analytics">
         <div class="row">
             <div class=" col dashboard-users-success">
@@ -23,7 +142,7 @@
             @if (Auth::guard('admin')->user()->component != 'codingschool' ||
                     Auth::guard('admin')->user()->component != 'bigbyorange')
                 <div class="col  ">
-                    <div class="card "> 
+                    <div class="card ">
                         <div class="card-body py-1">
                             <div id="myChart-center"></div>
                         </div>
@@ -33,14 +152,14 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="card ">     
+                <div class="card ">
                     <div class="card-body py-1">
                         <div id="myChart-gender"></div>
                     </div>
                 </div>
             </div>
             <div class="col  ">
-                <div class="card "> 
+                <div class="card ">
                     <div class="card-body py-1">
                         <div id="myChart-level"></div>
                     </div>
@@ -158,26 +277,28 @@
         };
 
         Plotly.newPlot('myChart-status', [statusTrace], statusLayout, statusConfig);
+        @if (Auth::guard('admin')->user()->component != 'codingschool' ||
+                Auth::guard('admin')->user()->component != 'bigbyorange')
+            var centerData = {!! json_encode($centerData) !!};
+            var centerValues = Object.values(centerData);
+            var centerLabels = Object.keys(centerData);
 
-        var centerData = {!! json_encode($centerData) !!};
-        var centerValues = Object.values(centerData);
-        var centerLabels = Object.keys(centerData);
+            var centerTrace = {
+                labels: centerLabels,
+                values: centerValues,
+                type: 'pie'
+            };
 
-        var centerTrace = {
-            labels: centerLabels,
-            values: centerValues,
-            type: 'pie'
-        };
+            var centerLayout = {
+                title: 'Center/Affiliation Data Chart'
+            };
 
-        var centerLayout = {
-            title: 'Center/Affiliation Data Chart'
-        };
+            var centerConfig = {
+                responsive: true
+            };
 
-        var centerConfig = {
-            responsive: true
-        };
-
-        Plotly.newPlot('myChart-center', [centerTrace], centerLayout, centerConfig);
+            Plotly.newPlot('myChart-center', [centerTrace], centerLayout, centerConfig);
+        @endif
     </script>
     {{-- <script>
         var ctx = document.getElementById('myChart-filtration').getContext('2d');
@@ -255,4 +376,16 @@
             }
         });
     </script> --}}
+    <script>
+        function generatePNG() {
+            const element = document.getElementById('dashboard-analytics');
+            html2canvas(element).then(function(canvas) {
+                // Convert the canvas to an image and download it
+                var link = document.createElement('a');
+                link.download = 'export.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
 @endsection

@@ -132,7 +132,7 @@ class UserController extends Controller
                 'educational_background' => 'All',
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
-            ])->with('users', User::orderBy('en_first_name')->get());
+            ])->with('users', User::orderBy('first_name')->get());
         } 
     }
 

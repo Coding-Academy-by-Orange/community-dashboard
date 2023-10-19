@@ -41,7 +41,7 @@
                                     <td>
                                         @if (is_array($imageArray) && count($imageArray) > 1)
                                             <div id="activityCarousel-{{ $activity->id }}" class="carousel slide"
-                                                data-ride="carousel">
+                                                data-bs-ride="carousel">
                                                 <div class="carousel-inner">
                                                     @foreach ($imageArray as $index => $imagePath)
                                                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <img src="{{ asset('storage/image/' . $imageArray) }}" class="w-100"
+                                            <img src="{{ asset('storage/image/' . $imageArray[0]) }}" class="w-100"
                                                 width="30" height="30" alt="{{ $activity->activity_name }}">
                                         @endif
                                     </td>

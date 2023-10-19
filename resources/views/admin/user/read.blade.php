@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Dashboard
+    Applicants
 @endsection
 @section('main')
     <div class="d-md-flex flex-md-equal w-100">
