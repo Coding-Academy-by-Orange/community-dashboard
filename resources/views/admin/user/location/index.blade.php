@@ -31,7 +31,8 @@
                                         <td>{{ $count }} </td>
                                         <td class="text-capitalize">{{ $location->name }}</td>
                                         <td>{{ $location->governorate }}</td>
-                                        <td><a href="{{ route('location.edit', $location) }}" class="btn btn-primary">Edit</a></td>
+                                        <td><a href="{{ route('location.edit', $location) }}"
+                                                class="btn btn-primary">Edit</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

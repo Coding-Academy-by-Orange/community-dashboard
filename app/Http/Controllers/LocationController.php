@@ -52,7 +52,7 @@ class LocationController extends Controller
         $location = new location([
             'name' => $request->input('name'),
             'governorate' => $request->input('governorate'),
-            'component'=> $user->component
+            'component' => $user->component
         ]);
         $location->save();
         return redirect('/thanks');
@@ -119,10 +119,9 @@ class LocationController extends Controller
 
     public function getLocation(Request $request)
     {
+        $user = Auth::guard('admin')->user();
         $governorate = $request->input('governorate');
-        // Retrieve locations based on the selected governorate
-        $locations = Location::where('governorate', $governorate)->get(['id', 'name']);
+        $locations = Location::where('governorate', $governorate)->where('component', $user->component)->get(['id', 'name']);
         return response()->json(['locations' => $locations]);
     }
-    
 }

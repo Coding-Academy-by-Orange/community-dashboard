@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Activity
+@endsection
 @section('main')
     <section id="basic-horizontal-layouts">
         <div class="row match-height">
@@ -8,12 +11,12 @@
                         <div>
                             <h3 class="card-title">{{ $activity->activity_name }}</h3>
                         </div>
-                       
+
                     </div>
                     <div class="card-body">
                         @php
-                        $imageArray = json_decode($activity->image);
-                    @endphp
+                            $imageArray = json_decode($activity->image);
+                        @endphp
                         @if (is_array($imageArray) && count($imageArray) > 1)
                             <div id="activity{{ $activity->id }}" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
@@ -24,20 +27,21 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <a class="carousel-control-prev" type="button" data-bs-target="#activity{{ $activity->id }}" data-bs-slide="prev">
+                                <a class="carousel-control-prev" type="button"
+                                    data-bs-target="#activity{{ $activity->id }}" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                  <a class="carousel-control-next" type="button" data-bs-target="#activity{{ $activity->id }}" data-bs-slide="next">
+                                <a class="carousel-control-next" type="button"
+                                    data-bs-target="#activity{{ $activity->id }}" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
-                                  </a>
+                                </a>
                             </div>
                         @else
-                           
                             <div>
-                                <img src="{{ asset('storage/image/' . $imageArray[0]) }}" class="w-100" style="height: 350px;"
-                                    alt="{{ $activity->activity_name }}">
+                                <img src="{{ asset('storage/image/' . $imageArray[0]) }}" class="w-100"
+                                    style="height: 350px;" alt="{{ $activity->activity_name }}">
                             </div>
                         @endif
 
@@ -47,23 +51,26 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <div>
-                                <a class ="btn btn-secondary mb-1" href="{{ route('admin.activity.register.create', ['activity_id' => $activity->id]) }}">Register
+                                <a class ="btn btn-secondary mb-1"
+                                    href="{{ route('admin.activity.register.create', ['activity_id' => $activity->id]) }}">Register
                                     for this activity</a><br>
-                                <a class ="btn btn-secondary " href="{{ route('admin.activity.register.index', ['activity_id' => $activity->id]) }}">View
-                                    Participants</a> </div>
-                           
-                                    <div>
-                                        <a class="btn btn-primary m-1" href="{{ route('activity.edit', $activity) }}">Edit Activity </a>
-                                        <br>
+                                <a class ="btn btn-secondary "
+                                    href="{{ route('admin.activity.register.index', ['activity_id' => $activity->id]) }}">View
+                                    Participants</a>
+                            </div>
+
+                            <div>
+                                <a class="btn btn-primary m-1" href="{{ route('activity.edit', $activity) }}">Edit Activity
+                                </a>
+                                <br>
                                 @if (Auth::id() == $activity->admin_id || Auth::user()->is_super == 1)
-                                <form method="POST" action="{{ route('activity.destroy', $activity) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete Activity</button>
-                                </form>
-                                
-                            @endif
-                                    </div>
+                                    <form method="POST" action="{{ route('activity.destroy', $activity) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete Activity</button>
+                                    </form>
+                                @endif
+                            </div>
 
 
                         </div>

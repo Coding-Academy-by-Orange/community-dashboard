@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Applicant
+    Applicant
 @endsection
 @section('main')
     <div class="card">

@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('title')
+    Activities
+@endsection
 @section('main')
     <section id="basic-horizontal-layouts">
         <div class="row match-height">

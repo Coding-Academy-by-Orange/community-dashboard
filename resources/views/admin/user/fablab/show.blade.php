@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Applicant
+    Applicant
 @endsection
 @section('main')
     <div class="container">
@@ -57,7 +57,4 @@ Applicant
             <button type="submit" class="btn btn-primary glow mb-0">Change Status</button>
         </form>
     </div>
-
-
-
 @endsection

@@ -12,42 +12,41 @@
 
     <title> @yield('title') </title>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+
     <link rel="shortcut icon"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1200px-Orange_logo.svg.png"
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js"
-        integrity="sha512-2uu1jrAmW1A+SMwih5DAPqzFS2PI+OPw79OVLS4NJ6jGHQ/GmIVDDlWwz4KLO8DnoUmYdU8hTtFcp8je6zxbCg=="
-        crossorigin="anonymous"></script> --}}
-
-        <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.css"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/orange-helvetica.min.css" rel="stylesheet"
+        integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet"
+        integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
 
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script
         src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/date-1.5.1/sc-2.2.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.js">
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/orange-helvetica.min.css" rel="stylesheet"
-        integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.2/dist/css/boosted.min.css" rel="stylesheet"
-        integrity="sha384-fyenpx19UpfUhZ+SD9o9IdxeIJKE6upKx0B54OcXy1TqnO660Qw9xw6rOASP+eir" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.1/dist/js/boosted.min.js"
         integrity="sha384-5/uuaktuMuP89rRLLF12Nmffr7aMWkLWFVq2xzMjqdXlOiMsRRHpbz3oG92Gvj7u" crossorigin="anonymous">
     </script>
-    <!-- Include the html2canvas library -->
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.js"
+        integrity="sha512-3PL7jW3xI1EjF2Hfqwv5u6nKG/BnUbWytnJDhsY/q5CbIB5XzoHNhJvgmFeVD7xgC9DbKDm+gPP9uDAAfLAZUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
 
 </head>
 <!-- END: Head-->
@@ -95,12 +94,12 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Manage Activities
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
-                                </ul>
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
+                            </ul>
                         </li>
                         @if (Auth::guard('admin')->user()->is_super)
                             @if (Auth::guard('admin')->user()->component == 'codingacdemy')
@@ -129,7 +128,7 @@
                                     </span>
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-dark pb-0">
                                 <a class="dropdown-item " href="{{ route('admin.logout') }}"
                                     onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
@@ -151,9 +150,34 @@
     <div class="container-fluid mt-4">
         @yield('main')
     </div>
+
+    <footer class="footer bg-dark navbar-dark pt-5">
+        <div class="container-xxl footer-terms">
+            <div class="d-flex justify-content-around">
+                <ul class="navbar-nav gap-2 flex-row align-self-start">
+                    <li class="footer-heading me-md-3">Follow Us</li>
+                    <li><a href="#" class="btn btn-icon btn-social btn-twitter btn-inverse"><span
+                                class="visually-hidden">Twitter</span></a></li>
+                    <li><a href="#" class="btn btn-icon btn-social btn-facebook btn-inverse"><span
+                                class="visually-hidden">Facebook</span></a></li>
+                    <li><a href="#" class="btn btn-icon btn-social btn-instagram btn-inverse"><span
+                                class="visually-hidden">Instagram</span></a></li>
+                    <li><a href="#" class="btn btn-icon btn-social btn-youtube btn-inverse"><span
+                                class="visually-hidden">YouTube</span></a></li>
+                </ul>
+                <ul class="navbar-nav gap-md-3">
+                    <li class="fw-bold">© Orange 2023</li>
+                    <li><a class="nav-link" href="#">Terms and conditions</a></li>
+                    <li><a class="nav-link" href="#">Privacy</a></li>
+                    <li><a class="nav-link" href="#">Accessibility statement</a></li>
+                    <li><a class="nav-link" href="#">Cookie policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     @yield('script')
     {{-- sweet alert cdn and use --}}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 
 </body>
 <!-- END: Body-->

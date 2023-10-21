@@ -49,7 +49,7 @@
                     <option value="Graduate">Graduate</option>
 
                 </select>
-                @if (Auth::guard('admin')->user()->component !== 'codingschool' ||
+                @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
                         Auth::guard('admin')->user()->component !== 'bigbyorange')
                     <label class="input-group-text" for="inputGroupSelect01">center/affliation</label>
                     <select class="form-select" id="inputGroupSelect01" name="center">
@@ -124,8 +124,8 @@
         <button onclick="generatePNG()" class="btn btn-primary mb-3">Generate PNG</button>
     </section>
     <section id="dashboard-analytics">
-        <div class="row">
-            <div class=" col dashboard-users-success">
+        <div class="row mb-3">
+            <div class="col">
                 <div class="card">
                     <div class="card-body py-1">
                         <div id="myChart-status"></div>
@@ -139,35 +139,35 @@
                     </div>
                 </div>
             </div>
-            @if (Auth::guard('admin')->user()->component != 'codingschool' ||
-                    Auth::guard('admin')->user()->component != 'bigbyorange')
+            @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
+                    Auth::guard('admin')->user()->component !== 'bigbyorange')
                 <div class="col  ">
                     <div class="card ">
-                        <div class="card-body py-1">
+                        <div class="card-body ">
                             <div id="myChart-center"></div>
                         </div>
                     </div>
                 </div>
             @endif
         </div>
-        <div class="row">
+        <div class="row my-3">
             <div class="col">
                 <div class="card ">
-                    <div class="card-body py-1">
+                    <div class="card-body">
                         <div id="myChart-gender"></div>
                     </div>
                 </div>
             </div>
             <div class="col  ">
                 <div class="card ">
-                    <div class="card-body py-1">
+                    <div class="card-body ">
                         <div id="myChart-level"></div>
                     </div>
                 </div>
             </div>
             <div class="col  ">
                 <div class="card ">
-                    <div class="card-body py-1">
+                    <div class="card-body">
                         <div id="myChart-city"></div>
                     </div>
                 </div>
@@ -175,6 +175,17 @@
         </div>
     </section>
     <script>
+        function generatePNG() {
+            const element = document.getElementById('dashboard-analytics');
+            html2canvas(element).then(function(canvas) {
+                // Convert the canvas to an image and download it
+                var link = document.createElement('a');
+                link.download = 'export.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
         var ageGroupData = {!! json_encode($ageGroupData) !!};
         var ageGroupValues = Object.values(ageGroupData);
         var ageGroupLabels = Object.keys(ageGroupData);
@@ -243,9 +254,10 @@
         var genderLabels = Object.keys(genderData);
 
         var genderTrace = {
-            labels: genderLabels,
-            values: genderValues,
-            type: 'pie'
+            x: genderLabels,
+            y: genderValues,
+            type: 'bar',
+            name: "Gender Data"
         };
 
         var genderLayout = {
@@ -263,9 +275,10 @@
         var statusLabels = Object.keys(statusData);
 
         var statusTrace = {
-            labels: statusLabels,
-            values: statusValues,
-            type: 'pie'
+            x: statusLabels,
+            y: statusValues,
+            type: 'bar',
+            name: 'Status Data'
         };
 
         var statusLayout = {
@@ -277,16 +290,17 @@
         };
 
         Plotly.newPlot('myChart-status', [statusTrace], statusLayout, statusConfig);
-        @if (Auth::guard('admin')->user()->component != 'codingschool' ||
-                Auth::guard('admin')->user()->component != 'bigbyorange')
+        @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
+                Auth::guard('admin')->user()->component !== 'bigbyorange')
             var centerData = {!! json_encode($centerData) !!};
             var centerValues = Object.values(centerData);
             var centerLabels = Object.keys(centerData);
 
             var centerTrace = {
-                labels: centerLabels,
-                values: centerValues,
-                type: 'pie'
+                x: centerLabels,
+                y: centerValues,
+                type: 'bar',
+                name: 'Center/Affiliation Data'
             };
 
             var centerLayout = {
@@ -376,16 +390,4 @@
             }
         });
     </script> --}}
-    <script>
-        function generatePNG() {
-            const element = document.getElementById('dashboard-analytics');
-            html2canvas(element).then(function(canvas) {
-                // Convert the canvas to an image and download it
-                var link = document.createElement('a');
-                link.download = 'export.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
-    </script>
 @endsection
