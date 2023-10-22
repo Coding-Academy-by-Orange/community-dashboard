@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CodingAcademy;
 
 use App\Activity;
-
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -73,7 +73,21 @@ class ControllerCodingAcademy extends Controller
      */
     public function show($id)
     {
-        //
+        $student = User::findOrFail($id);
+        return view('admin.user.codingacademy.show', compact('student'));
+    }
+    public function changeStatus(Request $request, $id)
+    {
+        $student = User::findOrFail($id);
+
+        // Validate the request here if needed
+
+        $newStatus = $request->input('new_status');
+        $student->status = $newStatus;
+        $student->save();
+
+        return redirect()->route('admin.user.codingacademy.show', $student->id)
+            ->with('status', 'User status changed successfully.');
     }
 
     /**

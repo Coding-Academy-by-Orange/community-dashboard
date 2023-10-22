@@ -43,7 +43,7 @@ class CreateUsersTable extends Migration
             $table->string('ar_second_name')->nullable();
             $table->string('ar_third_name')->nullable();
             $table->string('ar_last_name')->nullable();
-            $table->boolean('gender')->nullable();
+            $table->string('gender')->nullable();
             $table->string('martial_status')->nullable();
             $table->rememberToken()->nullable();
 

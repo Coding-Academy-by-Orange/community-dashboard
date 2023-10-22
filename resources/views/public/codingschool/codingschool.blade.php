@@ -27,6 +27,8 @@
         </div>
     </section>
     <section class="my-5">
+       
+        @if (isset($activities) && count($activities) > 0)
         <div class="container px-5 center">
             <h2>News and Activities</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi
@@ -35,7 +37,6 @@
                 Ad, ut
                 accusamus.</p>
         </div>
-        @if (isset($activities) && count($activities) > 0)
             <div class="container slide-activity px-4">
                 @foreach ($activities as $activity)
                     <div class="card " style=" width: 15em;">

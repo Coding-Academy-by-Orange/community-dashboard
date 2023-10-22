@@ -52,14 +52,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" id= "datesInput" style="display: none">
                                     <!-- Start Date -->
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="start_date">Start Date</label>
                                             <input type="date" id="start_date" name="start_date"
                                                 class="form-control @error('start_date') is-invalid @enderror"
-                                                value="{{ old('start_date', $activity->start_date) }}" required>
+                                                value="{{ old('start_date', $activity->start_date) }}" >
                                             @error('start_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -73,7 +73,7 @@
                                             <label for="end_date">End Date</label>
                                             <input type="date" id="end_date" name="end_date"
                                                 class="form-control @error('end_date') is-invalid @enderror"
-                                                value="{{ old('end_date', $activity->end_date) }}" required>
+                                                value="{{ old('end_date', $activity->end_date) }}" >
                                             @error('end_date')
                                                 <span class="invalid-feedback"
                                                     role="alert"><strong>{{ $message }}</strong></span>
@@ -314,5 +314,16 @@
                 }
             });
         }
+
+        var typeDropdown = document.getElementById("activity_type");
+        var datesInput = document.getElementById("datesInput");
+
+        typeDropdown.addEventListener("change", function() {
+            if (typeDropdown.value === "Registration") {
+                datesInput.style.display = "flex";
+            } else {
+                datesInput.style.display = "none";
+            }
+        });
     </script>
 @endsection

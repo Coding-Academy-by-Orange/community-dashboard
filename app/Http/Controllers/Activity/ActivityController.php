@@ -192,14 +192,14 @@ class ActivityController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'activity_type' => 'nullable|string',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
             'publication_date' => 'nullable|date',
             'description' => 'required|string',
             'location' => 'required|string',
             'cohort' => 'nullable|string',
             'timeline' => 'required|string',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|max:2048',
             'video' => 'nullable|string',
         ]);
 

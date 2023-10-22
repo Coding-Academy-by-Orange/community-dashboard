@@ -84,6 +84,7 @@
                                                     <option value="bigbyorange">Big By Orange</option>
                                                     <option value="fablab">Fablab</option>
                                                     <option value="digitalcenter">Digital Center</option>
+                                                    <option value="codingschool">Coding School</option>
                                                 </select>
                                                 <div class="form-control-position">
                                                     <i class="bx bx-user"></i>

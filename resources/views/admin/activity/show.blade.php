@@ -50,15 +50,16 @@
                             </p>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <div>
-                                <a class ="btn btn-secondary mb-1"
-                                    href="{{ route('admin.activity.register.create', ['activity_id' => $activity->id]) }}">Register
-                                    for this activity</a><br>
-                                <a class ="btn btn-secondary "
-                                    href="{{ route('admin.activity.register.index', ['activity_id' => $activity->id]) }}">View
-                                    Participants</a>
-                            </div>
-
+                            @if ($activity->start_date && $activity->end_date)
+                                <div>
+                                    <a class ="btn btn-secondary mb-1"
+                                        href="{{ route('admin.activity.register.create', ['activity_id' => $activity->id]) }}">Register
+                                        for this activity</a><br>
+                                    <a class ="btn btn-secondary "
+                                        href="{{ route('admin.activity.register.index', ['activity_id' => $activity->id]) }}">View
+                                        Participants</a>
+                                </div>
+                            @endif
                             <div>
                                 <a class="btn btn-primary m-1" href="{{ route('activity.edit', $activity) }}">Edit Activity
                                 </a>
@@ -67,7 +68,7 @@
                                     <form method="POST" action="{{ route('activity.destroy', $activity) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete Activity</button>
+                                        <button type="submit" class="btn btn-danger">Delete Activity</button>
                                     </form>
                                 @endif
                             </div>

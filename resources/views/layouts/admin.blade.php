@@ -53,7 +53,104 @@
 
 <!-- BEGIN: Body-->
 
-<body>
+<body >
+
+    {{-- <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+                <img src="https://boosted.orange.com/docs/5.2/assets/brand/orange-logo.svg" width="50"
+                    height="50" alt="Boosted - Back to Home" loading="lazy">
+            </a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                        @if (Auth::guard('admin')->user()->component == 'digitalcenter')
+                            Orange Digital Centers
+                        @elseif (Auth::guard('admin')->user()->component == 'fablab')
+                            FabLab
+                        @elseif (Auth::guard('admin')->user()->component == 'codingacademy')
+                            Coding Academy
+                        @elseif (Auth::guard('admin')->user()->component == 'bigbyorange')
+                            Big By Orange
+                        @elseif (Auth::guard('admin')->user()->component == 'codingschool')
+                            Coding School
+                        @elseif (Auth::guard('admin')->user()->is_super)
+                            Orange Dashboard
+                        @endif
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class=" nav-item"><a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                        </li>
+                        <li class=" nav-item"><a href="{{ route('users.index') }}" class="nav-link">Manage
+                                Applicants</a>
+                        </li>
+                        <li class=" nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Manage Activities
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
+                            </ul>
+                        </li>
+                        @if (Auth::guard('admin')->user()->is_super)
+                            @if (Auth::guard('admin')->user()->component == 'codingacdemy')
+                                <li class=" nav-item"><a href="{{ route('notifications.index') }}"
+                                        class="nav-link">Manage
+                                        Notifications</a>
+                                </li>
+                                <li class=" nav-item"><a href="{{ route('questionnaires.index') }}"
+                                        class="nav-link">Manage
+                                        Questionnaires</a>
+                                </li>
+                            @endif
+                            <li class=" nav-item"><a href="{{ route('admins.index') }}" class="nav-link">Manage
+                                    Admins</a>
+                            </li>
+                        @endif
+                    </ul>
+                    <ul class="navbar-nav flex-row">
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle nav-link dropdown-user-link " href="javascript:void(0);"
+                                data-bs-toggle="dropdown">
+                                <div class="user-nav d-sm-flex d-none d-flex flex-row">
+                                    <span class="user-name text-capitalize">{{ Auth::guard('admin')->user()->fname }}
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-dark pb-0">
+                                <a class="dropdown-item " href="{{ route('admin.logout') }}"
+                                    onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                                    <i class="bx bx-power-off mr-50"></i> Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav> --}}
+
+
+
     <header class="sticky-top">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg" aria-label="navigation">
             <div class="container-xxl">
@@ -85,14 +182,15 @@
                 </button>
                 <div id="global-header-3.1" class="navbar-collapse collapse me-lg-auto global-header-3">
                     <ul class="navbar-nav">
-                        <li class=" nav-item"><a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                        <li class=" nav-item"><a href="{{ route('admin.dashboard') }}"
+                                class="nav-link">Dashboard</a>
                         </li>
                         <li class=" nav-item"><a href="{{ route('users.index') }}" class="nav-link">Manage
                                 Applicants</a>
                         </li>
                         <li class=" nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Manage Activities
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
@@ -151,6 +249,7 @@
         @yield('main')
     </div>
 
+   
     <footer class="footer bg-dark navbar-dark pt-5">
         <div class="container-xxl footer-terms">
             <div class="d-flex justify-content-around">
@@ -175,6 +274,7 @@
             </div>
         </div>
     </footer>
+
     @yield('script')
     {{-- sweet alert cdn and use --}}
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}

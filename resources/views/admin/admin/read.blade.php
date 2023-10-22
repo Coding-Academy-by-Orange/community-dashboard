@@ -4,7 +4,7 @@
 @endsection
 @section('main')
     <h1 class="text-center mb-3">Admins</h1>
-    <div class="content-wrapper">
+    <div class="container" style="min-height: 60vh">
         <div class="content-body">
             <a href="{{ route('admin.register') }}"><button type="button" class="btn btn-primary glow mr-1 mb-1"><i
                         class="bx bx-plus"></i>

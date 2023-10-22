@@ -99,9 +99,24 @@ class CodingSchoolController extends Controller
      * @param  \App\codingSchool  $codingSchool
      * @return \Illuminate\Http\Response
      */
-    public function show(codingSchool $codingSchool)
+    public function show($id)
     {
-        //
+        $student = codingSchool::findOrFail($id);
+        return view('admin.user.codingschool.show', compact('student'));
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $student = codingSchool::findOrFail($id);
+
+        // Validate the request here if needed
+
+        $newStatus = $request->input('new_status');
+        $student->status = $newStatus;
+        $student->save();
+
+        return redirect()->route('admin.user.codingschool.show', $student->id)
+            ->with('status', 'User status changed successfully.');
     }
 
     /**

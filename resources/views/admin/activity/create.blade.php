@@ -269,8 +269,6 @@
             });
         }
 
-
-
         var typeDropdown = document.getElementById("activity_type");
         var datesInput = document.getElementById("datesInput");
 

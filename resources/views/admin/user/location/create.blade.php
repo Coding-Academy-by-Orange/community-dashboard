@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main')
-    <section id="basic-horizontal-layouts">
+    <section id="basic-horizontal-layouts" class="container" style="min-height: 60vh">
         <div class="row match-height">
             <div class=" col-12">
                 <div class="card">

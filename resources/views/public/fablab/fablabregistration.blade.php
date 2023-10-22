@@ -13,8 +13,8 @@
                 </div>
                 <div class="card-img-overlay  text-primary">
                     <div class="container float-start w-50">
-                        <p class="breadcrumb text-primary">Orange CSR</p>
-                        <h1 class="text-primary">Orange CSR</h1>
+                        <p class="breadcrumb text-primary">Fablab</p>
+                        <h1 class="text-primary">Fablab</h1>
                         <h2>Inspired By The Group’s “Lead the Future” Strategic Plan </h2>
                         <p class="card-text text-white">Orange Jordan’s corporate social responsibility transforms
                             lives and local communities through digital transformation</p>
@@ -25,13 +25,14 @@
         </div>
     </section>
     <section class="my-5">
-        <div class="container px-5 center">
-            <h2>News and Activities</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi veniam
-                modi aut, dignissimos sapiente non, velit quos dolore distinctio veritatis ullam iure et hic! Ad, ut
-                accusamus.</p>
-        </div>
+
         @if (isset($activities) && count($activities) > 0)
+            <div class="container px-5 center">
+                <h2>News and Activities</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi sunt perferendis excepturi veniam
+                    modi aut, dignissimos sapiente non, velit quos dolore distinctio veritatis ullam iure et hic! Ad, ut
+                    accusamus.</p>
+            </div>
             <div class="container slide-activity px-4">
                 @foreach ($activities as $activity)
                     <div class="card " style=" width: 15em;">

@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\CodingSchool\CodingSchoolController;
 use App\Http\Controllers\CodingAcademy\PersonalInformationController;
 use App\Http\Controllers\CodingAcademy\ControllerCodingAcademy;
 use App\Http\Controllers\TestController;
@@ -124,7 +125,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [FilterController::class, 'initialFilter'])->name('admin.dashboard');
 
     // Route for the main filter method
-    Route::get('/dashboard/filtered',[FilterController::class, 'filterResults'] )->name('dashboard.filter');
+    Route::get('/dashboard/filtered', [FilterController::class, 'filterResults'])->name('dashboard.filter');
 
 
     // User CRUD
@@ -176,6 +177,14 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     // Fablab User
     Route::get('/user/fablab/show/{id}', [FablabUsersController::class, 'show'])->name('admin.user.fablab.show');
     Route::post('/user/fablab/show/{id}/change-status', [FablabUsersController::class, 'changeStatus'])->name('admin.user.fablab.changeStatus');
+
+    // Coding School User
+    Route::get('/user/codingschool/show/{id}', [CodingSchoolController::class, 'show'])->name('admin.user.codingschool.show');
+    Route::post('/user/codingschool/show/{id}/change-status', [CodingSchoolController::class, 'changeStatus'])->name('admin.user.codingschool.changeStatus');
+
+    // Coding academy User
+    Route::get('/user/codingacademy/show/{id}', [ControllerCodingAcademy::class, 'show'])->name('admin.user.codingacademy.show');
+    Route::post('/user/codingacademy/show/{id}/change-status', [ControllerCodingAcademy::class, 'changeStatus'])->name('admin.user.codingacademy.changeStatus');
 
     // BigbyOrange User
     Route::get('/user/big/show/{id}', [BigbyOrangeController::class, 'show'])->name('admin.user.big.show');
