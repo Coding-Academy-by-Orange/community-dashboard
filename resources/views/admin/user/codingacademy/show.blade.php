@@ -7,22 +7,26 @@
         <h2>Student Details</h2>
         <div class="row">
             <div class="col-6">
-                <p>Name: {{ $student->first_name }} {{ $student->father_name }} {{ $student->grandfather_name }}
+                <p>Name: {{ $student->first_name }} {{ $student->second_name }} {{ $student->third_name }}
                     {{ $student->last_name }}</p>
+                    <p>Arabic Name: {{ $student->ar_first_name }} {{ $student->ar_second_name }} {{ $student->ar_third_name }}
+                        {{ $student->ar_last_name }}</p>
                 <p>Email: {{ $student->email }}</p>
                 <p>Phone: {{ $student->mobile }}</p>
-                <p>WhatsApp: {{ $student->whatsapp }}</p>
+                <p>Age: {{ $student->birthdate }}</p>
             </div>
             <div class="col-6">
-                <p>Age: {{ $student->age }}</p>
                 <p>Gender: {{ $student->gender }}</p>
-                @if ($student->other_nationalty == null)
-                    <p>Nationality: {{ $student->nationality }}</p>
-                    @if ($student->nationality == 'Jordanian')
-                        <p>National ID: {{ $student->national_id }}</p>
-                    @endif
+                <p>Martial Status: {{ $student->martial_status }}</p>
+                @if ($student->nationalty == 1)
+                    <p>Nationality: Jordanian</p>
                 @else
-                    <p>Nationality: {{ $student->other_nationalty }}</p>
+                    <p>Nationality: Non Jordanian</p>
+                @endif
+                <p>Country: {{ $student->country }}</p>
+                @if ($student->nationality == 1)
+                    <p>National ID: {{ $student->national_id }}</p>
+                @else
                     <p>Passport Number : {{ $student->passport_number }}</p>
                 @endif
             </div>
@@ -30,14 +34,34 @@
         <hr>
         <div class="row">
             <div class="col-6">
-                <p>Residence: {{ $student->residence }}</p>
+                <p>City: {{ $student->city }}</p>
+                <p>Address: {{ $student->address }}</p>
                 <p>Education: {{ $student->education }}</p>
-                <p>Employment: {{ $student->employment }}</p>
-                <p>Major Study: {{ $student->major_study }}</p>
+                <p>Educational Status:{{$student->educational_status}}</p>
+                <p>Field:{{$student->field}}</p>
+                <p>Educational Background:{{$student->educational_background}}</p>
             </div>
             <div class="col-6">
-                <p>Affiliation: {{ $student->affiliation }}</p>
-                <p>Idea Description: {{ $student->idea_description }}</p>
+                <p>AR Writing:{{$student->ar_writing}}</p>
+                <p>AR Speaking:{{$student->ar_speaking}}</p>
+                <p>EN Writing:{{$student->en_writing}}</p>
+                <p>EN Speaking:{{$student->en_speaking}}</p>
+
+            </div>
+        </div><hr>
+        <div class="row">
+            <div class="col-6">
+                <p>Relative #1 Name: {{ $student->fullName_1 }}</p>
+                <p>Relative #1 Phone: {{ $student->relative_mobile_1 }}</p>
+                <p>Relative #1 Relations: {{ $student->relative_relation_1 }}</p>
+                <p>Relative #2 Name: {{ $student->fullName_2 }}</p>
+                <p>Relative #2 Phone: {{ $student->relative_mobile_2 }}</p>
+                <p>Relative #2 Relations: {{ $student->relative_relation_2 }}</p>
+            </div>
+            <div class="col-6">
+                <p>is_committed	:{{$student->is_committed}}</p>
+                <p>is_submitted:{{$student->is_submitted}}</p>
+                <p>Academy Location:{{$student->academy_location}}</p>
 
             </div>
         </div>

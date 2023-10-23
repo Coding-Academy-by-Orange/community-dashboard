@@ -68,7 +68,7 @@ class CreateUsersTable extends Migration
 
             //is submitted
             $table->boolean('is_submitted')->default(0);
-            $table->string('status')->default('in_progress');
+            $table->string('status')->default('pending');
             $table->string('result_1')->nullable();
 
             $table->string('academy_location')->nullable();
