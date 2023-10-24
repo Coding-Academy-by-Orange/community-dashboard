@@ -115,9 +115,8 @@ class ActivityController extends Controller
             $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
-                $img = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/image', $img);
-
                 $imagePaths[] = $img;
             }
         } else {
@@ -211,7 +210,7 @@ class ActivityController extends Controller
             $imagePaths = [];
 
             foreach ($request->file('images') as $image) {
-                $img = $request->input('name') . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/image', $img);
 
                 $imagePaths[] = $img;
