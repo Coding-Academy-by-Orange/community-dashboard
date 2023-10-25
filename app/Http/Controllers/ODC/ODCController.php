@@ -218,7 +218,7 @@ class ODCController extends Controller
             }
         } else {
             $validator = Validator::make($request->all(), [
-                'passport_number' => 'required|unique:fablab_users,passport_number',
+                'passport_number' => 'required|unique:digitalcenter_users,passport_number',
             ]);
             $errors = $validator->errors();
             if ($errors->has('passport_number')) {
@@ -231,7 +231,7 @@ class ODCController extends Controller
 
 
         if ($allErrors != []) {
-            return redirect('/ODC')->withErrors($allErrors)->withInput();
+            return redirect()->route('ODC.create')->withErrors($allErrors)->withInput();
         }
 
         try {
@@ -300,11 +300,11 @@ class ODCController extends Controller
                     array_push($errorMessage, 'رقم الهاتف المستخدم قد تم التسجيل به من قبل.');
                 }
 
-                return redirect('/ODC')->withErrors($errorMessage)->withInput();
+                return redirect()->route('ODC.create')->withErrors($errorMessage)->withInput();
             } else {
                 $errorMessage  = 'حدث خطأ في عملية التسجيل.';
                 $request->session()->put('error', $errorMessage);
-                return redirect('/ODC')->withInput();
+                return redirect()->route('ODC.create')->withInput();
             }
         }
     }

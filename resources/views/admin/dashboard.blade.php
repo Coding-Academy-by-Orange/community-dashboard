@@ -141,9 +141,9 @@
             </div>
             @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
                     Auth::guard('admin')->user()->component !== 'bigbyorange')
-                <div class="col  ">
-                    <div class="card ">
-                        <div class="card-body ">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body py-1">
                             <div id="myChart-center"></div>
                         </div>
                     </div>

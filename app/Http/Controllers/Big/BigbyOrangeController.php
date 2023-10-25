@@ -610,7 +610,7 @@ class BigbyOrangeController extends Controller
                 } catch (QueryException $e) {
                     $errorMessage  = 'حدث خطأ في عملية التسجيل.';
                     $request->session()->put('error', $errorMessage);
-                    return redirect('/ODC')->withInput();
+                    return redirect()->route('big.create')->withInput();
                 }
             }
         }

@@ -63,9 +63,7 @@ class FablabUsersController extends Controller
      */
     public function store(Request $request)
     {
-
         $allErrors = [];
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:fablab_users,email',
             'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/|unique:fablab_users,mobile',
@@ -228,7 +226,7 @@ class FablabUsersController extends Controller
         }
 
         if ($allErrors != []) {
-            return redirect('/fablab-registration')->withErrors($allErrors)->withInput();
+            return redirect()->route('fablab.create')->withErrors($allErrors)->withInput();
         }
 
         try {
@@ -293,11 +291,11 @@ class FablabUsersController extends Controller
                     array_push($errorMessage, 'The whatsapp is already registered.');
                 }
 
-                return redirect('/fablab-registration')->withErrors($errorMessage)->withInput();
+                return redirect()->route('fablab.create')->withErrors($errorMessage)->withInput();
             } else {
                 $errorMessage  = 'An error occurred during registration.';
                 $request->session()->put('error', $errorMessage);
-                return redirect('/fablab-registration')->withInput();
+                return redirect()->route('fablab.create')->withInput();
             }
         }
     }

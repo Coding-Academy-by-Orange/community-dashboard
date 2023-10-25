@@ -307,9 +307,9 @@
                             <br>
 
                         </div>
-                        @if ($errors->has('major_education'))
+                        @if ($errors->has('education'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('major_education') }}
+                                {{ $errors->first('education') }}
                             </div>
                         @endif
                     </div>

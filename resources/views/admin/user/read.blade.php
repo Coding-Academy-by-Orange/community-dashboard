@@ -32,7 +32,7 @@
                                             <th>Gender</th>
                                             <th>Nationality</th>
                                             <th>Education</th>
-                                            <th>major_study</th>
+                                            <th>Major Study</th>
                                             <th>Birthdate</th>
                                             <th>Residence/City</th>
                                             <th>Mobile</th>
@@ -289,6 +289,13 @@
                             }
                         }
                     },
+                    @if (Auth::guard('admin')->user()->component == 'fablab')
+                        {
+                            targets: [-4], // Assuming birthdate is the 9th column
+
+                            visible: false,
+                        }
+                    @endif
 
                 ],
 

@@ -26,8 +26,6 @@
                 <form class="p-4 p-md-5 rounded-3" action="{{ route('fablab.store') }}" method="POST">
                     @csrf
                     <h1>Registration Form</h1>
-
-
                     <div class="form-group">
                         <label for="email" class="is-required">Name<span class="sr-only">
                                 (required)</span></label>
@@ -40,7 +38,6 @@
                             <input name="father_name" placeholder="Father's Name" type="text"
                                 class="form-control email @error('father_name') is-invalid @enderror " id="father_name"
                                 value="{{ old('father_name') }}" required>
-
                         </div>
 
                         <div class="input-group ">

@@ -133,7 +133,7 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', User::orderBy('first_name')->get());
-        } 
+        }
     }
 
     /**
