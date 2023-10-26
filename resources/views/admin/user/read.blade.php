@@ -169,26 +169,50 @@
                                                     <td>{{ $user->Female_Co_Founders }}</td>
                                                     <td>{{ $user->Position }}</td>
                                                     <td>{{ $user->ProvideOfPosition }}</td>
-                                                    <td>{{ $user->Startup }}</td>
+                                                    @php $Startup=unserialize($user->Startup); @endphp
+                                                    <td>{{ $Startup }}</td>
                                                     <td>{{ $user->Startup_Name }}</td>
-                                                    <td>{{ $user->Website }}</td>
-                                                    <td>{{ $user->Social_Media }}</td>
-                                                    <td>{{ $user->problem_your_startup }}</td>
+                                                    @php$Website = unserialize($user->Website);
+                                                                                                                                                            @endphp ?> ?>
+                                                    <td>{{ $Website }}</td>
+                                                    <td>{{ $user->Social_Media }}</td>unserialize($serializedString)
+                                                    @php
+                                                        $problem = unserialize($user->problem_your_startup);
+                                                    @endphp
+                                                    <td>{{ $problem }}</td>
                                                     <td>{{ $user->describe_your_solution }}</td>
                                                     <td>{{ $user->MVP_Demo }}</td>
-                                                    <td>{{ $user->startup_registered }}</td>
-                                                    <td>{{ $user->registration_number }}</td>
-                                                    <td>{{ $user->startup_serve }}</td>
-                                                    <td>{{ $user->Funds }}</td>
-                                                    <td>{{ $user->source_funds }}</td>
+                                                    @php $startup_registered=unserialize($user->startup_registered); @endphp
+                                                    @foreach ($startup_registered as $item)
+                                                        <td>{{ $item }}</td>
+                                                    @endforeach
+                                                    @php $registration_number=unserialize($user->registration_number); @endphp
+                                                    <td>{{ $registration_number }}</td>
+                                                    @php $startup_serve=unserialize($user->startup_serve); @endphp
+                                                    @foreach ($startup_serve as $item)
+                                                        <td>{{ $item }}</td>
+                                                    @endforeach
+                                                    @php $Funds=unserialize($user->Funds); @endphp
+                                                    <td>{{ $Funds }}</td>
+                                                    @php $source_funds=unserialize($user->source_funds); @endphp
+                                                    @foreach ($source_funds as $item)
+                                                        <td>{{ $item }}</td>
+                                                    @endforeach
                                                     <td>{{ $user->amount_of_funds }}</td>
                                                     <td>{{ $user->new_funds }}</td>
-                                                    <td>{{ $user->markets }}</td>
+                                                    @php $markets=unserialize($user->markets); @endphp
+                                                    @foreach ($markets as $item)
+                                                        <td>{{ $item }}</td>
+                                                    @endforeach
+                                                 
                                                     <td>{{ $user->revenue }}</td>
-                                                    <td>{{ $user->milestones_and_achievements }}</td>
-                                                    <td>{{ $user->describe_the_effect }}</td>
+                                                    @php $milestones_and_achievements=unserialize($user->milestones_and_achievements); @endphp
+                                                    <td>{{ $milestones_and_achievements }}</td>
+                                                    @php $describe_the_effect=unserialize($user->describe_the_effect); @endphp
+                                                    <td>{{ $describe_the_effect }}</td>
                                                     <td>{{ $user->business_opportunities }}</td>
-                                                    <td>{{ $user->specify_units }}</td>
+                                                    @php $specify_units=unserialize($user->specify_units); @endphp
+                                                    <td>{{ $specify_units }}</td>
                                                     <td>{{ $user->expectations }}</td>
                                                 @endif
                                                 <td>{{ $user->status }}</td>
@@ -292,6 +316,13 @@
                     @if (Auth::guard('admin')->user()->component == 'fablab')
                         {
                             targets: [-4], // Assuming birthdate is the 9th column
+
+                            visible: false,
+                        },
+                    @endif
+                    @if (Auth::guard('admin')->user()->component == 'bigbyorange')
+                        {
+                            targets: [24,25,-4,-5,-6,-7,-8], // Assuming birthdate is the 9th column
 
                             visible: false,
                         }
