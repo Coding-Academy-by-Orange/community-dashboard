@@ -172,7 +172,7 @@
                                                     @php $Startup=unserialize($user->Startup); @endphp
                                                     <td>{{ $Startup }}</td>
                                                     <td>{{ $user->Startup_Name }}</td>
-                                                    @php$Website = unserialize($user->Website);
+                                                    @php $Website = unserialize($user->Website);
                                                                                                                                                             @endphp ?> ?>
                                                     <td>{{ $Website }}</td>
                                                     <td>{{ $user->Social_Media }}</td>unserialize($serializedString)
