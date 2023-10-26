@@ -86,7 +86,7 @@ class FilterController extends Controller
             $tableName = 'users';
             $centerFieldName = 'academy_location';
         } elseif ($user->component == 'codingschool') {
-            $tableName = 'coding_school';
+            $tableName = 'coding_schools';
             $centerFieldName = null;
         } elseif ($user->component == 'fablab') {
             $tableName = 'fablab_users';
