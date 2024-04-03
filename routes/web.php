@@ -218,6 +218,21 @@ Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
 // Big By Orange Registration Form
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
+//invoation-hub
+Route::get('/invoation-hub', function () {
+    return view('invoation-hub.landing-page');
+});
+Route::get('/invoation-hub/book-tour', function () {
+    return view('invoation-hub.book-tour');
+});
+Route::get('/invoation-hub/workshops/register', function () {
+    return view('invoation-hub.wokshops');
+});
+Route::get('/invoation-hub/program/register', function () {
+    return view('invoation-hub.faq');
+});
+
+
 Route::get('/thanks', function () {
     return view('public.thanks');
 })->name('thanks');
