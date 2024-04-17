@@ -104,7 +104,7 @@
             <div class="container text-center">
                 <div class="row">
                     <div class="col">
-                        <img src="./hello-learning.png" alt="a picture of mind">
+                        <img src="../../../../public/assets/img/hello-learning.png" alt="a picture of mind">
                         <hr>
                         <h3 class="text-primary">Innovation in residence</h3>
                         <p class="lead">Nurturing innovation creative mind will present their innovative idea to an
@@ -113,7 +113,7 @@
                             within Orange Innovation Hub </p>
                     </div>
                     <div class="col">
-                        <img src="./rocket.png" alt="">
+                        <img src="../../../../public/assets/img/rocket.png" alt="">
                         <hr>
                         <h3 class="text-primary">Innovation Workshop</h3>
                         <p class="lead">Exploding digital innovation, our workshops inspire participant to idea and
@@ -121,7 +121,7 @@
                             solutions addressing market needs,</p>
                     </div>
                     <div class="col">
-                        <img src="./play-and-win.png" alt="">
+                        <img src="../../../../public/assets/img/play-and-win.png" alt="">
                         <hr>
                         <h3 class="text-primary">Innovation Programs: Hackathon, Bootcamp, Problem Solving and idea
                             generation</h3>
@@ -131,7 +131,7 @@
                             explore.</p>
                     </div>
                     <div class="col">
-                        <img src="./orange-events.png" alt="">
+                        <img src="../../../../public/assets/img/orange-events.png" alt="">
                         <hr>
                         <h3 class="text-primary">technology event</h3>
                         <p class="lead">Spotlighting tech advancements our hub hosts divers' events welcoming tech
@@ -156,7 +156,7 @@
                 <div class="row">
                     <div class="col">
                         <a href="./book-tour.html">
-                            <img src="./ticket.png" alt="a picture of mind">
+                            <img src="../../../../public/assets/img/ticket.png" alt="a picture of mind">
                             <h3 class="text-primary">Book a Tour</h3>
                         </a>
                         <p class="lead">Nurturing innovation creative mind will present their innovative idea to an
@@ -165,8 +165,8 @@
                             within Orange Innovation Hub </p>
                     </div>
                     <div class="col">
-                        <a class="noLine" href="./program.html">
-                            <img src="./auditorium.png" alt="">
+                        <a href="./workshops.html">
+                            <img src="../../../../public/assets/img/auditorium.png" alt="">
                             <h3 class="text-primary">Join an Innovation Workshop</h3>
                         </a>
                         <p class="lead">Exploding digital innovation, our workshops inspire participant to idea and
@@ -174,8 +174,8 @@
                             solutions addressing market needs,</p>
                     </div>
                     <div class="col">
-                        <a href="">
-                            <img src="./session-enter.png" alt="">
+                        <a href="./program.html">
+                            <img src="../../../../public/assets/img/session-enter.png" alt="">
                             <h3 class="text-primary">Join Our Program</h3>
                         </a>
                         <p class="lead">idea exploration and validation, our innovation activities empower participants
