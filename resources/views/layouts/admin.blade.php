@@ -199,6 +199,16 @@
                                 <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
                             </ul>
                         </li>
+                        @if(Auth::guard('admin')->user()->component == 'codingschool')
+                            <li class=" nav-item"><a href="{{ route('notifications.index') }}"
+                                class="nav-link">Manage
+                                Notifications</a>
+                            </li>
+                            <li class=" nav-item"><a href="{{ route('questionnaires.index') }}"
+                                class="nav-link">Manage
+                                Questionnaires</a>
+                            </li>
+                        @endif
                         @if (Auth::guard('admin')->user()->is_super)
                             @if (Auth::guard('admin')->user()->component == 'codingacdemy')
                                 <li class=" nav-item"><a href="{{ route('notifications.index') }}"
@@ -249,7 +259,7 @@
         @yield('main')
     </div>
 
-   
+
     <footer class="footer bg-dark navbar-dark pt-5">
         <div class="container-xxl footer-terms">
             <div class="d-flex justify-content-around">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CodingSchool;
 
 use App\codingSchool;
 use App\Activity;
+use App\ComponentRegistration;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -152,4 +153,60 @@ class CodingSchoolController extends Controller
     {
         //
     }
+
+    public function thanks()
+    {
+        return view('public.codingschool.thanks');
+    }
+
+    public function register($registration_id)
+    {
+        $registration = ComponentRegistration::findOrFail($registration_id);
+        if($registration->status == 'public' && $registration->component == 'codingschool'){
+            return view('public.codingschool.register', compact('registration'));
+        }else{
+            return redirect('/codingschool/registration-not-found');
+        }
+        return view('public.codingschool.register');
+    }
+    public function mainRegistration()
+
+    {
+        $component_registration = ComponentRegistration::where('component', 'codingschool')
+            ->where('status', 'active')
+            ->get();
+        return view('public.codingschool.main-registration', compact('component_registration'));
+    }
+
+    public function internshipRegistration()
+    {
+        return view('public.codingschool.internship-registration');
+    }
+
+    public function internshipRegistrationStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:coding_school,email',
+            'mobile' => 'required|numeric|digits:10|regex:/^07[0-9]{8}$/|unique:coding_school,mobile',
+            'birthdate' => 'required|date|before:today',
+            'father_name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'grandfather_name' => 'required',
+        ]);
+
+        return redirect('/thanks');
+    }
+
+
+    public function workshopRegistration()
+    {
+        return view('public.codingschool.workshop-registration');
+    }
+
+    public function trainingRegistration()
+    {
+        return view('public.codingschool.training-registration');
+    }
+
 }

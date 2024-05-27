@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Big\BigbyOrangeController;
+use App\Http\Controllers\InnovationHubController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ODC\ODCController;
@@ -27,6 +28,8 @@ use App\Http\Controllers\TestController;
 */
 
 Route::get('/', [ActivityController::class, 'index']);
+
+
 
 Route::get('/activity/show/{id}', [ActivityController::class, 'show'])->name('show');
 // activity registration routes
@@ -58,14 +61,19 @@ Route::post('register/step1', [RegisterController::class, 'register_step1'])->na
 Route::post('register/step2', [RegisterController::class, 'register_step2'])->name('register.step2');
 Route::view('/email/verification', "auth.email_verification2")->name('auth.email.verification2');
 
-// Hard Coded To Skip Email validation 
+// Hard Coded To Skip Email validation
 //Route::get('register/step2',[RegisterController::class, 'register_step2'] )->name('register.step2');
 
 Route::get('resend/email/verification', [RegisterController::class, 'resend_email_verification'])->name('resend.email.verification.submit');
 Route::get('resend/mobile/verification', [RegisterController::class, 'resend_mobile_verification'])->name('resend.mobile.verification.submit');
 
-
-
+// Fablab Registration Form
+Route::get('/', [FablabUsersController::class,'index']);
+Route::get('/fablab/register', [FablabUsersController::class,'create'])->name('fablab.create');;
+Route::get('/fablab/register/cohort', [FablabUsersController::class,'createCohort'])->name('fablab.create.cohort');;
+Route::post('/fablab/register', [FablabUsersController::class,'store'])->name('fablab.store');
+Route::post('/fablab/register/cohort', [FablabUsersController::class,'storeCohort'])->name('fablab.store.cohort');
+Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name('fablab_users.delete');
 
 // User Routes
 Route::middleware(['auth'])->prefix('/user/')->group(function () {
@@ -132,12 +140,9 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::resource('/users', "UserController");
     Route::post('users/filter', [UserController::class, 'filter'])->name('users.filter');
     Route::get('users/status/{id}', [UserController::class, 'status'])->name('users.status');
-
-
     // Route::get('file-import-export', [UserController::class, 'fileImportExport']);
     // Route::post('/file-import', [UserController::class, 'fileImport'])->name('file-import');
     Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
-
     // Notification Crud
     Route::resource('/notifications', "CodingAcademy\NotificationController");
 
@@ -162,8 +167,13 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Delete (Delete data)
     Route::delete('/activity/{id}', [ActivityController::class, 'destroy'])->name('activity.destroy');
-
-    // activity registration routes
+Route::get('/registration',[\App\Http\Controllers\ComponentRegistrationController::class,'index'])->name('registration.index');
+Route::get('/registration/create',[\App\Http\Controllers\ComponentRegistrationController::class,'create'])->name('registration.create');
+Route::post('/registration/store',[\App\Http\Controllers\ComponentRegistrationController::class,'store'])->name('registration.store');
+Route::get('/registration/edit/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'edit'])->name('registration.edit');
+Route::post('/registration/update/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'update'])->name('registration.update');
+Route::get('/registration/delete/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'destroy'])->name('registration.delete');
+// activity registration routes
     Route::get('/register/create/{activity_id}', [ActivityRegisterController::class, 'create'])->name('admin.activity.register.create');
     Route::post('/register/create', [ActivityRegisterController::class, 'store'])->name('admin.activity.register.store');
     Route::get('/register/index/{activity_id}', [ActivityRegisterController::class, 'index'])->name('admin.activity.register.index');
@@ -214,24 +224,18 @@ Route::resource('/ODC', "ODC\ODCController");
 
 // Coding school
 Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
+Route::get('/coding-school/register', [CodingSchoolController::class, 'mainRegistration'])->name('coding-school.main.register');
+Route::get('/coding-school/register/internship', [CodingSchoolController::class, 'internshipRegistration'])->name('coding-school.register.internship');
+Route::post('/coding-school/register/internship', [CodingSchoolController::class, 'internshipRegistrationStore'])->name('coding-school.register.internship.store');
+Route::get('/coding-school/register/training', [CodingSchoolController::class, 'trainingRegistration'])->name('coding-school.register.training');
+Route::post('/coding-school/register/training', [CodingSchoolController::class, 'trainingRegistrationStore'])->name('coding-school.register.training.store');
+Route::get('/coding-school/register/workshop', [CodingSchoolController::class, 'workshopRegistration'])->name('coding-school.register.workshop');
+Route::post('/coding-school/register/workshop', [CodingSchoolController::class, 'workshopRegistrationStore'])->name('coding-school.register.workshop.store');
 
 // Big By Orange Registration Form
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
 //invoation-hub
-Route::get('/invoation-hub', function () {
-    return view('invoation-hub.landing-page');
-});
-Route::get('/invoation-hub/book-tour', function () {
-    return view('invoation-hub.book-tour');
-});
-Route::get('/invoation-hub/workshops/register', function () {
-    return view('invoation-hub.wokshops');
-});
-Route::get('/invoation-hub/program/register', function () {
-    return view('invoation-hub.faq');
-});
-
 
 Route::get('/thanks', function () {
     return view('public.thanks');
@@ -241,3 +245,20 @@ Route::post('/clear-flash-session', function () {
     session()->forget('status');
     session()->forget('error');
 });
+Route::get('/innovation-hub', function () {
+    return view('public.innovation-hub.landing-page');
+})->name('innovation-hub.index');
+Route::get('/innovation-hub/book-tour', function () {
+    return view('public.innovation-hub.book-tour');
+})->name('innovation-hub.book-tour');
+Route::post('/innovation-hub/book-tour', [InnovationHubController::class, 'storeBookTour'])->name('innovation-hub.book-tour.store');
+Route::get('/innovation-hub/workshops/register', function () {
+    return view('public.innovation-hub.workshops');
+})->name('innovation-hub.workshops');
+Route::post('/innovation-hub/workshops/register', [InnovationHubController::class, 'storeWorkshop'])->name('innovation-hub.workshops.store');
+Route::get('/innovation-hub/program/register', function () {
+    return view('public.innovation-hub.program');
+})->name('innovation-hub.program');
+Route::post('/innovation-hub/program/register', [InnovationHubController::class, 'storeProgram'])->name('innovation-hub.program.store');
+
+//Route::get('');

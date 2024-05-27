@@ -68,6 +68,8 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('codingschool.index') }}">Coding
                                 School</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('fablab.index') }}">Fablab</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('innovation-hub.index') }}">Innovation-hub</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="{{ route('ODC.index') }}">Digital Centers</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('BigByOrange.index') }}">Big By

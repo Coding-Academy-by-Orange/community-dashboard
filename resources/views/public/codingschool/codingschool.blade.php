@@ -19,7 +19,7 @@
                         <p class="card-text text-white">Orange Jordan’s corporate social responsibility
                             transforms
                             lives and local communities through digital transformation</p>
-                        <a href="{{ route('codingschool.create') }}" class="btn btn-primary">Register Now</a>
+                        <a href="{{ route('coding-school.main.register') }}" class="btn btn-primary">Register Now</a>
 
                     </div>
                 </div>
@@ -27,7 +27,7 @@
         </div>
     </section>
     <section class="my-5">
-       
+
         @if (isset($activities) && count($activities) > 0)
         <div class="container px-5 center">
             <h2>News and Activities</h2>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Fabrication Lab Workshop - Registration Form
+    Fabrication Lab Cohort - Registration Form
 @endsection
 @section('main')
     <div class="container">
@@ -23,9 +23,9 @@
                                 onclick="clearFlashSession()"></button>
                     </div>
                 @endif
-                <form class="p-4 p-md-5 rounded-3" action="{{ route('fablab.store') }}" method="POST">
+                <form class="p-4 p-md-5 rounded-3" action="{{ route('fablab.store.cohort') }}" method="POST">
                     @csrf
-                    <h1> Fabrication Lab Workshop - Registration Form</h1>
+                    <h1> Fabrication Lab Cohort - Registration Form</h1>
                     <div class="row mb-3">
                         <div class="form-group col-md-6 col-sm-12  mb-3">
                             <label for="first_name">First name</label>
@@ -442,7 +442,14 @@
                             @endif
                         </div>
                     </div>
-
+                    <div class="row  mb-3">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="idea_description" class="is-required">What to expect from this course? Do you have any ideas/projects that you would like to work on?</label>
+                                <textarea class="form-control @error('idea_description') is-invalid @enderror " name="idea_description" placeholder="Description of the idea" rows="8" autocomplete="off"    required></textarea>
+                            </div>
+                        </div>
+                    </div>
                     {{-- <div class="form-group" style="margin-top: 3vw">
                             <label for="technology_type" class="is-required">What technological lab do you wish to get access to?<span
                                 class="sr-only"> (required)</span></label>
@@ -578,5 +585,3 @@
         }
     </script>
 @endsection
-message.txt
-36 KB
