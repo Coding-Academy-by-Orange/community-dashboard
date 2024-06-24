@@ -1,8 +1,20 @@
 @extends('layouts.admin')
     @section('main')
-        <section id="basic-horizontal-layouts">
-            <div class="row match-height">
+        <section id="basic-horizontal-layouts" class="container">
+            <div class="row match-height mb-5">
                 <div class=" col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Registrations</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block
+                            ">
+                                <div class="card-body">
+                                    <div class="card-text">
+                                        <p>Here you can manage registrations</p>
+                                    </div>
+                                </div>
 @if($registrations->count() > 0)
     <a class="btn btn-primary" href="{{route('registration.create')}}">Create new registration</a>
         <table class="table ">
@@ -33,5 +45,8 @@
     @endif
                         </div>
                     </div>
+                </div>
+            </div>
+            </div>
         </section>
 @endsection

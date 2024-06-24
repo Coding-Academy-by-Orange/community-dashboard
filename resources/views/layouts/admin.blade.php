@@ -188,6 +188,9 @@
                         <li class=" nav-item"><a href="{{ route('users.index') }}" class="nav-link">Manage
                                 Applicants</a>
                         </li>
+                        <li class=" nav-item"><a href="{{ route('registration.index') }}" class="nav-link">Manage
+                                Registrations</a>
+                        </li>
                         <li class=" nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">

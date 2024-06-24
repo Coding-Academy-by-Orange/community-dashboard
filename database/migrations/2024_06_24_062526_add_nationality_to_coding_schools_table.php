@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComponenetRegistrationsTable extends Migration
+class AddNationalityToCodingSchoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateComponenetRegistrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('componenet_registrations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('coding_schools', function (Blueprint $table) {
+            //
+            $table->string('nationality')->nullable()->after('residence');
+
         });
     }
 
@@ -26,6 +27,8 @@ class CreateComponenetRegistrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('componenet_registrations');
+        Schema::table('coding_schools', function (Blueprint $table) {
+            //
+        });
     }
 }

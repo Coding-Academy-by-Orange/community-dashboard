@@ -9,7 +9,7 @@
                         ">Edit Registration</h4>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{route('registration.update',$componentRegistration->id)}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group

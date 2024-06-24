@@ -167,13 +167,13 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Delete (Delete data)
     Route::delete('/activity/{id}', [ActivityController::class, 'destroy'])->name('activity.destroy');
-Route::get('/registration',[\App\Http\Controllers\ComponentRegistrationController::class,'index'])->name('registration.index');
-Route::get('/registration/create',[\App\Http\Controllers\ComponentRegistrationController::class,'create'])->name('registration.create');
-Route::post('/registration/store',[\App\Http\Controllers\ComponentRegistrationController::class,'store'])->name('registration.store');
-Route::get('/registration/edit/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'edit'])->name('registration.edit');
-Route::post('/registration/update/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'update'])->name('registration.update');
-Route::get('/registration/delete/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'destroy'])->name('registration.delete');
-// activity registration routes
+    Route::get('/registration',[\App\Http\Controllers\ComponentRegistrationController::class,'index'])->name('registration.index');
+    Route::get('/registration/create',[\App\Http\Controllers\ComponentRegistrationController::class,'create'])->name('registration.create');
+    Route::post('/registration/store',[\App\Http\Controllers\ComponentRegistrationController::class,'store'])->name('registration.store');
+    Route::get('/registration/edit/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'edit'])->name('registration.edit');
+    Route::put('/registration/update/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'update'])->name('registration.update');
+    Route::get('/registration/delete/{id}',[\App\Http\Controllers\ComponentRegistrationController::class,'destroy'])->name('registration.delete');
+    // activity registration routes
     Route::get('/register/create/{activity_id}', [ActivityRegisterController::class, 'create'])->name('admin.activity.register.create');
     Route::post('/register/create', [ActivityRegisterController::class, 'store'])->name('admin.activity.register.store');
     Route::get('/register/index/{activity_id}', [ActivityRegisterController::class, 'index'])->name('admin.activity.register.index');
@@ -225,12 +225,12 @@ Route::resource('/ODC', "ODC\ODCController");
 // Coding school
 Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
 Route::get('/coding-school/register', [CodingSchoolController::class, 'mainRegistration'])->name('coding-school.main.register');
-Route::get('/coding-school/register/internship', [CodingSchoolController::class, 'internshipRegistration'])->name('coding-school.register.internship');
-Route::post('/coding-school/register/internship', [CodingSchoolController::class, 'internshipRegistrationStore'])->name('coding-school.register.internship.store');
-Route::get('/coding-school/register/training', [CodingSchoolController::class, 'trainingRegistration'])->name('coding-school.register.training');
-Route::post('/coding-school/register/training', [CodingSchoolController::class, 'trainingRegistrationStore'])->name('coding-school.register.training.store');
-Route::get('/coding-school/register/workshop', [CodingSchoolController::class, 'workshopRegistration'])->name('coding-school.register.workshop');
-Route::post('/coding-school/register/workshop', [CodingSchoolController::class, 'workshopRegistrationStore'])->name('coding-school.register.workshop.store');
+Route::get('/coding-school/register/internship/{registration_id}', [CodingSchoolController::class, 'internshipRegistration'])->name('coding-school.register.internship');
+Route::post('/coding-school/register/internship/{registration_id}', [CodingSchoolController::class, 'internshipRegistrationStore'])->name('coding-school.register.internship.store');
+Route::get('/coding-school/register/training/{registration_id}', [CodingSchoolController::class, 'trainingRegistration'])->name('coding-school.register.training');
+Route::post('/coding-school/register/training/{registration_id}', [CodingSchoolController::class, 'trainingRegistrationStore'])->name('coding-school.register.training.store');
+Route::get('/coding-school/register/workshop/{registration_id}', [CodingSchoolController::class, 'workshopRegistration'])->name('coding-school.register.workshop');
+Route::post('/coding-school/register/workshop/{registration_id}', [CodingSchoolController::class, 'workshopRegistrationStore'])->name('coding-school.register.workshop.store');
 
 // Big By Orange Registration Form
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");

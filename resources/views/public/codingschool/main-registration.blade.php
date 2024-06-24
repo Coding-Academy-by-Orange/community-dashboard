@@ -5,11 +5,11 @@
             @foreach($component_registration as $registration)
                 <div class="col-md-4  mb-3">
                     @if($registration->type == 'workshop')
-                        <a href="{{route('coding-school.register.workshop')}}" class="card o-card-link" id="connexion">
+                        <a href="/coding-school/register/workshop/{{$registration->id}}" class="card o-card-link" id="connexion">
                             @elseif($registration->type == 'internship')
-                                <a href="{{route('coding-school.register.internship')}}" class="card o-card-link" id="connexion">
+                                <a href="/coding-school/register/internship/{{$registration->id}}" class="card o-card-link" id="connexion">
                                 @elseif($registration->type == 'training')
-                                    <a href="{{route('coding-school.register.training')}}" class="card o-card-link" id="connexion"
+                                    <a href="/coding-school/register/training/{{$registration->id}}" class="card o-card-link" id="connexion"
                             @endif
                         <div class="card-img">
                             <img class="img-fluid" src="{{asset('/assets/img/coding-school.png')}}" alt="Card image cap">
@@ -22,7 +22,7 @@
                 </div>
             @endforeach
             <div class="col-md-4  mb-3">
-                <a href="{{route('coding-school.register.internship')}}" class="card o-card-link" id="connexion">
+                <a href="" class="card o-card-link" id="connexion">
                     <div class="card-img">
                         <img class="img-fluid" src="{{asset('/assets/img/coding-school.png')}}" alt="Card image cap">
                     </div>
@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="col-md-4  mb-3">
-                <a href="{{route('coding-school.register.training')}}" class="card o-card-link" id="connexion">
+                <a href="" class="card o-card-link" id="connexion">
                     <div class="card-img">
                         <img class="img-fluid" src="{{asset('/assets/img/coding-school.png')}}" alt="Card image cap">
                     </div>
@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="col-md-4  mb-3">
-                <a href="{{route('coding-school.register.workshop')}}" class="card o-card-link" id="connexion">
+                <a href="" class="card o-card-link" id="connexion">
                     <div class="card-img">
                         <img class="img-fluid" src="{{asset('/assets/img/coding-school.png')}}" alt="Card image cap">
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main')
     <!-- Basic Horizontal form layout section start -->
-<section id="basic-horizontal-layouts">
+<section id="basic-horizontal-layouts" class="container">
     <div class="row match-height">
         <div class="col-md-2 col-12 "></div>
         <div class="col-md-6 col-12">

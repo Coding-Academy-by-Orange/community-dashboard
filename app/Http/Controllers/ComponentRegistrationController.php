@@ -65,9 +65,10 @@ class ComponentRegistrationController extends Controller
      * @param  \App\ComponentRegistration  $componentRegistration
      * @return \Illuminate\Http\Response
      */
-    public function edit(ComponentRegistration $componentRegistration)
+    public function edit($componentRegistration)
     {
         //
+        $componentRegistration = ComponentRegistration::find($componentRegistration);
         return view('admin.registration.edit', compact('componentRegistration'));
     }
 
@@ -78,9 +79,13 @@ class ComponentRegistrationController extends Controller
      * @param  \App\ComponentRegistration  $componentRegistration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ComponentRegistration $componentRegistration)
+    public function update(Request $request, $componentRegistration)
     {
         //
+        $componentRegistration = ComponentRegistration::find($componentRegistration);
+        //dd($componentRegistration);
+        $componentRegistration->update($request->all());
+        return redirect()->route('registration.index');
     }
 
     /**
@@ -92,9 +97,8 @@ class ComponentRegistrationController extends Controller
     public function destroy($componentRegistration)
     {
         //
-        //dd($componentRegistration);
-        $item = $componentRegistration->where('id','=',$componentRegistration)->get();
-        $item->delete();
+        $registration = ComponentRegistration::find($componentRegistration);
+        $registration->delete();
         return redirect()->route('registration.index');
     }
 }

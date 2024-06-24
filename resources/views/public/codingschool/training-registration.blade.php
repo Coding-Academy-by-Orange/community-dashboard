@@ -7,7 +7,7 @@
 @section('main')
     <div class="container my-5">
         <h2 class="mt-4">Coding School - Training Registration Form</h2>
-        <form method="POST" action="{{route('coding-school.register.training.store')}}">
+        <form method="POST" action="{{route('coding-school.register.training.store',$registration->id)}}">
             @csrf
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>

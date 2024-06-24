@@ -3,13 +3,13 @@
     <div class="container my-lg-5">
         <div class="row">
             <div class="col-md-12">
-                <h1>Workshop Registration</h1>
-                <form action="{{ route('coding-school.register.workshop.store') }}" method="POST">
+                <h1>Workshop Registration - {{$registration->registration_name}}</h1>
+                <form action="{{ route('coding-school.register.workshop.store',$registration->id) }}" method="POST">
                     @csrf
-                    <div class="mb-3">
-                        <label for="workshop_type" class="form-label">Workshop Type</label>
-                        <input type="text" class="form-control" id="workshop_type" name="workshop_type">
-                    </div>
+{{--                    <div class="mb-3">--}}
+{{--                        <label for="workshop_type" class="form-label">Workshop Type</label>--}}
+{{--                        <input type="text" class="form-control" id="workshop_type" name="workshop_type">--}}
+{{--                    </div>--}}
                     <div class="mb-3">
                         <label for="first_name" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="first_name" name="first_name">
@@ -32,11 +32,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" name="phone">
+                        <input type="tel" class="form-control" id="phone" name="mobile">
                     </div>
                     <div class="mb-3">
                         <label for="dob" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="dob" name="dob">
+                        <input type="date" class="form-control" id="dob" name="birthdate">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Gender</label><br>

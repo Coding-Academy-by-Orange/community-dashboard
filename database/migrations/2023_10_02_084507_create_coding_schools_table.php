@@ -20,18 +20,12 @@ class CreateCodingSchoolsTable extends Migration
             $table->string('father_name');
             $table->string('grandfather_name');
             $table->string('last_name');
-
-            $table->string('email')->unique();
-            $table->string('mobile')->unique();
+            $table->string('email');
+            $table->string('mobile');
             $table->date('birthdate');
             $table->string('gender');
-
-            $table->string('residence');
-            $table->string('education');
             $table->string('major_study')->default('without_major')->nullable();
-
             $table->string('status')->default('pending');
-
             $table->timestamps();
         });
     }

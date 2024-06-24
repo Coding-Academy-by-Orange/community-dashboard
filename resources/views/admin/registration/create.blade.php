@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('main')
-    <section id="basic-horizontal-layouts">
-        <div class="row match-height">
-            <div class=" col-12">
-                <div class="card">
+    <section id="basic-horizontal-layouts" class="container">
+        <div class="row match-height ">
+            <div class=" col-12 mb-5">
+                <div class="card ">
                     <div class="card-header">
                         <h4 class="card-title
                         ">Create New Registration</h4>
@@ -59,7 +59,6 @@
                                         (required)</span></label>
                                 <select name="type" required
                                     class="form-control @error('type') is-invalid @enderror " id="type">
-                                    <option value="cohort" @if (old('type') == 'Cohort') selected @endif>Cohort</option>
                                     <option value="workshop" @if (old('type') == 'WorkShop') selected @endif>Workshop</option>
                                     <option value="internship" @if (old('type') == 'WorkShop') selected @endif>Internship</option>
                                     <option value="training" @if (old('type') == 'WorkShop') selected @endif>Training</option>
