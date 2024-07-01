@@ -159,21 +159,21 @@
                         <img src="https://boosted.orange.com/docs/5.2/assets/brand/orange-logo.svg" width="50"
                             height="50" alt="Boosted - Back to Home" loading="lazy">
                     </a>
-                    <h1 class="title">
-                        @if (Auth::guard('admin')->user()->component == 'digitalcenter')
-                            Orange Digital Centers
-                        @elseif (Auth::guard('admin')->user()->component == 'fablab')
-                            FabLab
-                        @elseif (Auth::guard('admin')->user()->component == 'codingacademy')
-                            Coding Academy
-                        @elseif (Auth::guard('admin')->user()->component == 'bigbyorange')
-                            Big By Orange
-                        @elseif (Auth::guard('admin')->user()->component == 'codingschool')
-                            Coding School
-                        @elseif (Auth::guard('admin')->user()->is_super)
-                            Orange Dashboard
-                        @endif
-                    </h1>
+{{--                    <h1 class="title">--}}
+{{--                        @if (Auth::guard('admin')->user()->component == 'digitalcenter')--}}
+{{--                            Orange Digital Centers--}}
+{{--                        @elseif (Auth::guard('admin')->user()->component == 'fablab')--}}
+{{--                            FabLab--}}
+{{--                        @elseif (Auth::guard('admin')->user()->component == 'codingacademy')--}}
+{{--                            Coding Academy--}}
+{{--                        @elseif (Auth::guard('admin')->user()->component == 'bigbyorange')--}}
+{{--                            Big By Orange--}}
+{{--                        @elseif (Auth::guard('admin')->user()->component == 'codingschool')--}}
+{{--                            Coding School--}}
+{{--                        @elseif (Auth::guard('admin')->user()->is_super)--}}
+{{--                            Orange Dashboard--}}
+{{--                        @endif--}}
+{{--                    </h1>--}}
                 </div>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target=".global-header-3" aria-controls="global-header-3.1 global-header-3.2"
@@ -258,9 +258,9 @@
     </header>
     <!-- END: Header-->
     <!-- BEGIN: Content-->
-    <div class="container-fluid mt-4">
+    <main>
         @yield('main')
-    </div>
+    </main>
 
 
     <footer class="footer bg-dark navbar-dark pt-5">

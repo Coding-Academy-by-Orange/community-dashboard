@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Activity;
 
 use App\Activity;
-use App\Admin;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
 
 class ActivityController extends Controller
 {
@@ -17,7 +15,6 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
         $user = Auth::guard('admin')->user();
@@ -91,7 +88,6 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'activity_type' => 'nullable|string',
@@ -99,51 +95,57 @@ class ActivityController extends Controller
             'end_date' => 'nullable|date',
             'publication_date' => 'nullable|date',
             'description' => 'required|string',
-            'location' => 'required|string',
             'cohort' => 'nullable|string',
             'timeline' => 'required|string',
             'images.*' => 'required|image|max:2048',
             'video' => 'nullable|string',
         ]);
 
-
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
-        //dd($request->input('publication_date'));
-        if ($request->hasFile('images')) {
+
+        try {
+            // Handle image uploads
             $imagePaths = [];
-
-            foreach ($request->file('images') as $image) {
-                $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('public/image', $img);
-                $imagePaths[] = $img;
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                    $image->storeAs('public/image', $img);
+                    $imagePaths[] = $img;
+                }
             }
-        } else {
-            $imagePaths = null;
+
+            // Create activity instance
+            $admin = Auth::guard('admin')->user();
+            $activity = new Activity([
+                'activity_name' => $request->input('name'),
+                'activity_type' => $request->input('activity_type'),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date'),
+                'publication_date' => $request->input('publication_date'),
+                'description' => $request->input('description'),
+                'location_id' => $request->input('location'),
+                'cohort' => $request->input('cohort'),
+                'timeline' => $request->input('timeline'),
+                'image' => json_encode($imagePaths),
+                'video' => $request->input('video'),
+                'component' => $admin->component,
+                'admin_id' => $admin->id,
+            ]);
+
+            // Save activity
+            $activity->save();
+
+            // Redirect to success page or route
+            return redirect()->back()->with('success', 'Activity created successfully!');
+        } catch (\Exception $e) {
+            // Handle any exceptions (if needed)
+            return redirect()->back()->with('error', 'Failed to create activity. Please try again.');
         }
-
-        $admin = Auth::guard('admin')->user();
-        $activity = new Activity([
-            'activity_name' => $request->input('name'),
-            'activity_type' => $request->input('activity_type'),
-            'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date'),
-            'publication_date' => $request->input('publication_date'),
-            'description' => $request->input('description'),
-            'location_id' => $request->input('location'),
-            'cohort' => $request->input('cohort'),
-            'timeline' => $request->input('timeline'),
-            'image' => json_encode($imagePaths),
-            'video' => $request->input('video'),
-            'component' => $admin->component,
-            'admin_id' => $admin->id,
-        ]);
-        //dd($request->input('publication_date'));
-        $activity->save();
-        return redirect('/thanks');
     }
-
 
     /**
      * Display the specified resource.
@@ -159,7 +161,6 @@ class ActivityController extends Controller
                 'activity' => Activity::findOrFail($id)
             ]);
         } else {
-
             return view('public.activity.show', [
                 'activity' => Activity::findOrFail($id)
             ]);
@@ -205,46 +206,34 @@ class ActivityController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $activity = Activity::findOrFail($id);
-        if ($request->hasFile('images')) {
-            $imagePaths = [];
 
+        $activity = Activity::findOrFail($id);
+
+        $imagePaths = $activity->image ? json_decode($activity->image, true) : [];
+
+        if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/image', $img);
-
                 $imagePaths[] = $img;
             }
-
-            $activity->update([
-                'activity_name' => $request->input('name'),
-                'activity_type' => $request->input('activity_type'),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date'),
-                'publication_date' => $request->input('publication_date'),
-                'description' => $request->input('description'),
-                'location_id' => $request->input('location'),
-                'cohort' => $request->input('cohort'),
-                'timeline' => $request->input('timeline'),
-                'image' => json_encode($imagePaths),
-                'video' => $request->input('video'),
-            ]);
-        } else {
-            $activity->update([
-                'activity_name' => $request->input('name'),
-                'activity_type' => $request->input('activity_type'),
-                'start_date' => $request->input('start_date'),
-                'end_date' => $request->input('end_date'),
-                'publication_date' => $request->input('publication_date'),
-                'description' => $request->input('description'),
-                'location_id' => $request->input('location'),
-                'cohort' => $request->input('cohort'),
-                'timeline' => $request->input('timeline'),
-                'video' => $request->input('video'),
-            ]);
         }
 
-        return redirect()->route('activity.show', $activity->id);
+        $activity->update([
+            'activity_name' => $request->input('name'),
+            'activity_type' => $request->input('activity_type'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'publication_date' => $request->input('publication_date'),
+            'description' => $request->input('description'),
+            'location_id' => $request->input('location'),
+            'cohort' => $request->input('cohort'),
+            'timeline' => $request->input('timeline'),
+            'image' => json_encode($imagePaths),
+            'video' => $request->input('video'),
+        ]);
+
+        return redirect()->route('activity.show', $activity->id)->with('success', 'Activity updated successfully!');
     }
 
     /**

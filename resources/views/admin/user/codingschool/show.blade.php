@@ -34,6 +34,7 @@
                 <p>Education: {{ $student->education }}</p>
                 <p>Employment: {{ $student->employment }}</p>
                 <p>Major Study: {{ $student->major_study }}</p>
+                <p></p>
             </div>
             <div class="col-6">
                 <p>Affiliation: {{ $student->affiliation }}</p>

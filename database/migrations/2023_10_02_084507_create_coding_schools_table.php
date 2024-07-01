@@ -15,7 +15,6 @@ class CreateCodingSchoolsTable extends Migration
     {
         Schema::create('coding_schools', function (Blueprint $table) {
             $table->id();
-
             $table->string('first_name');
             $table->string('father_name');
             $table->string('grandfather_name');
