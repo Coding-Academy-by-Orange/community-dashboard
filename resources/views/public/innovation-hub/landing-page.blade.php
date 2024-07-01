@@ -131,7 +131,7 @@
         <div class="container py-5">
             <div class="row d-flex">
                 <div class="col-4 align-self-md-center">
-                    <h3 class="text-white display-4"><span class="text-primary">Innovation</span> Hub</h3>
+                    <h3 class="text-white display-4"><span class="text-primary">Orange</span> Digital Centers</h3>
                 </div>
                 <div class="col-4 d-flex align-self-md-center justify-content-md-center">
                     <a href="https://twitter.com/ODCJordan" target="_blank" class="social-icon">
