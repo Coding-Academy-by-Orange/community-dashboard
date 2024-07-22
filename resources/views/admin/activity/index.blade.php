@@ -37,23 +37,18 @@
                             <tbody>
                             @foreach ($activities as $activity)
                                 <tr role="row">
-                                    <td class="sorting_1">{{ $activity->id }}</td>
-                                    @php
-                                        $imageArray = json_decode($activity->image);
-                                    @endphp
+
                                     <td>
-                                        @if (is_array($imageArray) && count($imageArray) > 1)
+                                        @if ($activity->images->count() > 1)
                                             <div id="activityCarousel-{{ $activity->id }}" class="carousel slide" data-bs-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    @foreach ($imageArray as $index => $imagePath)
+                                                    @foreach ($activity->images as  $image)
                                                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                                            <img src="{{ asset('storage/image/' . $imagePath) }}" class="w-100" width="30" height="30" alt="{{ $activity->activity_name }}">
+                                                            <img src="{{ asset('storage/image/' . $image->image) }}" class="w-100" width="30" height="30" alt="{{ $activity->activity_name }}">
                                                         </div>
                                                     @endforeach
                                                 </div>
                                             </div>
-                                        @else
-                                            <img src="{{ asset('storage/image/' . $imageArray[0]) }}" class="w-100" width="30" height="30" alt="{{ $activity->activity_name }}">
                                         @endif
                                     </td>
                                     <td class="text-capitalize">{{ $activity->activity_name }}</td>
@@ -61,7 +56,6 @@
                                     <td>{{ $activity->start_date ? $activity->start_date : '-' }}</td>
                                     <td>{{ $activity->end_date ? $activity->end_date : '-' }}</td>
                                     <td>{{ $activity->publication_date ? $activity->publication_date : '-' }}</td>
-                                    <td class="sorting_1">{{ $activity->location->name }}</td>
                                     <td>{{ $activity->cohort ? $activity->cohort : '-' }}</td>
                                     <td class="sorting_1">{{ $activity->timeline }}</td>
                                     <td class="sorting_1">{{ $activity->admin->fname ? $activity->admin->fname : '-' }} {{ $activity->admin->lname ? $activity->admin->lname : '-' }}</td>

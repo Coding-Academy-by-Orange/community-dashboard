@@ -15,7 +15,7 @@ class Activity extends Model
     protected $casts = [
         'image' => 'array',
     ];
-    
+
     public function location()
     {
         return $this->belongsTo(location::class);
@@ -28,6 +28,9 @@ class Activity extends Model
     {
         return $this->hasMany(activity_register::class, 'activity_id', 'id');
     }
-    
+    public function images()
+    {
+        return $this->hasMany(ActivityImage::class);
+    }
 
 }

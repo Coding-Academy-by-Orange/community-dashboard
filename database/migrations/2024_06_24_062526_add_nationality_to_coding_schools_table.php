@@ -15,7 +15,7 @@ class AddNationalityToCodingSchoolsTable extends Migration
     {
         Schema::table('coding_schools', function (Blueprint $table) {
             //
-            $table->string('nationality')->nullable()->after('residence');
+            $table->string('nationality')->nullable();
 
         });
     }

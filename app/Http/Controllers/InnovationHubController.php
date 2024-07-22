@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\InnovationHub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,6 +17,9 @@ class InnovationHubController extends Controller
     public function index()
     {
         //
+        $events = Activity::where('component', 'innovation-hub')->where('start_date', '>=', now())->get();
+        dd($events);
+        return view('public.innovation-hub.landing-page');
     }
 
     /**

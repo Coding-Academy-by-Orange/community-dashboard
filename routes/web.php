@@ -245,9 +245,8 @@ Route::post('/clear-flash-session', function () {
     session()->forget('status');
     session()->forget('error');
 });
-Route::get('/innovation-hub', function () {
-    return view('public.innovation-hub.landing-page');
-})->name('innovation-hub.index');
+Route::get('/innovation-hub', [InnovationHubController::class,'index'])->name('innovation-hub.index');
+// ;
 Route::get('/innovation-hub/book-tour', function () {
     return view('public.innovation-hub.book-tour');
 })->name('innovation-hub.book-tour');

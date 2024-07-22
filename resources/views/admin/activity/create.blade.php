@@ -4,7 +4,18 @@
 @endsection
 @section('main')
     <div class="container my-5">
-        <section id="basic-horizontal-layouts">
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        onclick="clearFlashSession()"></button>
+            </div>
+        @endif
+            <section id="basic-horizontal-layouts">
             <div class="row match-height justify-content-center">
                 <div class="col-8">
                     <div class="text-center mb-4">

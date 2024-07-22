@@ -648,6 +648,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
     public static $classMap = array (
         'ActivityRegisterSeeder' => __DIR__ . '/../..' . '/database/seeds/ActivityRegisterSeeder.php',
         'App\\Activity' => __DIR__ . '/../..' . '/app/Activity.php',
+        'App\\ActivityImage' => __DIR__ . '/../..' . '/app/ActivityImage.php',
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\BigbyOrange' => __DIR__ . '/../..' . '/app/BigbyOrange.php',
         'App\\CodeChallenge' => __DIR__ . '/../..' . '/app/CodeChallenge.php',
@@ -690,6 +691,7 @@ class ComposerStaticInita5ad32bb362d9b15e56bf20ab5d493db
         'App\\Http\\Controllers\\FilterController' => __DIR__ . '/../..' . '/app/Http/Controllers/FilterController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\InnovationHubController' => __DIR__ . '/../..' . '/app/Http/Controllers/InnovationHubController.php',
+        'App\\Http\\Controllers\\LandingPageController' => __DIR__ . '/../..' . '/app/Http/Controllers/LandingPageController.php',
         'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\ODC\\ODCController' => __DIR__ . '/../..' . '/app/Http/Controllers/ODC/ODCController.php',
         'App\\Http\\Controllers\\RegistrationCohortController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegistrationCohortController.php',

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'ActivityRegisterSeeder' => $baseDir . '/database/seeds/ActivityRegisterSeeder.php',
     'App\\Activity' => $baseDir . '/app/Activity.php',
+    'App\\ActivityImage' => $baseDir . '/app/ActivityImage.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\BigbyOrange' => $baseDir . '/app/BigbyOrange.php',
     'App\\CodeChallenge' => $baseDir . '/app/CodeChallenge.php',
@@ -50,6 +51,7 @@ return array(
     'App\\Http\\Controllers\\FilterController' => $baseDir . '/app/Http/Controllers/FilterController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\InnovationHubController' => $baseDir . '/app/Http/Controllers/InnovationHubController.php',
+    'App\\Http\\Controllers\\LandingPageController' => $baseDir . '/app/Http/Controllers/LandingPageController.php',
     'App\\Http\\Controllers\\LocationController' => $baseDir . '/app/Http/Controllers/LocationController.php',
     'App\\Http\\Controllers\\ODC\\ODCController' => $baseDir . '/app/Http/Controllers/ODC/ODCController.php',
     'App\\Http\\Controllers\\RegistrationCohortController' => $baseDir . '/app/Http/Controllers/RegistrationCohortController.php',

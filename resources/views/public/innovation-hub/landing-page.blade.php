@@ -96,37 +96,63 @@
     <section class="impact" style="background: url({{ URL::asset('assets/img/impact.png') }});-webkit-background-size: cover;background-size: cover;z-index: -1;height: 31rem;width: 100%">
         <div class="container text-white py-5">
             <div class="row">
-                <div class="col-12 our-impact-header mb-5 text-center d-flex flex-column align-items-center justify-content-center">
+                <div class="col-12 our-impact-header mb-5 text-center">
                     <div class="sub-title">On the Society</div>
                     <h1>Our Impact</h1>
                     <div class="border-bottom border-5 border-white" style="width: 7%"></div>
                 </div>
-                <div class="slider-impact row py-5 d-flex justify-content-center align-items-center">
+                <div class="slider-impact">
                     <div class="col-3 border-start border-light">
-                        <div class="text-primary p-3 display-3">50</div>
-                        <div class="px-3">
-                            <div class="display-5 pb-1">Locations</div>
-                            <p>We are present in 50 locations, providing widespread access to digital resources.</p>
-                        </div>
-                    </div>
-                    <div class="col-3 border-start border-light">
-                        <div class="text-primary number p-3 display-3">3260</div>
+                        <div class="text-primary p-3 display-3">1169</div>
                         <div class="px-3">
                             <div class="display-5 pb-1">Total Beneficiaries</div>
-                            <p class="ll-sm">Our initiatives have positively impacted 3260 individuals, fostering innovation and digital skills.</p>
+                            <p>Our initiatives have positively impacted 1169 individuals.</p>
                         </div>
                     </div>
-                    <div class="col-3 border-start border-white">
-                        <div class="text-primary p-3 display-3">30%</div>
+
+                    <div class="col-3 border-start border-light">
+                        <div class="text-primary number p-3 display-3">49%</div>
                         <div class="px-3">
                             <div class="display-5 pb-1">Women Participation</div>
-                            <p class="ll-sm">30% of our beneficiaries are women, highlighting our commitment to gender diversity and inclusion.</p>
+                            <p class="ll-sm">49% of our beneficiaries are women, highlighting our commitment to gender equality.</p>
+                        </div>
+                    </div>
+                    <div class="col-3 border-start border-light">
+                        <div class="text-primary p-3 display-3">5</div>
+                        <div class="px-3">
+                            <div class="display-5 pb-1">Key Locations</div>
+                            <p>Operating in 5 key locations to reach diverse communities.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <section class="upcoming-events container my-5">
+        <div class="row text-center">
+            <div class="col-12 our-impact-header mb-5 text-center d-flex flex-column align-items-center justify-content-center">
+                <p>Join Us</p>
+                <h2 class="text-center display-3">Upcoming Events</h2>
+                <div class="border-bottom border-5 border-primary" style="width: 7%"></div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($events as $event)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <p class="card-text">{{ Str::limit($event->description, 100) }}</p>
+                            <p class="card-text"><strong>Date:</strong> {{ $event->date }}</p>
+                            <p class="card-text"><strong>Location:</strong> {{ $event->location }}</p>
+                            <a href="{{ route('events.show', $event) }}" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
     <section class="bg-dark mb-3">
         <div class="container py-5">
             <div class="row d-flex">
@@ -156,37 +182,14 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.slide-activity').slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                arrows: true,
-                dots: true,
-                speed: 300,
-                infinite: true,
-                autoplaySpeed: 5000,
-                autoplay: true,
-                responsive: [{
-                    breakpoint: 991,
-                    settings: {
-                        slidesToShow: 4,
-                    }
-                },
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 1,
-                        }
-                    }
-                ]
-            });
             $('.slider-impact').slick({
                 slidesToShow: 4,
-                slidesToScroll: 4,
+                slidesToScroll: 1,
                 arrows: false,
                 dots: true,
                 speed: 300,
                 infinite: true,
-                autoplaySpeed: 5000,
+                autoplaySpeed: 1000,
                 autoplay: true,
                 responsive: [{
                     breakpoint: 991,

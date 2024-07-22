@@ -101,23 +101,13 @@ class ActivityController extends Controller
             'video' => 'nullable|string',
         ]);
 
+        //dd($validator->errors());
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        try {
-            // Handle image uploads
-            $imagePaths = [];
-            if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->storeAs('public/image', $img);
-                    $imagePaths[] = $img;
-                }
-            }
-
             // Create activity instance
             $admin = Auth::guard('admin')->user();
             $activity = new Activity([
@@ -127,24 +117,30 @@ class ActivityController extends Controller
                 'end_date' => $request->input('end_date'),
                 'publication_date' => $request->input('publication_date'),
                 'description' => $request->input('description'),
-                'location_id' => $request->input('location'),
                 'cohort' => $request->input('cohort'),
                 'timeline' => $request->input('timeline'),
-                'image' => json_encode($imagePaths),
                 'video' => $request->input('video'),
                 'component' => $admin->component,
                 'admin_id' => $admin->id,
             ]);
-
             // Save activity
             $activity->save();
+            //dd($activity);
+        //handel image upload
+        if($request->hasFile('images')){
+            //stort the images in activity images table
+            foreach($request->file('images') as $image){
+                $img = $image->getClientOriginalName() . '_' . time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/image', $img);
+                $activity->images()->create([
+                    'image' => $img
+                ]);
+            }
+        }
 
             // Redirect to success page or route
-            return redirect()->back()->with('success', 'Activity created successfully!');
-        } catch (\Exception $e) {
-            // Handle any exceptions (if needed)
-            return redirect()->back()->with('error', 'Failed to create activity. Please try again.');
-        }
+            return redirect()->route('activity.index')->with('success', 'Activity created successfully!');
+
     }
 
     /**
