@@ -107,22 +107,22 @@
             </div>
             <div class="row">
                 @foreach($component_registration as $registration)
-                    <div class="col-md-4  mb-3">
-                        @if($registration->type == 'workshop')
-                            <a href="/coding-school/register/workshop/{{$registration->id}}" class="card o-card-link" id="connexion">
-                                @elseif($registration->type == 'internship')
-                                    <a href="/coding-school/register/internship/{{$registration->id}}" class="card o-card-link" id="connexion">
-                                        @elseif($registration->type == 'training')
-                                            <a href="/coding-school/register/training/{{$registration->id}}" class="card o-card-link" id="connexion">
-                                        @endif
-                                        <div class="card-img">
-                                            <img class="img-fluid" src="{{asset('/assets/img/coding-school.png')}}" alt="Card image cap">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="card-title
-                            ">{{$registration->registration_name}}</div>
-                                        </div>
-                                    </a>
+                    <div class="col-md-4 mb-3">
+                        @php
+                            $route = '#';
+                            if ($registration->type == 'workshop') {
+                                $route = "/coding-school/register/workshop/{$registration->id}";
+                            } elseif ($registration->type == 'internship') {
+                                $route = "/coding-school/register/internship/{$registration->id}";
+                            } elseif ($registration->type == 'training') {
+                                $route = "/coding-school/register/training/{$registration->id}";
+                            }
+                        @endphp
+                        <a href="{{ $route }}" class="card o-card-link" id="connexion">
+                            <div class="card-body">
+                                <div class="card-title">{{ $registration->registration_name }}</div>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
         </div>
