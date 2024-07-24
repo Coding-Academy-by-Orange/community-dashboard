@@ -18,7 +18,7 @@ class InnovationHubController extends Controller
     {
         //
         $events = Activity::where('component', 'innovation-hub')->where('start_date', '>=', now())->get();
-        dd($events);
+        //dd($events);
         return view('public.innovation-hub.landing-page');
     }
 

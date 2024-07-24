@@ -137,6 +137,8 @@
                                 <li><a class="nav-link" href="{{ route('BigByOrange.index') }}"
                                         aria-describedby="headingThree2">Big By
                                         Orange</a></li>
+                                <li><a class="nav-link" href="{{ route('innovation-hub.index') }}"
+                                       aria-describedby="headingThree2">Innovation Hub</a></li>
                             </ul>
                         </div>
                     </div>
