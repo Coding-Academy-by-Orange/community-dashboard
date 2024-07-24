@@ -18,6 +18,9 @@ class CodingSchoolController extends Controller
      */
     public function index()
     {
+        $component_registration = ComponentRegistration::where('component', 'codingschool')
+            ->where('status', 'active')
+            ->get();
         $activities = Activity::where('component', 'codingschool')
             ->where(function ($query) {
                 $query->where('timeline', 'Public(component)')
@@ -42,7 +45,7 @@ class CodingSchoolController extends Controller
             ->orderBy('end_date')
             ->take(5)
             ->get();
-        return view('public.codingschool.codingschool', compact('activities'));
+        return view('public.codingschool.codingschool', compact('activities', 'component_registration'));
     }
 
     /**

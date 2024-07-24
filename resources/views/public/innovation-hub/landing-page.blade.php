@@ -22,7 +22,7 @@
             display: block;
         }
     </style>
-    <div class="bg-black mb-lg-5 border-dark border-1" data-bs-theme="dark">
+    <div class="bg-black mb-lg-5 border-dark border-1 mb-5" data-bs-theme="dark">
         <div class="bg-dark"></div>
         <div class="container position-relative z-0">
             <div class="row pt-3 px-5">
@@ -30,7 +30,7 @@
                     <h1 class="pt-1 pt-md-4 mb-2 mb-md-3 display-3 text-primary">Innovation Hub</h1>
                     <h2 class="display-4 text-white">Driving Creativity and Technological Advancement</h2>
                     <p class="ll-sm pt-1 mb-3">Join the Innovation Hub community and be at the forefront of technological innovation. Our hub is a dynamic environment where creativity and technology converge to create groundbreaking solutions. Be part of an ecosystem that nurtures your ideas and accelerates your journey to success.</p>
-                    <a href="" class="btn btn-primary">Register Now</a>
+                    <a href="#registration" class="btn btn-primary">Register Now</a>
                 </div>
                 <div class="col-4 d-none d-md-block pt-2">
                     <img src="https://orange.jo/sites/default/files/styles/m1640x607/public/2023-10/The%20Studio_Web%20EN.png?itok=Gb_DT-92" class="position-absolute end-0 w-100" alt="...">
@@ -91,6 +91,52 @@
                 @endforeach
             </div>
         @endif
+    </section>
+    <!-- Registration Section -->
+
+    <section class="registration-section mt-5 p-5 bg-dark" style="
+    background-position: top right;
+    background-size: cover;
+    background-image: url('https://orange.jo/themes/custom/orange/images/background-images/get-touch-cdc-en-desktop.png');
+}" id="registration">
+        <div class="container">
+            <div class="row px-5 mt-5 text-center">
+                <div class="col-12 our-impact-header mb-5 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="sub-title text-white pb-2">Be Part of the innovation</div>
+                    <h1 class="text-white display-3">Discover the Innovation Hub</h1>
+                    <div class="border-bottom border-5 border-white" style="width: 7%"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Book a Tour</h5>
+                            <p class="card-text">Explore our innovation hub with a guided tour.</p>
+                            <a href="{{ route('innovation-hub.book-tour') }}" class="btn btn-secondary">Book Tour</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Workshops</h5>
+                            <p class="card-text">Register for upcoming workshops and events.</p>
+                            <a href="{{ route('innovation-hub.workshops') }}" class="btn btn-secondary">Register for Workshops</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Program Registration</h5>
+                            <p class="card-text">Enroll in our innovation program.</p>
+                            <a href="{{ route('innovation-hub.program') }}" class="btn btn-secondary">Register for Program</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="impact" style="background: url({{ URL::asset('assets/img/impact.png') }});-webkit-background-size: cover;background-size: cover;z-index: -1;height: 31rem;width: 100%">

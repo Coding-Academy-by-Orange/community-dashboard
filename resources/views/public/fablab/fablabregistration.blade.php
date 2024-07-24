@@ -93,6 +93,7 @@
         @endif
     </section>
 
+
     <section class="impact" style="background: url({{ URL::asset('assets/img/impact.png') }});-webkit-background-size: cover;background-size: cover;z-index: -1;height: 31rem;width: 100%">
         <div class="container text-white py-5">
             <div class="row">

@@ -26,8 +26,8 @@
         <div class="bg-dark"></div>
         <div class="container position-relative z-0">
             <div class="row pt-3 px-5">
-                <div class="col-5 pt-5 z-1">
-                    <h1 class="pt-1 pt-md-4 mb-2 mb-md-3 display-3 text-primary">BIGg By Orange</h1>
+                <div class="col-7 pt-5 z-1">
+                    <h1 class="pt-1 pt-md-4 mb-2 mb-md-3 display-3 text-primary">BIG By Orange</h1>
                     <h2 class="display-4 text-white">Fuel Your Startup </h2>
                     <p class="ll-sm pt-1 mb-3">BIG By Orange is your launchpad to success. We provide the resources and support to grow your early-stage startup and drive the entrepreneurial spirit in Jordan. Join us and be a part of a thriving innovation ecosystem.</p>
                     <a href="" class="btn btn-primary">Register Now</a>
