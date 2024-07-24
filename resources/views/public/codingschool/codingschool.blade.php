@@ -107,20 +107,30 @@
             </div>
             <div class="row">
                 @foreach($component_registration as $registration)
-                    <div class="col-md-4 mb-3">
-                        @php
-                            $route = '#';
-                            if ($registration->type == 'workshop') {
-                                $route = "/coding-school/register/workshop/{$registration->id}";
-                            } elseif ($registration->type == 'internship') {
-                                $route = "/coding-school/register/internship/{$registration->id}";
-                            } elseif ($registration->type == 'training') {
-                                $route = "/coding-school/register/training/{$registration->id}";
-                            }
-                        @endphp
+                    <div class="col-4 mb-3">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $registration->registration_name }}</h5>
+                                <p class="card-text">{{ $registration->description }}</p>
+                                @php
+                                    $route = '#';
+                                    if ($registration->type == 'workshop') {
+                                        $route = "/coding-school/register/workshop/{$registration->id}";
+                                    } elseif ($registration->type == 'internship') {
+                                        $route = "/coding-school/register/internship/{$registration->id}";
+                                    } elseif ($registration->type == 'training') {
+                                        $route = "/coding-school/register/training/{$registration->id}";
+                                    }
+                                @endphp
+                                <a href="{{ $route }}" class="btn btn-secondary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+
                         <a href="{{ $route }}" class="card o-card-link" id="connexion">
                             <div class="card-body">
-                                <div class="card-title">{{ $registration->registration_name }}</div>
+                                <div class="card-title"></div>
                             </div>
                         </a>
                     </div>
