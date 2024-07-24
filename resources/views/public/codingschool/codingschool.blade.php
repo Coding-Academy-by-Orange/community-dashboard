@@ -30,7 +30,7 @@
                     <h1 class="pt-1 pt-md-4 mb-2 mb-md-3 display-3 text-primary">Coding School</h1>
                     <h2 class="display-4 text-white">Empowering the Next Generation of Tech Leaders</h2>
                     <p class="ll-sm pt-1 mb-3">The Coding School is a freely accessible and totally free-of-charge technological center that offers training and events for the community of young developers. Join us and transform your future with the latest in web development, data science, and more from industry experts.</p>
-                    <a href="{{ route('codingschool.create') }}" class="btn btn-primary">Register Now</a>
+                    <a href="#registration" class="btn btn-primary">Register Now</a>
                 </div>
                 <div class="col-4 d-none d-md-block pt-2">
                     <img src="https://orange.jo/sites/default/files/styles/m1640x607/public/2023-10/The%20Studio_Web%20EN.png?itok=Gb_DT-92" class="position-absolute end-0 w-100" alt="...">
@@ -92,7 +92,7 @@
             </div>
         @endif
     </section>
-    <section class="registration-section mt-5 p-5 bg-dark" style="
+    <section id="registration" class="registration-section mt-5 p-5 bg-dark" style="
     background-position: top right;
     background-size: cover;
     background-image: url('https://orange.jo/themes/custom/orange/images/background-images/get-touch-cdc-en-desktop.png');
