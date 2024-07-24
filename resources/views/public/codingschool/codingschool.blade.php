@@ -126,14 +126,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 ">
-
-                        <a href="{{ $route }}" class="card o-card-link" id="connexion">
-                            <div class="card-body">
-                                <div class="card-title"></div>
-                            </div>
-                        </a>
-                    </div>
                 @endforeach
         </div>
     </section>
