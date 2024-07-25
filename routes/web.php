@@ -235,6 +235,7 @@ Route::post('/coding-school/register/workshop/{registration_id}', [CodingSchoolC
 // Big By Orange Registration Form
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
+
 //invoation-hub
 
 Route::get('/thanks', function () {

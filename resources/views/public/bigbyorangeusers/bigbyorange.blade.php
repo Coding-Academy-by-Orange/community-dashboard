@@ -30,7 +30,7 @@
                     <h1 class="pt-1 pt-md-4 mb-2 mb-md-3 display-3 text-primary">BIG By Orange</h1>
                     <h2 class="display-4 text-white">Fuel Your Startup </h2>
                     <p class="ll-sm pt-1 mb-3">BIG By Orange is your launchpad to success. We provide the resources and support to grow your early-stage startup and drive the entrepreneurial spirit in Jordan. Join us and be a part of a thriving innovation ecosystem.</p>
-                    <a href="" class="btn btn-primary">Register Now</a>
+                    <a href="{{route('/BigByOrange/create')}}" class="btn btn-primary">Register Now</a>
                 </div>
                 <div class="col-4 d-none d-md-block pt-2">
                     <img src="https://orange.jo/sites/default/files/styles/m1640x607/public/2023-10/The%20Studio_Web%20EN.png?itok=Gb_DT-92" class="position-absolute end-0 w-100" alt="...">
