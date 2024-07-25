@@ -31,7 +31,7 @@
                     <h2 class="display-4 text-white">Empowering Tomorrow's Technology Today</h2>
                     <p class="ll-sm pt-1 mb-3">Unleash your creativity and drive innovation forward.
                         Join us in shaping the digital future.</p>
-                    <a href="" class="btn btn-primary">Register Now</a>
+                    <a href="{{route('ODC.create')}}" class="btn btn-primary">Register Now</a>
                 </div>
                 <div class="col-4 d-none d-md-block pt-2">
                     <img
