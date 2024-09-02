@@ -18,6 +18,9 @@ class FilterController extends Controller
     public function initialFilter()
     {
         $user = Auth::guard('admin')->user();
+        if($user->component== 'innovation'){
+            return view('admin.innovation-hub.dashboard');
+        }
         if ($user->component == 'codingacademy') {
             $filteredResults = User::all();
             $centerFieldName = 'academy_location'; // Replace with the actual field name in the User model
@@ -60,6 +63,7 @@ class FilterController extends Controller
             }
         })->map->count();
         // Pass the organized data to the view
+
         return view('admin.dashboard')->with([
             'genderData' => $genderData,
             'residenceData' => $residenceData,

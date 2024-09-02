@@ -42,7 +42,6 @@ class InnovationHubController extends Controller
     {
         //
 
-        return view('public.innovation-hub.thanks-success');
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -60,9 +59,11 @@ class InnovationHubController extends Controller
             'message' => 'required|string',
         ]);
 
+        //dd($data);
+
         InnovationHub::create($data);
 
-        return view('innovation-hub.thanks-success');
+        return view('public.innovation-hub.thanks-success');
 
 
     }

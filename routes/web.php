@@ -119,7 +119,23 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    Route::middleware(['admin.auth'])->group(function () {
+        // Route for initial filter
+        Route::get('/dashboard', [FilterController::class, 'initialFilter'])->name('admin.dashboard');
+        Route::prefix('innovation-hub')->group(function () {
+            Route::get('/dashboard', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'index'])->name('admin.innovation-hub.dashboard');
+            Route::get('/applications', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'viewApplications'])->name('admin.innovation-hub.applications');
+            Route::get('/activities', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'viewActivities'])->name('admin.innovation-hub.activities');
+            Route::get('/activities/add', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'addActivity'])->name('admin.innovation-hub.activities.add');
+            Route::get('/activities/{id}', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'viewActivity'])->name('admin.innovation-hub.activities.view');
+            Route::get('/activities/{id}/edit', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'editActivity'])->name('admin.innovation-hub.activities.edit');
+        });
+        //Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    });
+
 });
+
+
 //Admin Auth + Pages
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     // Admin create
@@ -127,10 +143,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('/register', [AdminRegisterController::class, 'create'])->name('admin.register.submit');
 
     //Admin Dashboard
-    //Route::view('/dashboard', "admin.dashboard")->name('admin.dashboard');
-
-    // Route for initial filter
     Route::get('/dashboard', [FilterController::class, 'initialFilter'])->name('admin.dashboard');
+
 
     // Route for the main filter method
     Route::get('/dashboard/filtered', [FilterController::class, 'filterResults'])->name('dashboard.filter');
@@ -236,7 +250,7 @@ Route::post('/coding-school/register/workshop/{registration_id}', [CodingSchoolC
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
 
-//invoation-hub
+//innovation-hub
 
 Route::get('/thanks', function () {
     return view('public.thanks');

@@ -30,13 +30,18 @@ class AdminLoginController extends Controller
             'password' => 'required|string',
         ]);
 
-
-
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             $email = $request->email;
-            $admin = Admin::where('email', $email)->get();
-            return redirect('/admin/dashboard');
+//                ::where('email', $email)->get();
+            //get user info the autnticated users
+            $admin = Auth::guard('admin')->user();
+            //dd($admin);
+            if ($admin->component == 'innovation') {
+                return redirect()->intended('/admin/innovation-hub/dashboard');
+            } else {
+                return redirect()->intended('/admin/dashboard');
+            }
         }
 
         return back()->withInput($request->only('email', 'remember'));

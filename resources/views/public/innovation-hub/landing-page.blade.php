@@ -107,9 +107,9 @@
                     <div class="border-bottom border-5 border-white" style="width: 7%"></div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card border-0">
+            <div class="row d-flex">
+                <div class="col-md-4 d-flex">
+                    <div class="card border-0 flex-fill">
                         <div class="card-body">
                             <h5 class="card-title">Book a Tour</h5>
                             <p class="card-text">Explore our innovation hub with a guided tour.</p>
@@ -117,8 +117,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card border-0">
+                <div class="col-md-4 d-flex">
+                    <div class="card border-0 flex-fill">
                         <div class="card-body">
                             <h5 class="card-title">Workshops</h5>
                             <p class="card-text">Register for upcoming workshops and events.</p>
@@ -126,8 +126,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card border-0">
+                <div class="col-md-4 d-flex">
+                    <div class="card border-0 flex-fill">
                         <div class="card-body">
                             <h5 class="card-title">Program Registration</h5>
                             <p class="card-text">Enroll in our innovation program.</p>

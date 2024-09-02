@@ -51,7 +51,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('codingschool.index') }}">Coding
                                 School</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('fablab.index') }}">Fablab</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('innovation-hub.index') }}">Innovation-hub</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('innovation-hub.index') }}">Innovation Hub</a></li>
 
                         <li class="nav-item"><a class="nav-link" href="{{ route('ODC.index') }}">Digital Centers</a>
                         </li>
@@ -137,6 +137,9 @@
                                 <li><a class="nav-link" href="{{ route('BigByOrange.index') }}"
                                         aria-describedby="headingThree2">Big By
                                         Orange</a></li>
+                                <li><a class="nav-link" href="{{ route('innovation-hub.index') }}"
+                                       aria-describedby="headingThree2">Innovation Hub</a></li>
+
                                 <li><a class="nav-link" href="{{ route('innovation-hub.index') }}"
                                        aria-describedby="headingThree2">Innovation Hub</a></li>
                             </ul>
