@@ -388,12 +388,12 @@
                                 <option value="Zarqa alhashmiah-uni" @if (old('center') == 'Zarqa alhashmiah-uni') selected @endif>
                                     الزرقاء
                                     - الجامعة الهاشمية</option>
+
+
                                 <option value="Zarqa youth-center" @if (old('center') == 'Zarqa youth-center') selected @endif>
                                     الزرقاء – مركز شباب الزرقاء
                                 </option>
-                                <option value="Madaba altheeban" @if (old('center') == 'Madaba altheeban') selected @endif>مادبا
-                                    -
-                                    محطة معرفة ذيبان</option>
+                                <option value="Karak - Moutah University" @if (old('center') == 'Madaba altheeban') selected @endif>الكرك - جامعة مؤتة</option>
                                 <option value="Madaba maaen" @if (old('center') == 'Madaba maaen') selected @endif>
                                     مادبا – محطة معرفة ماعين</option>
                                 <option value="Madaba mleeh" @if (old('center') == 'Madaba mleeh') selected @endif>
