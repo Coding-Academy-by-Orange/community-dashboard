@@ -355,7 +355,7 @@
                         <div>
                             <select name="center" class="form-control email @error('center') is-invalid @enderror "
                                 id="" required>
-                                <option value="" selected>-- Please Select --</option>
+                                <option value="" selected disabled>-- الرجاء الاختيار --</option>
                                 <option value="Amman markah" class="female" style="display: none"
                                     @if (old('center') == 'Amman markah') selected @endif>
                                     عمان – مؤسسة الملكه زين الشرف للتطوير / ماركا </option>
