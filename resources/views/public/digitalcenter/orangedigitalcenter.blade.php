@@ -104,7 +104,37 @@
             </div>
         @endif
     </section>
+    <section class="registration-section mt-5 p-5 bg-dark" style="
+    background-position: top right;
+    background-size: cover;
+    background-image: url('https://orange.jo/themes/custom/orange/images/background-images/get-touch-cdc-en-desktop.png');
+}" id="registration">
+        <div class="container">
+            <div class="row px-5 mt-5 text-center">
+                <div class="col-12 our-impact-header mb-5 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="sub-title text-white pb-2">Be Part of the Digital Center</div>
+                    <h1 class="text-white display-3">Discover the Digital Center</h1>
+                    <div class="border-bottom border-5 border-white" style="width: 7%"></div>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <div class="col-md-4 d-flex">
+                    <div class="card border-0 flex-fill">
+                        <div class="card-body">
+                            <h5 class="card-title">Become a Trainer</h5>
+                            <p class="card-text">Become a New Team mate of our digital center.</p>
+                            <a href="{{ route('digitalcenter.odctrainerfrom') }}" class="btn btn-secondary">Register</a>
 
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </section>
+
+
+    
     <section class="impact"
              style="background: url({{ URL::asset('assets/img/impact.png') }});-webkit-background-size: cover;background-size: cover;z-index: -1;height: 31rem;width: 100%">
         <div class="container text-white py-5">

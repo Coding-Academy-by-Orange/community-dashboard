@@ -1,5 +1,5 @@
-# swiftmailer-postmark 
-[![Build Status](https://travis-ci.org/wildbit/swiftmailer-postmark.svg?branch=master)](https://travis-ci.org/wildbit/swiftmailer-postmark)
+# swiftmailer-postmark
+[![Build Status](https://circleci.com/gh/ActiveCampaign/swiftmailer-postmark.svg?style=shield)](https://circleci.com/gh/ActiveCampaign/swiftmailer-postmark)
 
 An official Swiftmailer Transport for Postmark.
 
@@ -78,3 +78,21 @@ $message = new Swift_Message('Hello from Postmark!');
 // Overwrite the default stream for a specific message by setting the header
 $message->getHeaders()->addTextHeader('X-PM-Message-Stream', 'another-stream');
 ```
+
+##### 6. Getting the Postmark Message ID after sending
+After sending the mail to Postmark, it is possible to get the Postmark ID.
+
+```php 
+$transport = new \Postmark\Transport('<SERVER_TOKEN>', $defaultHeaders);
+$mailer = new Swift_Mailer($transport);
+
+$message = new Swift_Message('Hello from Postmark!');
+
+$mailer->send($message);
+
+$postmarkID = $message->getHeaders()->get('X-PM-Message-Id')->getValue();
+```
+
+##### Notes:
+
+- The Transport uses the [Postmark API](https://postmarkapp.com/developer) internally to send mail, via the [/email endpoint](https://postmarkapp.com/developer/api/email-api#send-a-single-email). Other sending features such as Batch sending or sending via Templates are currently not supported by this library.

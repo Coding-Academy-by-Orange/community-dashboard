@@ -7,9 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Postmark\\' => array($vendorDir . '/wildbit/swiftmailer-postmark/src'),
-    'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Mailchimp' => array($vendorDir . '/mailchimp/mailchimp/src'),
-    'Highlight\\' => array($vendorDir . '/scrivo/highlight.php'),
-    'HighlightUtilities\\' => array($vendorDir . '/scrivo/highlight.php'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
 );
