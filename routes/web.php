@@ -5,6 +5,7 @@ use App\Http\Controllers\InnovationHubController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ODC\ODCController;
+use App\Http\Controllers\ODC\ODCTrainerController;
 use App\Http\Controllers\Activity\ActivityController;
 use App\Http\Controllers\Activity\ActivityRegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -234,7 +235,13 @@ Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name
 
 // ODC Registration Form
 Route::resource('/ODC', "ODC\ODCController");
+Route::prefix('digitalcenter')->group(function () {
+    Route::get('/odctrainerfrom', [ODCTrainerController::class, 'create'])
+        ->name('digitalcenter.odctrainerfrom');
 
+    Route::post('/odctrainerfrom', [ODCTrainerController::class, 'store'])
+        ->name('digitalcenter.odctrainerform.store');
+});
 
 // Coding school
 Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
