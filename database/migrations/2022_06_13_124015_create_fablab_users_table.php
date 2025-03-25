@@ -39,6 +39,8 @@ class CreateFablabUsersTable extends Migration
 
             $table->string('program');
             $table->text('idea_description');
+            $table->string('project_stage')->nullable(); 
+            $table->integer('team_size')->nullable();
 
             $table->string('status')->default('pending');
 

@@ -442,10 +442,69 @@
                             @endif
                         </div>
                     </div>
+
+
+                    <div class="row mb-3">
+    <div class="form-group">
+        <label for="project_stage" class="is-required">At what stage do you describe your project to be?<span class="sr-only">(required)</span></label>
+        <div>
+            <input style="margin-top: 15px" name="project_stage" value="Idea" required type="radio" class="@error('project_stage') is-invalid @enderror" @if (old('project_stage') == 'Idea') checked @endif>
+            <span style="margin-right: 10px;">Idea</span>
+            <br>
+            <input style="margin-top: 15px" name="project_stage" value="Proof of concept" required type="radio" class="@error('project_stage') is-invalid @enderror" @if (old('project_stage') == 'Proof of concept') checked @endif>
+            <span style="margin-right: 10px;">Proof of concept</span>
+            <br>
+            <input style="margin-top: 15px" name="project_stage" value="Prototype" required type="radio" class="@error('project_stage') is-invalid @enderror" @if (old('project_stage') == 'Prototype') checked @endif>
+            <span style="margin-right: 10px;">Prototype</span>
+            <br>
+            <input style="margin-top: 15px" name="project_stage" value="MVP" required type="radio" class="@error('project_stage') is-invalid @enderror" @if (old('project_stage') == 'MVP') checked @endif>
+            <span style="margin-right: 10px;">MVP</span>
+            <br>
+            <input style="margin-top: 15px" name="project_stage" value="Product" required type="radio" class="@error('project_stage') is-invalid @enderror" @if (old('project_stage') == 'Product') checked @endif>
+            <span style="margin-right: 10px;">Product</span>
+            <br>
+        </div>
+        @if ($errors->has('project_stage'))
+            <div class="alert alert-danger">
+                {{ $errors->first('project_stage') }}
+            </div>
+        @endif
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="form-group">
+        <label for="team_size" class="is-required">How many team members are working on this project?<span class="sr-only">(required)</span></label>
+        <input name="team_size" type="number" min="1" class="form-control @error('team_size') is-invalid @enderror" id="team_size" value="{{ old('team_size') }}" required>
+        @if ($errors->has('team_size'))
+            <div class="alert alert-danger">
+                {{ $errors->first('team_size') }}
+            </div>
+        @endif
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <div class="row  mb-3">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="idea_description" class="is-required">What to expect from this course? Do you have any ideas/projects that you would like to work on?</label>
+                                <label for="idea_description" class="is-required">Describe the idea you are working on, including the time you need for the project and the required resources.</label>
                                 <textarea class="form-control @error('idea_description') is-invalid @enderror " name="idea_description" placeholder="Description of the idea" rows="8" autocomplete="off"    required></textarea>
                             </div>
                         </div>
@@ -490,6 +549,24 @@
                                 @endif
                             </div>
                         </div> --}}
+
+                        <div class="row mb-3">
+                        <div class="row mb-3">
+    <!-- <div class="form-group">
+        <label for="project_attachment">Attach a file or picture related to the project (optional)</label>
+        <input name="project_attachment" type="file" class="form-control @error('project_attachment') is-invalid @enderror" id="project_attachment">
+        <small>Allowed file types: JPEG, PNG, PDF (Max size: 2MB)</small>
+        @if ($errors->has('project_attachment'))
+            <div class="alert alert-danger">
+                {{ $errors->first('project_attachment') }}
+            </div>
+        @endif
+    </div>
+</div> -->
+
+
+
+
                     <div class="row mb-3">
                         <h4>Data Protection Policy:</h4>
                         <p>What will we do with the data? The data collected from this survey will be used for tracking
@@ -500,6 +577,12 @@
                             If results of this study are published or presented, individual names and other personally
                             identifiable information will not be used.</p>
                     </div>
+
+
+
+
+
+
 
                     <div class="row mb-3">
                         <div class="form-group">
@@ -517,6 +600,12 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+   
                     <div class="row">
                         <div class="form-group">
                             <button type="submit" class="btn btn-lg btn-primary">Submit</button>

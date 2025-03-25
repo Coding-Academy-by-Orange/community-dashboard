@@ -89,6 +89,7 @@ class FablabUsersController extends Controller
             'education' => 'required',
             'employment' => 'required',
             'affiliation' => 'required',
+           
         ]);
 
 
@@ -269,6 +270,11 @@ class FablabUsersController extends Controller
             $new_user->program = 'Fablab';
             //  $new_user->technology_type = 'technology_type';
             $new_user->idea_description = 'no-idea description';
+            $new_user->project_stage = $request->input('project_stage');
+            $new_user->team_size = $request->input('team_size');
+
+ // Handle file upload
+          
 
             $new_user->save();
 
@@ -329,6 +335,8 @@ class FablabUsersController extends Controller
             'employment' => 'required',
             'affiliation' => 'required',
             'idea_description' => 'required',
+            'project_stage' => 'required',
+            'team_size' => 'required|integer|min:1',
         ]);
 
 
@@ -437,6 +445,21 @@ class FablabUsersController extends Controller
                     $allErrors['idea_description'] = $error;
                 }
             }
+            if ($errors->has('project_stage')) {
+                $projectStage = $errors->get('project_stage');
+                foreach ($projectStage as $error) {
+                    $allErrors['project_stage'] = $error;
+                }
+            }
+
+            if ($errors->has('team_size')) {
+                $teamSize = $errors->get('team_size');
+                foreach ($teamSize as $error) {
+                    $allErrors['team_size'] = $error;
+                }
+
+            }
+
         }
 
         session()->forget('status');
@@ -515,6 +538,10 @@ class FablabUsersController extends Controller
             $new_user->program = 'Fablab-Cohort';
             //  $new_user->technology_type = 'technology_type';
             $new_user->idea_description = $request->input('idea_description');
+            $new_user->project_stage = $request->input('project_stage');
+            $new_user->team_size = $request->input('team_size');
+
+            
 
             $new_user->save();
 
