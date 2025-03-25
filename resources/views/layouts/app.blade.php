@@ -57,6 +57,8 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('BigByOrange.index') }}">Big By
                                 Orange</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('fiberacademy.index') }}">Fiber Academy</a></li>        
+
 {{--                        <li class="nav-item"><a class="nav-link" href="/help" target="_blank">Help</a></li>--}}
 {{--                        <li class="nav-item"><a class="nav-link" href="/terms" target="_blank">Terms & Conditions</a>--}}
                         </li>

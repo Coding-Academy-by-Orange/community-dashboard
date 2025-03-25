@@ -31,6 +31,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
                             </li>
+                            
                             <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
                         </ul>
                     </li>

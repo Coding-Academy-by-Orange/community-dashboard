@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\ODC;
 
 use App\ODC;
-use App\ODCTrainer;
+use App\digitalcenter_trainers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,6 +14,14 @@ class ODCTrainerController extends Controller
     public function index()
     {
         return view('public/digitalcenter/odctrainerfrom');
+        
+
+    }
+
+    public function adminindex()
+    {
+        $trainers = digitalcenter_trainers::all();
+    return view('admin.digital-center.index', compact('trainers'));
     }
     public function create()
     {
@@ -24,24 +32,36 @@ class ODCTrainerController extends Controller
     {
         $validated = $request->validate([
             'trainer_name' => 'required|string',
+            'trainer_phone' => 'required|string|min:10|max:10',
+            'trainer_email' => 'required|email|unique:digitalcenter_trainers,trainer_email',
             'organization' => 'required|string',
             'digital_center' => 'required|string',
             'governorate' => 'required|string',
-            'courses' => 'array',
-            'career_months' => 'array',
-            'career_days' => 'nullable|integer',
-            'career_topics' => 'array',
-            'soft_months' => 'array',
-            'soft_days' => 'nullable|integer',
-            'topics' => 'array',
-            'digital_topics' => 'array',
-            'entre_months' => 'array',
-            'entre_days' => 'nullable|integer',
-            'entre_topics' => 'array',
-            'other' => 'nullable|string'
+            'courses' => 'nullable|array',
+            'career_months' => 'nullable|array',
+            'career_days' => 'nullable|integer|min:0',
+            'career_topics' => 'nullable|array',
+            'soft_months' => 'nullable|array',
+            'soft_days' => 'nullable|integer|min:0',
+            'topics' => 'nullable|array',
+            'digital_topics' => 'nullable|array',
+            'entre_months' => 'nullable|array',
+            'entre_days' => 'nullable|integer|min:0',
+            'entre_topics' => 'nullable|array',
+            'freelance_months' => 'nullable|array',
+            'freelance_days' => 'nullable|integer|min:0',
+            'freelance_topics' => 'nullable|array',
+            'other_months' => 'nullable|array',
+            'other_days' => 'nullable|integer|min:0',
+            'other_topics' => 'nullable|string',
+            'other' => 'nullable|string',
         ]);
 
-        ODCTrainer::create($validated);
+      
+
+        \Log::info('Request Data:', $request->all());
+
+        digitalcenter_trainers::create($validated);
         return redirect('/thanks');
         // Training::create($request->all());
 

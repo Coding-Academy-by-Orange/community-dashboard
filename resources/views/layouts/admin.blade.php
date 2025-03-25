@@ -103,6 +103,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
                                 </li>
+                             
                                 <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
                             </ul>
                         </li>
@@ -199,6 +200,20 @@
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" href="{{ route('activity.index') }}"> Activities</a>
                                 </li>
+
+                                @if(Auth::guard('admin')->user()->component == 'digitalcenter')
+                                    <li><a class="dropdown-item" href="{{ route('digital-center.index') }}"> Digital Centers Trainers</a>
+                                    </li>
+                
+                              @endif
+
+
+
+
+
+
+                             
+                                
                                 <li><a class="dropdown-item" href="{{ route('location.index') }}">Locations</a></li>
                             </ul>
                         </li>

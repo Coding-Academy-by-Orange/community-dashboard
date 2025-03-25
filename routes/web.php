@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Big\BigbyOrangeController;
+use App\Http\Controllers\FiberAcademy\FiberAcademyController;
 use App\Http\Controllers\InnovationHubController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -130,6 +131,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/activities/add', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'addActivity'])->name('admin.innovation-hub.activities.add');
             Route::get('/activities/{id}', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'viewActivity'])->name('admin.innovation-hub.activities.view');
             Route::get('/activities/{id}/edit', [\App\Http\Controllers\InnovationHub\DashboardController::class, 'editActivity'])->name('admin.innovation-hub.activities.edit');
+            
         });
         //Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     });
@@ -176,6 +178,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/activity', [ActivityController::class, 'index'])->name('activity.index');
     Route::get('/activity/{id}', [ActivityController::class, 'show'])->name('activity.show');
 
+    
     // Update (Show edit form and Update data)
     Route::get('/activity/{id}/edit', [ActivityController::class, 'edit'])->name('activity.edit');
     Route::put('/activity/{id}', [ActivityController::class, 'update'])->name('activity.update');
@@ -235,13 +238,21 @@ Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name
 
 // ODC Registration Form
 Route::resource('/ODC', "ODC\ODCController");
+
+Route::get('/digital-center', [ODCTrainerController::class, 'adminindex'])->name('digital-center.index');
+
 Route::prefix('digitalcenter')->group(function () {
     Route::get('/odctrainerfrom', [ODCTrainerController::class, 'create'])
         ->name('digitalcenter.odctrainerfrom');
 
     Route::post('/odctrainerfrom', [ODCTrainerController::class, 'store'])
         ->name('digitalcenter.odctrainerform.store');
+
+
 });
+
+
+
 
 // Coding school
 Route::resource('/codingschool', "CodingSchool\CodingSchoolController");
@@ -256,6 +267,15 @@ Route::post('/coding-school/register/workshop/{registration_id}', [CodingSchoolC
 // Big By Orange Registration Form
 Route::resource('/BigByOrange', "Big\BigbyOrangeController");
 
+
+
+//Fiber Academy
+Route::get('/fiberacademy', [FiberAcademyController::class, 'index'])->name('fiberacademy.index');
+Route::get('/fiberacademy/register', [FiberAcademyController::class, 'create'])->name('fiberacademy.create');
+Route::post('/fiberacademy/register', [FiberAcademyController::class, 'store'])->name('fiberacademy.store');
+Route::get('/fiberacademy/{id}/destroy', [FiberAcademyController::class, 'destroy'])->name('fiber_academy_users.delete');
+Route::get('/fiberacademy/{id}/show', [FiberAcademyController::class, 'show'])->name('admin.user.fiber_academy.show');
+Route::post('/fiberacademy/{id}/change-status', [FiberAcademyController::class, 'changeStatus'])->name('admin.user.fiberacademy.changeStatus');
 
 //innovation-hub
 

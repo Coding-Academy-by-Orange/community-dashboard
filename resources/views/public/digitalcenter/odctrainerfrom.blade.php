@@ -141,6 +141,17 @@
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+
+
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <form method="POST" action="{{ route('digitalcenter.odctrainerform.store') }}">
             @csrf
 
@@ -150,6 +161,17 @@
             <div class="mb-3">
                 <label for="trainer_name" class="form-label">اسم المدرب / المشرف المسؤول عن المركز الرقمي</label>
                 <input type="text" class="form-control" id="trainer_name" name="trainer_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="trainer_phone" class="form-label">رقم الهاتف</label>
+                <input type="text" class="form-control" id="trainer_phone" name="trainer_phone" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="trainer_email" class="form-label
+                ">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="trainer_email" name="trainer_email" required>
             </div>
 
             <div class="mb-3">
@@ -654,6 +676,28 @@
                         <label class="form-check-label" for="entre_topic_4">نصب الافكار</label>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <!-- العمل الحر -->
             <div class="course-details" id="giglancing_details">
                 <div class="section-title">الجدول الزمني لدورة العمل الحر</div>
@@ -662,52 +706,52 @@
                     <label class="form-label">الشهر</label>
                     <div class="d-flex flex-wrap gap-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_1" name="entre_months[]" value="1">
-                            <label class="form-check-label" for="entre_month_1">شهر 1</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_1" name="freelance_months[]" value="1">
+                            <label class="form-check-label" for="freelance_months_1">شهر 1</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_2" name="entre_months[]" value="2">
-                            <label class="form-check-label" for="entre_month_2">شهر 2</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_2" name="freelance_months[]" value="2">
+                            <label class="form-check-label" for="freelance_months_2">شهر 2</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_3" name="entre_months[]" value="3">
-                            <label class="form-check-label" for="entre_month_3">شهر 3</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_3" name="freelance_months[]" value="3">
+                            <label class="form-check-label" for="freelance_months_3">شهر 3</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_4" name="entre_months[]" value="4">
-                            <label class="form-check-label" for="entre_month_4">شهر 4</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_4" name="freelance_months[]" value="4">
+                            <label class="form-check-label" for="freelance_months_4">شهر 4</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_5" name="entre_months[]" value="5">
-                            <label class="form-check-label" for="entre_month_5">شهر 5</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_5" name="freelance_months[]" value="5">
+                            <label class="form-check-label" for="freelance_months_5">شهر 5</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_6" name="entre_months[]" value="6">
-                            <label class="form-check-label" for="entre_month_6">شهر 6</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_6" name="freelance_months[]" value="6">
+                            <label class="form-check-label" for="freelance_months_6">شهر 6</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_7" name="entre_months[]" value="7">
-                            <label class="form-check-label" for="entre_month_7">شهر 7</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_7" name="freelance_months[]" value="7">
+                            <label class="form-check-label" for="freelance_months_7">شهر 7</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_8" name="entre_months[]" value="8">
-                            <label class="form-check-label" for="entre_month_8">شهر 8</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_8" name="freelance_months[]" value="8">
+                            <label class="form-check-label" for="freelance_months_8">شهر 8</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_9" name="entre_months[]" value="9">
-                            <label class="form-check-label" for="entre_month_9">شهر 9</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_9" name="freelance_months[]" value="9">
+                            <label class="form-check-label" for="freelance_months_9">شهر 9</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_10" name="entre_months[]" value="10">
-                            <label class="form-check-label" for="entre_month_10">شهر 10</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_10" name="freelance_months[]" value="10">
+                            <label class="form-check-label" for="freelance_months_10">شهر 10</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_11" name="entre_months[]" value="11">
-                            <label class="form-check-label" for="entre_month_11">شهر 11</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_11" name="freelance_months[]" value="11">
+                            <label class="form-check-label" for="freelance_months_11">شهر 11</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="entre_month_12" name="entre_months[]" value="12">
-                            <label class="form-check-label" for="entre_month_12">شهر 12</label>
+                            <input class="form-check-input" type="checkbox" id="freelance_months_12" name="freelance_months[]" value="12">
+                            <label class="form-check-label" for="freelance_months_12">شهر 12</label>
                         </div>
                     </div>
                 </div>
@@ -716,14 +760,14 @@
 
                 <div class="mb-3">
                     <label for="soft_days" class="form-label">عدد الأيام التدريبية المستهدفة خلال الشهر</label>
-                    <input type="number" class="form-control" id="soft_days" name="soft_days" min="1">
+                    <input type="number" class="form-control" id="freelance_days" name="freelance_days" min="1">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="entre_topic_1" name="entre_topics[]" value="أساسيات ريادة الاعمال">
-                        <label class="form-check-label" for="entre_topic_1">منصات العمل الحر</label>
+                        <input class="form-check-input" type="checkbox" id="freelance_topic_1" name="freelance_topics[]" value="أساسيات ريادة الاعمال">
+                        <label class="form-check-label" for="freelance_topic_1">منصات العمل الحر</label>
                     </div>
           
                 </div>
@@ -736,69 +780,70 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">الشهر</label>
+                    <label class="form-label">الشهر</label>
                         <div class="d-flex flex-wrap gap-3">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_1" name="entre_months[]" value="1">
-                                <label class="form-check-label" for="entre_month_1">شهر 1</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_1" name="other_months[]" value="1">
+                                <label class="form-check-label" for="other_months_1">شهر 1</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_2" name="entre_months[]" value="2">
-                                <label class="form-check-label" for="entre_month_2">شهر 2</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_2" name="other_months[]" value="2">
+                                <label class="form-check-label" for="other_months_2">شهر 2</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_3" name="entre_months[]" value="3">
-                                <label class="form-check-label" for="entre_month_3">شهر 3</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_3" name="other_months[]" value="3">
+                                <label class="form-check-label" for="other_months_3">شهر 3</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_4" name="entre_months[]" value="4">
-                                <label class="form-check-label" for="entre_month_4">شهر 4</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_4" name="other_months[]" value="4">
+                                <label class="form-check-label" for="other_months_4">شهر 4</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_5" name="entre_months[]" value="5">
-                                <label class="form-check-label" for="entre_month_5">شهر 5</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_5" name="other_months[]" value="5">
+                                <label class="form-check-label" for="other_months_5">شهر 5</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_6" name="entre_months[]" value="6">
-                                <label class="form-check-label" for="entre_month_6">شهر 6</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_6" name="other_months[]" value="6">
+                                <label class="form-check-label" for="other_months_6">شهر 6</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_7" name="entre_months[]" value="7">
-                                <label class="form-check-label" for="entre_month_7">شهر 7</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_7" name="other_months[]" value="7">
+                                <label class="form-check-label" for="other_months_7">شهر 7</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_8" name="entre_months[]" value="8">
-                                <label class="form-check-label" for="entre_month_8">شهر 8</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_8" name="other_months[]" value="8">
+                                <label class="form-check-label" for="other_months_8">شهر 8</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_9" name="entre_months[]" value="9">
-                                <label class="form-check-label" for="entre_month_9">شهر 9</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_9" name="other_months[]" value="9">
+                                <label class="form-check-label" for="other_months_9">شهر 9</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_10" name="entre_months[]" value="10">
-                                <label class="form-check-label" for="entre_month_10">شهر 10</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_10" name="other_months[]" value="10">
+                                <label class="form-check-label" for="other_months_10">شهر 10</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_11" name="entre_months[]" value="11">
-                                <label class="form-check-label" for="entre_month_11">شهر 11</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_11" name="other_months[]" value="11">
+                                <label class="form-check-label" for="other_months_11">شهر 11</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="entre_month_12" name="entre_months[]" value="12">
-                                <label class="form-check-label" for="entre_month_12">شهر 12</label>
+                                <input class="form-check-input" type="checkbox" id="other_months_12" name="other_months[]" value="12">
+                                <label class="form-check-label" for="other_months_12">شهر 12</label>
                             </div>
                         </div>
                     </div>
 
 
+
                     
                 <div class="mb-3">
-                    <label for="soft_days" class="form-label">عدد الأيام التدريبية المستهدفة خلال الشهر</label>
-                    <input type="number" class="form-control" id="soft_days" name="soft_days" min="1">
+                    <label for="other_days" class="form-label">عدد الأيام التدريبية المستهدفة خلال الشهر</label>
+                    <input type="number" class="form-control" id="other_days" name="other_days" min="1">
                 </div>
 
 
                 <div class="mb-3">
-                    <label for="trainer_name" class="form-label">ارجو كتابة المواضيع في المساحة المخصصة ادناه 
+                    <label for="other" class="form-label">ارجو كتابة المواضيع في المساحة المخصصة ادناه 
                     </label>
                     <input type="text" class="form-control" id="other" name="other" required>
                 </div>
@@ -809,6 +854,8 @@
         </div>
             </div>
 
+
+            
         
     
 </body>

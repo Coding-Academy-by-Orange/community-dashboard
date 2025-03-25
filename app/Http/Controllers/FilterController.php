@@ -18,10 +18,14 @@ class FilterController extends Controller
     public function initialFilter()
     {
         $user = Auth::guard('admin')->user();
-        if($user->component== 'innovation'){
+    
+        // Initialize filteredResults as an empty collection to avoid undefined variable errors
+        $filteredResults = collect();
+        $centerFieldName = null;
+    
+        if ($user->component == 'innovation') {
             return view('admin.innovation-hub.dashboard');
-        }
-        if ($user->component == 'codingacademy') {
+        } elseif ($user->component == 'codingacademy') {
             $filteredResults = User::all();
             $centerFieldName = 'academy_location'; // Replace with the actual field name in the User model
         } elseif ($user->component == 'codingschool') {
@@ -36,20 +40,24 @@ class FilterController extends Controller
         } elseif ($user->component == 'digitalcenter') {
             $filteredResults = ODC::all();
             $centerFieldName = 'center'; // Replace with the actual field name in the ODC model
+        } else {
+            // Handle unknown component types gracefully
+            return redirect()->back()->withErrors(['error' => 'Unknown component type']);
         }
-
+    
         // Calculate ages based on birthdates
         $today = now();
         $ageData = $filteredResults->map(function ($item) use ($today) {
             return $today->diffInYears($item->birthdate);
         });
-
+    
         // Organize the filtered data based on gender, residence, education level, status, and ages
         $genderData = $filteredResults->groupBy('gender')->map->count();
         $residenceData = $filteredResults->groupBy('residence')->map->count();
         $educationLevelData = $filteredResults->groupBy('education')->map->count();
         $statusData = $filteredResults->groupBy('status')->map->count();
         $centerData = $centerFieldName ? $filteredResults->groupBy($centerFieldName)->map->count() : null;
+    
         $ageGroupData = $ageData->groupBy(function ($age) {
             // Define the age groups here
             if ($age < 20) {
@@ -62,8 +70,8 @@ class FilterController extends Controller
                 return '40 and over';
             }
         })->map->count();
+    
         // Pass the organized data to the view
-
         return view('admin.dashboard')->with([
             'genderData' => $genderData,
             'residenceData' => $residenceData,

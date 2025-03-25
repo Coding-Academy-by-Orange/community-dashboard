@@ -13,9 +13,11 @@ class CreateDigitalcenterTrainersTable extends Migration
      */
     public function up()
     {
-        Schema::create('o_d_c_trainers', function (Blueprint $table) {
+        Schema::create('digitalcenter_trainers', function (Blueprint $table) {
             $table->id();
             $table->string('trainer_name');
+            $table->string('trainer_phone');
+            $table->string('trainer_email')->unique();
             $table->string('organization');
             $table->string('digital_center');
             $table->string('governorate');
@@ -30,6 +32,12 @@ class CreateDigitalcenterTrainersTable extends Migration
             $table->json('entre_months')->nullable();
             $table->integer('entre_days')->nullable();
             $table->json('entre_topics')->nullable();
+            $table->json('freelance_months')->nullable();
+            $table->integer('freelance_days')->nullable();
+            $table->json('freelance_topics')->nullable();
+            $table->json('other_months')->nullable();
+            $table->integer('other_days')->nullable();
+            $table->text('other_topics')->nullable();
             $table->text('other')->nullable();
             $table->timestamps();
         });
