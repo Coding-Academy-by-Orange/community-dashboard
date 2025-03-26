@@ -107,8 +107,8 @@ class FiberAcademyController extends Controller
         $student->status = $newStatus;
         $student->save();
 
-        return redirect()->route('admin.user.fiber_academy.show', $student->id)
-            ->with('status', 'User status changed successfully.');
+        return redirect()->route('users.index')
+            ->with('success', 'User status changed successfully.');
     }
 
     public function destroy($id){

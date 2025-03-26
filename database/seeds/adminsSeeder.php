@@ -13,13 +13,15 @@ class adminsSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $components = ['digitalcenter', 'fablab', 'bigbyorange', 'codingschool', 'codingacademy'];
+        $components = ['digitalcenter', 'fablab', 'bigbyorange', 'codingschool', 'codingacademy','fiber_academy'];
         $fixedEmails = [
             'digitalcenter' => 'odc@orange.com',
             'fablab' => 'fablab@orange.com',
             'bigbyorange' => 'bigbyorange@orange.com',
             'codingschool' => 'codingschool@orange.com',
             'codingacademy' => 'codingacademy@orange.com',
+            'fiber_academy' => 'fiber_academy@orange.com',
+
         ];
 
         foreach ($components as $component) {

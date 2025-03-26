@@ -8,14 +8,16 @@
             <form action="{{ route('dashboard.filter') }}" method="GET">
                 @csrf
                 <div class="row g-3 align-items-center mb-3">
-                    <div class="col-auto">
-                        <label class="col-form-label" for="start_date">From</label>
-                        <input class="form-control" name="start_date" type="date" id="start_date">
-                    </div>
-                    <div class="col-auto">
-                        <label class="col-form-label" for="end_date">Till</label>
-                        <input class="form-control" name="end_date" type="date" id="end_date">
-                    </div>
+                    @if (Auth::guard('admin')->user()->component !== 'fiber_academy' )
+                        <div class="col-auto">
+                            <label class="col-form-label" for="start_date">From</label>
+                            <input class="form-control" name="start_date" type="date" id="start_date">
+                        </div>
+                        <div class="col-auto">
+                            <label class="col-form-label" for="end_date">Till</label>
+                            <input class="form-control" name="end_date" type="date" id="end_date">
+                        </div>
+                    @endif
                     <div class="col-auto">
                         <label class="col-form-label" for="gender">Gender</label>
                         <select class="form-select" id="gender" name="gender">
@@ -44,6 +46,18 @@
                     </div>
                     <div class="col-auto">
                         <label class="col-form-label" for="education">Education</label>
+                        @if (Auth::guard('admin')->user()->component == 'fiber_academy')
+                        <select class="form-select" id="education" name="education">
+                            <option value="">Education</option>
+                            <option value="tawjihi" >توجيهي</option>
+                                <option value="Diploma (Non-Engineering Specializations)" >دبلوم (تخصصات غير هندسية)</option>
+                                <option value="Diploma (Engineering Specializations)" >دبلوم (تخصصات هندسية)</option>
+                                <option value="Bachelor (Non-Engineering Specializations)" >بكالوريوس (تخصصات غير هندسية)</option>
+                                <option value="Bachelor (Engineering Specializations)" >بكالوريوس (تخصصات هندسية)</option>
+                                <option value="Master" >ماجستير</option>
+                                <option value="PhD" >دكتوراه</option>
+                        </select>
+                        @else
                         <select class="form-select" id="education" name="education">
                             <option value="">Education</option>
                             <option value="Below Tawjihi">Below Tawjihi</option>
@@ -52,9 +66,11 @@
                             <option value="Undergraduate">Undergraduate</option>
                             <option value="Graduate">Graduate</option>
                         </select>
+                        @endif
                     </div>
                     @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
-                            Auth::guard('admin')->user()->component !== 'bigbyorange')
+                            Auth::guard('admin')->user()->component !== 'bigbyorange'&&
+                            Auth::guard('admin')->user()->component !== 'fiber_academy')
                         <div class="col-auto">
                             <label class="col-form-label" for="center">Center/Affiliation</label>
                             <select class="form-select" id="center" name="center">
@@ -122,6 +138,18 @@
                             </select>
                         </div>
                     @endif
+                    @if(Auth::guard('admin')->user()->component == 'fiber_academy')
+                    <div class="col-auto">
+                        <!-- here i will filter on the status -->
+                        <label class="col-form-label" for="status">Status</label>
+                        <select class="form-select" id="status" name="status">
+                            <option value="">Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    @endif
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary">Filter</button>
                         <button onclick="generatePNG()" class="btn btn-primary">Generate PNG</button>
@@ -155,7 +183,8 @@
                     </div>
                 </div>
                 @if (Auth::guard('admin')->user()->component !== 'codingschool' &&
-                        Auth::guard('admin')->user()->component !== 'bigbyorange')
+                        Auth::guard('admin')->user()->component !== 'bigbyorange'
+                        && Auth::guard('admin')->user()->component !== 'fiber_academy')
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm">
                             <div class="card-body py-1">

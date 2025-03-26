@@ -11,6 +11,20 @@
                         <h3 class="display-3">Applicants</h3>
                     </div>
                 </div>
+                @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            onclick="clearFlashSession()"></button>
+    </div>
+@elseif (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ Session::get('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+            onclick="clearFlashSession()"></button>
+    </div>    
+
+@endif
                 <div class="col-2 ">
                     <div class="mt-1">
                         <div class="rounded d-flex flex-wrap">
@@ -29,6 +43,33 @@
                                         <table id="table" class="table-sm zero-configuration table table-striped">
                                             <thead>
                                             <tr>
+                                                @if (Auth::guard('admin')->user()->component == 'fiber_academy')
+                                                <th>#</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Age</th>
+                                                <th>Gender</th>
+                                                <th>Education Level</th>
+                                                <th>Major Study</th>     
+                                                <th>Experience In Marketing </th>
+                                                <th>Residence</th>
+                                                <th>Join Motivation</th>
+                                                <th>Challenge Handling </th>
+                                                <th>Program Benefit</th>
+                                                <th>Commitment</th>
+                                                <th>Take Similar Course </th>
+                                                <th>Course Details</th>
+                                                <th>Have Disability</th>
+                                                <th>Disability Tybe</th>
+                                                <th>Status</th>
+                                                <th>Created At</th>
+                                                <th>Updated At</th>
+                                                <th>Action</th>
+                                                
+
+                                                @else
+                                                
                                                 <th>#</th>
                                                 <th>First Name</th>
                                                 <th>Father Name</th>
@@ -56,11 +97,38 @@
                                                 <th>Nationality</th>
                                                 <th>Governorate</th>
                                                 <th>Action</th>
+                                                @endif
                                             </tr>
                                             </thead>
                                             <tbody>
+                            
+                                             
                                             @foreach ($users as $user)
                                                 <tr role="row">
+                                                    @if (Auth::guard('admin')->user()->component == 'fiber_academy')
+                                                    <td class="sorting_1">{{ $user->id }}</td>
+                                                    <td class="text-capitalize">{{ $user->full_name }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->phone_number }}</td>
+                                                    <td>{{ $user->age }}</td>
+                                                    <td>{{ $user->gender }}</td>
+                                                    <td>{{ $user->education }}</td>
+                                                    <td>{{ $user->specialization }}</td>
+                                                    <td>{{ $user->experience_in_marketing== 1 ? 'Yes' : 'No'  }}</td>
+                                                    <td>{{ $user->residence }}</td>
+                                                    <td>{{ $user->join_motivation }}</td>
+                                                    <td>{{ $user->challenge_handling }}</td>
+                                                    <td>{{ $user->program_benefit }}</td>
+                                                    <td>{{ $user->commitment_question }}</td>
+                                                    <td>{{ $user->take_similar_courses == 1 ? 'Yes' : 'No' }}</td>
+                                                    <td>{{ $user->course_details ? $user->course_details : '-' }}</td>
+                                                    <td>{{ $user->have_disability == 1 ? 'Yes' : 'No' }}</td>
+                                                    <td>{{ $user->disability_type ? $user->disability_type : '-'  }}</td>
+                                                    <td>{{ $user->status }}</td>
+                                                    <td>{{ $user->created_at }}</td>
+                                                    <td>{{ $user->updated_at }}</td>
+                                                    
+                                                    @else
                                                     <td class="sorting_1">{{ $user->id }}</td>
                                                     <td class="text-capitalize">{{ $user->first_name }}</td>
                                                     <td>{{ $user->father_name }}</td>
@@ -87,6 +155,7 @@
                                                     <td>{{ $user->registration_id }}</td>
                                                     <td>{{ $user->nationality }}</td>
                                                     <td>{{ $user->governorate }}</td>
+                                                    @endif
                                                     <td>
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer dropdown-toggle" data-bs-toggle="dropdown"></span>
@@ -95,6 +164,8 @@
                                                                     <a class="dropdown-item" href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
                                                                         <i class="bx bx-edit-alt mr-1"></i>Delete
                                                                     </a>
+                                                              
+                                                                    
                                                                 @endif
                                                                 <a class="dropdown-item" href="
                                                                         @if (Auth::guard('admin')->user()->component == 'digitalcenter') {{ route('admin.user.odc.show', $user->id) }}
@@ -105,14 +176,20 @@
                                                                         @elseif (Auth::guard('admin')->user()->component == 'codingschool')
                                                                             {{ route('admin.user.codingschool.show', $user->id) }}
                                                                         @elseif (Auth::guard('admin')->user()->component == 'codingacademy')
-                                                                            {{ route('admin.user.codingacademy.show', $user->id) }} @endif">
-                                                                    <i class="bx bx-edit-alt mr-1"></i>Edit
+                                                                            {{ route('admin.user.codingacademy.show', $user->id) }}
+                                                                        @elseif (Auth::guard('admin')->user()->component == 'fiber_academy')
+                                                                            {{ route('admin.user.fiber_academy.show', $user->id) }}">    
+                                                                      @endif
+                                                                        <i class="bx bx-edit-alt mr-1">Edit</i>
                                                                 </a>
+                                                                
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
+
+                                            
                                             </tbody>
                                         </table>
                                     </div>

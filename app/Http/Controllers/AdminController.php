@@ -28,9 +28,15 @@ class AdminController extends Controller
             $admins = Admin::orderByDesc('id')->where('component', 'codingacademy')->get();
         } else if ($user->component == 'codingschool') {
             $admins = Admin::orderByDesc('id')->where('component', 'codingschool')->get();
-        } else if ((Auth::user()->is_super) && ($user->component == '')) {
+        } else if ($user->component == 'fiber_academy') {
+            $admins = Admin::orderByDesc('id')->where('component', 'fiber_academy')->get();    
+        }   
+        else if ((Auth::user()->is_super) && ($user->component == '')) {
             $admins = Admin::orderByDesc('id')->get();
         };
+        
+
+
         return view('admin.admin.read', compact('admins'));
     }
 
