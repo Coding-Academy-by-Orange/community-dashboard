@@ -91,7 +91,7 @@
                                                         <div class="dropdown">
                                                             <span class="bx bx-dots-vertical-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer dropdown-toggle" data-bs-toggle="dropdown"></span>
                                                             <div class="dropdown-menu">
-                                                                @if (Auth::guard('admin')->user()->is_super)
+                                                                @if (Auth::guard('admin')->user()->is_super)d
                                                                     <a class="dropdown-item" href="{{ route('fablab_users.delete', ['id' => $user->id]) }}">
                                                                         <i class="bx bx-edit-alt mr-1"></i>Delete
                                                                     </a>
