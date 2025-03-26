@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FiberAcademyExprort;
 use Excel;
 use App\ODC;
 use App\User;
@@ -16,6 +17,7 @@ use App\Exports\CodingAcademyExport;
 use App\Exports\CodingSchoolExport;
 use App\Exports\FabLabExport;
 use App\Exports\ODCExport;
+use App\FiberAcademy;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,7 +65,9 @@ class UserController extends Controller
             return Excel::download(new CodingAcademyExport, 'CodingAcademy-collection.xlsx');
         } else if ($user->component == 'codingschool') {
             return Excel::download(new CodingSchoolExport, 'CodingSchool-collection.xlsx');
-        } else if (Auth::user()->is_super) {
+        } else if ($user->component == 'fiber_academy') {
+            return Excel::download(new FiberAcademyExprort, 'FiberAcademy-collection.xlsx');
+        }else if (Auth::user()->is_super) {
         };
 
         //return Excel::download(new UsersExport, 'users-collection.xlsx');
@@ -133,7 +137,20 @@ class UserController extends Controller
                 'educational_level' => 'All',
                 'academy_location' => 'ALL'
             ])->with('users', User::orderBy('first_name')->get());
+        } else if ($user->component == 'fiber_academy') {
+            return view('admin.user.read', [
+                'status' => 'All',
+                'result_1' => 'All',
+                'nationality' => 'All',
+                'gender' => 'All',
+                'year' => 'All',
+                'commitment' => 'All',
+                'educational_background' => 'All',
+                'educational_level' => 'All',
+                'academy_location' => 'ALL'
+            ])->with('users', FiberAcademy::orderBy('full_name')->get());
         }
+
     }
 
     /**

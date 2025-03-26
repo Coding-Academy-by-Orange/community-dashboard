@@ -6,6 +6,7 @@ use App\BigbyOrange;
 use App\User;
 use App\codingSchool;
 use App\FablabUsers;
+use App\FiberAcademy;
 use App\ODC;
 
 use App\Http\Controllers\Controller;
@@ -18,14 +19,10 @@ class FilterController extends Controller
     public function initialFilter()
     {
         $user = Auth::guard('admin')->user();
-    
-        // Initialize filteredResults as an empty collection to avoid undefined variable errors
-        $filteredResults = collect();
-        $centerFieldName = null;
-    
-        if ($user->component == 'innovation') {
+        if($user->component== 'innovation'){
             return view('admin.innovation-hub.dashboard');
-        } elseif ($user->component == 'codingacademy') {
+        }
+        if ($user->component == 'codingacademy') {
             $filteredResults = User::all();
             $centerFieldName = 'academy_location'; // Replace with the actual field name in the User model
         } elseif ($user->component == 'codingschool') {
@@ -40,24 +37,24 @@ class FilterController extends Controller
         } elseif ($user->component == 'digitalcenter') {
             $filteredResults = ODC::all();
             $centerFieldName = 'center'; // Replace with the actual field name in the ODC model
-        } else {
-            // Handle unknown component types gracefully
-            return redirect()->back()->withErrors(['error' => 'Unknown component type']);
+        }elseif($user->component == 'fiber_academy'){
+            $filteredResults = FiberAcademy::all();
+            $centerFieldName = null;
         }
-    
+
+
         // Calculate ages based on birthdates
         $today = now();
         $ageData = $filteredResults->map(function ($item) use ($today) {
             return $today->diffInYears($item->birthdate);
         });
-    
+
         // Organize the filtered data based on gender, residence, education level, status, and ages
         $genderData = $filteredResults->groupBy('gender')->map->count();
         $residenceData = $filteredResults->groupBy('residence')->map->count();
         $educationLevelData = $filteredResults->groupBy('education')->map->count();
         $statusData = $filteredResults->groupBy('status')->map->count();
         $centerData = $centerFieldName ? $filteredResults->groupBy($centerFieldName)->map->count() : null;
-    
         $ageGroupData = $ageData->groupBy(function ($age) {
             // Define the age groups here
             if ($age < 20) {
@@ -70,8 +67,10 @@ class FilterController extends Controller
                 return '40 and over';
             }
         })->map->count();
-    
+
+
         // Pass the organized data to the view
+
         return view('admin.dashboard')->with([
             'genderData' => $genderData,
             'residenceData' => $residenceData,
@@ -79,6 +78,7 @@ class FilterController extends Controller
             'statusData' => $statusData,
             'ageGroupData' => $ageGroupData,
             'centerData' => $centerData,
+        
         ]);
     }
 
@@ -92,6 +92,8 @@ class FilterController extends Controller
         $educationLevel = $request->input('education');
         $residence = $request->input('residence');
         $center = $request->input('center');
+        $status=$request->input('status');
+        
 
         $user = Auth::guard('admin')->user();
         if ($user->component == 'codingacademy') {
@@ -109,6 +111,10 @@ class FilterController extends Controller
         } elseif ($user->component == 'digitalcenter') {
             $tableName = 'digitalcenter_users';
             $centerFieldName = 'center';
+        }
+        elseif($user->component == 'fiber_academy'){
+            $tableName = 'fiber_academies';
+            $centerFieldName = null;
         }
 
         $query = DB::table($tableName);
@@ -141,6 +147,12 @@ class FilterController extends Controller
                 $query->where('residence', $residence);
             }
         }
+        if ($status) {
+            if(request()->input('status') == ''){
+               
+            }
+            $query->where('status', $status);
+        }
 
         $filteredResults = $query->get();
 
@@ -148,9 +160,19 @@ class FilterController extends Controller
 
         // Calculate ages based on birthdates
         $today = now();
+        if(Auth::guard('admin')->user()->component !== 'fiber_academy'){
+      
         $ageData = $filteredResults->map(function ($item) use ($today) {
             return $today->diffInYears($item->birthdate);
-        });
+        }); 
+        // if the user is a fiber academy user then we don't need to calculate the ages becuse 
+        //  istore range of ages not based on birthdates in the database 
+        }elseif(Auth::guard('admin')->user()->component == 'fiber_academy'){
+          $ageData = $filteredResults->map(function ($item){
+            return $item->age; 
+          });
+        }
+        
 
         // Organize the filtered data based on gender, residence, education level, and ages
         $genderData = $filteredResults->groupBy('gender')->map->count();
@@ -162,6 +184,10 @@ class FilterController extends Controller
         $educationLevelData = $filteredResults->groupBy('education')->map->count();
         $statusData = $filteredResults->groupBy('status')->map->count();
         $ageGroupData = $ageData->groupBy(function ($age) {
+            //here if the component is a fiber academy  i wil return the age to the statistics
+            if(Auth::guard('admin')->user()->component == 'fiber_academy'){
+                return $age;
+            }else{
             // Define the age groups here
             if ($age < 20) {
                 return 'Under 20';
@@ -172,6 +198,7 @@ class FilterController extends Controller
             } else {
                 return '40 and over';
             }
+        }
         })->map->count();
 
         // Pass the organized data to the view
