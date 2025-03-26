@@ -162,113 +162,158 @@
             <div class="section-title">بيانات المدرب/المشرف</div>
             
             <div class="mb-3">
-                <label for="trainer_name" class="form-label">اسم المدرب / المشرف المسؤول عن المركز الرقمي</label>
-                <input type="text" class="form-control" id="trainer_name" name="trainer_name" required>
+                <label for="trainer_name"  class="form-label">اسم المدرب / المشرف المسؤول عن المركز الرقمي</label>
+                <span class="sr-only is-required">(required)</span>
+                <input type="text" class="form-control" id="trainer_name" name="trainer_name"  value="{{ old('trainer_name') }}" required>
             </div>
 
             <div class="mb-3">
                 <label for="trainer_phone" class="form-label">رقم الهاتف</label>
-                <input type="text" class="form-control" id="trainer_phone" name="trainer_phone" required>
+                <span class="sr-only is-required">(required)</span>
+
+                <input type="text" class="form-control" id="trainer_phone" name="trainer_phone" value="{{ old('trainer_phone') }}"    required>
             </div>
 
             <div class="mb-3">
                 <label for="trainer_email" class="form-label
                 ">البريد الإلكتروني</label>
-                <input type="email" class="form-control" id="trainer_email" name="trainer_email" required>
+                <span class="sr-only is-required">(required)</span>
+
+                <input type="email" class="form-control" id="trainer_email" name="trainer_email"  value="{{ old('trainer_email') }}" required>
             </div>
 
             <div class="mb-3">
                 <label for="organization" class="form-label">الجهة التي أعمل لديها</label>
+                <span class="sr-only is-required">(required)</span>
                 <select class="form-select" id="organization" name="organization" required>
-                    <option value="" selected disabled>اختر الجهة</option>
-                    <option value="وزارة الشباب">وزارة الشباب</option>
-                    <option value="وزارة الاقتصاد الرقمي والريادة">وزارة الاقتصاد الرقمي والريادة</option>
-                    <option value="جامعة اليرموك">جامعة اليرموك</option>
-                    <option value="مركز اورانج الرقمي">مركز اورانج الرقمي</option>
-                </select>
+            <option value="" disabled {{ old('organization') ? '' : 'selected' }}>اختر الجهة</option>
+            <option value="وزارة الشباب" {{ old('organization') == 'وزارة الشباب' ? 'selected' : '' }}>وزارة الشباب</option>
+            <option value="وزارة الاقتصاد الرقمي والريادة" {{ old('organization') == 'وزارة الاقتصاد الرقمي والريادة' ? 'selected' : '' }}>وزارة الاقتصاد الرقمي والريادة</option>
+            <option value="جامعة اليرموك" {{ old('organization') == 'جامعة اليرموك' ? 'selected' : '' }}>جامعة اليرموك</option>
+            <option value="مركز اورانج الرقمي" {{ old('organization') == 'مركز اورانج الرقمي' ? 'selected' : '' }}>مركز اورانج الرقمي</option>
+        </select>
             </div>
 
             <div class="mb-3">
                 <label for="digital_center" class="form-label">مركز اورنج الرقمي / Orange Community Digital Center</label>
+                <span class="sr-only is-required">(required)</span>
                 <select class="form-select" id="digital_center" name="digital_center" required>
-                    <option value="" selected disabled>اختر المركز</option>
-                    <option value="مركز أورانج الرقمي - اربد /محطة معرفة الحصن">مركز أورنج الرقمي - اربد /محطة معرفة الحصن</option>
-                    <option value="مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي">مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي</option>
-                    <option value="مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه">مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه</option>
-                    <option value="مركز أورائج الرقمى - مادبا / محطة معرفة ماعين">مركز أورائج الرقمى - مادبا / محطة معرفة ماعين</option>
-                    <option value="مركز أورانج الرقمي - مادبا /محطة معرفة مليح">مركز أورانج الرقمي - مادبا /محطة معرفة مليح</option>
-                    <option value="مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله">مركز أورانج الرقمى - الطفيلة /محطة معرفة الطفيله</option>
-                    <option value="مركز أورانج الرقمى - العقبة /مركز شباب العقبه">مركز أورانج الرقمى - العقبة /مركز شباب العقبه</option>
-                    <option value="مركز أورائج الرقمي - الكرك /نادي ابداع الكرك">مركز أورائج الرقمي - الكرك /نادي ابداع الكرك</option>
-                    <option value="مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي">مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي</option>
-                    <option value="مركز اورانج الرقمي - المفرق / محطة معرفة المفرق">مركز اورانج الرقمي - المرق / محطة معرفة المفرق</option>
-                    <option value="مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية">مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية</option>
-                    <option value="مركز اوريج الرقمي تكز شباب دير ابي سعيد">مركز أورانج الرقمي تكز شباب دير ابي سعيد</option>
-                    <option value="مركز اورانج الرقمي- مركز شباب الشوبك">مركز اورانج الرقمي- مركز شباب الشوبك</option>
-                    <option value="مركز اورنج الرقمي-مركز شباب معان النموذجي">مركز اورنج الرقمي-مركز شباب معان النموذجي</option>
-                    <option value="مركز أورانج الرقمي- محطة معرفة الكتة">مركز أورانج الرقمي- محطة معرفة الكتة</option>
-                </select>
+    <option value="" disabled {{ old('digital_center') ? '' : 'selected' }}>اختر المركز</option>
+    <option value="مركز أورنج الرقمي - اربد /محطة معرفة الحصن" {{ old('digital_center') == 'مركز أورنج الرقمي - اربد /محطة معرفة الحصن' ? 'selected' : '' }}>
+        مركز أورنج الرقمي - اربد /محطة معرفة الحصن
+    </option>
+    <option value="مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي" {{ old('digital_center') == 'مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي' ? 'selected' : '' }}>
+        مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي
+    </option>
+    <option value="مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه" {{ old('digital_center') == 'مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه' ? 'selected' : '' }}>
+        مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه
+    </option>
+    <option value="مركز أورائج الرقمى - مادبا / محطة معرفة ماعين" {{ old('digital_center') == 'مركز أورائج الرقمى - مادبا / محطة معرفة ماعين' ? 'selected' : '' }}>
+        مركز أورائج الرقمى - مادبا / محطة معرفة ماعين
+    </option>
+    <option value="مركز أورانج الرقمي - مادبا /محطة معرفة مليح" {{ old('digital_center') == 'مركز أورانج الرقمي - مادبا /محطة معرفة مليح' ? 'selected' : '' }}>
+        مركز أورانج الرقمي - مادبا /محطة معرفة مليح
+    </option>
+    <option value="مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله" {{ old('digital_center') == 'مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله' ? 'selected' : '' }}>
+        مركز أورانج الرقمى - الطفيلة /محطة معرفة الطفيله
+    </option>
+    <option value="مركز أورانج الرقمى - العقبة /مركز شباب العقبه" {{ old('digital_center') == 'مركز أورانج الرقمى - العقبة /مركز شباب العقبه' ? 'selected' : '' }}>
+        مركز أورانج الرقمى - العقبة /مركز شباب العقبه
+    </option>
+    <option value="مركز أورائج الرقمي - الكرك /نادي ابداع الكرك" {{ old('digital_center') == 'مركز أورائج الرقمي - الكرك /نادي ابداع الكرك' ? 'selected' : '' }}>
+        مركز أورائج الرقمي - الكرك /نادي ابداع الكرك
+    </option>
+    <option value="مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي" {{ old('digital_center') == 'مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي' ? 'selected' : '' }}>
+        مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي
+    </option>
+    <option value="مركز اورانج الرقمي - المفرق / محطة معرفة المفرق" {{ old('digital_center') == 'مركز اورانج الرقمي - المفرق / محطة معرفة المفرق' ? 'selected' : '' }}>
+        مركز اورانج الرقمي - المفرق / محطة معرفة المفرق
+    </option>
+    <option value="مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية" {{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية' ? 'selected' : '' }}>
+        مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية
+    </option>
+    <option value="مركز اوريج الرقمي تكز شباب دير ابي سعيد" {{ old('digital_center') == 'مركز اوريج الرقمي تكز شباب دير ابي سعيد' ? 'selected' : '' }}>
+        مركز أورانج الرقمي تكز شباب دير ابي سعيد
+    </option>
+    <option value="مركز اورانج الرقمي- مركز شباب الشوبك" {{ old('digital_center') == 'مركز اورانج الرقمي- مركز شباب الشوبك' ? 'selected' : '' }}>
+        مركز اورانج الرقمي- مركز شباب الشوبك
+    </option>
+    <option value="مركز اورنج الرقمي-مركز شباب معان النموذجي" {{ old('digital_center') == 'مركز اورنج الرقمي-مركز شباب معان النموذجي' ? 'selected' : '' }}>
+        مركز اورنج الرقمي-مركز شباب معان النموذجي
+    </option>
+    <option value="مركز أورانج الرقمي- محطة معرفة الكتة" {{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الكتة' ? 'selected' : '' }}>
+        مركز أورانج الرقمي- محطة معرفة الكتة
+    </option>
+</select>
             </div>
 
             <div class="mb-3">
                 <label for="governorate" class="form-label">المحافظة</label>
+                <span class="sr-only is-required">(required)</span>
                 <select class="form-select" id="governorate" name="governorate" required>
-                    <option value="" selected disabled>اختر المحافظة</option>
-                    <option value="عمان">عمان</option>
-                    <option value="إربد">إربد</option>
-                    <option value="الزرقاء">الزرقاء</option>
-                    <option value="المفرق">المفرق</option>
-                    <option value="البلقاء">البلقاء</option>
-                    <option value="مادبا">مادبا</option>
-                    <option value="جرش">جرش</option>
-                    <option value="عجلون">عجلون</option>
-                    <option value="الكرك">الكرك</option>
-                    <option value="معان">معان</option>
-                    <option value="الطفيلة">الطفيلة</option>
-                    <option value="العقبة">العقبة</option>
-                </select>
+                <option value="" disabled {{ old('governorate') ? '' : 'selected' }}>اختر المحافظة</option>
+                <option value="عمان" {{ old('governorate') == 'عمان' ? 'selected' : '' }}>عمان</option>
+                <option value="إربد" {{ old('governorate') == 'إربد' ? 'selected' : '' }}>إربد</option>
+                <option value="الزرقاء" {{ old('governorate') == 'الزرقاء' ? 'selected' : '' }}>الزرقاء</option>
+                <option value="المفرق" {{ old('governorate') == 'المفرق' ? 'selected' : '' }}>المفرق</option>
+                <option value="البلقاء" {{ old('governorate') == 'البلقاء' ? 'selected' : '' }}>البلقاء</option>
+                <option value="مادبا" {{ old('governorate') == 'مادبا' ? 'selected' : '' }}>مادبا</option>
+                <option value="جرش" {{ old('governorate') == 'جرش' ? 'selected' : '' }}>جرش</option>
+                <option value="عجلون" {{ old('governorate') == 'عجلون' ? 'selected' : '' }}>عجلون</option>
+                <option value="الكرك" {{ old('governorate') == 'الكرك' ? 'selected' : '' }}>الكرك</option>
+                <option value="معان" {{ old('governorate') == 'معان' ? 'selected' : '' }}>معان</option>
+                <option value="الطفيلة" {{ old('governorate') == 'الطفيلة' ? 'selected' : '' }}>الطفيلة</option>
+                <option value="العقبة" {{ old('governorate') == 'العقبة' ? 'selected' : '' }}>العقبة</option>
+            </select>
             </div>
 
             <!-- الدورات التدريبية -->
             <div class="section-title">الدورات التدريبية المستهدف إعطاؤها</div>
             
             <div class="mb-3" dir="rtl">
-    <div class="form-check">
+                <ul>
+    <li><div class="form-check">
         <input class="form-check-input" type="checkbox" id="career_planning" name="courses[]" value="career_planning">
         <label class="form-check-label" for="career_planning">
             Career Planning & Development Program- التخطيط والتطوير الوظيفي
         </label>
-    </div>
+    </div></li>
+    <li>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="soft_skills" name="courses[]" value="soft_skills">
         <label class="form-check-label" for="soft_skills">
             Soft Skills - مهارات حياتية
         </label>
     </div>
-    <div class="form-check">
+    </li>
+   
+   <li>
+   <div class="form-check">
         <input class="form-check-input" type="checkbox" id="digital_culture" name="courses[]" value="digital_culture">
         <label class="form-check-label" for="digital_culture">
             Digital Culture - مهارات رقمية
         </label>
     </div>
-    <div class="form-check">
+   </li>
+   <li> <div class="form-check">
         <input class="form-check-input" type="checkbox" id="entrepreneurship" name="courses[]" value="entrepreneurship">
         <label class="form-check-label" for="entrepreneurship">
             Entrepreneurship & Innovation - مهارات الريادة والابتكار
         </label>
-    </div>
-    <div class="form-check">
+    </div></li>
+   <li> <div class="form-check">
         <input class="form-check-input" type="checkbox" id="giglancing" name="courses[]" value="giglancing">
         <label class="form-check-label" for="giglancing">
             Giglancing - العمل الحر
         </label>
-    </div>
-    <div class="form-check">
+    </div></li>
+   <li> <div class="form-check">
         <input class="form-check-input" type="checkbox" id="other_topics" name="courses[]" value="other_topics">
         <label class="form-check-label" for="other_topics">
             مواضيع اخرى
         </label>
-    </div>
+    </div></li>
+    </ul>
 </div>
 
         <!-- التخطيط والتطوير الوظيفي -->
@@ -333,35 +378,46 @@
 
 
 
-                <div class="mb-3">
-                    <label for="career_days" class="form-label">عدد الأيام التدريبية المستهدفة خلال الشهر</label>
+                <div class="mb-3 ">
+                    <label for="career_days" class="form-label ">عدد الأيام التدريبية المستهدفة خلال الشهر</label>
                     <input type="number" class="form-control" id="career_days" name="career_days" min="1">
                 </div>
 
-
                 <div class="mb-3">
-                    <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="career_topic_1" name="career_topics[]" value="اكتشف الخيارات">
-                        <label class="form-check-label" for="career_topic_1">اكتشف الخيارات</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="career_topic_2" name="career_topics[]" value="التركيز والتخطيط">
-                        <label class="form-check-label" for="career_topic_2">التركيز والتخطيط</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="career_topic_3" name="career_topics[]" value="اتخاذ الاجراءات">
-                        <label class="form-check-label" for="career_topic_3">اتخاذ الاجراءات</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="career_topic_4" name="career_topics[]" value="الحفاظ على الوظيفة المهنية">
-                        <label class="form-check-label" for="career_topic_4">الحفاظ على الوظيفة المهنية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="career_topic_5" name="career_topics[]" value="الوعي الذاتي">
-                        <label class="form-check-label" for="career_topic_5">الوعي الذاتي</label>
-                    </div>
-                </div>
+    <label class="form-label section-title">المواضيع التدريبية التي سيتم تقديمها</label>
+    <ul> 
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="career_topic_1" name="career_topics[]" value="اكتشف الخيارات">
+                <label class="form-check-label" for="career_topic_1">اكتشف الخيارات</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="career_topic_2" name="career_topics[]" value="التركيز والتخطيط">
+                <label class="form-check-label" for="career_topic_2">التركيز والتخطيط</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="career_topic_3" name="career_topics[]" value="اتخاذ الاجراءات">
+                <label class="form-check-label" for="career_topic_3">اتخاذ الاجراءات</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="career_topic_4" name="career_topics[]" value="الحفاظ على الوظيفة المهنية">
+                <label class="form-check-label" for="career_topic_4">الحفاظ على الوظيفة المهنية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="career_topic_5" name="career_topics[]" value="الوعي الذاتي">
+                <label class="form-check-label" for="career_topic_5">الوعي الذاتي</label>
+            </div>
+        </li>
+    </ul>
+</div>
 
 
 
@@ -437,48 +493,70 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_1" name="topics[]" value="ادارة التغيير">
-                        <label class="form-check-label" for="topic_1">ادارة التغيير</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_2" name="topics[]" value="حل المشكلات والتغيير الابداعي">
-                        <label class="form-check-label" for="topic_2">حل المشكلات والتغيير الابداعي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_3" name="topics[]" value="مهارات القيادة والتخطيط والادارة">
-                        <label class="form-check-label" for="topic_3">مهارات القيادة والتخطيط والادارة</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_4" name="topics[]" value="مهارات التواصل">
-                        <label class="form-check-label" for="topic_4">مهارات التواصل</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_5" name="topics[]" value="مهارات العرض التقديمي الفعال ونصب الافكار">
-                        <label class="form-check-label" for="topic_5">مهارات العرض التقديمي الفعال ونصب الافكار</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_6" name="topics[]" value="مهارات الكتابة التقنية">
-                        <label class="form-check-label" for="topic_6">مهارات الكتابة التقنية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_7" name="topics[]" value="التفكير التصميمي ومهارات السرد القصصي">
-                        <label class="form-check-label" for="topic_7">التفكير التصميمي ومهارات السرد القصصي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_8" name="topics[]" value="مهارات التطوير والتمكين الذاتي">
-                        <label class="form-check-label" for="topic_8">مهارات التطوير والتمكين الذاتي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_9" name="topics[]" value="الذكاء العاطفي والتعامل مع الضغوط">
-                        <label class="form-check-label" for="topic_9">الذكاء العاطفي والتعامل مع الضغوط</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="topic_10" name="topics[]" value="قانون العمل الاردني والاجراءات الخاصة بغرفة الصناعة والتجارة">
-                        <label class="form-check-label" for="topic_10">قانون العمل الاردني والاجراءات الخاصة بغرفة الصناعة والتجارة</label>
-                    </div>
-                </div>
+    <label class="form-label section-title">المواضيع التدريبية التي سيتم تقديمها</label>
+    <ul > 
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_1" name="topics[]" value="ادارة التغيير">
+                <label class="form-check-label" for="topic_1">ادارة التغيير</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_2" name="topics[]" value="حل المشكلات والتغيير الابداعي">
+                <label class="form-check-label" for="topic_2">حل المشكلات والتغيير الابداعي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_3" name="topics[]" value="مهارات القيادة والتخطيط والادارة">
+                <label class="form-check-label" for="topic_3">مهارات القيادة والتخطيط والادارة</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_4" name="topics[]" value="مهارات التواصل">
+                <label class="form-check-label" for="topic_4">مهارات التواصل</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_5" name="topics[]" value="مهارات العرض التقديمي الفعال ونصب الافكار">
+                <label class="form-check-label" for="topic_5">مهارات العرض التقديمي الفعال ونصب الافكار</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_6" name="topics[]" value="مهارات الكتابة التقنية">
+                <label class="form-check-label" for="topic_6">مهارات الكتابة التقنية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_7" name="topics[]" value="التفكير التصميمي ومهارات السرد القصصي">
+                <label class="form-check-label" for="topic_7">التفكير التصميمي ومهارات السرد القصصي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_8" name="topics[]" value="مهارات التطوير والتمكين الذاتي">
+                <label class="form-check-label" for="topic_8">مهارات التطوير والتمكين الذاتي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_9" name="topics[]" value="الذكاء العاطفي والتعامل مع الضغوط">
+                <label class="form-check-label" for="topic_9">الذكاء العاطفي والتعامل مع الضغوط</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="topic_10" name="topics[]" value="قانون العمل الاردني والاجراءات الخاصة بغرفة الصناعة والتجارة">
+                <label class="form-check-label" for="topic_10">قانون العمل الاردني والاجراءات الخاصة بغرفة الصناعة والتجارة</label>
+            </div>
+        </li>
+    </ul>
+</div>
           
 
          <!-- المهارات الحياتية -->
@@ -548,52 +626,76 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_1" name="digital_topics[]" value="التحول الرقمي">
-                        <label class="form-check-label" for="digital_topic_1">التحول الرقمي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_2" name="digital_topics[]" value="الذكاء الاصطناعي">
-                        <label class="form-check-label" for="digital_topic_2">الذكاء الاصطناعي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_3" name="digital_topics[]" value="البيانات الضخمة">
-                        <label class="form-check-label" for="digital_topic_3">البيانات الضخمة</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_4" name="digital_topics[]" value="الحوسبة السحابية">
-                        <label class="form-check-label" for="digital_topic_4">الحوسبة السحابية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_5" name="digital_topics[]" value="انترنت الاشياء">
-                        <label class="form-check-label" for="digital_topic_5">انترنت الاشياء</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_6" name="digital_topics[]" value="التجارة الالكترونية">
-                        <label class="form-check-label" for="digital_topic_6">التجارة الالكترونية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_7" name="digital_topics[]" value="التسويق الرقمي">
-                        <label class="form-check-label" for="digital_topic_7">التسويق الرقمي</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_8" name="digital_topics[]" value="المنصات الاجتماعية">
-                        <label class="form-check-label" for="digital_topic_8">المنصات الاجتماعية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_9" name="digital_topics[]" value="اللغة الانجليزية واستخداماتها في الثقافة الرقمية">
-                        <label class="form-check-label" for="digital_topic_9">اللغة الانجليزية واستخداماتها في الثقافة الرقمية</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_10" name="digital_topics[]" value="سلسلة الكتل">
-                        <label class="form-check-label" for="digital_topic_10">سلسلة الكتل</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="digital_topic_11" name="digital_topics[]" value="أدوات الذكاء الاصطناعي">
-                        <label class="form-check-label" for="digital_topic_11">أدوات الذكاء الاصطناعي</label>
-                    </div>
-                </div>
+    <label class="form-label section-title">المواضيع التدريبية التي سيتم تقديمها</label>
+    <ul> 
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_1" name="digital_topics[]" value="التحول الرقمي">
+                <label class="form-check-label" for="digital_topic_1">التحول الرقمي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_2" name="digital_topics[]" value="الذكاء الاصطناعي">
+                <label class="form-check-label" for="digital_topic_2">الذكاء الاصطناعي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_3" name="digital_topics[]" value="البيانات الضخمة">
+                <label class="form-check-label" for="digital_topic_3">البيانات الضخمة</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_4" name="digital_topics[]" value="الحوسبة السحابية">
+                <label class="form-check-label" for="digital_topic_4">الحوسبة السحابية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_5" name="digital_topics[]" value="انترنت الاشياء">
+                <label class="form-check-label" for="digital_topic_5">انترنت الاشياء</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_6" name="digital_topics[]" value="التجارة الالكترونية">
+                <label class="form-check-label" for="digital_topic_6">التجارة الالكترونية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_7" name="digital_topics[]" value="التسويق الرقمي">
+                <label class="form-check-label" for="digital_topic_7">التسويق الرقمي</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_8" name="digital_topics[]" value="المنصات الاجتماعية">
+                <label class="form-check-label" for="digital_topic_8">المنصات الاجتماعية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_9" name="digital_topics[]" value="اللغة الانجليزية واستخداماتها في الثقافة الرقمية">
+                <label class="form-check-label" for="digital_topic_9">اللغة الانجليزية واستخداماتها في الثقافة الرقمية</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_10" name="digital_topics[]" value="سلسلة الكتل">
+                <label class="form-check-label" for="digital_topic_10">سلسلة الكتل</label>
+            </div>
+        </li>
+        <li>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="digital_topic_11" name="digital_topics[]" value="أدوات الذكاء الاصطناعي">
+                <label class="form-check-label" for="digital_topic_11">أدوات الذكاء الاصطناعي</label>
+            </div>
+        </li>
+    </ul>
+</div>
 
    <!-- مهارات الريادة والابتكار -->
 <div class="course-details" id="entrepreneurship_details">
@@ -661,23 +763,29 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
-                    <div class="form-check">
+                    <label class="form-label section-title">المواضيع التدريبية التي سيتم تقديمها</label>
+                  <ul>
+               <li>   <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="entre_topic_1" name="entre_topics[]" value="أساسيات ريادة الاعمال">
                         <label class="form-check-label" for="entre_topic_1">أساسيات ريادة الاعمال</label>
-                    </div>
-                    <div class="form-check">
+                    </div></li>
+                 <li>   <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="entre_topic_2" name="entre_topics[]" value="أساسيات ريادة الاعمال المتقدمة">
                         <label class="form-check-label" for="entre_topic_2">أساسيات ريادة الاعمال المتقدمة</label>
-                    </div>
-                    <div class="form-check">
+                    </div></li>
+                  <li>
+                  <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="entre_topic_3" name="entre_topics[]" value="الابتكار">
                         <label class="form-check-label" for="entre_topic_3">الابتكار</label>
                     </div>
-                    <div class="form-check">
+                  </li>
+                <li>
+                <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="entre_topic_4" name="entre_topics[]" value="نصب الافكار">
                         <label class="form-check-label" for="entre_topic_4">نصب الافكار</label>
                     </div>
+                </li>
+                  </ul>
                 </div>
 
 
@@ -767,11 +875,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">المواضيع التدريبية التي سيتم تقديمها</label>
+                    <label class="form-label section-title">المواضيع التدريبية التي سيتم تقديمها</label>
+                <ul>
+                    <li>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="freelance_topic_1" name="freelance_topics[]" value="أساسيات ريادة الاعمال">
                         <label class="form-check-label" for="freelance_topic_1">منصات العمل الحر</label>
                     </div>
+                    </li>
+                </ul>
           
                 </div>
 

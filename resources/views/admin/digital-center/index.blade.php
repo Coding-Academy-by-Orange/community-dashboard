@@ -49,7 +49,6 @@
                                     <th>Other Months</th>
                                     <th>Other Days</th>
                                     <th>Other Topics</th>
-                                    <th>Other Details</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,13 +213,13 @@
                                             @endif
                                         </td>
                                         <td>{{ $trainer->other_days ?? 'لا يوجد' }}</td>
-                                        <td>
+                                        <!-- <td>
                                             @if ($trainer->other_topics && is_string($trainer->other_topics))
                                                 <p>{{ $trainer->other_topics }}</p>
                                             @else
                                                 لا توجد مواضيع
                                             @endif
-                                        </td>
+                                        </td> -->
                                         <td>{{ $trainer->other ?? 'لا يوجد' }}</td>
                                     </tr>
                                 @endforeach
