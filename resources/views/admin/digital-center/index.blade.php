@@ -49,6 +49,8 @@
                                     <th>Other Months</th>
                                     <th>Other Days</th>
                                     <th>Other Topics</th>
+                                    <th>Other</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -221,6 +223,15 @@
                                             @endif
                                         </td> -->
                                         <td>{{ $trainer->other ?? 'لا يوجد' }}</td>
+                                        <td>{{ $trainer->other_days ?? 'لا يوجد' }}</td>
+                                        <td>
+    <a href="{{ route('digital-center.edit', $trainer->id) }}" class="btn btn-primary btn-sm">Edit</a>
+    <form action="{{ route('digital-center.destroy', $trainer->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</button>
+    </form>
+</td>
                                     </tr>
                                 @endforeach
                             </tbody>

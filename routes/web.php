@@ -240,6 +240,9 @@ Route::get('/admin/{id}/users', [FablabUsersController::class, 'destroy'])->name
 Route::resource('/ODC', "ODC\ODCController");
 
 Route::get('/digital-center', [ODCTrainerController::class, 'adminindex'])->name('digital-center.index');
+Route::get('/digital-center/{id}/edit', [ODCTrainerController::class, 'edit'])->name('digital-center.edit');
+Route::put('/digital-center/{id}', [ODCTrainerController::class, 'update'])->name('digital-center.update');
+Route::delete('/digital-center/{id}', [ODCTrainerController::class, 'destroy'])->name('digital-center.destroy');
 
 Route::prefix('digitalcenter')->group(function () {
     Route::get('/odctrainerfrom', [ODCTrainerController::class, 'create'])
@@ -247,6 +250,8 @@ Route::prefix('digitalcenter')->group(function () {
 
     Route::post('/odctrainerfrom', [ODCTrainerController::class, 'store'])
         ->name('digitalcenter.odctrainerform.store');
+
+
 
 
 });
