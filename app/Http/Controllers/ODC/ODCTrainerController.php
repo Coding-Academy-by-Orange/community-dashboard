@@ -13,7 +13,7 @@ class ODCTrainerController extends Controller
 
     public function index()
     {
-        return view('public/digitalcenter/odctrainerfrom');
+        return view('public.digitalcenter.odctrainerfrom');
         
 
     }
@@ -25,7 +25,7 @@ class ODCTrainerController extends Controller
     }
     public function create()
     {
-        return view('public\digitalcenter\odctrainerfrom');
+        return view('public.digitalcenter.odctrainerfrom');
     }
 
     public function store(Request $request)
