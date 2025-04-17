@@ -189,8 +189,12 @@
             <option value="" disabled {{ old('organization') ? '' : 'selected' }}>اختر الجهة</option>
             <option value="وزارة الشباب" {{ old('organization') == 'وزارة الشباب' ? 'selected' : '' }}>وزارة الشباب</option>
             <option value="وزارة الاقتصاد الرقمي والريادة" {{ old('organization') == 'وزارة الاقتصاد الرقمي والريادة' ? 'selected' : '' }}>وزارة الاقتصاد الرقمي والريادة</option>
-            <option value="جامعة اليرموك" {{ old('organization') == 'جامعة اليرموك' ? 'selected' : '' }}>جامعة اليرموك</option>
-            <option value="مركز اورانج الرقمي" {{ old('organization') == 'مركز اورانج الرقمي' ? 'selected' : '' }}>مركز اورانج الرقمي</option>
+            <option value="جامعة اليرموك" {{ old('organization') == 'جامعة  اليرموك' ? 'selected' : '' }}>جامعة اليرموك</option>
+            <option value="جامعة مؤته" {{ old('organization') == 'جامعة مؤته' ? 'selected' : '' }}>جامعة مؤته</option>
+            <option value="الجامعة الألمانية" {{ old('organization') == 'جامعة الألمانية' ? 'selected' : '' }}>جامعة الألمانية</option>
+
+            <option value="نادي إبداع الكرك" {{ old('organization') == 'نادي ابداع الكرك' ? 'selected' : '' }}>نادي ابداع الكرك</option>
+
         </select>
             </div>
 
@@ -199,50 +203,63 @@
                 <span class="sr-only is-required">(required)</span>
                 <select class="form-select" id="digital_center" name="digital_center" required>
     <option value="" disabled {{ old('digital_center') ? '' : 'selected' }}>اختر المركز</option>
-    <option value="مركز أورنج الرقمي - اربد /محطة معرفة الحصن" {{ old('digital_center') == 'مركز أورنج الرقمي - اربد /محطة معرفة الحصن' ? 'selected' : '' }}>
+    <option value="مركز أورنج الرقمي - اربد /محطة معرفة الحصن" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورنج الرقمي - اربد /محطة معرفة الحصن' ? 'selected' : '' }}>
         مركز أورنج الرقمي - اربد /محطة معرفة الحصن
     </option>
-    <option value="مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي" {{ old('digital_center') == 'مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي' ? 'selected' : '' }}>
+    <option value="مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي" data-org="وزارة الشباب" {{ old('digital_center') == 'مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي' ? 'selected' : '' }}>
         مركز أورائج الرقمي - السلط /مركز شابات العارضه النموذجي
     </option>
-    <option value="مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه" {{ old('digital_center') == 'مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه" data-org="وزارة الشباب" {{ old('digital_center') == 'مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه' ? 'selected' : '' }}>
         مركز أورانج الرقمي - عجلون /مركز شابات كفر نجه
     </option>
-    <option value="مركز أورائج الرقمى - مادبا / محطة معرفة ماعين" {{ old('digital_center') == 'مركز أورائج الرقمى - مادبا / محطة معرفة ماعين' ? 'selected' : '' }}>
+    <option value="مركز أورائج الرقمى - مادبا / محطة معرفة ماعين" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورائج الرقمى - مادبا / محطة معرفة ماعين' ? 'selected' : '' }}>
         مركز أورائج الرقمى - مادبا / محطة معرفة ماعين
     </option>
-    <option value="مركز أورانج الرقمي - مادبا /محطة معرفة مليح" {{ old('digital_center') == 'مركز أورانج الرقمي - مادبا /محطة معرفة مليح' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمي - مادبا /محطة معرفة مليح" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورانج الرقمي - مادبا /محطة معرفة مليح' ? 'selected' : '' }}>
         مركز أورانج الرقمي - مادبا /محطة معرفة مليح
     </option>
-    <option value="مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله" {{ old('digital_center') == 'مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورانج الرقمى - الضفيلة /محطة معرفة الطفيله' ? 'selected' : '' }}>
         مركز أورانج الرقمى - الطفيلة /محطة معرفة الطفيله
     </option>
-    <option value="مركز أورانج الرقمى - العقبة /مركز شباب العقبه" {{ old('digital_center') == 'مركز أورانج الرقمى - العقبة /مركز شباب العقبه' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمى - العقبة /مركز شباب العقبه"  data-org="وزارة الشباب" {{ old('digital_center') == 'مركز أورانج الرقمى - العقبة /مركز شباب العقبه' ? 'selected' : '' }}>
         مركز أورانج الرقمى - العقبة /مركز شباب العقبه
     </option>
-    <option value="مركز أورائج الرقمي - الكرك /نادي ابداع الكرك" {{ old('digital_center') == 'مركز أورائج الرقمي - الكرك /نادي ابداع الكرك' ? 'selected' : '' }}>
+    <option value="مركز أورائج الرقمي - الكرك /نادي ابداع الكرك" data-org="نادي إبداع الكرك" {{ old('digital_center') == 'مركز أورائج الرقمي - الكرك /نادي ابداع الكرك' ? 'selected' : '' }}>
         مركز أورائج الرقمي - الكرك /نادي ابداع الكرك
     </option>
-    <option value="مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي" {{ old('digital_center') == 'مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي"  data-org="وزارة الشباب" {{ old('digital_center') == 'مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي' ? 'selected' : '' }}>
         مركز أورانج الرقمي - الزرقاء / مركز شباب الزرقاء النموذجي
     </option>
-    <option value="مركز اورانج الرقمي - المفرق / محطة معرفة المفرق" {{ old('digital_center') == 'مركز اورانج الرقمي - المفرق / محطة معرفة المفرق' ? 'selected' : '' }}>
+    <option value="مركز اورانج الرقمي - المفرق / محطة معرفة المفرق"data-org="وزارة الاقتصاد الرقمي والريادة" {{ old('digital_center') == 'مركز اورانج الرقمي - المفرق / محطة معرفة المفرق' ? 'selected' : '' }}>
         مركز اورانج الرقمي - المفرق / محطة معرفة المفرق
     </option>
-    <option value="مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية" {{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية' ? 'selected' : '' }}>
         مركز أورانج الرقمي- محطة معرفة الجامعة الهاشمية
     </option>
-    <option value="مركز اوريج الرقمي تكز شباب دير ابي سعيد" {{ old('digital_center') == 'مركز اوريج الرقمي تكز شباب دير ابي سعيد' ? 'selected' : '' }}>
-        مركز أورانج الرقمي تكز شباب دير ابي سعيد
+    <option value="مركز اوريج الرقمي - مركز شباب دير ابي سعيد"  data-org="وزارة الشباب"{{ old('digital_center') == 'مركز اوريج الرقمي مركز شباب دير ابي سعيد' ? 'selected' : '' }}>
+        مركز أورانج الرقمي - مركز شباب دير ابي سعيد
     </option>
-    <option value="مركز اورانج الرقمي- مركز شباب الشوبك" {{ old('digital_center') == 'مركز اورانج الرقمي- مركز شباب الشوبك' ? 'selected' : '' }}>
+    <option value="مركز اورانج الرقمي- مركز شباب الشوبك"  data-org="وزارة الشباب" {{ old('digital_center') == 'مركز اورانج الرقمي- مركز شباب الشوبك' ? 'selected' : '' }}>
         مركز اورانج الرقمي- مركز شباب الشوبك
     </option>
-    <option value="مركز اورنج الرقمي-مركز شباب معان النموذجي" {{ old('digital_center') == 'مركز اورنج الرقمي-مركز شباب معان النموذجي' ? 'selected' : '' }}>
+    <option value="مركز اورنج الرقمي-مركز شباب معان النموذجي"  data-org="وزارة الشباب" {{ old('digital_center') == 'مركز اورنج الرقمي-مركز شباب معان النموذجي' ? 'selected' : '' }}>
         مركز اورنج الرقمي-مركز شباب معان النموذجي
     </option>
-    <option value="مركز أورانج الرقمي- محطة معرفة الكتة" {{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الكتة' ? 'selected' : '' }}>
+    <option value="مركز أورانج الرقمي- محطة معرفة الكتة" data-org="وزارة الاقتصاد الرقمي والريادة"{{ old('digital_center') == 'مركز أورانج الرقمي- محطة معرفة الكتة' ? 'selected' : '' }}>
         مركز أورانج الرقمي- محطة معرفة الكتة
+    </option>
+
+    <option value="مركز اورنج الرقمي-الجامعة الألمانية"  data-org="الجامعة الألمانية" {{ old('digital_center') == 'مركز اورنج الرقمي- جامعة الألمانية  ' ? 'selected' : '' }}>
+        مركز اورنج الرقمي-جامعة الألمانية
+    </option>
+
+    <option value="مركز اورنج الرقمي-جامعة مؤته"  data-org="جامعة مؤته" {{ old('digital_center') == 'مركز اورنج الرقمي- جامعة مؤته  ' ? 'selected' : '' }}>
+        مركز اورنج الرقمي-جامعة مؤته
+    </option>
+
+
+    <option value="مركز اورنج الرقمي-الجامعة الألمانية"  data-org="جامعة اليرموك" {{ old('digital_center') == 'مركز اورنج الرقمي- جامعة اليرموك  ' ? 'selected' : '' }}>
+        مركز اورنج الرقمي-جامعة اليرموك
     </option>
 </select>
             </div>
@@ -971,7 +988,33 @@
 
 
             
-        
+            <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const organizationSelect = document.getElementById('organization');
+    const centerSelect = document.getElementById('digital_center');
+    const allCenters = Array.from(centerSelect.options);
+
+    organizationSelect.addEventListener('change', function () {
+        const selectedOrg = this.value;
+        centerSelect.innerHTML = '';
+
+        // إضافة خيار فارغ
+        const defaultOption = document.createElement('option');
+        defaultOption.text = 'اختر المركز';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        centerSelect.appendChild(defaultOption);
+
+        allCenters.forEach(option => {
+            const belongsTo = option.getAttribute('data-org');
+            if (belongsTo === selectedOrg) {
+                centerSelect.appendChild(option);
+            }
+        });
+    });
+});
+</script>
+
     
 </body>
 </html>
