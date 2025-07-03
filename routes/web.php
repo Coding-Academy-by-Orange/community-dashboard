@@ -22,6 +22,11 @@ use App\Http\Controllers\CodingSchool\CodingSchoolController;
 use App\Http\Controllers\CodingAcademy\PersonalInformationController;
 use App\Http\Controllers\CodingAcademy\ControllerCodingAcademy;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Big\ImportController;
+use App\Http\Controllers\Big\ExportController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -308,3 +313,7 @@ Route::get('/innovation-hub/program/register', function () {
 Route::post('/innovation-hub/program/register', [InnovationHubController::class, 'storeProgram'])->name('innovation-hub.program.store');
 
 //Route::get('');
+
+//2025 update
+Route::post('/admin/big/import', [ImportController::class, 'import'])->name('admin.big.import');
+Route::get('/admin/big/export', [ExportController::class, 'export'])->name('admin.big.export');

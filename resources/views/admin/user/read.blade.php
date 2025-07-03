@@ -4,12 +4,33 @@
 @endsection
 @section('main')
     <div class="container my-5">
+
+             @if (Auth::guard('admin')->user()->component == 'bigbyorange')
+
+                <div>
+          <a href="{{ route('admin.big.export') }}" class="btn btn-success">
+            Export Excel
+        </a>
+      </div>
+      <br>
+        <form action="{{ route('admin.big.import') }}" method="POST" enctype="multipart/form-data" class="d-flex gap-2">
+            @csrf
+            <input type="file" name="file" class="form-control" required>
+            <button type="submit" class="btn btn-primary">Import Excel</button>
+        </form>
+
+    </div>
+
+    
+
+    @endif
         <section id="basic-horizontal-layouts">
             <div class="row match-height">
                 <div class="col-12 mb-3 d-flex justify-content-between align-items-center">
                     <div>
                         <h3 class="display-3">Applicants</h3>
                     </div>
+                    
                 </div>
                 @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,6 +46,9 @@
     </div>    
 
 @endif
+
+
+
                 <div class="col-2 ">
                     <div class="mt-1">
                         <div class="rounded d-flex flex-wrap">
@@ -32,6 +56,9 @@
                         </div>
                     </div>
                 </div>
+
+
+                
                 <div class="col-lg-10 app-content content ml-0">
                     <div class="content-wrapper">
                         <div class="content-header row">
